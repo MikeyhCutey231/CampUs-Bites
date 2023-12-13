@@ -1,7 +1,7 @@
 <?php
 session_start();
-require '../admin_functions/UserData.php';
-include_once('../admin_functions/ProductData.php');
+require '../../Admin/functions/UserData.php';
+include_once('../../Admin/functions/ProductData.php');
 
 
 $loggedUser = $_SESSION['USER_ID'];

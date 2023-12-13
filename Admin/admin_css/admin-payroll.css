@@ -375,7 +375,8 @@ input:focus {
     border-radius: 6px;
     margin-right: 13px;
     margin-top: 14px;
-    padding-bottom: 10px;
+    height: auto;
+    padding-bottom: 15px;
 }
 
 .card-1{
@@ -387,6 +388,7 @@ input:focus {
 
 .card-1 .user-face img{
     border-radius: 50px;
+    margin-top: 20px;
 }
 
 .user-info{

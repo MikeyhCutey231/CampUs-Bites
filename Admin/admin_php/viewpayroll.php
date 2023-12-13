@@ -1,10 +1,9 @@
 <?php
-include("../admin_functions/payroll.php");
+include '../../Admin/functions/UserData.php';
 
-$database = new Database();
+$database = new Connection();
 $conn = $database->conn;
 
-session_start();
 if (isset($_SESSION["positionEmpID"])) {
     $positionEmpID = $_SESSION["positionEmpID"];
 } else {
@@ -12,7 +11,7 @@ if (isset($_SESSION["positionEmpID"])) {
 }
 ?>
 <?php
-require '../admin_functions/UserData.php';
+
 
 $loggedUser = $_SESSION['USER_ID'];
 $userDataInstance = new UserData();
@@ -25,14 +24,14 @@ if (!isset($_SESSION['USER_ID'])) {
 
 $employeeData = $userDataInstance->getEmployeeDataCashier();
 
-$dtr = new EmployeeData($conn);
+$dtr = new UserData();
 $value1 = $dtr->getDeductionAmount("SSS");
 $value3 = $dtr->getDeductionAmount("PhilHealth");
 $value2 = $dtr->getDeductionAmount("PagIBIG");
 ?>
 
 <?php
-require '../admin_functions/LiveSearchFunction.php';
+require '../../Admin/functions/LiveSearchFunction.php';
 $customerTableSorter = new TableSorter('#searchresult', '.filterDropdown');
 $customerTableSorter->addSortingScript();
 $searchHandler = new SearchHandler();
@@ -78,13 +77,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['search'])) {
             </div>
             <!-- Main Search Bar -->
             <div class="head-searchbar">
-                <img src="/Icons/search.svg" alt="" width="20px" style="margin-top: 12px;">
+                <img src="../../Icons/search.svg" alt="" width="20px" style="margin-top: 12px;">
                 <form method="post">
                     <input type="text" name="search" placeholder="Search here...">
                 </form>
             </div>
             <div class="usep-texthead">
-                <img src="/Icons/useplogo.png" alt="" width="30px" height="30px">
+                <img src="../../Icons/useplogo.png" alt="" width="30px" height="30px">
                 <p style="margin-bottom: 0px; margin-top: 3px; margin-left: 10px; font-weight: 600;">UseP (Tagum Unit)</p>
             </div>
             <a href="admin-profile.php" style="color: black;">
@@ -93,7 +92,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['search'])) {
                         <?php
                         if (!empty($usersData)) {
                             $profilePic = $usersData[0]['profilePic'];
-                            echo '<img src="upload/' . $profilePic . '" style="height: 38px; width: 40px; border-radius: 5px; object-fit: cover;">';
+                            echo '<img src="../../' . $profilePic . '" style="height: 38px; width: 40px; border-radius: 5px; object-fit: cover;">';
                         }
                         ?>
                     </div>
@@ -103,7 +102,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['search'])) {
                             $adminUsername = $usersData[0]['username'];
                             echo '<p style="margin-bottom: 0px; font-weight: 700;">' . $adminUsername . '</p>';
 
-                            require_once '../admin_functions/user.php';
+                            require_once '../../Admin/functions/user.php';
                             $userDataManager = new User();
                             if ($userDataManager->isManager()) {
                                 echo '<p style="margin-bottom: 0px; font-size: 6px; background-color: #9C1421; color: white; padding: 3px; border-radius: 3px;">Manager</p>';
@@ -128,7 +127,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['search'])) {
                     <div class="top-content">
                         <div class="left-user-side">
                             <div class="user-image">
-                                <?php echo '<img src="../admin_php/upload/' . $row['U_PICTURE'] . '" alt="" style="border-radius: 200px; object-fit: cover; width: 150px; height: 150px;">'; ?>
+                                <?php echo '<img src="../../Icons/' . $row['U_PICTURE'] . '" alt="" style="border-radius: 200px; object-fit: cover; width: 150px; height: 150px;">'; ?>
 
                             </div>
                             <div class="user-name">

@@ -375,7 +375,7 @@ input:focus {
     border-radius: 6px;
     margin-right: 13px;
     margin-top: 14px;
-    height: auto;
+    height: fit-content;
     padding-bottom: 15px;
 }
 

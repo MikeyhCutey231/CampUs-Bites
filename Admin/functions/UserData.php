@@ -1,5 +1,5 @@
 <?php
-include("../../Admin/functions/dbConfig.php");
+require("../../Admin/functions/dbConfig.php");
 
 class UserData {
     private $conn;

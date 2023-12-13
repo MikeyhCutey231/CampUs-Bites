@@ -409,7 +409,7 @@ class UserData {
 
         $query = "SELECT USER_ID, U_FIRST_NAME, U_MIDDLE_NAME, U_LAST_NAME, U_PICTURE, role_name   
               FROM vwpayroll_list
-              ORDER BY users.U_LAST_NAME ASC";
+              ORDER BY U_LAST_NAME ASC";
 
         $stmt = $this->conn->prepare($query);
         if ($stmt) {

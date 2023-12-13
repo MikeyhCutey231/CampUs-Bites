@@ -4,9 +4,9 @@
     
     class Connection {
         public $host = "localhost";
-        public $password = "root";
-        public $username = "root";
-        public $dbName = "campusbites";
+        public $password = "r+jnMm?Z9";
+        public $username = "u657994792_micheal";
+        public $dbName = "u657994792_campusbites";
     
         public $conn;
     

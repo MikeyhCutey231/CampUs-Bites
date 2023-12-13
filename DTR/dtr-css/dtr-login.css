@@ -1,0 +1,242 @@
+@import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap');
+
+*{
+    font-family: 'Lato', sans-serif;
+}
+.mainVector {
+    position: relative;
+    width: 150%; /* Set the width to 100% to make it wider */
+    max-height: 100vh; /* Limit the height to the screen height */
+    margin-left: -120px;
+}
+
+.layer1 {
+    position: absolute;
+    width: 92%;
+    top: 50%;
+    left: 40%;
+    transform: translate(-50%, -50%);
+    z-index: 2;
+}
+.person{
+    margin-top: -100px;
+    width: 100px;
+}
+.col-md-6{
+    font-family: 'Lato', sans-serif;
+}
+header,h5{
+    font-size: 45px;
+    font-weight: 800;
+    color: #555555;
+}
+.input-field {
+    position: relative;
+    margin-bottom: 20px;
+}
+
+.input-field .fa-check{
+    position: absolute;
+    top: 10px;
+    right: 5px;
+}
+
+
+.password{
+    position: relative;
+    margin-bottom: 20px;
+    margin-top: 40px;
+}
+
+
+.password .password-toggle{
+    position: absolute;
+    top: 10px;
+    right: 5px;
+}
+
+
+
+
+.input {
+    width: 100%;
+    border: none;
+    border-bottom: 1px solid #52BE91;
+    padding: 5px;
+    padding-left: 30px;
+    outline: none;
+}
+
+.input:focus {
+    border-bottom: 2px solid #52BE91;
+}
+
+
+label {
+    position: absolute;
+    top: 0;
+    font-weight: bold;
+    left: 0;
+    font-size: 18px;
+    pointer-events: none;
+    transition: transform 0.2s ease, opacity 0.2s ease;
+    transform-origin: 0 100%;
+}
+
+
+.input:focus + label,
+.input:not(:placeholder-shown) + label {
+    transform: translateY(-1.5em) scale(0.8);
+    opacity: 0.7;
+}
+.input-icon {
+    position: absolute;
+    left: 0px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 20px;
+    height: 20px;
+}
+
+.signin {
+    text-align: right;
+    margin-top: -15px;
+    color: rgb(16, 16, 16);
+}
+
+.error{
+    font-size: 12px; 
+    background-color: #edb4bc; 
+    color: rgb(73, 73, 73);
+    padding: 8px;
+    padding-left: 10px;
+    border-radius: 2px;
+    width: 102%;
+    opacity: 1;
+    transition: opacity 0.5s ease-in-out; 
+    margin-top: 5px;
+    display: flex;
+    padding-left: 20px;
+    display: none;
+}
+
+
+.forgotpass {
+    text-decoration: none;
+    color: #505050;
+    font-size: 13px;
+    font-weight: bold;
+    display: inline-block;
+}
+
+.login {
+    text-align: left;
+    margin-top: 10px;
+}
+.submit{
+    font-size: 15px;
+    background-color: #2EB082;
+    padding: 4px 25px;
+    color: white;
+    border: none;
+    border-radius: 3px;
+}
+@media only screen and (max-width: 768px) {
+    .side-image {
+        border-radius: 10px 10px 0 0;
+    }
+    img {
+        width: 35px;
+        position: absolute;
+        top: 20%;
+        left: 35%;
+    }
+    .text {
+        font-size: 12px;
+        position: relative;
+        text-align: center;
+    }
+    .text p, i {
+        font-size: 16px;
+    }
+    .row {
+        max-width: 420px;
+        width: 100%;
+    }
+    .mainVector,
+    .layer1 {
+        display: none;
+    }
+    .col-md-6 {
+        text-align: center;
+    }
+    .input-box {
+        text-align: center;
+        padding: 10px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        height: 100vh;
+    }
+    .signin {
+        text-align: left;
+        margin-top: 10px;
+    }
+    .login {
+        text-align: left;
+        margin-top: 10px;
+    }
+
+    .titleLogin{
+        font-size: 30px;
+        width: 300px;
+    }
+
+    .mb-5{
+        width: 300px;
+        font-size: 30px;
+    }
+
+    .person{
+        width: 110px;
+
+    }
+
+    .input-field{
+        width: 300px;
+        margin-bottom: 35px;
+    }
+
+    .signin{
+        margin-top: 0px;
+    }
+}
+/* Center-align text in the modal body */
+.modal-body p {
+    text-align: center;
+}
+.msg{
+    font-size: 20px;
+    font-weight: bold;
+}
+.btnY{
+    padding: 3px 40px;
+    border-radius: 15px;
+    border: none;
+    background-color: #B8E78A;
+    color: white;
+}
+.btnN{
+    padding: 3px 40px;
+    border-radius: 15px;
+    border: none;
+    background-color: #FF999A;
+    color: white;
+}
+
+.modal-footer{
+    margin-top: -20px;
+    border-bottom: none;
+    border: none;
+}

@@ -1,0 +1,132 @@
+@import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap');
+
+*,::after,::before{
+    box-sizing: border-box;
+}
+
+body{
+    padding: 0;
+    margin: 0;
+    background-color: #FAFBFD;
+    font-family: 'Lato', sans-serif;
+}
+
+.wrapper{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.left{
+    width: 50%;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding-left: 150px;
+    transition: all .2s ease-in-out;
+}
+
+.left .head-title{
+    font-size: 70px;
+    color: #9C1421;
+    font-weight: bold;
+    margin-bottom: 0px;
+}
+
+.left .sub-head{
+    margin-top: 0px;
+    font-size: 35px;
+    font-weight: bold;
+}
+
+.right{
+    width: 50%;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.container-login{
+    width: 450px;
+    height: 260px;
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0px 0px 4px rgba(0, 0, 0, 25%);
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+}
+
+.login-head{
+    width: 100%;
+    padding: 20px;
+    margin-top: 5px;
+    border-bottom: 1px solid #B4B4B4;
+}
+
+.login-head p{
+    margin-bottom: 0px;
+}
+
+.find-account{
+    margin-top: 20px;
+}
+
+.find-account input{
+    width: 80%;
+    border: none;
+    outline: none;
+    background-color: #F4F4F4;
+    height: 40px;
+    font-size: 12px;
+    padding-left: 10px;
+    border-radius: 6px;
+    margin-top: 10px;
+}
+
+.buttons {
+    margin-top: 25px;
+}
+
+.buttons .cancel{
+    border: none;
+    padding: 8px;
+    width: 90px;
+    font-weight: bold;
+    font-size: 12px;
+    color: black;
+    border-radius: 6px;
+    margin-right: 5px;
+}
+
+.buttons .search{
+    border: none;
+    padding: 8px;
+    width: 90px;
+    font-weight: bold;
+    font-size: 12px;
+    color: white;
+    background-color: #9C1421;
+    border-radius: 6px;
+}
+
+
+
+@media(max-width: 764px){
+    .left{
+        display: none;
+    }
+
+    .right{
+        padding-left: 350px;
+    }
+}
+
+
+
+
+
+

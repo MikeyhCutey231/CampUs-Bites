@@ -1,0 +1,204 @@
+@import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap');
+
+*,::after,::before{
+    box-sizing: border-box;
+}
+
+body{
+    padding: 0;
+    margin: 0;
+    background-color: #FAFBFD;
+    font-family: 'Lato', sans-serif;
+}
+
+.customerContainer{
+    width: 100%;
+    display: flex;
+    padding: 15px;
+    padding-left: 50px;
+    padding-bottom: 0px;
+}
+
+.customerContainer .customerPolicy{
+    padding-bottom: 20px;
+    margin-right: 50px;
+    border-bottom: 4px solid white;
+}
+
+.customerContainer .customerPolicy:hover{
+    border-bottom: 4px solid #F7D44A;
+    color: #F8B82E;
+    cursor: pointer;
+}
+
+
+.customerContainer .privacyPolicy{
+    padding-bottom: 20px;
+    margin-right: 50px;
+    border-bottom: 4px solid white;
+}
+
+.customerContainer .privacyPolicy:hover{
+    border-bottom: 4px solid #F7D44A;
+    color: #F8B82E;
+    cursor: pointer;
+}
+
+
+.customerContainer .privacyPolicy{
+    padding-bottom: 20px;
+    margin-right: 50px;
+    border-bottom: 4px solid white;
+}
+
+.customerContainer .privacyPolicy:hover{
+    border-bottom: 4px solid #F7D44A;
+    color: #F8B82E;
+    cursor: pointer;
+}
+
+
+.customerContainer .canteenPolicy{
+    padding-bottom: 20px;
+    margin-right: 50px;
+    border-bottom: 4px solid white;
+}
+
+.customerContainer .canteenPolicy:hover{
+    border-bottom: 4px solid #F7D44A;
+    color: #F8B82E;
+    cursor: pointer;
+}
+
+.customerContainer .returnPolicy{
+    padding-bottom: 20px;
+    margin-right: 50px;
+    border-bottom: 4px solid white;
+}
+
+.customerContainer .returnPolicy:hover{
+    border-bottom: 4px solid #F7D44A;
+    color: #F8B82E;
+    cursor: pointer;
+}
+
+
+.customerContainer .termsPolicy{
+    padding-bottom: 20px;
+    margin-right: 50px;
+    border-bottom: 4px solid white;
+}
+
+.customerContainer .termsPolicy:hover{
+    border-bottom: 4px solid #F7D44A;
+    color: #F8B82E;
+    cursor: pointer;
+}
+
+.headerPolicy{
+    background-color: #F8B82E;
+    text-align: center;
+    padding: 20px;
+    color: white;
+}
+
+
+.headerPolicy h1{
+    font-weight: calc(1000);
+    margin-bottom: 0px;
+}
+
+.rulesAndRegulation-Container{
+    padding: 50px;
+    padding-top: 40px;
+    color: rgb(37, 37, 37);
+}
+
+
+.firstCustomerPolicy h4{
+    font-weight: bold;
+    color: #F8B82E;
+}
+
+.rulesandRegulationInfo{
+    margin-left: 25px;
+}
+
+.adjustLeft{
+    padding-left: 30px;
+}
+
+.orderPlacement{
+    margin-top: 40px;
+}
+
+.orderPlacement h4{
+    font-weight: bold;
+    color: #F8B82E;
+}
+
+.adjustLeftAnother{
+    padding-left: 70px;
+}
+
+
+.conductAndRespect{
+    margin-top: 40px;
+}
+
+.conductAndRespect h4{
+    font-weight: bold;
+    color: #F8B82E;
+}
+
+
+
+.feedbacks{
+    margin-top: 40px;
+}
+
+.feedbacks h4{
+    font-weight: bold;
+    color: #F8B82E;
+}
+
+
+.accountSuspensions{
+    margin-top: 40px;
+}
+
+.accountSuspensions h4{
+    font-weight: bold;
+    color: #F8B82E;
+}
+
+
+
+.policyContainer{
+    padding: 50px;
+    padding-top: 40px;
+    color: rgb(37, 37, 37);
+}
+
+
+.cateenContainer{
+    padding: 50px;
+    padding-top: 40px;
+    color: rgb(37, 37, 37);
+}
+
+.returnContainer{
+    padding: 50px;
+    padding-top: 40px;
+    color: rgb(37, 37, 37);
+}
+
+
+.termsContainer{
+    padding: 50px;
+    padding-top: 40px;
+    color: rgb(37, 37, 37);
+}
+
+
+

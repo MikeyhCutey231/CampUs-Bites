@@ -1,0 +1,1522 @@
+@import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap');
+
+*,::after,::before{
+    box-sizing: border-box;
+}
+
+body{
+    font-family: 'Lato', sans-serif;;
+    margin: 0;
+    padding: 0;
+    background-color: #FAFBFD;
+}
+
+a{
+    text-decoration: none;
+    cursor: pointer;
+}
+
+p{
+    margin-bottom: 0px;
+}
+
+li{
+    list-style-type: none;
+}
+
+.wrapper{
+    display: flex;
+    flex-direction: row;
+}
+
+.left-container{
+    width: 250px;
+    height: 100vh;
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    transition: all 0.35s ease-in-out;
+    top: 0;
+    position: sticky;
+}
+
+.sidebar-logo{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    padding-right: 35px;
+}
+
+.main-logo{
+    width: 45px;
+    height: 45px;
+    background-color: #D9D9D9;
+    border-radius: 4px;
+}
+
+.sidelogo-text{
+    margin-left: 10px;
+    display: flex;
+}
+
+.sidelogo-text p{
+    margin-top: -7px;
+}
+
+.sidelogo-text p, .sidelogo-text a{
+    margin-bottom: 0px;
+    text-decoration: none;
+    color: #9C1421;
+    font-weight: bold;
+    font-size: 18px;
+}
+
+.sidebar-nav{
+    padding: 0;
+}
+
+
+a.sidebar-link{
+    padding: .825rem 1.5rem;
+    color: #696969;
+    position: relative;
+    display: block;
+    font-size: 12px;
+    display: flex;
+}
+
+.sidebar-link.active {
+    color: white; /* Change to the desired color when the link is active */
+    background-color: #9C1421; /* Change to the desired background color when the link is active */
+    border-radius: 7px; /* You can add additional styles as needed */
+}
+
+.sidebar-link.active svg path {
+    fill: white; /* Change to the desired fill color when the link is active */
+    stroke: white; /* Change to the desired stroke color when the link is active */
+}
+
+
+a.sidebar-link p{
+    margin-bottom: 0;
+    margin-top: 1px;
+}
+
+.sidebar-items svg{
+    margin-right: 10px;
+}
+
+.sidebar-dropdown {
+    padding-left: 50px;
+}
+
+.sidebar-item a{
+    font-size: 14px;
+    color: #696969;
+
+}
+
+.sidebar-item{
+    padding: 3px;
+}
+
+.sidebar-item:hover{
+    text-decoration: underline;
+}
+
+.sidebar-items{
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+.sidebar-items:hover svg path {
+    fill: white;
+    stroke: white;
+}
+
+.sidebar-items:hover .sidebar-link{
+    color: white;
+    background-color: #9C1421;
+    border-radius: 7px;
+}
+
+#invHover{
+    position: relative;
+}
+
+#invHover .circle{
+    width: 18px;
+    height: 18px;
+    background-color: #878787;
+    position: absolute;
+    top: 7px;
+    left: 17px;
+    border-radius: 50px;
+    font-size: 9px;
+    color: white;
+    text-align: center;
+    font-weight: 900;
+}
+
+#invHover svg path{
+    stroke: white;
+}
+
+#invHover:hover svg path{
+    stroke: white;
+    fill: #9C1421;
+}
+
+#invHover:hover .circle{
+    background-color: white;
+    color: #9C1421;
+    font-weight: 900;
+}
+
+.circle p{
+    padding-top: 1px;
+}
+
+.sidebar-link[data-bs-toggle="collapse"]::after{
+    border: solid;
+    border-width: 0 0.100rem 0.100rem 0;
+    content: "";
+    display: inline-block;
+    padding: 2px;
+    position: absolute;
+    right: 1.1rem;
+    top: 1.1rem;
+    transform: rotate(45deg);
+    transition: all .1s ease-in-out;
+}
+
+
+.sidebar-link[data-bs-toggle="collapse"].collapsed::after{
+    transform: rotate(-135deg);
+    transition: all .1s ease-in-out;
+    right: 1.1rem;
+    top: 1.3rem;
+}
+
+.usep-footercard{
+    width: 160px;
+    height: 190px;
+    background-color: white;
+    box-shadow: 0px 0px 4px rgba(0, 0, 0, 25%);
+    border-radius: 6px;
+    margin-left: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-top: 70px
+}
+
+
+.right-container{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.head-content{
+    width: 100%;
+    height: 85px;
+    background-color: white;
+    display: flex;
+    align-items: center;
+    position: -webkit-sticky; /* Safari */
+    position: sticky;
+    top: 0;
+}
+
+.head-content .Menu-name{
+    color: #9C1421;
+    font-size: 32px;
+    font-weight: 900;
+    padding-left: 10px;
+    flex-grow: 4;
+    display: flex;
+}
+
+.head-searchbar{
+    position: relative;
+    margin-right: 50px;
+}
+
+.head-searchbar img{
+    position: absolute;
+    margin-top: 10px;
+    margin-left: 15px;
+}
+
+input:focus {
+    outline: none;
+}
+
+.head-searchbar input{
+    border: none;
+    background-color: #FAFBFD;
+    height: 45px;
+    width: 340px;
+    padding-top: -50px;
+    border-radius: 5px;
+    padding: 10px;
+    font-size: 13px;
+    padding-left: 45px;
+}
+
+.usep-texthead{
+    flex-grow: 1;
+}
+
+.user-profile{
+    display: flex;
+    margin-right: 50px;
+}
+
+.admin-profile{
+    width: 40px;
+    height: 40px;
+    border-radius: 6px;
+    background-color: #D9D9D9;
+    flex-grow: 1;
+}
+
+.admin-detail{
+    text-align: center;
+    margin-left: 5px;
+}
+
+
+.usep-texthead{
+    display: flex;
+    flex-direction: row;
+}
+
+.open-btn {
+    border: none;
+    margin-right: 10px;
+    display: none;
+    margin-top: -8px;
+}
+
+.close-btn{
+    display: none;
+}
+
+
+.content-1{
+    border-radius: 5px;
+    box-shadow: 0px 0px 4px rgba(0, 0, 0, 25%) !important;
+    width: 109%;
+}
+.content-2{
+    border-radius: 5px;
+}
+
+.content-3{
+    width: 98%;
+}
+
+.content-3 nav{
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-end;
+}
+
+.searchbar{
+    border: none !important;
+}
+
+.form-control:focus {
+    outline: none;
+}
+
+.searchbar input{
+    border: none !important;
+    background-color: #F8F8F8;
+    border-radius: 5px;
+    font-size: 11px;
+}
+
+
+.filterDropdown{
+    background-color: white;
+    outline: none;
+    border: none;
+    padding: 5px;
+    padding-left: 10px;
+    padding-right: 10px;
+    width: 100px;
+    font-size: 14px;
+    height: 30px;
+    box-shadow: 0px 2px 6px rgba(0, 0, 0, 25%);
+    border-radius: 2px;
+    margin-top: 5px;
+    margin-left: 15px;
+}
+
+
+
+.form-select:focus {
+    border-color: none;
+    background-color: none;
+    box-shadow: 0px 2px 6px rgba(0, 0, 0, 25%);
+}
+
+
+.sortContainer{
+    margin-left: 70px;
+}
+
+.input-group-text{
+    /*width: 400px;*/
+    background-color: #F8F8F8;
+    border: none !important;
+}
+
+.input-group-text input{
+    font-size: 14px;
+    border-radius: 0px;
+    height: 30px;
+    margin-left: 6px;
+    width: 100%;
+}
+
+.sort{
+    color: #656565;
+    /* margin-left: 340px;*/
+    font-size: 12px;
+    padding-top: 3px;
+}
+.btn{
+    margin-left: 10px;
+    width: 150px;
+    border-color: #5f5f5f;
+    color: black;
+    background-color: transparent;
+    font-size: 11px;
+    box-shadow: 0px 0px 4px rgba(0, 0, 0, 25%) !important;
+}
+.btn1{
+    background-color: white;
+}
+
+.btn:hover{
+    border-color: #5f5f5f;
+    background-color: white;
+    font-size: 11px;
+    color: black;
+}
+
+.btn:active{
+    border-color: #5f5f5f !important;
+    background-color: white !important;
+    font-size: 11px !important;
+    color: black !important;
+}
+
+.btn-check:checked+.btn, .btn.active, .btn.show, .btn:first-child:active, :not(.btn-check)+.btn:active {
+    border-color: #5f5f5f !important;
+    background-color: white !important;
+    font-size: 11px !important;
+    color: black !important;
+}
+
+
+.btnAdd img{
+    width: 18px;
+    height: 18px;
+    margin-top: 2px;
+    margin-right: 10px;
+}
+.btnAdd{
+    color: white;
+    border-color: transparent;
+    background-color: #9C1421;
+    font-size: 13px;
+    height: 35px;
+    width: 150px;
+    margin-top: 2px;
+    margin-left: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 4px;
+}
+.btnAdd h6{
+    margin-top: 8px;
+    font-size: 14px;
+}
+
+td{
+    font-size: 13px;
+    font-weight: bold;
+    vertical-align: middle;
+}
+thead{
+    font-weight: normal;
+    font-size: 15px;
+    color: #5f5f5f !important;
+}
+.status{
+    color: #3DC53A !important;
+}
+.Dstatus{
+    color: #9C1421 !important;
+}
+.vwEmpProfile{
+    color: white;
+    width: 90px;
+    border-color:transparent;
+    border-radius: 20px;
+    height: 26px;
+    background-color: #9C1421;
+}
+.vwEmpProfile h6{
+    font-size: 10px;
+}
+.table th, td{
+    text-align: center;
+
+}
+
+.toggle-icon {
+    cursor: pointer;
+}
+
+.table-container{
+    box-shadow: 0px 0px 4px rgba(0, 0, 0, 25%) !important;
+    border-radius: 5px;
+    width: 109%;
+    overflow-y: auto;
+    border: 1px solid #ccc;
+}
+
+.table-container::-webkit-scrollbar {
+    display: none;
+}
+
+.row{
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+th{
+    padding-top: 15px !important;
+}
+
+
+/* Modal Edit Profile */
+
+#editInfo .modal-dialog{
+    max-width: 70%;
+}
+
+#editInfo .modal-body{
+    display: flex;
+    flex-direction: row;
+    padding: 25px;
+}
+
+.modal-body form{
+    display: flex;
+}
+.editLeft-container{
+    width: 20%;
+}
+
+
+.image-container{
+    width: 206px;
+    height: 206px;
+    border: 2px dashed #db4a59;
+    background-color: #FFFFFF;
+    border-radius: 6px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.image-container p{
+    font-size: 12px;
+}
+
+.editLeft-container label{
+    background-color: #9C1421;
+    border: none;
+    border-radius: 2px;
+    color: white;
+    padding: 5px;
+    width: 100%;
+    margin-top: 6px;
+    text-align: center;
+    cursor: pointer;
+}
+
+input[type="file"]{
+    display: none;
+}
+
+
+
+.editRight-container{
+    width: 79%;
+    border-left: 2px solid #A0A0A0;
+    margin-left: 20px;
+}
+
+.modalPersonalInfo h4{
+    font-weight: bolder;
+    font-size: 20px;
+    padding-left: 20px;
+    padding-top: 10px;
+}
+
+.modalFirstRowInfo{
+    display: flex;
+    flex-direction: row;
+    margin-top: 10px;
+    padding-left: 20px;
+}
+
+.modalFirstRowInfo input{
+    border-radius: 3px;
+    border: 1px solid gray;
+    height: 30px;
+    width: 200px;
+}
+
+.modalFirstRowInfo .modalLname{
+    margin-right: 15px;
+    font-size: 14px;
+}
+
+.modalFirstRowInfo .modalFname{
+    margin-right: 15px;
+    font-size: 14px;
+}
+
+.modalFirstRowInfo .modalMname{
+    margin-right: 15px;
+    font-size: 14px;
+}
+
+.modalFirstRowInfo .modalSuffix{
+    font-size: 14px;
+}
+
+.modalFirstRowInfo .modalSuffix select{
+    width: 130px;
+    height: 30px;
+    border:1px solid gray;
+}
+
+
+
+.modalSecondRowInfo{
+    display: flex;
+    flex-direction: row;
+    margin-top: 10px;
+    padding-left: 20px;
+}
+
+
+.modalSecondRowInfo input{
+    border-radius: 3px;
+    border: 1px solid gray;
+    height: 30px;
+    width: 200px;
+}
+
+
+
+.modalGender select{
+    display: block;
+    width:  100px;
+    padding: 2px;
+    padding-left: 5px;
+    border: 1px solid gray;
+    font-family: inherit;
+    outline: none;
+    border-radius: 2px;
+    margin-right: 15px;
+
+    /** for the dropdown indicator */
+    appearance: none;
+    background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+    background-repeat: no-repeat;
+    background-position: right 0.2rem center;
+    background-size: 1em;
+}
+
+.modalGender p{
+    font-size: 14px;
+}
+
+
+.modalSecondRowInfo .modalPhonenumber{
+    margin-right: 15px;
+    font-size: 14px;
+}
+
+.modalSecondRowInfo .modalEmail .modalUsername{
+    margin-right: 15px;
+    font-size: 14px;
+}
+
+.modalEmail input{
+    width: 230px;
+}
+.modalUsername input{
+    margin-left: 20px;
+    width: 170px;
+}
+
+.modalSecondRowInfo .modalEmergencyNum{
+    margin-right: 15px;
+    font-size: 14px;
+
+}
+.modalEmergencyNum input{
+    margin-bottom: 5px;
+
+}
+
+
+
+.modalThirdRowInfo{
+    display: flex;
+    flex-direction: row;
+    margin-top: 10px;
+    padding-left: 20px;
+}
+
+
+.modalThirdRowInfo input{
+    border-radius: 3px;
+    border: 1px solid gray;
+    height: 30px;
+    width: 200px;
+}
+
+
+
+.modalCivilStats select{
+    display: block;
+    width:  100px;
+    padding: 4px;
+    padding-left: 5px;
+    border: 1px solid gray;
+    font-family: inherit;
+    outline: none;
+    border-radius: 2px;
+    margin-right: 15px;
+
+    /** for the dropdown indicator */
+    appearance: none;
+    background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+    background-repeat: no-repeat;
+    background-position: right 0.3rem center;
+    background-size: 1em;
+}
+
+.modalCivilStats p{
+    font-size: 14px;
+}
+
+.modalThirdRowInfo .modalHeight{
+    margin-right: 15px;
+    font-size: 14px;
+}
+
+.modalThirdRowInfo .modalHeight input{
+    width: 130px;
+}
+
+.modalThirdRowInfo .modalWeight{
+    margin-right: 15px;
+    font-size: 14px;
+}
+
+.modalThirdRowInfo .modalWeight input{
+    width: 130px;
+}
+
+.modalThirdRowInfo .modalReligion{
+    font-size: 14px;
+}
+
+.modalThirdRowInfo .modalReligion input{
+    width: 156px;
+}
+
+
+
+.modalFourthRowInfo{
+    display: flex;
+    flex-direction: row;
+    margin-top: 10px;
+    padding-left: 20px;
+}
+
+
+.modalFourthRowInfo input{
+    border-radius: 3px;
+    border: 1px solid gray;
+    height: 30px;
+    width: 200px;
+}
+
+.form-item{
+    margin: 0;
+}
+
+
+.modalFourthRowInfo .modalCountry{
+    margin-right: 15px;
+    font-size: 14px;
+}
+
+.modalFourthRowInfo .modalRegion{
+    margin-right: 15px;
+    font-size: 14px;
+}
+
+.modalRegion select{
+    width: 295px;
+    height: 30px;
+    border: 1px solid gray;
+}
+
+
+.modalFourthRowInfo .modalProvince{
+    margin-right: 15px;
+    font-size: 14px;
+}
+
+.modalProvince select{
+    width: 250px !important;
+    height: 30px;
+    border: 1px solid gray;
+}
+
+
+.modalInsertRowInfo{
+    display: flex;
+    align-items: center;
+    margin-top: 10px;
+    padding-left: 20px;
+}
+
+.modalInsertRowInfo select{
+    width: 295px;
+    height: 30px;
+    border: 1px solid gray;
+}
+
+.modalInsertRowInfo .modalCity{
+    margin-right: 15px;
+    font-size: 14px;
+}
+
+.modalCity select{
+    width: 300px;
+    height: 30px;
+    border: 1px solid gray;
+}
+
+
+.modalInsertRowInfo .modalZIP{
+    margin-right: 15px;
+    font-size: 14px;
+}
+
+.modalZIP input{
+    width: 100px;
+    height: 32px;
+    border: 1px solid gray;
+}
+
+.modalInsertRowInfo .modalBarangay{
+    margin-right: 15px;
+    font-size: 14px;
+}
+
+.modalBarangay select{
+    width: 345px;
+    height: 30px;
+    border: 1px solid gray;
+}
+
+
+.modalInsertLast{
+    display: flex;
+    align-items: center;
+    margin-top: 10px;
+    padding-left: 20px;
+}
+
+.modalAddress input{
+    width: 775px;
+
+    border: 1px solid gray;
+}
+
+
+.modalFifthRowInfo{
+    display: flex;
+    align-items: center;
+    margin-top: 20px;
+}
+
+.modalFifthRowInfo h4{
+    font-weight: bolder;
+    font-size: 20px;
+    padding-left: 20px;
+    padding-top: 10px;
+}
+
+.modalFifthRowInfo .modalJobStatus{
+    margin-top: 12px;
+    margin-left: 10px;
+    font-size: 12px;
+    color: red;
+}
+
+
+
+.modalSixRowInfo{
+    display: flex;
+    flex-direction: row;
+    margin-top: 10px;
+    padding-left: 20px;
+}
+
+
+.modalSixRowInfo input{
+    border-radius: 3px;
+    border: 1px solid gray;
+    height: 30px;
+    width: 200px;
+}
+
+
+
+.modalSixRowInfo .modalPosition{
+    margin-right: 15px;
+    font-size: 14px;
+}
+
+.modalSixRowInfo .modalPosition input{
+    width: 130px;
+}
+
+.modalSixRowInfo .modalBasicSalary{
+    font-size: 14px;
+    position: relative;
+}
+
+.modalSixRowInfo .modalBasicSalary input{
+    width: 156px;
+    padding-left: 35px;
+}
+
+
+.modalBasicSalary .dollarsign{
+    position: absolute;
+    top: 21px;
+    padding-left: 10px;
+    padding-top: 6px;
+    padding-bottom: 4px;
+    padding-right: 10px;
+    font-size: 12px;
+    background-color: #e3e3e3;
+    border-bottom-left-radius: 3px;
+    border-top-left-radius: 3px;
+    border-top: 1px solid gray;
+    border-left: 1px solid gray;
+    border-bottom: 1px solid gray;
+    color: #9C1421;
+}
+
+
+.modalSeveRowInfo{
+    display: flex;
+    flex-direction: row;
+    margin-top: 10px;
+    padding-left: 20px;
+}
+
+.modalSeveRowInfo select{
+    display: block;
+    width:  378px;
+    padding: 4px;
+    padding-left: 10px;
+    border: 1px solid gray;
+    font-family: inherit;
+    outline: none;
+    border-radius: 2px;
+    margin-right: 15px;
+    font-size: 12px;
+    height: 35px;
+
+    /** for the dropdown indicator */
+    appearance: none;
+    background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+    background-repeat: no-repeat;
+    background-position: right 0.5rem center;
+    background-size: 1em;
+}
+
+.modalSeveRowInfo .modalCollege{
+    font-size: 14px;
+}
+
+.modalSeveRowInfo .modalProgram{
+    font-size: 14px;
+}
+
+
+.modalEigth{
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-end;
+}
+
+.modalEigth .modalUpdate{
+    border: none;
+    cursor: pointer;
+    background-color: #9C1421;
+    color: white;
+    height: 30px;
+    width: 130px;
+    margin-top: 15px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 25%);
+    margin-right: 10px;
+    font-size: 12px;
+    border-radius: 4px;
+}
+
+.modalEigth .closeModalProfile{
+    border: none;
+    cursor: pointer;
+    background-color: white;
+    color: black;
+    height: 30px;
+    width: 100px;
+    margin-top: 15px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 25%);
+    margin-right: 20px;
+    font-size: 12px;
+}
+
+.closeModalProfile:hover{
+    background-color: white;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.table-container{
+    animation: slideInFromBottomRedOverview 1s ease-in-out;
+}
+
+/* width */
+::-webkit-scrollbar {
+    width: 7px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+    background: #f1f1f1;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+    background: #b5b5b5;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+    background: #b5b5b5;
+}
+
+@keyframes slideInFromBottomRedOverview {
+    0%{
+        transform: translateY(3%);
+    }
+
+    100%{
+        transform: translateX(0);
+    }
+}
+
+
+
+
+
+
+
+
+
+@media only screen and (max-width: 768px){
+    #sidebar{
+        margin-left: -250px;
+        position: fixed;
+        min-height: 100vh;
+        z-index: 4;
+    }
+
+    .open-btn{
+        display: block;
+        margin-top: -12px;
+        padding-left: 4px;
+        padding-right: 4px;
+        background-color: white;
+        color: black;
+    }
+
+    .open-btn:active{
+        background-color: white;
+        color: black;
+    }
+
+    .close-btn{
+        display: block;
+    }
+
+    #sidebar.active{
+        margin-left: 0;
+    }
+
+    .usep-texthead{
+        display: none;
+    }
+
+    .head-searchbar{
+        margin-right: 50px;
+        margin-top: 5px;
+    }
+
+    .head-searchbar input{
+        height: 40px;
+        width: 250px;
+    }
+
+
+    .head-searchbar img{
+        width: 18px;
+        margin-top: 11px;
+    }
+
+    .Menu-name p{
+        font-size: 24px;
+    }
+
+    .usep-footercard{
+        margin-left: 30px;
+    }
+
+    .main-logo{
+        margin-left: -50px;
+    }
+
+    .left-container{
+        z-index: 2;
+    }
+
+    .searchbar{
+        width: 40% !important;
+        margin-right: 50px;
+    }
+
+    .input-group-text{
+        width: 100%;
+        border-radius: none !important;
+    }
+    .row{
+        width: 100% !important;
+        height: 150% !important;
+        margin-left: 0px!important;
+
+    }
+
+
+    .content-1{
+        width: 110% !important;
+    }
+
+    .content-2{
+        width: 101%;
+    }
+
+    .table-container{
+        box-shadow: 0px 0px 4px rgba(0, 0, 0, 25%) !important;
+        border-radius: 5px;
+        max-height: 1000px !important;
+        overflow-y: auto;
+        border: 1px solid #ccc;
+    }
+
+    .sortContainer{
+        margin-left: 0px !important;
+    }
+
+
+
+    #editInfo .modal-body{
+        height: 585px;
+    }
+
+    .image-container{
+        width: 120px;
+        height: 120px;
+        border: 2px dashed #9C1421;
+        background-color: #FFFFFF;
+        border-radius: 6px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .image-container img{
+        width: 40px;
+    }
+
+    .image-container p{
+        font-size: 8px;
+    }
+
+    .editLeft-container label {
+        font-size: 12px;
+    }
+
+    .editLeft-container{
+        width: auto;
+    }
+
+    #editInfo .modal-dialog{
+        max-width: 90%;
+        margin-top: 20px;
+    }
+
+    .modalPersonalInfo h4{
+        font-size: 16px;
+    }
+
+    .editRight-container{
+        width: 79%;
+        border-left: 2px solid #A0A0A0;
+        margin-left: 20px;
+    }
+
+
+    .modalFirstRowInfo input{
+        border-radius: 3px;
+        border: 1px solid gray;
+        height: 25px;
+        width: 120px;
+    }
+
+    .modalFirstRowInfo .modalLname{
+        margin-right: 15px;
+        font-size: 12px;
+    }
+
+    .modalFirstRowInfo .modalFname{
+        margin-right: 15px;
+        font-size: 12px;
+    }
+
+    .modalFirstRowInfo .modalMname{
+        margin-right: 15px;
+        font-size: 12px;
+    }
+
+    .modalFirstRowInfo .modalSuffix{
+        font-size: 12px;
+    }
+
+    .modalFirstRowInfo .modalSuffix input{
+        width: 80px;
+    }
+
+
+
+    .modalSecondRowInfo input{
+        border-radius: 3px;
+        border: 1px solid gray;
+        height: 30px;
+        width: 105px;
+    }
+
+    .modalGender select{
+        display: block;
+        width:  80px;
+        padding: 2px;
+        padding-left: 5px;
+        border: 1px solid gray;
+        font-family: inherit;
+        outline: none;
+        border-radius: 2px;
+        margin-right: 15px;
+
+        /** for the dropdown indicator */
+        appearance: none;
+        background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+        background-repeat: no-repeat;
+        background-position: right 0.2rem center;
+        background-size: 1em;
+    }
+
+    .modalGender p{
+        font-size: 12px;
+    }
+
+
+    .modalSecondRowInfo .modalPhonenumber{
+        margin-right: 15px;
+        font-size: 12px;
+    }
+
+    .modalSecondRowInfo .modalEmail{
+        margin-right: 15px;
+        font-size: 12px;
+    }
+
+    .modalEmail input{
+        width: 150px;
+    }
+
+    .modalSecondRowInfo .modalDateborn{
+        margin-right: 15px;
+        font-size: 12px;
+    }
+
+
+
+
+    .modalThirdRowInfo input{
+        border-radius: 3px;
+        border: 1px solid gray;
+        height: 30px;
+        width: 125px;
+    }
+
+
+
+    .modalCivilStats select{
+        display: block;
+        width:  80px;
+        padding: 4px;
+        padding-left: 5px;
+        border: 1px solid gray;
+        font-family: inherit;
+        outline: none;
+        border-radius: 2px;
+        margin-right: 15px;
+
+        /** for the dropdown indicator */
+        appearance: none;
+        background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+        background-repeat: no-repeat;
+        background-position: right 0.3rem center;
+        background-size: 1em;
+    }
+
+    .modalCivilStats p{
+        font-size: 12px;
+    }
+
+    .modalThirdRowInfo .modalHeight{
+        margin-right: 15px;
+        font-size: 12px;
+    }
+
+    .modalThirdRowInfo .modalHeight input{
+        width: 70px;
+    }
+
+    .modalThirdRowInfo .modalWeight{
+        margin-right: 15px;
+        font-size: 12px;
+    }
+
+    .modalThirdRowInfo .modalWeight input{
+        width: 70px;
+    }
+
+    .modalThirdRowInfo .modalReligion{
+        font-size: 12px;
+    }
+
+    .modalThirdRowInfo .modalReligion input{
+        width: 80px;
+    }
+
+
+
+
+    .modalFourthRowInfo input{
+        border-radius: 3px;
+        border: 1px solid gray;
+        height: 30px;
+        width: 120px;
+    }
+
+
+    .modalFourthRowInfo .modalCountry{
+        margin-right: 15px;
+        font-size: 12px;
+    }
+
+    .modalCountry input{
+        height: 35px;
+    }
+
+    .modalFourthRowInfo .modalRegion{
+        margin-right: 15px;
+        font-size: 12px;
+    }
+
+    .modalRegion input{
+        width: 120px;
+    }
+
+
+    .modalFourthRowInfo .modalRegion{
+        margin-right: 15px;
+        font-size: 12px;
+    }
+
+    .modalRegion input{
+        width: 215px;
+    }
+
+
+
+    .modalFifthRowInfo h4{
+        font-weight: bolder;
+        font-size: 16px;
+        padding-left: 20px;
+        padding-top: 10px;
+        margin-bottom: 0px;
+    }
+
+    .modalFifthRowInfo .modalJobStatus{
+        margin-top: 12px;
+        margin-left: 10px;
+        font-size: 12px;
+        color: red;
+    }
+
+
+
+
+    .modalSixRowInfo input{
+        border-radius: 3px;
+        border: 1px solid gray;
+        height: 30px;
+        width: 200px;
+    }
+
+
+
+    .modalSixRowInfo .modalPosition{
+        margin-right: 15px;
+        font-size: 12px;
+    }
+
+    .modalSixRowInfo .modalPosition input{
+        width: 110px;
+    }
+
+    .modalSixRowInfo .modalBasicSalary{
+        font-size: 12px;
+        position: relative;
+    }
+
+    .modalSixRowInfo .modalBasicSalary input{
+        width: 130px;
+        padding-left: 35px;
+    }
+
+
+    .modalBasicSalary .dollarsign{
+        top: 18px;
+    }
+
+    .modalSeveRowInfo{
+        display: flex;
+        flex-direction: column;
+    }
+
+    .modalSeveRowInfo select{
+        display: block;
+        width:  475px;
+        padding: 4px;
+        padding-left: 10px;
+        border: 1px solid gray;
+        font-family: inherit;
+        outline: none;
+        border-radius: 2px;
+        margin-right: 15px;
+        font-size: 12px;
+        height: 35px;
+        margin-bottom: 5px;
+
+        /** for the dropdown indicator */
+        appearance: none;
+        background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+        background-repeat: no-repeat;
+        background-position: right 0.5rem center;
+        background-size: 1em;
+    }
+
+    .modalSixRowInfo .modalUpdate{
+        border: none;
+        cursor: pointer;
+        background-color: #0F947E;
+        color: white;
+        height: 35px;
+        width: 100px;
+        margin-top: 20px;
+        margin-left: 40px;
+        box-shadow: 0px 4px 10px rgba(0, 0, 0, 25%);
+        margin-right: 10px;
+        font-size: 10px;
+    }
+
+    .closeModalProfile{
+        border-radius: 3px;
+        font-weight: bold;
+        color: black;
+        border: none;
+        background-color: #FAFBFD;
+        margin-top: 18px;
+        box-shadow: 0px 0px 10px rgba(0, 0, 0, 25%);
+        font-size: 10px;
+        width: 80px;
+    }
+
+
+}

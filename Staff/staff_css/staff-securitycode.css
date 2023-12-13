@@ -1,0 +1,163 @@
+@import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap');
+
+*,::after,::before{
+    box-sizing: border-box;
+}
+
+body{
+    padding: 0;
+    margin: 0;
+    background-color: #FAFBFD;
+    font-family: 'Lato', sans-serif;
+}
+
+.wrapper{
+    width: 100%;
+    display: flex;
+}
+
+.left{
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+}
+
+.left .info-logo{   
+    padding-right: 30px;
+    padding-top: 60px;
+    padding-bottom: 30px;
+    padding-left: 150px;
+}
+
+.campus{
+    margin-bottom: -3px;
+    font-size: 60px;
+    font-weight: 900; 
+    color: #0F947E;
+}
+
+.usep{
+    margin-bottom: -5px;
+    font-size: 20px;
+}
+
+.ecanteen{
+    margin-bottom: 0px;
+    font-size: 20px;
+}
+
+
+.login-container{
+    background-color: white;
+    width: 450px;
+    box-shadow: 0px 0px 6px rgba(0, 0, 0, 40%);
+    margin-left: 150px;
+    border-radius: 6px;
+    display: flex;
+    flex-direction: column;
+    padding-bottom: 20px;
+}
+
+.login-container input{
+    border-radius: 6px;
+    border: 1px solid #E7E7E7;
+    height: 40px;
+    width: 370px;
+    padding-left: 10px;
+    margin-left: 30px;
+}
+
+.login-container a{
+    text-decoration: none;
+    color: #0F947E;
+    font-size: 14px;
+}
+
+.login-container .search{
+    padding-left: 10px;
+    color: white;
+    width: 20%;
+    border: none;
+    background-color: #0F947E;
+    height: 30px;
+    border-radius: 3px;
+    margin-right: 3px;
+    margin-left: 110px;
+    font-size: 12px;
+    margin-top: 10px;
+}
+
+
+.login-container .back{
+    padding-left: 10px;
+    color: #5F5F5F;
+    width: 20%;
+    border: none;
+    background-color: #D9D9D9;
+    height: 30px;
+    border-radius: 3px;
+    font-size: 12px;
+}
+
+
+
+.cwavey-logo{
+    width: 50%;
+    display: flex;
+    justify-content: end;
+    position: relative;
+}
+
+.cwavey-logo .logo{
+    position: absolute;
+    right: 50px;
+    top: 0px;
+}
+
+input:focus{
+    outline: none;
+}
+
+.find-account{
+    margin-top: 8px;
+}
+
+.error{
+    font-size: 12px; 
+    background-color: #FFE2E6; 
+    color: rgb(73, 73, 73);
+    padding: 8px;
+    border-radius: 2px;
+    width: 82%;
+    opacity: 1;
+    transition: opacity 0.5s ease-in-out; 
+    display: block;
+    padding-left: 20px;
+    margin-top: 10px;
+    margin-left: 30px;
+    margin-bottom: 0px !important;
+}
+
+
+@media(max-width: 764px){
+    .cwavey-logo{
+        display: none;
+    }
+
+    .campus{
+        font-size: 50px;
+        width: 350px;
+        margin-top: 30px;
+    }
+
+    .usep{
+        font-size: 16px;
+        width: 380px;
+    }
+
+    .ecanteen{
+        font-size: 16px;
+        width: 350px;
+    }
+}
+

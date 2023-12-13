@@ -1,0 +1,1363 @@
+@import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap');
+
+*,::after,::before{
+    box-sizing: border-box;
+}
+
+body{
+    font-family: 'Lato', sans-serif;;
+    margin: 0;
+    padding: 0;
+    background-color: #FAFBFD;
+}
+
+a{
+    text-decoration: none;
+    cursor: pointer;
+}
+
+p{
+    margin-bottom: 0;
+}
+
+li{
+    list-style-type: none;
+}
+
+.wrapper{
+    display: flex;
+    flex-direction: row;
+}
+
+.left-container{
+    width: 250px;
+    height: 100%;
+    background-color: #FFF;
+    display: flex;
+    flex-direction: column;
+    transition: all 0.35s ease-in-out;
+    top: 0;
+    position: sticky;
+    z-index: 3 !important;
+}
+
+
+.sidebar-logo{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    padding-right: 35px;
+}
+
+.main-logo{
+    width: 45px;
+    height: 45px;
+    background-color: #D9D9D9;
+    border-radius: 4px;
+}
+
+.sidelogo-text{
+    margin-left: 10px;
+    display: flex;
+}
+
+.sidelogo-text p{
+    margin-top: -7px;
+}
+
+.sidelogo-text p, .sidelogo-text a{
+    margin-bottom: 0px;
+    text-decoration: none;
+    color: #0F947E;
+    font-weight: bold;
+    font-size: 18px;
+}
+
+.sidebar-nav{
+    padding: 0;
+}
+
+dl, ol, ul{
+    margin-bottom: 2.2rem;
+}
+
+
+a.sidebar-link{
+    padding: .825rem 1.5rem;
+    color: #696969;
+    position: relative;
+    display: block;
+    font-size: 12px;
+    display: flex;
+}
+
+.sidebar-link.active {
+    color: white; /* Change to the desired color when the link is active */
+    background-color: #0F947E; /* Change to the desired background color when the link is active */
+    border-radius: 7px; /* You can add additional styles as needed */
+}
+
+.sidebar-link.active svg path {
+    fill: #0F947E; /* Change to the desired fill color when the link is active */
+    stroke: white; /* Change to the desired stroke color when the link is active */
+}
+
+
+a.sidebar-link p{
+    margin-bottom: 0;
+    margin-top: 1px;
+}
+
+.sidebar-items svg{
+    margin-right: 10px;
+    fill: #696969;
+    stroke: white;
+}
+
+.sidebar-dropdown {
+    padding-left: 50px;
+}
+
+.sidebar-item a{
+    font-size: 14px;
+    color: #696969;
+    
+}
+
+.sidebar-item{
+    padding: 3px;
+}
+
+.sidebar-item:hover{
+    text-decoration: underline;
+}
+
+.sidebar-items{
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+.sidebar-items:hover svg path {
+    fill: white;
+    stroke: white;
+}
+
+.sidebar-items:hover .sidebar-link{
+    color: white;
+    background-color: #0F947E;
+    border-radius: 7px;
+}
+
+#invHover{
+    position: relative;
+    fill: #696969;
+    stroke: white;
+}
+
+#invHover .circle{
+    width: 18px;
+    height: 18px;
+    background-color: #878787;
+    position: absolute;
+    top: 7px;
+    right: 140px;
+    border-radius: 50px;
+    font-size: 9px;
+    color: white;
+    text-align: center;
+    font-weight: 900;
+}
+
+#invHover svg path{
+    stroke: white;
+}
+
+#invHover .shoppingCart path{
+    stroke: gray;
+}
+
+#invHover.active .shoppingCart path{
+    stroke: white;
+}
+
+#invHover:active  .circle p{
+    color: black;
+}
+
+#invHover:hover  .circle p{
+    color: white;
+}
+
+
+
+#invHover.active  .circle{
+    background-color: #D42027;
+}
+
+#invHover:hover svg path{
+    stroke: white;
+    fill: #0F947E;
+}
+
+#invHover:hover .circle{
+    background-color: red;
+    color: #0F947E;
+    font-weight: 900;
+}
+
+
+.circle p{
+    padding-top: 1px;
+}
+
+.sidebar-link[data-bs-toggle="collapse"]::after{
+    border: solid;
+    border-width: 0 0.100rem 0.100rem 0;
+    content: "";
+    display: inline-block;
+    padding: 2px;
+    position: absolute;
+    right: 1.1rem;
+    top: 1.1rem;
+    transform: rotate(45deg);
+    transition: all .1s ease-in-out;
+}
+
+
+.sidebar-link[data-bs-toggle="collapse"].collapsed::after{
+    transform: rotate(-135deg);
+    transition: all .1s ease-in-out;
+    right: 1.1rem;
+    top: 1.3rem;
+}
+
+.usep-footercard{
+    width: 160px;
+    height: 190px;
+    background-color: white;
+    box-shadow: 0px 0px 4px rgba(0, 0, 0, 25%);
+    border-radius: 6px;
+    margin-left: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-top: 70px
+}   
+
+
+.right-container{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.head-content{
+   width: 100%;
+   height: 85px;
+   background-color: white;
+   display: flex;
+   align-items: center;
+   position: -webkit-sticky; /* Safari */
+   position: sticky;
+   top: 0;
+   z-index: 2;
+}
+
+.head-content .Menu-name{
+    color: #0F947E;
+    font-size: 32px;
+    font-weight: 900;
+    padding-left: 10px;
+    flex-grow: 4;
+    display: flex;
+}
+
+.head-searchbar{
+    position: relative;
+    margin-right: 50px;
+}
+
+.head-searchbar img{
+    position: absolute;
+    margin-top: 10px;
+    margin-left: 15px;
+}
+
+input:focus {
+    outline: none;
+}
+
+.head-searchbar input{
+    border: none;
+    background-color: #FAFBFD;
+    height: 45px;
+    width: 340px;
+    padding-top: -50px;
+    border-radius: 5px;
+    padding: 10px;
+    font-size: 13px;
+    padding-left: 45px;
+}
+
+.usep-texthead{
+    flex-grow: 1;
+}
+
+.user-profile{
+    display: flex;
+    margin-right: 50px;
+}
+
+.admin-profile{
+    width: 40px;
+    height: 40px;
+    border-radius: 6px;
+    background-color: #D9D9D9;
+    flex-grow: 1;
+    object-fit: cover;
+}
+
+.admin-detail{
+    text-align: center;
+    margin-left: 5px;
+}
+
+
+.usep-texthead{
+    display: flex;
+    flex-direction: row;
+}
+
+.open-btn {
+    border: none;
+    margin-right: 10px;
+    margin-top: 1px;
+    display: none;
+}
+
+.close-btn{
+    position: absolute;
+    right: 20px;
+    cursor: pointer;
+    display: none;
+}
+
+.head-searchbar img{
+    width: 20px;
+    margin-top: 12px;
+}
+
+.main-content{
+  display: flex;
+  flex-direction: column;
+  padding-left: 10px;
+  padding-top: 30px;
+  padding-right: 10px;
+  margin-bottom: 20px;
+}
+
+
+
+.dash-topContent{
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+}
+
+.dash-topContent .left-Container{
+    width: 90%;
+    margin-right: 10px;
+    display: flex;
+    flex-direction: column;
+}
+
+.insideLeft-info{
+    color: white;
+    padding: 20px;
+    padding-bottom: 0px;
+    padding-left: 30px;
+}
+
+.insideLeft-info h3{
+    font-weight: bold;
+}
+
+.insideLeft-info p{
+    font-size: 14px;
+    margin-top: 10px;
+    font-weight: 300;
+}
+
+.insideLeft-info h5{
+    font-size: 12px;
+    font-weight: bold;
+    margin-top: 20px;
+    padding-bottom: 15px;
+}
+
+.headGreen-Imagecntainer{
+    display: flex;
+    flex-direction: row;
+    background-color: #0F947E;
+    position: relative;
+    border-radius: 4px;
+
+}
+
+.headGreen-Imagecntainer .mainLogo{
+    position: absolute;
+    width: 190px;
+    top: -30px;
+    right: 60px;
+}
+
+.headGreen-Imagecntainer .sideImage{
+    margin-right: 30px;
+}
+
+.dash-topContent .right-container{
+    border: 1px solid rgb(180, 180, 180);
+    width: 25%;
+}
+
+.courierRatings-info{
+    margin-top: 10px;
+    display: flex;
+    flex-direction: row;
+    gap: 15px;
+}
+
+.courierRatings-info .ratingsContainer{
+    background-color: #FFE2E6;
+    height: 150px;
+    width: 235px;
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    border-radius: 4px;
+}
+
+.topClaimorder{
+    display: flex;
+    margin: 0px;
+    position: relative;
+}
+
+.topClaimorder .redCircleImage{
+    background-color: #9C1421;
+    padding: 20px;
+    border-radius: 100px;
+}
+
+.topClaimorder img{
+    position: absolute;
+    left: 10px;
+    top: 10px;
+}
+
+.bottomClaimedorder{
+    margin-top: 10px;
+}
+
+.bottomClaimedorder h3{
+    margin: 0px;
+    font-weight: calc(1000);
+    color: #454545;
+}
+
+.bottomClaimedorder p{
+    font-size: 16px;
+}
+
+.dash-bottomContent{
+    display: flex;
+    width: 100%;
+    margin-top: 10px;
+    height: 220px;
+}
+
+.dash-bottomContent .bottomContent-left{
+    width: 50%;
+    background-color: white;
+    box-shadow: 0px 0px 4px rgba(0, 0, 0, 25%);
+    margin-right: 15px;
+    border-radius: 4px;
+    padding: 25px;
+    padding-top: 20px;
+    padding-right: 30px;
+}
+
+.bottomContent-left .transactionHistory-Top{
+    display: flex;
+    justify-content: space-between;
+}
+
+.bottomContent-left .transactionHistory-Top h5{
+    margin: 0px;
+    font-size: 25px;
+    font-weight: 800;
+}
+
+.bottomContent-left .transactionHistory-Top p{
+    color: #0F947E;
+    font-size: 14px;
+    padding-top: 2px;
+}
+
+.bottomContent-left .transactionHistory-Top a{
+    font-size: 12px;
+    color: #0F947E;
+}
+
+.bottomContent-left  .transactionHistory-bottom{
+    margin-top: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 125px;
+    margin-top: 15px;
+    overflow: auto;
+}
+
+.transactionHistory-bottom::-webkit-scrollbar {
+    display: none;
+  }
+
+.bottomContent-left  .transactionHistory-bottom h5{
+    margin: 0px;
+}
+
+.bottomContent-left  .transactionHistory-bottom .transactionContent{
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+
+.locationImage{
+    display: flex;
+    align-items: center;
+    position: relative;
+}
+
+.locationImage .circleGreenlocation{
+    background-color: #0F947E;
+    width: 45px;
+    height: 45px;
+    border-radius: 100px;
+}
+
+.locationImage img{
+    position: absolute;
+    left: 14px;
+    top: 12px;
+}
+
+.locationImage .orderNum{
+    margin-left: 10px;
+}
+
+.locationImage h5{
+    font-weight: bold;
+}
+
+.locationImage p{
+    font-size: 12px;
+    color: #ADADAD;
+}
+.transactionContent .profitEarned{
+    text-align: center;
+}
+
+.transactionContent .profitEarned h5{
+    font-weight: bold;
+    font-size: 14px;
+    color: #ADADAD;
+    font-weight: normal;
+}
+
+.transactionContent .profitEarned p{
+    color: #58E789;
+    font-weight: bold;
+    padding-top: 2px;
+    font-size: 18px;
+}
+
+.transactionContent  .DeliveryNum{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.DeliveryNum p{
+    background-color: #58E789;
+    color: white;
+    border: none;
+    padding: 5px;
+    border-radius: 4px;
+    width: 100px;
+    font-size: 14px;
+    text-align: center;
+}
+
+.dash-bottomContent .bottomContent-right{
+    width: 510px;
+    padding-left: 20px;
+    width: 50%;
+    background-color: white;
+    box-shadow: 0px 0px 4px rgba(0, 0, 0, 25%);
+    border-radius: 4px;
+    padding: 25px;
+    padding-top: 20px;
+}
+
+
+.dash-bottomContent .topProductrating-container h5{
+    margin: 0px;
+    font-size: 25px;
+    font-weight: 800;
+}
+
+.dash-bottomContent .productRatingtable table{
+    font-size: 12px;
+}
+
+
+.productRatingtable{
+    overflow: auto;
+    height: 175px;
+    margin-top: 10px;
+}
+
+
+
+
+/* Tablet Screen Size */
+@media only screen and (max-width: 1440px) {
+    .insideLeft-info p{
+        font-size: 15px !important;
+        margin-top: 10px;
+        font-weight: 300;
+        background-origin: 1px solid red;
+    }
+
+    .insideLeft-info h5{
+        font-size: 16px;
+        font-weight: bold;
+        margin-top: 15px;
+    }
+
+    #invHover .circle{
+        top: 8px;
+        left: 36px;
+    }
+}
+
+/* Laptop Screen Size */
+@media only screen and (max-width: 1024px) {
+
+    
+    .usep-texthead{
+        display: none;
+    }
+
+    
+    .dash-topContent .left-Container{
+        width: 70%;
+    }
+    
+
+    .headGreen-Imagecntainer{
+        height: 48%;
+    }
+
+
+    .headGreen-Imagecntainer .mainLogo{
+        position: absolute;
+        width: 150px;
+        top: -12px;
+        right: 60px;
+    }
+    
+    .headGreen-Imagecntainer .sideImage{
+        margin-right: 20px;
+        width: 245px;
+    }
+
+    .insideLeft-info{
+        padding: 18px;
+    }
+
+    .insideLeft-info h3{
+        font-weight: bold;
+        font-size: 18px;
+    }
+    
+    .insideLeft-info p{
+        font-size: 12px !important;
+        margin-top: 10px;
+        font-weight: 300;
+    }
+    
+    .insideLeft-info h5{
+        font-size: 9px !important;
+        font-weight: bold;
+        margin-top: 15px;
+    }
+
+    .courierRatings-info{
+        margin-top: 10px;
+        gap: 10px;
+    }
+
+
+    .dash-topContent .right-container{
+        width: 300px;
+        height: 310px;
+    }
+
+    .dash-topContent .right-container iframe{
+        width: 280px;
+        height: 300px;
+    }
+    
+}
+
+
+
+/* Tablet Screen Size */
+@media only screen and (max-width: 800px) {
+    #sidebar{
+        margin-left: -250px;
+        position: fixed;
+        min-height: 100vh;
+        z-index: 4;
+    }
+
+    .open-btn{
+        display: block;
+        margin-top: -12px;
+        padding-left: 4px;
+        padding-right: 4px;
+        background-color: white;
+    }
+
+    .close-btn{
+        display: block;
+    }
+
+    #sidebar.active{
+        margin-left: 0;
+    }
+
+    .usep-texthead{
+        display: none;
+    }
+
+    .head-searchbar{
+        margin-right: 50px;
+        margin-top: 5px;
+    }
+
+    .head-searchbar input{
+        height: 40px;
+        width: 250px;
+    }
+
+
+    .head-searchbar img{
+        width: 18px;
+        margin-top: 11px;
+    }
+
+    .Menu-name p{
+        font-size: 24px; 
+    }
+
+    .usep-footercard{
+        margin-left: 30px;
+    }
+
+    .main-logo{
+        margin-left: -50px;
+    }
+
+    .left-container{
+        z-index: 2;
+    }
+
+    .dash-topContent .left-Container{
+        width: 70%;
+    }
+    
+
+    .headGreen-Imagecntainer{
+        height: 48%;
+    }
+
+    #invHover .circle{
+        top: 8px;
+        left: 36px;
+    }
+
+
+    .headGreen-Imagecntainer .mainLogo{
+        position: absolute;
+        width: 130px !important;
+        top: -7px;
+        right: 60px;
+    }
+    
+    .headGreen-Imagecntainer .sideImage{
+        margin-right: 20px;
+        width: 220px !important;
+    }
+
+    .insideLeft-info{
+        padding: 15px;
+    }
+
+    .insideLeft-info h3{
+        font-weight: bold;
+        font-size: 14px;
+    }
+    
+    .insideLeft-info p{
+        font-size: 10px !important;
+        margin-top: 10px;
+        font-weight: 300;
+    }
+    
+    .insideLeft-info h5{
+        font-size: 9px;
+        font-weight: bold;
+        margin-top: 15px;
+    }
+
+    .courierRatings-info{
+        margin-top: 10px;
+        gap: 10px;
+    }
+
+
+    .courierRatings-info{
+    margin-top: 10px;
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+
+    }
+
+    .courierRatings-info .ratingsContainer{
+        background-color: #FFE2E6;
+        height: 150px;
+        width: 235px;
+        display: flex;
+        flex-direction: column;
+        padding: 20px;
+        border-radius: 4px;
+    }
+
+    .topClaimorder{
+        display: flex;
+        margin: 0px;
+        position: relative;
+    }
+
+    .topClaimorder .redCircleImage{
+        background-color: #9C1421;
+        padding: 20px;
+        border-radius: 100px;
+    }
+
+    .topClaimorder img{
+        position: absolute;
+        left: 10px;
+        top: 10px;
+    }
+
+    .bottomClaimedorder{
+        margin-top: 10px;
+    }
+
+    .bottomClaimedorder h3{
+        margin: 0px;
+        font-weight: calc(1000);
+        color: #454545;
+    }
+
+    .bottomClaimedorder p{
+        font-size: 16px;
+    }
+
+
+
+
+
+    .courierRatings-info .ratingsContainer{
+        height: 130px;
+        width: 235px;
+    }
+
+    .topClaimorder .redCircleImage{
+        background-color: #9C1421;
+        padding: 20px;
+        border-radius: 100px;
+    }
+
+
+    .bottomClaimedorder p{
+        font-size: 10px;
+    }
+
+    .dash-topContent .right-container{
+        width: 210px;
+        height: 278px;
+    }
+
+    .dash-topContent .right-container iframe{
+        width: 200px;
+        height: 300px;
+    }
+    
+
+
+
+    
+    .bottomContent-left .transactionHistory-Top h5{
+        font-size: 18px;
+        font-weight: 800;
+    }
+    
+    .bottomContent-left .transactionHistory-Top p{
+        font-size: 12px;
+    }
+    
+    .bottomContent-left .transactionHistory-Top a{
+        font-size: 10px;
+    }
+    
+
+    
+    .bottomContent-left  .transactionHistory-bottom .transactionContent{
+        display: flex;
+        justify-content: space-between;
+        width: 100%;
+        margin-bottom: 20px;
+    }
+
+    .locationImage .circleGreenlocation{
+        background-color: #0F947E;
+        width: 30px;
+        height: 30px;
+        border-radius: 100px;
+    }
+    
+    .locationImage img{
+        position: absolute;
+        left: 8px;
+        top: 8px;
+        width: 16px;
+    }
+    
+    .locationImage .orderNum{
+        margin-left: 5px;
+    }
+    
+    .locationImage h5{
+        font-weight: bold;
+        font-size: 13px;
+    }
+    
+    .locationImage p{
+        font-size: 10px;
+        color: #ADADAD;
+    }
+    
+    .transactionContent .profitEarned h5{
+        font-weight: bold;
+        font-size: 8px;
+        color: #ADADAD;
+        font-weight: normal;
+    }
+    
+    .transactionContent .profitEarned p{
+        color: #58E789;
+        font-weight: bold;
+        padding-top: 2px;
+        font-size: 10px;
+    }
+    
+    .transactionContent  .DeliveryNum{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    
+    .DeliveryNum button{
+        background-color: #58E789;
+        color: white;
+        border: none;
+        padding: 5px;
+        border-radius: 4px;
+        width: 80px;
+        font-size: 10px;
+    }
+    
+}
+
+
+@media only screen and (max-width: 380px) {
+    .main-content{
+        display: flex;
+        flex-direction: column;
+        padding-left: 10px;
+        padding-top: 15px;
+        padding-right: 10px;
+        margin-bottom: 20px;
+      }
+
+    #sidebar{
+        margin-left: -250px;
+        position: fixed;
+        min-height: 100vh;
+        z-index: 4;
+    }
+
+
+    .left-container{
+        width: 250px;
+        height: 0px !important;
+        background-color: #FFFFFF;
+        display: flex;
+        flex-direction: column;
+        transition: all 0.35s ease-in-out;
+        top: 0;
+        position: sticky;
+        z-index: 3;
+    }
+
+
+    .head-content{
+        width: 100%;
+        height: 68px;
+        background-color: white;
+        display: flex;
+        align-items: center;
+        position: -webkit-sticky; /* Safari */
+        position: sticky;
+        top: 0;
+        z-index: 2;
+    }
+
+    .head-content .Menu-name {
+        display: flex;
+        align-items: center;
+        color: #0F947E;
+        font-size: 32px;
+        font-weight: 900;
+        padding-left: 10px;
+        flex-grow: unset !important;
+        display: flex;
+        width: 100%;
+    }
+
+    .head-content .Menu-name i{
+        font-size: 20px !important;
+    }
+
+    .Menu-name p{
+        font-size: 18px; 
+    }
+
+    .open-btn{
+
+        margin-right: 10px;
+        margin-top: -10px;
+    }
+
+    .head-searchbar{
+        position: relative;
+        margin-right: 0px;
+        display: none;
+    }
+    
+    .head-searchbar img{
+        position: absolute;
+        margin-top: 10px;
+        margin-left: 15px;
+    }
+    
+    input:focus {
+        outline: none;
+    }
+    
+    .head-searchbar input{
+        border: none;
+        background-color: #FAFBFD;
+        height: 45px;
+        width: 100px;
+        padding-top: -50px;
+        border-radius: 5px;
+        padding: 10px;
+        font-size: 13px;
+        padding-left: 45px;
+    }
+
+    .user-profile{
+        display: flex;
+        margin-right: 15px;
+    }
+
+    .right-container1{
+        display: none;
+    }
+
+    .headGreen-Imagecntainer{
+        display: flex;
+        flex-direction: row;
+        background-color: #0F947E;
+        position: relative;
+        border-radius: 4px;
+        width: 100%;
+        height: 120px;
+    }
+
+    .dash-topContent .left-Container{
+        width: 100%;
+        margin-right: 0px;
+        display: flex;
+        flex-direction: column;
+        height: max-content;
+    }
+
+    .headGreen-Imagecntainer .mainLogo{
+        position: absolute;
+        width: 110px !important;
+        top: -0px;
+        right: 20px;
+    }
+    
+    .headGreen-Imagecntainer .sideImage{
+        margin-right: 5px;
+        width: 150px !important;
+        margin-top: 28px;
+    }
+
+
+    .insideLeft-info{
+        color: white;
+        padding: 15px;
+        padding-bottom: 40px;
+        padding-left: 15px;
+    }
+    
+    .insideLeft-info h3{
+        font-weight: bold;
+        font-size: 10px !important;
+    }
+    
+    .insideLeft-info p{
+        font-size: 8px !important;
+        margin-top: 10px;
+        font-weight: 300;
+    }
+    
+    .insideLeft-info h5{
+        font-size: 12px;
+        font-weight: bold;
+        margin-top: 10px;
+        padding-bottom: 5px;
+    }
+
+
+    .courierRatings-info{
+        margin-top: 10px;
+        display: flex;
+        flex-direction: row;
+        gap: 6px;
+    }
+    
+    .courierRatings-info .ratingsContainer{
+        background-color: #FFE2E6;
+        height: 80px;
+        width: 100% !important;
+        display: flex;
+        flex-direction: column;
+        padding: 10px !important;
+        border-radius: 4px;
+    }
+    
+    .topClaimorder{
+        display: flex;
+        margin: 0px;
+        position: relative;
+    }
+    
+    .topClaimorder .redCircleImage{
+        background-color: #9C1421;
+        padding: 10px !important;
+        border-radius: 100px;
+    }
+    
+    .topClaimorder img{
+        position: absolute;
+        left: 5px;
+        top: 5px;
+        width: 10px !important;
+    }
+    
+    .bottomClaimedorder{
+        margin-top: 10px;
+    }
+    
+    .bottomClaimedorder h3{
+        margin: 0px;
+        font-weight: calc(1000);
+        color: #454545;
+        font-size: 12px !important;
+    }
+    
+    .bottomClaimedorder p{
+        font-size: 9px;
+    }
+
+
+
+
+
+    .dash-bottomContent .bottomContent-left{
+        width: 50%;
+        background-color: white;
+        box-shadow: 0px 0px 4px rgba(0, 0, 0, 25%);
+        margin-right: 10px;
+        border-radius: 4px;
+        padding: 15px;
+    }
+
+    .bottomContent-left .transactionHistory-Top h5{
+        font-size: 10px !important;
+        font-weight: 800;
+    }
+    
+    .bottomContent-left .transactionHistory-Top p{
+        font-size: 8px !important;
+    }
+    
+    .bottomContent-left .transactionHistory-Top a{
+        font-size: 8px !important;
+    }
+
+    .viewAlltransaction{
+        margin-top: -10px !important;
+    }
+
+    .bottomContent-left  .transactionHistory-bottom .transactionContent{
+        display: flex;
+        justify-content: space-between;
+        width: 100%;
+        margin-bottom: 10px;
+    }
+
+
+    .locationImage .circleGreenlocation{
+        background-color: #0F947E;
+        width: 20px;
+        height: 20px;
+        border-radius: 100px;
+    }
+    
+    .locationImage img{
+        position: absolute;
+        left: 5px;
+        top: 7px;
+        width: 10px;
+    }
+    
+    .locationImage .orderNum{
+        margin-left: 5px;
+    }
+    
+    .locationImage h5{
+        font-weight: bold;
+        font-size: 10px;
+    }
+    
+    .locationImage p{
+        font-size: 8px;
+        color: #ADADAD;
+    }
+    
+    .transactionContent .profitEarned h5{
+        font-weight: bold;
+        font-size: 6px;
+        color: #ADADAD;
+        font-weight: normal;
+        display: none;
+    }
+    
+    .transactionContent .profitEarned p{
+        color: #58E789;
+        font-weight: bold;
+        padding-top: 2px;
+        font-size: 6px !important;
+        display: none;
+    }
+    
+    .transactionContent  .DeliveryNum{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    
+    .DeliveryNum p{
+        background-color: #58E789;
+        color: white;
+        border: none;
+        padding: 3px;
+        border-radius: 2px;
+        width: 50px;
+        font-size: 6px;
+    }
+    
+    .dash-bottomContent .bottomContent-right{
+        width: 510px;
+        padding-left: 20px;
+        width: 50%;
+        background-color: white;
+        box-shadow: 0px 0px 4px rgba(0, 0, 0, 25%);
+        border-radius: 4px;
+        padding: 15px;
+        padding-top: 15px !important;
+        height: 220px;
+    }
+    
+    
+    .dash-bottomContent .topProductrating-container h5{
+        margin: 0px;
+        font-size: 12px !important;
+        font-weight: 800;
+    }
+    
+    .dash-bottomContent .productRatingtable table{
+        font-size: 8px !important;
+    }
+    
+    
+    .productRatingtable{
+        overflow: auto;
+        height: 175px;
+        margin-top: 10px;
+    }
+    
+    
+}
+
+
+
+
+

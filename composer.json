@@ -1,0 +1,8 @@
+{
+    "require": {
+        "phpmailer/phpmailer": "^6.8",
+        "dompdf/dompdf": "^2.0",
+        "quickemailverification/quickemailverification": "*",
+        "phpunit/phpunit": "^9.0"
+    }
+}

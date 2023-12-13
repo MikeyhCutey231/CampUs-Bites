@@ -1,0 +1,1247 @@
+@import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap');
+
+*,::after,::before{
+    box-sizing: border-box;
+}
+
+body{
+    font-family: 'Lato', sans-serif;;
+    margin: 0;
+    padding: 0;
+    background-color: #FAFBFD;
+}
+
+a{
+    text-decoration: none;
+    cursor: pointer;
+}
+
+li{
+    list-style-type: none;
+}
+
+.wrapper{
+    display: flex;
+    flex-direction: row;
+}
+
+.left-container{
+    width: 250px;
+    height: 100%;
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    transition: all 0.35s ease-in-out;
+    top: 0;
+    position: sticky;
+    z-index: 2 !important;
+}
+
+.sidebar-logo{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    padding-right: 35px;
+}
+
+.main-logo{
+    width: 45px;
+    height: 45px;
+    background-color: #D9D9D9;
+    border-radius: 4px;
+}
+
+.sidelogo-text{
+    margin-left: 10px;
+    display: flex;
+}
+
+.sidelogo-text p{
+    margin-top: -7px;
+}
+
+.sidelogo-text p, .sidelogo-text a{
+    margin-bottom: 0px;
+    text-decoration: none;
+    color: #9C1421;
+    font-weight: bold;
+    font-size: 18px;
+}
+
+.sidebar-nav{
+    padding: 0;
+}
+
+dl, ol, ul{
+    margin-bottom: 2.2rem;
+}
+
+
+a.sidebar-link{
+    padding: .825rem 1.5rem;
+    color: #696969;
+    position: relative;
+    display: block;
+    font-size: 12px;
+    display: flex;
+}
+
+.sidebar-link.active {
+    color: white; /* Change to the desired color when the link is active */
+    background-color: #9C1421; /* Change to the desired background color when the link is active */
+    border-radius: 7px; /* You can add additional styles as needed */
+}
+
+.sidebar-link.active svg path {
+    fill: white; /* Change to the desired fill color when the link is active */
+    stroke: white; /* Change to the desired stroke color when the link is active */
+}
+
+
+a.sidebar-link p{
+    margin-bottom: 0;
+    margin-top: 1px;
+}
+
+.sidebar-items svg{
+    margin-right: 10px;
+}
+
+.sidebar-dropdown {
+    padding-left: 50px;
+}
+
+.sidebar-item a{
+    font-size: 14px;
+    color: #696969;
+    
+}
+
+.sidebar-item{
+    padding: 3px;
+}
+
+.sidebar-item:hover{
+    text-decoration: underline;
+}
+
+.sidebar-items{
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+.sidebar-items:hover svg path {
+    fill: white;
+    stroke: white;
+}
+
+.sidebar-items:hover .sidebar-link{
+    color: white;
+    background-color: #9C1421;
+    border-radius: 7px;
+}
+
+#invHover{
+    position: relative;
+}
+
+#invHover .circle{
+    width: 18px;
+    height: 18px;
+    background-color: #878787;
+    position: absolute;
+    top: 7px;
+    left: 17px;
+    border-radius: 50px;
+    font-size: 9px;
+    color: white;
+    text-align: center;
+    font-weight: 900;
+}
+
+#invHover svg path{
+    stroke: white;
+}
+
+#invHover:hover svg path{
+    stroke: white;
+    fill: #9C1421;
+}
+
+#invHover:hover .circle{
+    background-color: white;
+    color: #9C1421;
+    font-weight: 900;
+}
+
+.circle p{
+    padding-top: 1px;
+}
+
+.sidebar-link[data-bs-toggle="collapse"]::after{
+    border: solid;
+    border-width: 0 0.100rem 0.100rem 0;
+    content: "";
+    display: inline-block;
+    padding: 2px;
+    position: absolute;
+    right: 1.1rem;
+    top: 1.1rem;
+    transform: rotate(45deg);
+    transition: all .1s ease-in-out;
+}
+
+
+.sidebar-link[data-bs-toggle="collapse"].collapsed::after{
+    transform: rotate(-135deg);
+    transition: all .1s ease-in-out;
+    right: 1.1rem;
+    top: 1.3rem;
+}
+
+.usep-footercard{
+    width: 160px;
+    height: 190px;
+    background-color: white;
+    box-shadow: 0px 0px 4px rgba(0, 0, 0, 25%);
+    border-radius: 6px;
+    margin-left: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-top: 70px
+}   
+
+
+.right-container{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.head-content{
+   width: 100%;
+   height: 85px;
+   background-color: white;
+   display: flex;
+   align-items: center;
+   position: -webkit-sticky; /* Safari */
+   position: sticky;
+   top: 0;
+   z-index: 1;
+}
+
+.head-content .Menu-name{
+    color: #9C1421;
+    font-size: 32px;
+    font-weight: 900;
+    padding-left: 10px;
+    flex-grow: 4;
+    display: flex;
+}
+
+.head-searchbar{
+    position: relative;
+    margin-right: 50px;
+}
+
+.head-searchbar img{
+    position: absolute;
+    margin-top: 10px;
+    margin-left: 15px;
+}
+
+input:focus {
+    outline: none;
+}
+
+.head-searchbar input{
+    border: none;
+    background-color: #FAFBFD;
+    height: 45px;
+    width: 340px;
+    padding-top: -50px;
+    border-radius: 5px;
+    padding: 10px;
+    font-size: 13px;
+    padding-left: 45px;
+}
+
+.usep-texthead{
+    flex-grow: 1;
+}
+
+.user-profile{
+    display: flex;
+    margin-right: 50px;
+}
+
+.admin-profile{
+    width: 40px;
+    height: 40px;
+    border-radius: 6px;
+    background-color: #D9D9D9;
+    flex-grow: 1;
+}
+
+.admin-detail{
+    text-align: center;
+    margin-left: 5px;
+}
+
+
+.usep-texthead{
+    display: flex;
+    flex-direction: row;
+}
+
+.open-btn {
+    border: none;
+    margin-right: 10px;
+    margin-top: -8px;
+    display: none;
+}
+
+.close-btn{
+    display: none;
+}
+
+
+/* Main Content Drop Here */
+
+.main-content{
+    padding-left: 30px;
+    display: flex;
+    width: 100%;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+.leftcontainer{
+    display: flex;
+    flex-direction: column;
+}
+
+.top-content{
+    background-color: white;
+    width: 903px;
+    height: 361px;
+    margin-bottom: 20px;
+    margin-top: 25px;
+    border-radius: 6px;
+    box-shadow: 0px 0px 4px rgba(0, 0, 0, 25%);
+    display: flex;
+    flex-direction: row;
+}
+
+.left-user-side{
+    text-align: center;
+
+}
+
+.user-image{
+    padding-top: 35px;
+    padding-left: 30px;
+    padding-right: 20px;
+}
+
+.user-image img{
+    width: 150px;
+}
+
+
+.viewprofile button{
+    background-color: #9C1421;
+    border: none;
+    color: white;
+    font-size: 12px;
+    padding: 6px;
+    width: 10rem;
+    border-radius: 4px;
+}
+
+
+.viewPayroll button{
+    background-color: #A2C53A;
+    border: none;
+    color: white;
+    font-size: 12px;
+    padding: 6px;
+    width: 10rem;
+    border-radius: 4px;
+    margin-top: 6px;
+}
+
+.right-user-side{
+    width: 100%;
+    position: relative;
+}
+
+.right-user-side .line{
+    border-left: 2px solid #9C1421;
+    position: absolute;
+    width: 10px;
+    height: 46vh;
+    top: 15px;
+    left: 15px;
+    display: flex;
+    flex-direction: column;
+}
+
+.right-user-side .top-right-user{
+    display: flex;
+    justify-content: space-between;
+    padding-top: 20px;
+    padding-left: 35px;
+}
+
+.right-user-side .top-right-user .form-check{
+    padding-right: 40px;
+}
+
+.rate-container{
+    width: 300px;
+}
+
+.rate-container p{
+    margin-bottom: 5px;
+    font-size: 14px;
+    font-weight: 500;
+    color: #5F5F5F;
+}
+
+.middle-right-user{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding-left: 35px;
+}
+
+.rate-perday{
+    display: flex;
+    justify-content: space-between;
+}
+
+.dayswork-perday{
+    display: flex;
+    justify-content: space-between;
+}
+
+.Subtotal-perday{
+    display: flex;
+    justify-content: space-between;
+    font-weight: bold;
+    margin-top: 8px;
+}
+
+.Subtotal-perday p{
+    font-weight: bold;
+}
+
+
+.grosssalary{
+    display: flex;
+    margin-top: 30px;
+}
+
+.grosssalary p{
+    font-size: 18px;
+     color: #9C1421;
+      font-weight: 900;
+}
+
+.grosssalary input{
+    height: 30px;
+    width: 180px;
+    border: none;
+    box-shadow: 0px 0px 4px rgba(0, 0, 0, 25%);
+    border-radius: 6px;
+    margin-left: 10px;
+    font-size: 12px;
+    padding-left: 5px;
+    color: black;
+}
+
+.tax-container{
+    padding-right: 35px;
+}
+
+.deduction{
+    display: flex;
+    margin-top: 20px;
+}
+
+.deduction p{
+    font-size: 18px;
+    color: #9C1421;
+    font-weight: 900;
+}
+
+.deduction input{
+    height: 30px;
+    width: 150px;
+    border: none;
+    box-shadow: 0px 0px 4px rgba(0, 0, 0, 25%);
+    border-radius: 6px;
+    margin-left: 10px;
+    font-size: 12px;
+    padding-left: 5px;
+    color: black;
+}
+
+.totallate{
+    display: flex;
+    justify-content: space-between;
+}
+
+.tax{
+    display: flex;
+    justify-content: space-between;
+}
+
+
+.lower-right-user{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding-left: 35px;
+    margin-top: -20px;
+}
+
+
+.lower-right-user .Subtotal-perday{
+    display: flex;
+    justify-content: space-between;
+    font-weight: bold;
+}
+
+.lower-right-user .Subtotal-perday p{
+    font-weight: bold;
+}
+
+
+.rate-container-overall{
+    width: 300px;
+    margin-top: 5px;
+
+}
+
+.rate-container-overall p{
+    margin-bottom: 5px;
+    font-size: 14px;
+    font-weight: 500;
+    color: #5F5F5F;
+}
+
+.rate2-container-overall{
+    width: 300px;
+    margin-top: 35px;
+    margin-right: 40px;
+}
+
+.rate2-container-overall p{
+    margin-bottom: 5px;
+    font-size: 14px;
+    font-weight: 500;
+    color: #5F5F5F;
+}
+
+
+.totalgross{
+    display: flex;
+    justify-content: space-between;
+}
+
+.totaldeduction{
+    display: flex;
+    justify-content: space-between;
+}
+
+
+.netsalary{
+    display: flex;
+    margin-top: 10px;
+}
+
+.netsalary p{
+    font-size: 18px;
+    color:#9C1421;
+    font-weight: 900;
+}
+
+.netsalary input{
+    height: 30px;
+    width: 170px;
+    border: none;
+    box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.327);
+    border-radius: 6px;
+    margin-left: 20px;
+    font-size: 15px;
+    font-weight: bold;
+    padding-left: 5px;
+    color: black;
+    text-align: right;
+    padding-right: 5px;
+}
+
+
+.netsalary1{
+    display: flex;
+    margin-top: 10px;
+}
+
+.netsalary1 p{
+    font-size: 18px;
+    color:#9C1421;
+    font-weight: 900;
+}
+
+.netsalary1 input{
+    height: 30px;
+    width: 190px;
+    border: none;
+    box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.327);
+    border-radius: 6px;
+    margin-left: 15px;
+    font-size: 12px;
+    padding-left: 5px;
+    color: black;
+}
+
+
+
+
+.print-payroll button{
+    border: none;
+    background-color: #F0C419;
+    padding: 5px;
+    font-size: 12px;
+    font-weight: bold;
+    border-radius: 50px;
+    color: white;
+    width: 180px;
+    margin-right: 20px;
+    margin-top: 5px;
+}
+
+
+
+
+
+.lower-content{
+    background-color: white;
+    border-radius: 6px;
+    box-shadow: 0px 0px 4px rgba(0, 0, 0, 25%);
+    width: 903px;
+    height: 400px;
+    margin-bottom: 30px;
+}
+
+.table-top{
+    display: flex;
+    flex-direction: row;
+    padding: 10px;
+    padding-top: 20px;
+}
+
+.payrollhistory-text{
+    padding-top: 5px;
+    margin-left: 20px;
+}
+
+.filter-recent{
+    flex-grow: 2;
+    padding-left: 30px;
+}
+
+.filterDropdown{
+    background-color: white;
+    outline: none;
+    border: none;
+    padding: 5px;
+    padding-left: 10px;
+    padding-right: 10px;
+    width: 150px;
+    font-size: 14px;
+    height: 40px;
+    box-shadow: 0px 2px 6px rgba(0, 0, 0, 25%);
+}
+
+.form-select:focus {
+    border-color: none;
+    background-color: none;
+    box-shadow: 0px 2px 6px rgba(0, 0, 0, 25%);
+}
+
+
+
+.all-history{
+    padding-top: 4px;
+    margin-right: 30px;
+}
+
+.all-history button{
+    border: none;
+    background-color: #A2C53A;
+    font-size: 12px;
+    font-weight: bold;
+    padding: 6px;
+    color: white;
+    border-radius: 50px;
+    width: 180px;
+
+}
+
+.main-table{
+    width: 92%;
+    margin-left: 30px;
+}
+
+
+
+
+.dropdown-toggle {
+    background-color: transparent; /* Make the background transparent */
+    color: black; /* Set the default text color */
+    border: 1px solid #ccc; /* Add a border */
+  }
+
+  /* Style the dropdown menu */
+  .dropdown-menu {
+    background-color: white; /* Set the background color of the menu */
+  }
+
+  /* Change the text color on hover */
+  .dropdown-toggle:hover {
+    color: black; /* Change text color to red on hover */
+    background-color: white; /* Change background color to red on hover */
+  }
+
+  /* Change the background color of the button on hover */
+  .dropdown:hover .dropdown-toggle {
+    background-color: white; /* Change background color of the button on hover */
+  }
+
+  /* Change the background color of menu items on hover */
+  .dropdown-menu .dropdown-item:hover {
+    background-color: white; /* Change background color of menu items on hover */
+    color: black; /* Change text color of menu items on hover */
+  }
+
+
+
+.rightcontainer{
+    background-color: white;
+    border-radius: 6px;
+    box-shadow: 0px 0px 4px rgba(0, 0, 0, 25%);
+    width: 315.97px;
+    height: 600.68px;
+    margin-top: 25px;
+    margin-left: 20px;
+}
+
+
+.dtr-title{
+    padding: 10px 10px 0px 10px;
+    border-bottom: 2px solid #9C1421;
+}
+
+.dtr-content{
+    width: 96%;
+    height: 500.68px;
+    margin-top: 5px;
+    margin-left: 5px;
+    overflow: auto;
+}
+
+.dtr-content::-webkit-scrollbar {
+    display: none;
+}
+
+
+
+/* Moda here */
+
+.payslip-container{
+    border: 1px solid black;
+    height: 405px;
+    display: flex;
+}
+
+.modal-dialog{
+    max-width: 70%;
+}
+
+.left-payinfo{
+    width: 80%;
+    border-right: 1px dashed black;
+}
+
+.top-info{
+    border-bottom: 1px dashed black;
+    height: 145px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.logo-subinfo{
+    display: flex;
+    padding-left: 10px;
+    justify-content: space-between;
+}
+
+.logo-subinfo p{
+    margin-bottom: 0px;
+    font-size: 12px;
+}
+
+.logo-name{
+    padding: 10px 10px 0px 10px;
+}
+
+.logo-name p{
+    font-size: 28px;
+}
+
+.employee{
+    border-top: 1px dashed black;
+    border-bottom: 1px dashed black;
+    margin-top: 20px;
+    display: flex;
+    justify-content: space-between;
+    font-size: 12px;
+    padding-top: 10px;
+}
+
+.employee-status{
+    display: flex;
+}
+
+.employee-status p{
+    padding-right: 30px;
+}
+
+.employee-name{
+    padding-left: 10px;
+}
+
+.position{
+    padding-top: 3px;
+}
+
+.position p{
+    margin-bottom: 0px;
+    font-size: 12px;
+    padding-left: 10px;
+}
+
+.bottom-info{
+    border-bottom: 1px dashed black;
+    display: flex;
+    height: 30px;
+}
+
+.overtime{
+    width: 330px;
+    display: flex;
+    flex-direction: column;
+}
+
+.adjustment{
+    width: 230px;
+    display: flex;
+    flex-direction: column;
+    border-right: 1px dashed black;
+}
+
+.adjustment-top{
+    display: flex;
+    font-size: 14px;
+    justify-content: space-between;
+    margin-top: 10px;
+}
+
+.adjustment-text p{
+    margin-bottom: 0px;
+    font-size: 14px;
+    padding-left: 10px;
+}
+
+.adjustment-bottom p{
+    margin-bottom: 0px;
+    font-size: 14px;
+    padding-right: 10px;
+}
+
+.adjustment-bottom{
+    display: flex;
+    justify-content: space-between;
+    border-right: 1px dashed black;
+}
+
+.adjustment-text{
+    height: 225px;
+    border-right: 1px dashed black;
+    width: 130px;
+}
+
+.tax-deduction{
+    width: 230px;
+    display: flex;
+    flex-direction: column;
+}
+
+.tax-deduction-top{
+    display: flex;
+    font-size: 14px;
+    justify-content: space-between;
+    margin-top: 10px;
+}
+
+.tax-deduction-top{
+    justify-content: space-between;
+}
+
+.overtime-top-container, .overtime-top-container p{
+    display: flex;
+    justify-content: space-between;
+    font-size: 14px;
+    padding-top: 5px;
+}
+
+.overtime-low-container{
+    display: flex;
+    justify-content: space-between;
+    text-align: center;
+    margin-top: -5px;
+}
+
+.overtime-text{
+    border-right: 1px dashed black;
+    margin-top: 8px;
+    width: 45%;
+    height: 225px;
+    padding-top: 50px;
+}
+
+.min-text{
+    border-right: 1px dashed black;
+    margin-top: 8px;
+    width: 30%;
+    margin-left: -30px;
+    padding-top: 50px;
+}
+
+.pay-text{
+    border-right: 1px dashed black;
+    padding-top: 50px;
+    margin-top: 8px;
+    width: 20%;
+    margin-left: -15px;
+}
+
+.tax-deduction-bottom{
+    display: flex;
+    justify-content: space-between;
+}
+
+.tax-deduction-bottom p{
+    margin-bottom: 0px;
+    padding-left: 10px;
+    font-size: 14px;
+}
+
+.deductamount-info{
+    margin-right: 20px;
+}
+
+.deduction-info{
+    border-right: 1px dashed black;
+    width: 130px;
+    height: 228px;
+}
+
+.right-payinfo{
+    display: flex;
+    flex-direction: column;
+    width: 300px;
+}
+
+
+.basic-pay{
+    display: flex;
+    border-bottom: 1px dashed black;
+    margin-bottom: 0px;
+    width: 100%;
+    height: 90px;
+}
+
+.basic-pay p{
+    font-size: 12px;
+    font-weight: 900;
+    padding-top: 70px;
+}
+
+.overall-payment{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding-top: 10px;
+}
+
+.payments p {
+    font-size: 12px;
+    margin-bottom: 0px;
+    margin-left: 10px;
+}
+
+.top-payment{
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.mid-payment{
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    margin-top: 20px;
+}
+
+.mid-payment{
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    margin-top: 20px;
+}
+
+.payment-cost p{
+    font-size: 12px;
+    margin-bottom: 0px;
+    margin-right: 22px;
+}
+
+
+.low-payment{
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    margin-top: 20px;
+    font-weight: 900;
+}
+
+.netpay{
+    font-size: 12px;
+    margin-bottom: 0px;
+    margin-left: 10px;
+}
+
+.netpay-cost p{
+    font-size: 12px;
+    margin-bottom: 0px;
+    margin-right: 22px;
+
+}
+
+.modal .modal-body{
+    padding-bottom: 0px;
+}
+
+.modal .btn-secondary{
+    background-color: #9C1421;
+    border: none;
+    font-size: 14px;
+    width: 80px;
+}
+
+.modal .btn-primary{
+    background-color: #F0C419;
+    border: none;
+    font-size: 14px;
+    width: 150px;
+}
+
+
+
+
+
+@media(max-width: 768px){
+    #sidebar{
+        margin-left: -250px;
+        position: fixed;
+        min-height: 100vh;
+        z-index: 4;
+    }
+
+    .open-btn{
+        display: block;
+        margin-top: -12px;
+        padding-left: 4px;
+        padding-right: 4px;
+        background-color: white;
+        color: black;
+    }
+
+    .open-btn:active{
+        background-color: white;
+        color: black;
+    }
+
+    .close-btn{
+        display: block;
+    }
+
+    #sidebar.active{
+        margin-left: 0;
+    }
+
+    .usep-texthead{
+        display: none;
+    }
+
+    .head-searchbar{
+        margin-right: 50px;
+        margin-top: 5px;
+    }
+
+    .head-searchbar input{
+        height: 40px;
+        width: 250px;
+    }
+
+
+    .head-searchbar img{
+        width: 18px;
+        margin-top: 11px;
+    }
+
+    .Menu-name p{
+        font-size: 24px; 
+    }
+
+    .usep-footercard{
+        margin-left: 30px;
+    }
+
+    .main-logo{
+        margin-left: -50px;
+    }
+
+    .left-container{
+        z-index: 2;
+    }
+
+    .top-content{
+        width: 680px;
+    }
+   
+    .lower-content{
+        width: 680px;
+    }
+
+    .user-image{
+        padding: 0px;
+    }
+
+    .user-image img{
+        width: 80px;
+    }
+
+    .left-user-side{
+        padding: 20px;
+        
+    }
+
+    .viewprofile button{
+        width: 6rem;
+    }
+    
+    .right-user-side .line{
+        left: 0px;
+    }
+
+    .right-user-side .top-right-user{
+        padding-left: 20px;
+        justify-content: normal;
+    }
+
+    .right-user-side .top-right-user .form-check{
+        padding-left: 17rem;
+    }
+    
+    .middle-right-user{
+        padding-left: 20px;
+    }
+
+    .rate-container{
+        width: 200px;
+    }
+
+    .grosssalary{
+        margin-top: 10px;
+    }
+
+    .grosssalary p{
+        font-size: 14px;
+        margin-top: 5px;
+
+    }
+
+    .grosssalary input{
+        width: 105px;
+    }
+
+    .deduction {
+        margin-top: 10px;
+    }
+
+    .deduction p{
+        font-size: 14px;
+        margin-top: 5px;
+
+    }
+
+    .deduction input{
+        width: 84px;
+    }
+
+    .lower-right-user{
+        padding-left: 20px;
+        padding-top: 10px;
+    }
+
+
+    .rate-container-overall{
+        width: 230px;
+        margin-top: 30px;
+        margin-left: 0px;
+       
+    }
+    
+    .netsalary p{
+        font-size: 14px;
+        margin-top: 5px;
+    }
+
+    .netsalary input{
+        width: 145px;
+    }
+    
+    .lower-content{
+        margin: 0px;
+    }
+
+    .rightcontainer{
+        margin-left: 0px;
+    }
+
+    .rightcontainer{
+        width: 680px;
+    }
+}
+
+

@@ -1,0 +1,206 @@
+/* Update your external CSS (courier-login.css) */
+
+/* Reset some default margin/padding and box-sizing */
+body, h1, h2, h3, p {
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+
+.main-wrapper {
+    position: absolute;
+    height: 100vh;
+}
+
+.login-form {
+    margin-top: 20%;
+    margin-left: 20%;
+    max-width: 100%;
+}
+
+.login-image {
+    margin-left: -10%;
+    margin-top: 10%;
+    max-width: 105%;
+    height: auto;
+}
+.logo{
+    margin-top: 5%;
+    margin-left: -25%;
+    width: 170px;
+}
+.input-field {
+    position: relative;
+    margin-bottom: 20px;
+}
+
+.input {
+    width: 100%;
+    border: none;
+    border-bottom: 1px solid #52BE91;
+    padding: 5px;
+    padding-left: 30px;
+    outline: none;
+}
+
+.input:focus {
+    border-bottom: 2px solid #52BE91;
+}
+
+
+label {
+    position: absolute;
+    top: 0;
+    font-weight: 500;
+    left: 0;
+    font-size: 18px;
+    pointer-events: none;
+    transition: transform 0.2s ease, opacity 0.2s ease;
+    transform-origin: 0 100%;
+}
+
+
+.input:focus + label,
+.input:not(:placeholder-shown) + label {
+    transform: translateY(-1.5em) scale(0.8);
+    opacity: 0.7;
+}
+.input-box{
+    width: 400px;
+}
+header{
+    font-size: 40px;
+    font-weight: bold;
+    color: #555555!important;
+}
+h5{
+    font-size: 40px;
+    font-weight: bold;
+    color: #555555!important;
+    margin-top: -5px;
+}
+
+.containerMiddle{
+    padding-top: 0px !important;
+}
+
+.mb-5{
+    margin-bottom: 50px !important;
+}
+.input-icon {
+    position: absolute;
+    left: 0px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 20px;
+    height: 20px;
+}
+
+.signin {
+    text-align: right;
+    margin-top: -20px;
+}
+
+.forgotpass {
+    text-decoration: none;
+    color: #505050;
+    font-size: 13px;
+    display: inline-block;
+    color: #0F947E;
+}
+.login {
+    text-align: left;
+    margin-top: 10px;
+}
+.submit{
+    font-size: 15px;
+    background-color: #0F947E;
+    padding: 4px 25px;
+    color: white;
+    border: none;
+    border-radius: 3px;
+}
+
+.error{
+    font-size: 12px; 
+    background-color: #edb4bc; 
+    color: rgb(73, 73, 73);
+    padding: 8px;
+    padding-left: 10px;
+    border-radius: 2px;
+    width: 100%;
+    opacity: 1;
+    transition: opacity 0.5s ease-in-out; 
+    margin-top: 5px;
+    display: hidden;
+    padding-left: 20px;
+    margin-top: 10px;
+    margin-top: 4px;
+}
+
+a:hover{
+    color: #2EB082;
+}
+
+.corusername{
+    position: relative;
+}
+
+.corusername #emailImage{
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    color: #0F947E;
+}
+
+
+.corPass{
+    position: relative;
+}
+
+.corPass #passwordIcon{
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    color: #0F947E;
+}
+
+
+
+
+.register {
+    margin-top: 5%;
+    margin-left: 25%;
+    font-size: 15px;
+    font-weight: 500;
+    padding: 2px 15px;
+    color: #2EB082;
+    background-color: white;
+    border: 2px solid #2EB082;
+    border-radius: 3px;
+}
+@media (max-width: 768px) {
+    body{
+        overflow: auto;
+    }
+    .logo{
+        display: none;
+    }
+    .login-image{
+        display: none;
+    }
+    .login-form{
+        margin-top: 30% !important;
+        margin:auto;
+    }
+    .main-wrapper{
+        display: none;
+        overflow: hidden;
+        width: 100%;
+    }
+}

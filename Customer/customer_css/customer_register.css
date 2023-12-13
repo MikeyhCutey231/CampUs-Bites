@@ -1,0 +1,452 @@
+@import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap');
+
+*,::after,::before{
+    box-sizing: border-box;
+}
+
+body{
+    padding: 0;
+    margin: 0;
+    background-color: #FAFBFD;
+    font-family: 'Lato', sans-serif;
+}
+
+p{
+    margin-bottom: 0px;
+}
+.wrapper{
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+}
+
+.wavey1{
+    top: 354px;
+    position: absolute;
+}
+
+.wavey2{
+    position: absolute;
+    right: 0px;
+}
+
+.header-content{
+    text-align: center;
+    width: 100%;
+    margin-top: 10px;
+}
+
+.header-content p{
+    margin-bottom: 0px;
+}
+
+.header-content .reg{
+    font-size: 48px;
+    font-weight: calc(1000);
+    color: #F8B62E;
+    margin-bottom: -6px;
+    padding-top: 30px;
+}
+
+.header-content .univ{
+    font-size: 14px;
+}
+
+.header-content .ecanteen{
+    font-size: 14px;
+}
+
+
+.register-box{
+    width: 70%;
+    background-color: white;
+    box-shadow: 0px 0px 6px rgba(0, 0, 0, 25%);
+    border-radius: 10px;
+    margin-left: 230px;
+    margin-top: 20px;
+    padding-bottom: 30px;
+}
+
+.first-row{
+    display: flex;
+    padding-left: 40px;
+    padding-right: 40px;
+    padding-top: 30px;
+}
+
+.first-row input:active{
+    border: none;
+    outline: none;
+}
+
+.first-row input{
+    height: 35px;
+    border: 1px solid #C1C1C1;
+    border-radius: 6px;
+    outline: none;
+    padding-left: 10px;
+}
+
+.first-row p{
+    margin-bottom: 3px;
+}
+
+.first-row .fname input{
+    width: 250px;
+    margin-right: 20px;
+}
+
+.first-row .mname input{
+    width: 250px;
+    margin-right: 20px;
+}
+
+.first-row .lname input{
+    width: 250px;
+    margin-right: 20px;
+}
+
+
+
+.second-row{
+    display: flex;
+    padding-left: 40px;
+    padding-right: 40px;
+    padding-top: 25px;
+}
+
+
+.second-row input:active{
+    border: none;
+    outline: none;
+}
+
+.second-row input{
+    height: 35px;
+    border: 1px solid #C1C1C1;
+    border-radius: 6px;
+    outline: none;
+    padding-left: 10px;
+}
+
+.second-row p{
+    margin-bottom: 3px;
+}
+
+.second-row .pnum input{
+    width: 250px;
+    margin-right: 20px;
+}
+
+.second-row .dateborn input{
+    width: 200px;
+    margin-right: 20px;
+    padding-right: 10px;
+}
+
+.second-row .gender input{
+    width: 150px;
+    margin-right: 20px;
+    padding-right: 10px;
+}
+
+
+.gender select{
+    height: 35px;
+    width: 200px;
+    height: 35px;
+    border: 1px solid #C1C1C1;
+    border-radius: 6px;
+    outline: none;
+    margin-right: 20px;
+    padding-left: 5px;
+}
+
+.second-row .studentnumber input{
+    width: 250px;
+    margin-right: 20px;
+    padding-right: 10px;
+}
+
+
+
+
+.second-row .suffix input{
+    width: 150px;
+    margin-right: 20px;
+    padding-right: 10px;
+}
+
+
+.suffix select{
+    height: 35px;
+    width: 180px;
+    height: 35px;
+    border: 1px solid #C1C1C1;
+    border-radius: 6px;
+    outline: none;
+    margin-right: 20px;
+    padding-left: 5px;
+}
+
+
+
+
+
+.third-row{
+    display: flex;
+    padding-left: 40px;
+    padding-right: 40px;
+    padding-top: 25px;
+}
+
+
+.third-row input:active{
+    border: none;
+    outline: none;
+}
+
+.third-row input{
+    height: 35px;
+    border: 1px solid #C1C1C1;
+    border-radius: 6px;
+    outline: none;
+    padding-left: 10px;
+}
+
+.third-row p{
+    margin-bottom: 3px;
+}
+
+.third-row .address input{
+    width: 990px;
+    margin-right: 20px;
+    padding-right: 10px;
+}
+
+
+.policyContainer{
+    display: flex;
+    padding-left: 40px;
+    padding-right: 40px;
+    padding-top: 10px;
+    font-size: 13px;
+}
+
+
+.policyContainer input{
+    z-index: 1;
+    margin-right: 5px;
+}
+
+
+
+.fourth-row{
+    display: flex;
+    padding-left: 40px;
+    padding-right: 40px;
+    padding-top: 15px;
+}
+
+.error{
+    font-size: 13px; 
+    background-color: #EA453A; 
+    color: #fff;
+    padding: 10px;
+    padding-left: 10px;
+    border-radius: 2px;
+    width: 990px;
+    display: none;
+    opacity: 1;
+    transition: opacity 0.5s ease-in-out; 
+}
+
+
+
+.register-button{
+    padding-left: 40px;
+    margin-top: 10px;
+}
+
+.register-button button{
+    padding: 8px;
+    border-radius: 4px;
+    color: white;
+    background-color: #F8B62E;
+    width: 95.8%;
+    border: none;
+    font-size: 12px;
+    font-weight: bold;
+    position: relative;
+    z-index: 1;
+}
+
+
+@media(max-width: 380px){
+    .wrapper{
+        height: auto;
+        padding-bottom: 50px;
+    }
+
+
+    img{
+        display: none;
+    }
+
+    .register-box{
+        width: 88%;
+        background-color: white;
+        box-shadow: 0px 0px 6px rgba(0, 0, 0, 25%);
+        border-radius: 10px;
+        margin-left: 20px;
+        margin-top: 20px;
+        padding-bottom: 30px;
+    }
+
+    .header-content .reg{
+        font-size: 35px;
+        font-weight: calc(1000);
+        color: #F8B62E;
+        margin-bottom: -6px;
+        padding-top: 20px;
+    }
+    
+    .header-content .univ{
+        font-size: 10px;
+    }
+    
+    .header-content .ecanteen{
+        font-size: 10px;
+    }
+
+    .first-row{
+        display: flex;
+        flex-direction: column;
+        padding-left: 30px;
+        padding-right: 30px;
+        padding-top: 20px;
+    }
+
+    .mname{
+        margin-top: 10px;
+    }
+    
+    .lname{
+        margin-top: 10px;
+    }
+    
+    .suffix{
+        margin-top: 10px;
+    }
+
+    .suffix select{
+        width: 260px;
+    }
+
+    .second-row{
+        display: flex;
+        flex-direction: column;
+        padding-left: 30px;
+        padding-right: 30px;
+        padding-top: 15px;
+    }
+
+    .first-row .fname input{
+        width: 260px;
+        margin-right: 20px;
+    }
+    
+    .first-row .mname input{
+        width: 260px;
+        margin-right: 20px;
+    }
+    
+    .first-row .lname input{
+        width: 260px;
+        margin-right: 20px;
+    }
+
+    .pnum{
+        margin-top: 0px;
+    }
+
+    .gender{
+        margin-top: 10px;
+    }
+
+    .studentnumber{
+        margin-top: 15px;
+    }
+
+    .third-row{
+        display: flex;
+        flex-direction: column;
+        padding-left: 30px;
+        padding-right: 30px;
+        padding-top: 10px;
+    }
+
+    .third-row .address input{
+        width: 260px;
+        margin-right: 20px;
+        padding-right: 10px;
+    }
+
+    .second-row .pnum input{
+        width: 260px;
+        margin-right: 20px;
+    }
+
+    .second-row .studentnumber input{
+        width: 260px;
+        margin-right: 20px;
+    }
+    
+    .gender select{
+        width: 260px;
+    }
+
+    .address{
+        margin-top: 10px;
+    }
+
+    .policyContainer{
+        display: flex;
+        padding-left: 30px;
+        padding-right: 40px;
+        padding-top: 10px;
+        font-size: 13px;
+    }
+
+    .register-button{
+        padding-left: 30px;
+        margin-top: 10px;
+    }
+
+    .fourth-row{
+        display: flex;
+        padding-left: 30px;
+        padding-right: 40px;
+        padding-top: 15px;
+    }
+
+
+    .register-button button{
+        padding: 8px;
+        border-radius: 4px;
+        color: white;
+        background-color: #F8B62E;
+        width: 86%;
+        border: none;
+        font-size: 12px;
+        font-weight: bold;
+        position: relative;
+        z-index: 1;
+    }
+}
+
+
+

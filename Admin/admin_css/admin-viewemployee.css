@@ -1,0 +1,1619 @@
+@import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap');
+
+*,::after,::before{
+    box-sizing: border-box;
+}
+
+body{
+    font-family: 'Lato', sans-serif;;
+    margin: 0;
+    padding: 0;
+    background-color: #FAFBFD;
+}
+
+a{
+    text-decoration: none;
+    cursor: pointer;
+}
+
+li{
+    list-style-type: none;
+}
+
+p{
+    margin-bottom: 0px;
+}
+
+.wrapper{
+    display: flex;
+    flex-direction: row;
+}
+
+.left-container{
+    width: 250px;
+    height: 100%;
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    transition: all 0.35s ease-in-out;
+    top: 0;
+    position: sticky;
+    z-index: 2 !important;
+}
+
+.sidebar-logo{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    padding-right: 35px;
+}
+
+.main-logo{
+    width: 45px;
+    height: 45px;
+    background-color: #D9D9D9;
+    border-radius: 4px;
+}
+
+.sidelogo-text{
+    margin-left: 10px;
+    display: flex;
+}
+
+.sidelogo-text p{
+    margin-top: -7px;
+}
+
+.sidelogo-text p, .sidelogo-text a{
+    margin-bottom: 0px;
+    text-decoration: none;
+    color: #9C1421;
+    font-weight: bold;
+    font-size: 18px;
+}
+
+.sidebar-nav{
+    padding: 0;
+}
+
+dl, ol, ul{
+    margin-bottom: 2.2rem;
+}
+
+
+a.sidebar-link{
+    padding: .825rem 1.5rem;
+    color: #696969;
+    position: relative;
+    display: block;
+    font-size: 12px;
+    display: flex;
+}
+
+.sidebar-link.active {
+    color: white; /* Change to the desired color when the link is active */
+    background-color: #9C1421; /* Change to the desired background color when the link is active */
+    border-radius: 7px; /* You can add additional styles as needed */
+}
+
+.sidebar-link.active svg path {
+    fill: white; /* Change to the desired fill color when the link is active */
+    stroke: white; /* Change to the desired stroke color when the link is active */
+}
+
+
+a.sidebar-link p{
+    margin-bottom: 0;
+    margin-top: 1px;
+}
+
+.sidebar-items svg{
+    margin-right: 10px;
+}
+
+.sidebar-dropdown {
+    padding-left: 50px;
+}
+
+.sidebar-item a{
+    font-size: 14px;
+    color: #696969;
+    
+}
+
+.sidebar-item{
+    padding: 3px;
+}
+
+.sidebar-item:hover{
+    text-decoration: underline;
+}
+
+.sidebar-items{
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+.sidebar-items:hover svg path {
+    fill: white;
+    stroke: white;
+}
+
+.sidebar-items:hover .sidebar-link{
+    color: white;
+    background-color: #9C1421;
+    border-radius: 7px;
+}
+
+#invHover{
+    position: relative;
+}
+
+#invHover .circle{
+    width: 18px;
+    height: 18px;
+    background-color: #878787;
+    position: absolute;
+    top: 7px;
+    left: 17px;
+    border-radius: 50px;
+    font-size: 9px;
+    color: white;
+    text-align: center;
+    font-weight: 900;
+}
+
+#invHover svg path{
+    stroke: white;
+}
+
+#invHover:hover svg path{
+    stroke: white;
+    fill: #9C1421;
+}
+
+#invHover:hover .circle{
+    background-color: white;
+    color: #9C1421;
+    font-weight: 900;
+}
+
+.circle p{
+    padding-top: 1px;
+}
+
+.sidebar-link[data-bs-toggle="collapse"]::after{
+    border: solid;
+    border-width: 0 0.100rem 0.100rem 0;
+    content: "";
+    display: inline-block;
+    padding: 2px;
+    position: absolute;
+    right: 1.1rem;
+    top: 1.1rem;
+    transform: rotate(45deg);
+    transition: all .1s ease-in-out;
+}
+
+
+.sidebar-link[data-bs-toggle="collapse"].collapsed::after{
+    transform: rotate(-135deg);
+    transition: all .1s ease-in-out;
+    right: 1.1rem;
+    top: 1.3rem;
+}
+
+.usep-footercard{
+    width: 160px;
+    height: 190px;
+    background-color: white;
+    box-shadow: 0px 0px 4px rgba(0, 0, 0, 25%);
+    border-radius: 6px;
+    margin-left: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-top: 70px
+}   
+
+
+.right-container{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.head-content{
+   width: 100%;
+   height: 85px;
+   background-color: white;
+   display: flex;
+   align-items: center;
+   position: -webkit-sticky; /* Safari */
+   position: sticky;
+   top: 0;
+   z-index: 1;
+}
+
+.head-content .Menu-name{
+    color: #9C1421;
+    font-size: 32px;
+    font-weight: 900;
+    padding-left: 10px;
+    flex-grow: 4;
+    display: flex;
+}
+
+.head-searchbar{
+    position: relative;
+    margin-right: 50px;
+}
+
+.head-searchbar img{
+    position: absolute;
+    margin-top: 10px;
+    margin-left: 15px;
+}
+
+input:focus {
+    outline: none;
+}
+
+.head-searchbar input{
+    border: none;
+    background-color: #FAFBFD;
+    height: 45px;
+    width: 340px;
+    padding-top: -50px;
+    border-radius: 5px;
+    padding: 10px;
+    font-size: 13px;
+    padding-left: 45px;
+}
+
+.usep-texthead{
+    flex-grow: 1;
+}
+
+.user-profile{
+    display: flex;
+    margin-right: 50px;
+}
+
+.admin-profile{
+    width: 40px;
+    height: 40px;
+    border-radius: 6px;
+    background-color: #D9D9D9;
+    flex-grow: 1;
+}
+
+.admin-detail{
+    text-align: center;
+    margin-left: 5px;
+}
+
+
+.usep-texthead{
+    display: flex;
+    flex-direction: row;
+}
+
+.open-btn {
+    border: none;
+    margin-right: 10px;
+    margin-top: 1px;
+    display: none;
+}
+
+.close-btn{
+    display: none;
+}
+
+
+/* Main Content Drop Here */
+
+.main-content{
+    display: flex;
+    flex-direction: row;
+    padding-left: 20px;
+    padding-top: 20px;
+    margin-bottom: 20px;
+  }
+  
+
+.userSettings-container{
+    box-shadow: 0px 0px 4px rgba(0, 0, 0, 25%);
+    background-color: #FFFFFF;
+    border-radius: 10px;
+    height:69vh;
+    width: 20%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+h5, h4{
+    margin: 0px;
+}
+
+.userSettings-container .userProfile{
+    border-radius: 100px;
+    margin-top: 30px;
+    width: 150px;
+    height: 150px;
+}
+
+.userSettings-container .settingUsername{
+    font-size: 16px;
+    font-weight: bold;
+    margin-top: 15px;
+}
+
+.userSettings-container .userJob{
+    margin-top: -3px;
+    color: #737373;
+}
+
+.userSettings-container .edit-info{
+    border: 2px solid #9C1421;
+    width: 78%;
+    border-radius: 3px;
+    padding: 4px;
+    font-weight: bold;
+    font-size: 12px;
+    color: #9C1421;
+    margin-top: 25px;
+    background-color: white;
+}
+
+.userSettings-container .changepass{
+    width: 78%;
+    border-radius: 3px;
+    padding: 8px;
+    font-weight: bold;
+    font-size: 12px;
+    color: white;
+    border: none;
+    background-color: #F0C419;
+    margin-top: 105px;
+}
+
+
+.userSettings-container .disable-account{
+    width: 78%;
+    border-radius: 3px;
+    padding: 8px;
+    font-weight: bold;
+    font-size: 12px;
+    color: white;
+    border: none;
+    background-color: #9C1421;
+    margin-top: 5px;
+}
+
+.userSettings-container .enable-account{
+    width: 78%;
+    border-radius: 3px;
+    padding: 8px;
+    font-weight: bold;
+    font-size: 12px;
+    color: white;
+    border: none;
+    background-color: #3DC53A !important;
+    margin-top: 5px;
+}
+.userInformation-container{
+    display: flex;
+    flex-direction: column;
+    width: 77%;
+    margin-left: 20px;
+}
+
+.userInformation-container .personalInformation-container{
+    box-shadow: 0px 0px 4px rgba(0, 0, 0, 25%);
+    background-color: #FFFFFF;
+    border-radius: 10px;
+    height: 46vh;
+}
+
+.personalInformation-container .pInformation-head{
+    border-bottom: 1px solid black;
+    padding: 15px 15px 15px 25px;
+    font-weight: bold;
+}
+
+.pInformation-head h4{
+    font-weight: calc(1000);
+    font-size: 20px;
+}
+
+.personalInformation-container .pInformation-content{
+    margin-top: 15px;
+    display: flex;
+    flex-direction: column;
+}
+
+.pInformation-content p{
+    font-size: 14px;
+}
+
+.pInformation-content .cardDetails{
+    display: flex;
+    padding-left: 25px;
+    margin-top: 8px;
+}
+
+.cardDetails .userFname{
+    display: flex;
+    width: 400px;
+}
+
+.cardDetails .userEmergencyNum{
+    display: flex;
+    width: 550px;
+}
+
+.cardDetails .userMname{
+    display: flex;
+    width: 400px;
+}
+
+.cardDetails .userAddress{
+    display: flex;
+    width: 550px;
+}
+
+
+.cardDetails .userLname{
+    display: flex;
+    width: 400px;
+}
+
+.cardDetails .userCity{
+    display: flex;
+    width: 550px;
+}
+
+
+.cardDetails .userSuffix{
+    display: flex;
+    width: 400px;
+}
+
+.cardDetails .userCountry{
+    display: flex;
+    width: 550px;
+}
+
+
+.cardDetails .userGender{
+    display: flex;
+    width: 400px;
+}
+
+.cardDetails .userZip{
+    display: flex;
+    width: 550px;
+}
+
+
+.cardDetails .userPhonenum{
+    display: flex;
+    width: 400px;
+}
+
+.cardDetails .userHeight{
+    display: flex;
+    width: 550px;
+}
+
+
+.cardDetails .userEmail{
+    display: flex;
+    width: 400px;
+}
+
+.cardDetails .userWeight{
+    display: flex;
+    width: 550px;
+}
+
+.cardDetails .userDateborn{
+    display: flex;
+    width: 400px;
+}
+
+.cardDetails .userCivilstatus{
+    display: flex;
+    width: 550px;
+}
+
+
+
+.userInformation-container .workInformation-container{
+    box-shadow: 0px 0px 4px rgba(0, 0, 0, 25%);
+    background-color: #FFFFFF;
+    border-radius: 10px;
+    margin-top: 20px;
+    height: 20vh;
+}
+
+
+.workInformation-container .workInformation-head{
+    border-bottom: 1px solid black;
+    padding: 15px 15px 15px 25px;
+    font-weight: bold;
+    display: flex;
+    flex-direction: column;
+}
+
+.workInformation-container p{
+    font-size: 14px;
+}
+
+.workInformation-head h4{
+    font-weight: calc(1000);
+    font-size: 20px;
+}
+
+
+.workInformation-container .cardDetails{
+    display: flex;
+    padding-left: 25px;
+    margin-top: 6px;
+}
+
+.cardDetails .userEmployeeId{
+    display: flex;
+    width: 400px;
+}
+
+.cardDetails .userPosition{
+    display: flex;
+    width: 550px;
+}
+
+.cardDetails .userWorkhours{
+    display: flex;
+    width: 400px;
+}
+
+.cardDetails .userBasicSalary{
+    display: flex;
+    width: 550px;
+}
+
+
+/* Modal Edit Profile */
+
+#editInfo .modal-dialog{
+    max-width: 70%;
+}
+
+#editInfo .modal-body{
+    display: flex;
+    flex-direction: row;
+    padding: 25px;
+    height: 565px;
+}
+
+.modal-body form{
+    display: flex;
+}
+.editLeft-container{
+    width: 20%;
+}
+
+
+.image-container{
+    width: 206px;
+    height: 206px;
+    border: 2px dashed #db4a59;
+    background-color: #FFFFFF;
+    border-radius: 6px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.image-container p{
+    font-size: 12px;
+}
+
+.editLeft-container label{
+    background-color: #9C1421;
+    border: none;
+    border-radius: 2px;
+    color: white;
+    padding: 5px;
+    width: 100%;
+    margin-top: 6px;
+    text-align: center;
+    cursor: pointer;
+}
+
+input[type="file"]{
+    display: none;
+}
+
+
+
+.editRight-container{
+    width: 79%;
+    border-left: 2px solid #A0A0A0;
+    margin-left: 20px;
+}
+
+.modalPersonalInfo h4{
+    font-weight: bolder;
+    font-size: 20px;
+    padding-left: 20px;
+    padding-top: 10px;
+}
+
+.modalFirstRowInfo{
+    display: flex;
+    flex-direction: row;
+    margin-top: 10px;
+    padding-left: 20px;
+}
+
+.modalFirstRowInfo input{
+    border-radius: 3px; 
+    border: 1px solid gray; 
+    height: 30px;
+    width: 200px;
+}
+
+.modalFirstRowInfo .modalLname{
+    margin-right: 15px;
+    font-size: 14px;
+}
+
+.modalFirstRowInfo .modalFname{
+    margin-right: 15px;
+    font-size: 14px;
+}
+
+.modalFirstRowInfo .modalMname{
+    margin-right: 15px;
+    font-size: 14px;
+}
+
+.modalFirstRowInfo .modalSuffix{
+    font-size: 14px;
+}
+
+.modalFirstRowInfo .modalSuffix input{
+    width: 130px;
+}
+
+
+
+.modalSecondRowInfo{
+    display: flex;
+    flex-direction: row;
+    margin-top: 10px;
+    padding-left: 20px;
+}
+
+
+.modalSecondRowInfo input{
+    border-radius: 3px; 
+    border: 1px solid gray; 
+    height: 30px;
+    width: 200px;
+}
+
+.modalPosition select{
+    display: block;
+    width:  100px;
+    padding: 2px;
+    padding-left: 5px;
+    border: 1px solid gray;
+    font-family: inherit;
+    outline: none;
+    border-radius: 2px;
+    margin-right: 15px;
+
+    /** for the dropdown indicator */
+    appearance: none;
+    background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+    background-repeat: no-repeat;
+    background-position: right 0.2rem center;
+    background-size: 1em;
+}
+
+.modalGender select{
+    display: block;
+    width:  100px;
+    padding: 2px;
+    padding-left: 5px;
+    border: 1px solid gray; 
+    font-family: inherit;
+    outline: none;
+    border-radius: 2px;
+    margin-right: 15px;
+
+    /** for the dropdown indicator */
+    appearance: none;
+    background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+    background-repeat: no-repeat;
+    background-position: right 0.2rem center;
+    background-size: 1em;
+}
+
+.modalGender p{
+    font-size: 14px;
+}
+.modalPosition p{
+    font-size: 14px;
+}
+
+.modalSecondRowInfo .modalPhonenumber{
+    margin-right: 15px;
+    font-size: 14px;
+}
+
+.modalSecondRowInfo .modalEmail{
+    margin-right: 15px;
+    font-size: 14px;
+}
+
+.modalEmail input{
+    width: 230px;
+}
+
+.modalSecondRowInfo .modalDateborn{
+    margin-right: 15px;
+    font-size: 14px;
+}
+
+.modalDateborn input{
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+
+
+.modalThirdRowInfo{
+    display: flex;
+    flex-direction: row;
+    margin-top: 10px;
+    padding-left: 20px;
+}
+
+
+.modalThirdRowInfo input{
+    border-radius: 3px; 
+    border: 1px solid gray; 
+    height: 30px;
+    width: 200px;
+}
+
+.modalThirdRowInfo .modalEmergencyNum{
+    margin-right: 15px;
+    font-size: 14px;
+}
+
+.modalCivilStats select{
+    display: block;
+    width:  100px;
+    padding: 4px;
+    padding-left: 5px;
+    border: 1px solid gray; 
+    font-family: inherit;
+    outline: none;
+    border-radius: 2px;
+    margin-right: 15px;
+
+    /** for the dropdown indicator */
+    appearance: none;
+    background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+    background-repeat: no-repeat;
+    background-position: right 0.3rem center;
+    background-size: 1em;
+}
+
+.modalCivilStats p{
+    font-size: 14px;
+}
+
+.modalThirdRowInfo .modalHeight{
+    margin-right: 15px;
+    font-size: 14px;
+}
+
+.modalThirdRowInfo .modalHeight input{
+    width: 130px;
+}
+
+.modalThirdRowInfo .modalWeight{
+    margin-right: 15px;
+    font-size: 14px;
+}
+
+.modalThirdRowInfo .modalWeight input{
+    width: 130px;
+}
+
+.modalThirdRowInfo .modalRegion{
+    font-size: 14px;
+}
+
+.modalThirdRowInfo .modalRegion input{
+    width: 156px;
+}
+
+
+
+.modalFourthRowInfo{
+    display: flex;
+    flex-direction: row;
+    margin-top: 10px;
+    padding-left: 20px;
+}
+
+
+.modalFourthRowInfo input{
+    border-radius: 3px; 
+    border: 1px solid gray; 
+    height: 30px;
+    width: 200px;
+}
+
+.form-item{
+    margin: 0;
+}
+
+
+.modalFourthRowInfo .modalCountry{
+    margin-right: 15px;
+    font-size: 14px;
+}
+
+.modalFourthRowInfo .modalCity{
+    margin-right: 15px;
+    font-size: 14px;
+}
+
+.modalCity input{
+    width: 120px;
+}
+
+
+.modalFourthRowInfo .modalAddress{
+    margin-right: 15px;
+    font-size: 14px;
+}
+
+.modalAddress input{
+    width: 425px;
+}
+
+
+.modalFifthRowInfo{
+    display: flex;
+    align-items: center;
+    margin-top: 20px;
+}
+
+.modalFifthRowInfo h4{
+    font-weight: bolder;
+    font-size: 20px;
+    padding-left: 20px;
+    padding-top: 10px;
+}
+
+.modalFifthRowInfo .modalJobStatus{
+    margin-top: 12px;
+    margin-left: 10px;
+    font-size: 12px;
+    color: red;
+}
+
+
+
+.modalSixRowInfo{
+    display: flex;
+    flex-direction: row;
+    margin-top: 10px;
+    padding-left: 20px;
+}
+
+
+.modalSixRowInfo input{
+    border-radius: 3px; 
+    border: 1px solid gray; 
+    height: 30px;
+    width: 200px;
+}
+
+
+
+.modalSixRowInfo .modalPosition{
+    margin-right: 15px;
+    font-size: 14px;
+}
+
+.modalSixRowInfo .modalPosition input{
+    width: 130px;
+}
+
+.modalSixRowInfo .modalBasicSalary{
+    font-size: 14px;
+    position: relative;
+}
+
+.modalSixRowInfo .modalBasicSalary input{
+    width: 156px;
+    padding-left: 35px;
+}
+
+
+.modalBasicSalary .dollarsign{
+    position: absolute;
+    top: 21px;
+    padding-left: 10px;
+    padding-top: 6px;
+    padding-bottom: 4px;
+    padding-right: 10px;
+    font-size: 12px;
+    background-color: #e3e3e3;
+    border-bottom-left-radius: 3px;
+    border-top-left-radius: 3px;
+    border-top: 1px solid gray;
+    border-left: 1px solid gray;
+    border-bottom: 1px solid gray;
+    color: #9C1421;
+}
+
+
+.modalSeveRowInfo{
+    display: flex;
+    flex-direction: row;
+    margin-top: 10px;
+    padding-left: 20px;
+}
+
+.modalSeveRowInfo select{
+    display: block;
+    width:  378px;
+    padding: 4px;
+    padding-left: 10px;
+    border: 1px solid gray; 
+    font-family: inherit;
+    outline: none;
+    border-radius: 2px;
+    margin-right: 15px;
+    font-size: 12px;
+    height: 35px;
+
+    /** for the dropdown indicator */
+    appearance: none;
+    background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+    background-repeat: no-repeat;
+    background-position: right 0.5rem center;
+    background-size: 1em;
+}
+
+.modalSeveRowInfo .modalCollege{
+    font-size: 14px;
+}
+
+.modalSeveRowInfo .modalProgram{
+    font-size: 14px;
+}
+
+
+.modalEigth{
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-end;
+}
+
+.modalEigth .modalUpdate{
+    border: none;
+    cursor: pointer;
+    background-color: #9C1421;
+    color: white;
+    height: 30px;
+    width: 130px;
+    margin-top: 15px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 25%);
+    margin-right: 10px;
+    font-size: 12px;
+    border-radius: 4px;
+}
+
+.modalEigth .closeModalProfile{
+    border: none;
+    cursor: pointer;
+    background-color: white;
+    color: black;
+    height: 30px;
+    width: 100px;
+    margin-top: 15px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 25%);
+    margin-right: 20px;
+    font-size: 12px;
+}
+
+.closeModalProfile:hover{
+    background-color: white;
+}
+
+
+
+
+#disableAccount .modal-dialog{
+    max-width: 30%;
+}
+
+#disableAccount .modal-body{
+    display: flex;
+    flex-direction: column;
+    padding: 25px;
+    padding-left: 30px;
+    height: 170px;
+}
+
+.modal-body h6{
+    font-weight: bold;
+}
+
+.modalDisablebtn{
+    display: flex;
+    margin-top: 10px;
+}
+
+.modalDisablebtn button{
+    width: 100px;
+    margin-right: 10px;
+    padding: 3px;
+    font-size: 14px;
+    border-radius: 2px;
+}
+
+
+@media only screen and (max-width: 768px){
+    #sidebar{
+        margin-left: -250px;
+        position: fixed;
+        min-height: 100vh;
+        z-index: 4;
+    }
+
+    .open-btn{
+        display: block;
+        margin-top: -12px;
+        padding-left: 4px;
+        padding-right: 4px;
+        background-color: white;
+        color: black;
+    }
+
+    .open-btn:active{
+        background-color: white;
+        color: black;
+    }
+
+    .close-btn{
+        display: block;
+    }
+
+    #sidebar.active{
+        margin-left: 0;
+    }
+
+    .usep-texthead{
+        display: none;
+    }
+
+    .head-searchbar{
+        margin-right: 50px;
+        margin-top: 5px;
+    }
+
+    .head-searchbar input{
+        height: 40px;
+        width: 250px;
+    }
+
+
+    .head-searchbar img{
+        width: 18px;
+        margin-top: 11px;
+    }
+
+    .Menu-name p{
+        font-size: 24px; 
+    }
+
+    .usep-footercard{
+        margin-left: 30px;
+    }
+
+    .main-logo{
+        margin-left: -50px;
+    }
+
+    .left-container{
+        z-index: 2;
+    }
+
+    #editInfo .modal-body{
+        height: 585px;
+    }
+
+
+    /* Edit on main content */
+
+    .userSettings-container .userProfile{
+        width: 100px;
+    }
+
+    .userSettings-container .settingUsername{
+        font-size: 12px;
+        margin-top: 10px;
+    }
+
+    .userSettings-container .userJob{
+        margin-top: 3px;
+        font-size: 10px;
+    }
+
+    .userSettings-container .changepass{
+        font-size: 10px;
+    }
+
+    .userSettings-container .disable-account{
+        font-size: 10px;
+    }
+
+
+    .userInformation-container{
+        width: 70%;
+    }
+
+    .pInformation-head h4{
+        font-size: 16px;
+    }
+
+    .pInformation-content p{
+        font-size: 10px;
+    }
+
+    .userLname .lname{
+        margin-right: 42px !important;
+    }
+
+    .userSuffix .suffix{
+        margin-right: 64px !important;
+    }
+
+    .userGender .gender{
+        margin-right: 56px !important;
+    }
+
+    .userEmail .emails{
+        margin-right: 65px !important;
+    }
+
+    .userEmail .realusermail{
+        font-size: 8px;
+    }
+
+    .userDateborn .dateborn{
+        margin-right: 44px !important;
+    }
+
+    .userAddress .addresses{
+        margin-right: 78px !important;
+    }
+
+    .userAddress .realaddresstext{
+        font-size: 8px;
+    }
+
+    .userCity .city{
+        margin-right: 96px !important;
+    }
+
+    .userCountry .country{
+        margin-right: 80px !important;
+    }
+
+    .userZip .zip{
+        margin-right: 76px !important;
+    }
+
+    .userHeight .height{
+        margin-right: 66px !important;
+    }
+
+    .userWeight .weight{
+        margin-right: 67px !important;
+    }
+
+    .userCivilstatus .civilstats{
+        margin-right: 68px !important;
+    }
+
+    .userFname{
+        width: 450px !important;
+    }
+
+    .userMname{
+        width: 450px !important;
+    }
+
+    .userLname{
+        width: 450px !important;
+    }
+
+    .userSuffix{
+        width: 450px !important;
+    }
+
+    .userGender{
+        width: 450px !important;
+    }
+
+    .userPhonenum{
+        width: 450px !important;
+    }
+
+    .userEmail{
+        width: 450px !important;
+    }
+
+    .userDateborn{
+        width: 450px !important;
+    }
+
+    .workInformation-head h4{
+        font-size: 16px;
+    }
+
+    .workInformation-container p{
+    font-size: 12px;
+    }
+
+    .userPosition .staffposition{
+        margin-right: 130px !important;
+    }
+
+    .userBasicSalary .basicsalary{
+        margin-right: 70px !important;
+    }
+
+
+
+    .image-container{
+        width: 120px;
+        height: 120px;
+        border: 2px dashed #9C1421;
+        background-color: #FFFFFF;
+        border-radius: 6px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .image-container img{
+        width: 40px;
+    }
+
+    .image-container p{
+        font-size: 8px;
+    }
+
+    .editLeft-container label {
+        font-size: 12px;
+    }
+
+    .editLeft-container{
+        width: auto;
+    }
+
+    #editInfo .modal-dialog{
+        max-width: 90%;
+        margin-top: 20px;
+    }
+    
+    .modalPersonalInfo h4{
+        font-size: 16px;
+    }
+
+    .editRight-container{
+        width: 79%;
+        border-left: 2px solid #A0A0A0;
+        margin-left: 20px;
+    }
+
+    
+    .modalFirstRowInfo input{
+        border-radius: 3px; 
+        border: 1px solid gray; 
+        height: 25px;
+        width: 120px;
+    }
+    
+    .modalFirstRowInfo .modalLname{
+        margin-right: 15px;
+        font-size: 12px;
+    }
+    
+    .modalFirstRowInfo .modalFname{
+        margin-right: 15px;
+        font-size: 12px;
+    }
+    
+    .modalFirstRowInfo .modalMname{
+        margin-right: 15px;
+        font-size: 12px;
+    }
+    
+    .modalFirstRowInfo .modalSuffix{
+        font-size: 12px;
+    }
+    
+    .modalFirstRowInfo .modalSuffix input{
+        width: 80px;
+    }
+    
+    
+    
+    .modalSecondRowInfo input{
+        border-radius: 3px; 
+        border: 1px solid gray; 
+        height: 30px;
+        width: 105px;
+    } 
+    
+    .modalGender, .modalPosition select{
+        display: block;
+        width:  80px;
+        padding: 2px;
+        padding-left: 5px;
+        border: 1px solid gray; 
+        font-family: inherit;
+        outline: none;
+        border-radius: 2px;
+        margin-right: 15px;
+    
+        /** for the dropdown indicator */
+        appearance: none;
+        background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+        background-repeat: no-repeat;
+        background-position: right 0.2rem center;
+        background-size: 1em;
+    }
+    
+    .modalGender, .modalPosition p{
+        font-size: 12px;
+    }
+    
+    
+    .modalSecondRowInfo .modalPhonenumber{
+        margin-right: 15px;
+        font-size: 12px;
+    }
+    
+    .modalSecondRowInfo .modalEmail{
+        margin-right: 15px;
+        font-size: 12px;
+    }
+    
+    .modalEmail input{
+        width: 150px;
+    }
+    
+    .modalSecondRowInfo .modalDateborn{
+        margin-right: 15px;
+        font-size: 12px;
+    }
+
+
+
+    
+    .modalThirdRowInfo input{
+        border-radius: 3px; 
+        border: 1px solid gray; 
+        height: 30px;
+        width: 125px;
+    }
+    
+    .modalThirdRowInfo .modalEmergencyNum{
+        margin-right: 15px;
+        font-size: 12px;
+    }
+    
+    .modalCivilStats select{
+        display: block;
+        width:  80px;
+        padding: 4px;
+        padding-left: 5px;
+        border: 1px solid gray; 
+        font-family: inherit;
+        outline: none;
+        border-radius: 2px;
+        margin-right: 15px;
+    
+        /** for the dropdown indicator */
+        appearance: none;
+        background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+        background-repeat: no-repeat;
+        background-position: right 0.3rem center;
+        background-size: 1em;
+    }
+    
+    .modalCivilStats p{
+        font-size: 12px;
+    }
+    
+    .modalThirdRowInfo .modalHeight{
+        margin-right: 15px;
+        font-size: 12px;
+    }
+    
+    .modalThirdRowInfo .modalHeight input{
+        width: 70px;
+    }
+    
+    .modalThirdRowInfo .modalWeight{
+        margin-right: 15px;
+        font-size: 12px;
+    }
+    
+    .modalThirdRowInfo .modalWeight input{
+        width: 70px;
+    }
+    
+    .modalThirdRowInfo .modalRegion{
+        font-size: 12px;
+    }
+    
+    .modalThirdRowInfo .modalRegion input{
+        width: 80px;
+    }
+
+
+
+    
+    .modalFourthRowInfo input{
+        border-radius: 3px; 
+        border: 1px solid gray; 
+        height: 30px;
+        width: 120px;
+    }
+    
+    
+    .modalFourthRowInfo .modalCountry{
+        margin-right: 15px;
+        font-size: 12px;
+    }
+    
+    .modalFourthRowInfo .modalCity{
+        margin-right: 15px;
+        font-size: 12px;
+    }
+    
+    .modalCity input{
+        width: 120px;
+    }
+    
+    
+    .modalFourthRowInfo .modalAddress{
+        margin-right: 15px;
+        font-size: 12px;
+    }
+    
+    .modalAddress input{
+        width: 215px;
+    }
+
+
+    
+    .modalFifthRowInfo h4{
+        font-weight: bolder;
+        font-size: 16px;
+        padding-left: 20px;
+        padding-top: 10px;
+        margin-bottom: 0px;
+    }
+    
+    .modalFifthRowInfo .modalJobStatus{
+        margin-top: 12px;
+        margin-left: 10px;
+        font-size: 12px;
+        color: red;
+    }
+
+
+    
+    
+    .modalSixRowInfo input{
+        border-radius: 3px; 
+        border: 1px solid gray; 
+        height: 30px;
+        width: 200px;
+    }
+    
+    
+    
+    .modalSixRowInfo .modalPosition{
+        margin-right: 15px;
+        font-size: 12px;
+    }
+    
+    .modalSixRowInfo .modalPosition input{
+        width: 110px;
+    }
+    
+    .modalSixRowInfo .modalBasicSalary{
+        font-size: 12px;
+        position: relative;
+    }
+    
+    .modalSixRowInfo .modalBasicSalary input{
+        width: 130px;
+        padding-left: 35px;
+    }
+
+
+    .modalBasicSalary .dollarsign{
+        top: 18px;
+    }
+
+    .modalSeveRowInfo{
+        display: flex;
+        flex-direction: column;
+    }
+
+    .modalSeveRowInfo select{
+        display: block;
+        width:  475px;
+        padding: 4px;
+        padding-left: 10px;
+        border: 1px solid gray; 
+        font-family: inherit;
+        outline: none;
+        border-radius: 2px;
+        margin-right: 15px;
+        font-size: 12px;
+        height: 35px;
+        margin-bottom: 5px;
+    
+        /** for the dropdown indicator */
+        appearance: none;
+        background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+        background-repeat: no-repeat;
+        background-position: right 0.5rem center;
+        background-size: 1em;
+    }
+    
+    .closeModalProfile{
+        border-radius: 3px;
+        font-weight: bold;
+        color: black;
+        border: none;
+        background-color: #FAFBFD;
+        margin-top: 18px;
+        box-shadow: 0px 0px 10px rgba(0, 0, 0, 25%);
+        font-size: 10px;
+        width: 80px;
+    }
+
+    #disableAccount .modal-dialog {
+        max-width: 60%;
+    }
+
+}

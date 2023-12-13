@@ -1,0 +1,570 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- CDN Links -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
+    <title>CampUs Bites</title>
+    <link rel="stylesheet" href="../../Customer/customer_css/Landing.css">
+</head>
+<body>
+    <div class="wrapper">
+        <div class="landing-nav">
+            <div class="logo-container">
+                <img src="../../Icons/logo.svg" alt="" width="100px" height="110px" id="achorWHOWEARERIGHT">
+            </div>
+            <div class="navigation-list">
+                <ul>
+                    <a href="#"><li>Home</li></a>
+                    <a href="#about-panel"><li>About</li></a>
+                    <a href="#categories-panel"><li>Categories</li></a>
+                    <a href="#faq-panel"><li>FAQ</li></a>
+                </ul>
+            </div>
+            <div class="login-button">
+                <button>LOGIN </button>
+            </div>
+        </div>
+        <div class="home-panel">
+            <div class="left-text"  
+                data-aos="fade-right"
+                data-aos-anchor="#trigger-right">
+                <div class="home-text-container">
+                    <div class="main-text">
+                        <p style="font-size: 74px; font-weight: calc(1000); margin-bottom: -28px;">Enjoy the</p>
+                        <p style="font-size: 74px; font-weight: calc(1000); margin-bottom: -28px;">University <span style="color: #9C1421;">Food</span></p>
+                        <p style="font-size: 74px; font-weight: calc(1000); color: #9C1421;">Delicacies</p>
+                    </div>
+                    <div class="sub-head">
+                        <p style="margin-bottom: -5px;">CampUs Bites is a University</p>
+                        <p>Food Delivery</p>
+                    </div>
+                    <div class="button-order">
+                        <button type="button">Order Now</button>
+                    </div>
+                </div>
+            </div>
+            <div class="right-contentimage"
+                 data-aos="fade-left"
+                 id="trigger-left"
+                 >
+                <img src="../../Icons/landing-image1.svg" alt="" width="870px" id="achorWHOWEARELEFT">
+            </div>
+        </div>
+        <div class="about-panel" id="about-panel">
+            <div class="about-head" 
+            data-aos="fade-up"
+            data-aos-anchor="#trigger-left"
+            data-aos-anchor-placement="top-top">
+                <p style="font-size: 48px; font-weight: calc(1000);" class="whoweare">WHO WE ARE</p>
+                <p style="font-size: 20px; color: #707070;">A Short and fun introduction of CampUs Bites</p>
+                <p style="font-size: 20px; color: #707070;">What we do and Who we are</p>
+            </div>
+            <div class="about-bottom">
+                <div class="about-left-image" 
+                data-aos="fade-right"
+                data-aos-anchor="#achorWHOWEARELEFT"
+                data-aos-anchor-placement="top-top"
+                data-aos-duration="8000">
+                    <img src="../../Icons/landing-image2.svg" alt="" width="550px" >
+                </div>
+                <div class="about-right-content"
+                data-aos="fade-left"
+                data-aos-anchor="#achorWHOWEARERIGHT"
+                data-aos-anchor-placement="top-top"
+                data-aos-duration="8000">
+                    <p id="triggerPanel">Qorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam eu turpis molestie, dictum est a, mattis tellus. Sed dignissim, metus nec fringilla accumsan, risus sem sollicitudin lacus, ut interdum tellus elit sed risus. Maecenas eget condimentum velit, sit amet feugiat lectus.
+                        <br><br>
+                        Class aptent taciti sociosqu ad litora to rquent per conubia nostra, per inceptos himenaeos. Praesent auctor purus luctus enim egestas, ac scelerisque ante pulvinar. Donec ut rhoncus ex. Suspendisse ac rhoncus nisl, eu tempor urna. Curabitur vel bibendum lorem. Morbi convallis 
+                        
+                        </p>
+                </div>
+            </div>
+        </div>
+        <div class="categories-panel" id="categories-panel">
+            <div class="categories-head">
+                <p style="margin-bottom: -18px;  font-weight: calc(1000);">What do you want</p>
+                <p style="font-weight: calc(1000);">to Order?</p>
+            </div>
+            <div class="categories-bottom">
+                <div class="categories-searchbar">
+                        <img src="../../Icons/search.svg" alt="" width="20px" style="margin-top: 16px;">
+                        <input type="text" name="fname" placeholder="Search here...">
+                </div>
+                <div class="categories-carousel">
+                   <div class="icon"><i id="left" class="fa-solid fa-caret-left"></i></div>
+                   <ul class="tabs-box">
+                      <button><li class="tab active">
+                        <img src="../../Icons/cooked.svg" alt="" width="30px" style="padding-right: 5px;">
+                        Cooked Food
+                      </li></button>
+                      <button><li class="tab">
+                        <img src="../../Icons/beverage.svg" alt="" width="30px" style="padding-right: 5px;">
+                        Beverages
+                      </li></button>
+                      <button><li class="tab">
+                        <img src="../../Icons/biscuits.svg" alt="" width="30px" style="padding-right: 5px;">
+                        Biscuits
+                      </li></button>
+                      <button><li class="tab">
+                        <img src="../../Icons/cooked.svg" alt="" width="30px" style="padding-right: 5px;">
+                        Cooked Food
+                      </li></button>
+                      <button><li class="tab">
+                        <img src="../../Icons/beverage.svg" alt="" width="30px" style="padding-right: 5px;">
+                        Beverages
+                      </li></button>
+                      <button><li class="tab">
+                        <img src="../../Icons/biscuits.svg" alt="" width="30px" style="padding-right: 5px;">
+                        Biscuits
+                      </li></button>
+                      <button><li class="tab">
+                        <img src="../../Icons/cooked.svg" alt="" width="30px" style="padding-right: 5px;">
+                        Cooked Food
+                      </li></button>
+                      <button><li class="tab">
+                        <img src="/Icons/beverage.svg" alt="" width="30px" style="padding-right: 5px;">
+                        Beverages
+                      </li></button>
+                      <button><li class="tab">
+                        <img src="/Icons/biscuits.svg" alt="" width="30px" style="padding-right: 5px;">
+                        Biscuits
+                      </li></button>
+                      <button><li class="tab">
+                        <img src="/Icons/cooked.svg" alt="" width="30px" style="padding-right: 5px;">
+                        Cooked Food
+                      </li></button>
+                      <button><li class="tab">
+                        <img src="/Icons/beverage.svg" alt="" width="30px" style="padding-right: 5px;">
+                        Beverages
+                      </li></button>
+                      <button><li class="tab">
+                        <img src="/Icons/biscuits.svg" alt="" width="30px" style="padding-right: 5px;">
+                        Biscuits
+                      </li></button>
+                   </ul>
+                   <div class="icon"><i id="right" class="fa-solid fa-caret-right"></i></div>
+                </div>
+
+
+                <div class="item-categ-carousel">
+                    <i id="left" class="fa-solid fa-caret-left"></i>
+                    <ul class="item-carousel">
+                        <button>
+                            <li class="card">
+                                <a href="">
+                                        <div class="card-head-image">
+                                            <img src="../../Icons/adobo.svg" alt="" draggable="false">
+                                        </div>
+                                        <div class="card-head-content">
+                                            <div class="left-card-content">
+                                                <p class="foodTitle">Adobong Manok</p>
+                                                <div class="card-category">
+                                                    <p style="margin-right: 5px;">Cooked Food</p>
+                                                    <img src="../../Icons/circle.svg" alt="" style="margin-right: 5px;">
+                                                    <p>Filipino Cuisine</p>
+                                                </div>
+                                                <p class="standardPrice">Standard Price: ₱50</p>
+                                            </div>
+                                            <div class="right-card-content">
+                                                <div class="right-card-rating">
+                                                    <img src="../../Icons/star.svg" alt="" width="20px">
+                                                    <p style="font-size: 22px; font-weight: calc(1000); margin-left: 3px;">4.3</p>
+                                                </div>
+                                                <p style="margin-top: -8px; font-weight: normal; margin-left: -10px;">10min</p>
+                                            </div>
+                                        </div>
+                                </a>
+                            </li>
+                        </button>
+
+                        <button>
+                            <li class="card">
+                                <a href="">
+                                        <div class="card-head-image">
+                                            <img src="../../Icons/adobo.svg" alt="" draggable="false">
+                                        </div>
+                                        <div class="card-head-content">
+                                            <div class="left-card-content">
+                                                <p class="foodTitle">Fresh Salad</p>
+                                                <div class="card-category">
+                                                    <p style="margin-right: 5px;">Cooked Food</p>
+                                                    <img src="../../Icons/circle.svg" alt="" style="margin-right: 5px;">
+                                                    <p>Filipino Cuisine</p>
+                                                </div>
+                                                <p class="standardPrice">Standard Price: ₱50</p>
+                                            </div>
+                                            <div class="right-card-content">
+                                                <div class="right-card-rating">
+                                                    <img src="../../Icons/star.svg" alt="" width="20px">
+                                                    <p style="font-size: 22px; font-weight: calc(1000); margin-left: 3px;">4.3</p>
+                                                </div>
+                                                <p style="margin-top: -8px; font-weight: normal; margin-left: -10px;">10min</p>
+                                            </div>
+                                        </div>
+                                </a>
+                            </li>
+                        </button>
+
+
+                        <button>
+                            <li class="card">
+                                <a href="">
+                                        <div class="card-head-image">
+                                            <img src="../../Icons/adobo.svg" alt="" draggable="false">
+                                        </div>
+                                        <div class="card-head-content">
+                                            <div class="left-card-content">
+                                                <p class="foodTitle">Cooked Rice</p>
+                                                <div class="card-category">
+                                                    <p style="margin-right: 5px;">Cooked Food</p>
+                                                    <img src="/Icons/circle.svg" alt="" style="margin-right: 5px;">
+                                                    <p>Filipino Cuisine</p>
+                                                </div>
+                                                <p class="standardPrice">Standard Price: ₱50</p>
+                                            </div>
+                                            <div class="right-card-content">
+                                                <div class="right-card-rating">
+                                                    <img src="/Icons/star.svg" alt="" width="20px">
+                                                    <p style="font-size: 22px; font-weight: calc(1000); margin-left: 3px;">4.3</p>
+                                                </div>
+                                                <p style="margin-top: -8px; font-weight: normal; margin-left: -10px;">10min</p>
+                                            </div>
+                                        </div>
+                                </a>
+                            </li>
+                        </button>
+
+
+                        <button>
+                            <li class="card">
+                                <a href="">
+                                        <div class="card-head-image">
+                                            <img src="/Icons/abobo.svg" alt="" draggable="false">
+                                        </div>
+                                        <div class="card-head-content">
+                                            <div class="left-card-content">
+                                                <p class="foodTitle">Adobong Manok</p>
+                                                <div class="card-category">
+                                                    <p style="margin-right: 5px;">Cooked Food</p>
+                                                    <img src="/Icons/circle.svg" alt="" style="margin-right: 5px;">
+                                                    <p>Filipino Cuisine</p>
+                                                </div>
+                                                <p class="standardPrice">Standard Price: ₱50</p>
+                                            </div>
+                                            <div class="right-card-content">
+                                                <div class="right-card-rating">
+                                                    <img src="/Icons/star.svg" alt="" width="20px">
+                                                    <p style="font-size: 22px; font-weight: calc(1000); margin-left: 3px;">4.3</p>
+                                                </div>
+                                                <p style="margin-top: -8px; font-weight: normal; margin-left: -10px;">10min</p>
+                                            </div>
+                                        </div>
+                                </a>
+                            </li>
+                        </button>
+
+
+                        <button>
+                            <li class="card">
+                                <a href="">
+                                        <div class="card-head-image">
+                                            <img src="/Icons/abobo.svg" alt="" draggable="false">
+                                        </div>
+                                        <div class="card-head-content">
+                                            <div class="left-card-content">
+                                                <p class="foodTitle">Adobong Manok</p>
+                                                <div class="card-category">
+                                                    <p style="margin-right: 5px;">Cooked Food</p>
+                                                    <img src="/Icons/circle.svg" alt="" style="margin-right: 5px;">
+                                                    <p>Filipino Cuisine</p>
+                                                </div>
+                                                <p class="standardPrice">Standard Price: ₱50</p>
+                                            </div>
+                                            <div class="right-card-content">
+                                                <div class="right-card-rating">
+                                                    <img src="/Icons/star.svg" alt="" width="20px">
+                                                    <p style="font-size: 22px; font-weight: calc(1000); margin-left: 3px;">4.3</p>
+                                                </div>
+                                                <p style="margin-top: -8px; font-weight: normal; margin-left: -10px;">10min</p>
+                                            </div>
+                                        </div>
+                                </a>
+                            </li>
+                        </button>
+
+
+                        <button>
+                            <li class="card">
+                                <a href="">
+                                        <div class="card-head-image">
+                                            <img src="/Icons/abobo.svg" alt="" draggable="false">
+                                        </div>
+                                        <div class="card-head-content">
+                                            <div class="left-card-content">
+                                                <p class="foodTitle">Adobong Manok</p>
+                                                <div class="card-category">
+                                                    <p style="margin-right: 5px;">Cooked Food</p>
+                                                    <img src="/Icons/circle.svg" alt="" style="margin-right: 5px;">
+                                                    <p>Filipino Cuisine</p>
+                                                </div>
+                                                <p class="standardPrice">Standard Price: ₱50</p>
+                                            </div>
+                                            <div class="right-card-content">
+                                                <div class="right-card-rating">
+                                                    <img src="/Icons/star.svg" alt="" width="20px">
+                                                    <p style="font-size: 22px; font-weight: calc(1000); margin-left: 3px;">4.3</p>
+                                                </div>
+                                                <p style="margin-top: -8px; font-weight: normal; margin-left: -10px;">10min</p>
+                                            </div>
+                                        </div>
+                                </a>
+                            </li>
+                        </button>
+
+
+                        <button>
+                            <li class="card">
+                                <a href="">
+                                        <div class="card-head-image">
+                                            <img src="/Icons/abobo.svg" alt="" draggable="false">
+                                        </div>
+                                        <div class="card-head-content">
+                                            <div class="left-card-content">
+                                                <p style="color: black; font-size: 26px; font-weight: calc(1000); text-align: left;">Adobong Manok</p>
+                                                <div class="card-category">
+                                                    <p style="margin-right: 5px;">Cooked Food</p>
+                                                    <img src="/Icons/circle.svg" alt="" style="margin-right: 5px;">
+                                                    <p>Filipino Cuisine</p>
+                                                </div>
+                                                <p class="standardPrice">Standard Price: ₱50</p>
+                                            </div>
+                                            <div class="right-card-content">
+                                                <div class="right-card-rating">
+                                                    <img src="/Icons/star.svg" alt="" width="20px">
+                                                    <p style="font-size: 22px; font-weight: calc(1000); margin-left: 3px;">4.3</p>
+                                                </div>
+                                                <p style="margin-top: -8px; font-weight: normal; margin-left: -10px;">10min</p>
+                                            </div>
+                                        </div>
+                                </a>
+                            </li>
+                        </button>
+
+                        <button>
+                            <li class="card">
+                                <a href="">
+                                        <div class="card-head-image">
+                                            <img src="/Icons/abobo.svg" alt="" draggable="false">
+                                        </div>
+                                        <div class="card-head-content">
+                                            <div class="left-card-content">
+                                                <p style="color: black; font-size: 26px; font-weight: calc(1000); text-align: left;">Adobong Manok</p>
+                                                <div class="card-category">
+                                                    <p style="margin-right: 5px;">Cooked Food</p>
+                                                    <img src="/Icons/circle.svg" alt="" style="margin-right: 5px;">
+                                                    <p>Filipino Cuisine</p>
+                                                </div>
+                                                <p class="standardPrice">Standard Price: ₱50</p>
+                                            </div>
+                                            <div class="right-card-content">
+                                                <div class="right-card-rating">
+                                                    <img src="/Icons/star.svg" alt="" width="20px">
+                                                    <p style="font-size: 22px; font-weight: calc(1000); margin-left: 3px;">4.3</p>
+                                                </div>
+                                                <p style="margin-top: -8px; font-weight: normal; margin-left: -10px;">10min</p>
+                                            </div>
+                                        </div>
+                                </a>
+                            </li>
+                        </button>
+                       
+                    </ul>
+
+                    <i id="right" class="fa-solid fa-caret-right"></i>
+                </div>
+            </div>
+        </div>
+        <div id="faq-panel"></div>
+        <div class="faq-panel"
+        data-aos="fade-up"
+        data-aos-anchor="#triggerPanel"
+        data-aos-anchor-placement="top-top">
+            <div class="faq-text" id="faq-text">
+                <p>Frequently asked questions</p>
+                <div class="faq-line"></div>
+            </div>
+            
+            <div class="accordion-container">
+                <div class="accordion">
+                    <div class="accordion-content">
+                        <header>
+                            <span class="accord-title">How can I place an order for delivery from the school canteen?</span>
+                            <i class="fa-solid fa-plus"></i>
+                        </header>
+        
+                        <p class="description">Lorem ipsum dolor sit amet consectetur adipisicing elit. Impedit repellat eligendi magni unde deserunt itaque asperiores ex quam possimus facere ab assumenda ipsum numquam, omnis aliquid, in eius, laborum iusto?</p>
+                    </div>
+
+                    <div class="accordion-content">
+                        <header>
+                            <span class="accord-title">How can I place an order for delivery from the school canteen?</span>
+                            <i class="fa-solid fa-plus"></i>
+                        </header>
+        
+                        <p class="description">Lorem ipsum dolor sit amet consectetur adipisicing elit. Impedit repellat eligendi magni unde deserunt itaque asperiores ex quam possimus facere ab assumenda ipsum numquam, omnis aliquid, in eius, laborum iusto?</p>
+                    </div>
+
+                    <div class="accordion-content">
+                        <header>
+                            <span class="accord-title">How can I place an order for delivery from the school canteen?</span>
+                            <i class="fa-solid fa-plus"></i>
+                        </header>
+        
+                        <p class="description">Lorem ipsum dolor sit amet consectetur adipisicing elit. Impedit repellat eligendi magni unde deserunt itaque asperiores ex quam possimus facere ab assumenda ipsum numquam, omnis aliquid, in eius, laborum iusto?</p>
+                    </div>
+
+                    <div class="accordion-content">
+                        <header>
+                            <span class="accord-title">How can I place an order for delivery from the school canteen?</span>
+                            <i class="fa-solid fa-plus"></i>
+                        </header>
+        
+                        <p class="description">Lorem ipsum dolor sit amet consectetur adipisicing elit. Impedit repellat eligendi magni unde deserunt itaque asperiores ex quam possimus facere ab assumenda ipsum numquam, omnis aliquid, in eius, laborum iusto?</p>
+                    </div>
+
+                    <div class="accordion-content">
+                        <header>
+                            <span class="accord-title">How can I place an order for delivery from the school canteen?</span>
+                            <i class="fa-solid fa-plus"></i>
+                        </header>
+        
+                        <p class="description">Lorem ipsum dolor sit amet consectetur adipisicing elit. Impedit repellat eligendi magni unde deserunt itaque asperiores ex quam possimus facere ab assumenda ipsum numquam, omnis aliquid, in eius, laborum iusto?</p>
+                    </div>
+                </div>
+
+
+                <div class="accordion acc2">
+                    <div class="accordion-content">
+                        <header>
+                            <span class="accord-title">How can I place an order for delivery from the school canteen?</span>
+                            <i class="fa-solid fa-plus"></i>
+                        </header>
+        
+                        <p class="description">Lorem ipsum dolor sit amet consectetur adipisicing elit. Impedit repellat eligendi magni unde deserunt itaque asperiores ex quam possimus facere ab assumenda ipsum numquam, omnis aliquid, in eius, laborum iusto?</p>
+                    </div>
+
+                    <div class="accordion-content">
+                        <header>
+                            <span class="accord-title">How can I place an order for delivery from the school canteen?</span>
+                            <i class="fa-solid fa-plus"></i>
+                        </header>
+        
+                        <p class="description">Lorem ipsum dolor sit amet consectetur adipisicing elit. Impedit repellat eligendi magni unde deserunt itaque asperiores ex quam possimus facere ab assumenda ipsum numquam, omnis aliquid, in eius, laborum iusto?</p>
+                    </div>
+
+                    <div class="accordion-content">
+                        <header>
+                            <span class="accord-title">How can I place an order for delivery from the school canteen?</span>
+                            <i class="fa-solid fa-plus"></i>
+                        </header>
+        
+                        <p class="description">Lorem ipsum dolor sit amet consectetur adipisicing elit. Impedit repellat eligendi magni unde deserunt itaque asperiores ex quam possimus facere ab assumenda ipsum numquam, omnis aliquid, in eius, laborum iusto?</p>
+                    </div>
+
+                    <div class="accordion-content">
+                        <header>
+                            <span class="accord-title">How can I place an order for delivery from the school canteen?</span>
+                            <i class="fa-solid fa-plus"></i>
+                        </header>
+        
+                        <p class="description">Lorem ipsum dolor sit amet consectetur adipisicing elit. Impedit repellat eligendi magni unde deserunt itaque asperiores ex quam possimus facere ab assumenda ipsum numquam, omnis aliquid, in eius, laborum iusto?</p>
+                    </div>
+
+                    <div class="accordion-content">
+                        <header>
+                            <span class="accord-title">How can I place an order for delivery from the school canteen?</span>
+                            <i class="fa-solid fa-plus"></i>
+                        </header>
+        
+                        <p class="description">Lorem ipsum dolor sit amet consectetur adipisicing elit. Impedit repellat eligendi magni unde deserunt itaque asperiores ex quam possimus facere ab assumenda ipsum numquam, omnis aliquid, in eius, laborum iusto?</p>
+                    </div>
+                </div>
+            </div>
+            
+        </div>
+        <div class="footer-panel">
+            <div class="footer-logo">
+                <img src="../../Icons/logo.svg" alt="" width="250px" class="footerMainLogo">
+                <p>STAY CONNECTED</p>
+                <div class="footer-icons">
+                    <img src="../../Icons/facebook.svg" alt="">
+                    <img src="../../Icons/instagram.svg" alt="">
+                    <img src="../../Icons/mail.svg" alt="">
+                    <img src="../../Icons/linkedin.svg" alt="">
+                </div>
+            </div>
+            <div class="explore">
+                <p style="font-size: 26px; font-weight: calc(1000); color: white;" class="exploreHeadText">EXPLORE</p>
+                <div class="home-footer">
+                    <img src="../../Icons/arrow-right-circle.svg" alt="" width="20px">
+                    <p>Home</p>
+                </div>
+                <div class="about-footer">
+                    <img src="../../Icons/arrow-right-circle.svg" alt="" width="20px">
+                    <p>About</p>
+                </div>
+                <div class="categories-footer">
+                    <img src="../../Icons/arrow-right-circle.svg" alt="" width="20px">
+                    <p>Categories</p>
+                </div>
+                <div class="faq-footer">
+                    <img src="../../Icons/arrow-right-circle.svg" alt="" width="20px"> 
+                    <p>FAQ</p>
+                </div>
+            </div>
+            <div class="latest-update">
+                <p class="latestHeadText">CAMPUS BITES</p>
+                <p class="latestUpdateText" style="width: 70%; text-align: justify; font-size: 18px; line-height: 2rem; color: white;">Qorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam eu turpis molestie, dictum est a, mattis tellus. Sed dignissim, metus nec fringilla accumsan, risus sem sollicitudin lacus, ut interdum tellus elit sed risus. risus sem sollicitudin lacus, ut interdum tellus elit sed risus. </p>
+            </div>
+        </div>
+    </div>
+
+
+
+    <script src="../../Customer/customer_js/customer.js"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        // Check if the viewport width is less than or equal to 450px
+        const isMobile = window.matchMedia("(max-width: 450px)").matches;
+
+        const animatedElementWhoWeAre = document.querySelector('.about-head');
+        const animatedElementWhoWeAreImage = document.querySelector('.about-left-image');
+    
+        // Check if it's a mobile device, and if so, remove the data-aos-anchor attribute
+        if (isMobile) {
+            animatedElementWhoWeAre.removeAttribute('data-aos-anchor-placement');
+            animatedElementWhoWeAreImage.removeAttribute('data-aos-anchor-placement');
+        }
+      </script>
+
+    <script>
+       AOS.init({
+        duration: 1200,
+        easing: 'ease-in-out-back'
+        });
+    </script>
+        
+   
+</body>
+</html>

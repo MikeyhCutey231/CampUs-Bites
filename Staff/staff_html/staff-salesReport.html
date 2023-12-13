@@ -1,0 +1,570 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ 
+    <!-- CDN Links -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script><!--PIE CHART-->
+
+    <title>CampUs Bites</title>
+    <link rel="stylesheet" href="/Staff/staff_css/staff-salesreport.css">
+</head>
+<body>
+    <div class="wrapper">
+
+        <div class="left-container" id="sidebar">
+            <div class="sidebar-logo">
+                <div class="main-logo"></div>
+                <div class="sidelogo-text">
+                    <div style="position: relative;">
+                        <a href="">CampUs</a>
+                        <p class="">Bites</p>
+                    </div>
+                    <div class="close-btn"><img src="/Icons/x-circle.svg" alt=""></div>
+                </div>
+            </div>
+
+            <ul class="sidebar-nav">
+                <li class="sidebar-items" style="margin-top: 20px;">
+                    <a href="staff-menu.html" class="sidebar-link"  id="invHover">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M2 3H8C9.06087 3 10.0783 3.42143 10.8284 4.17157C11.5786 4.92172 12 5.93913 12 7V21C12 20.2044 11.6839 19.4413 11.1213 18.8787C10.5587 18.3161 9.79565 18 9 18H2V3Z" stroke="#5F5F5F" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            <path d="M22 3H16C14.9391 3 13.9217 3.42143 13.1716 4.17157C12.4214 4.92172 12 5.93913 12 7V21C12 20.2044 12.3161 19.4413 12.8787 18.8787C13.4413 18.3161 14.2044 18 15 18H22V3Z" stroke="#5F5F5F" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>    
+                    <p>Menu Item</p>
+                    </a>
+                </li>
+
+
+                <li class="sidebar-items">
+                    <a href="staff-orderList.html" class="sidebar-link" id="invHover">
+                        <div class="circle"> <p class="cirlcecolor">0</p></div>
+                        <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M4.88995 1.62988L2.44495 4.88988V16.2999C2.44495 16.7322 2.61668 17.1468 2.92236 17.4525C3.22805 17.7581 3.64264 17.9299 4.07495 17.9299H15.4849C15.9172 17.9299 16.3318 17.7581 16.6375 17.4525C16.9432 17.1468 17.1149 16.7322 17.1149 16.2999V4.88988L14.6699 1.62988H4.88995Z" stroke="#5F5F5F" stroke-linecap="round" stroke-linejoin="round"/>
+                            <path d="M2.44495 4.88965H17.1149" stroke="#5F5F5F" stroke-linecap="round" stroke-linejoin="round"/>
+                            <path d="M13.04 8.15039C13.04 9.015 12.6966 9.84419 12.0852 10.4556C11.4738 11.0669 10.6446 11.4104 9.78002 11.4104C8.91541 11.4104 8.08622 11.0669 7.47485 10.4556C6.86348 9.84419 6.52002 9.015 6.52002 8.15039" stroke="#5F5F5F" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                            
+                    <p>Orders</p>
+                    </a>
+                </li>
+
+                
+                <li class="sidebar-items">
+                    <a href="staff-transactionHistory.html" class="sidebar-link" id="invHover">
+                        <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <g clip-path="url(#clip0_488_1719)">
+                            <path d="M17.1149 6.51953V17.1145H2.44495V6.51953" stroke="#5F5F5F" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"/>
+                            <path d="M18.7449 2.44531H0.814941V6.52031H18.7449V2.44531Z" stroke="#5F5F5F" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"/>
+                            <path d="M8.15002 9.78027H11.41" stroke="#5F5F5F" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"/>
+                            </g>
+                            <defs>
+                            <clipPath id="clip0_488_1719">
+                            <rect width="19.56" height="19.56" fill="white"/>
+                            </clipPath>
+                            </defs>
+                            </svg>
+                        
+                    <p>Order History</p>
+                    </a>
+                </li>
+
+
+                <li class="sidebar-items">
+                    <a href="staff-inventory.html" class="sidebar-link" id="invHover">
+                        <div class="circle"> <p>0</p></div>
+                        <svg width="19" height="19" viewBox="0 0 19 19" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M13.0625 7.44176L5.9375 3.33301" stroke="#5F5F5F" stroke-width="1.58333" stroke-linecap="round" stroke-linejoin="round"/>
+                            <path d="M16.625 12.6667V6.33334C16.6247 6.05568 16.5514 5.78298 16.4125 5.54259C16.2735 5.3022 16.0738 5.10258 15.8333 4.96375L10.2917 1.79709C10.051 1.65812 9.77793 1.58496 9.5 1.58496C9.22207 1.58496 8.94903 1.65812 8.70833 1.79709L3.16667 4.96375C2.92621 5.10258 2.72648 5.3022 2.58753 5.54259C2.44858 5.78298 2.37528 6.05568 2.375 6.33334V12.6667C2.37528 12.9443 2.44858 13.217 2.58753 13.4574C2.72648 13.6978 2.92621 13.8974 3.16667 14.0363L8.70833 17.2029C8.94903 17.3419 9.22207 17.415 9.5 17.415C9.77793 17.415 10.051 17.3419 10.2917 17.2029L15.8333 14.0363C16.0738 13.8974 16.2735 13.6978 16.4125 13.4574C16.5514 13.217 16.6247 12.9443 16.625 12.6667Z" stroke="#5F5F5F" stroke-width="1.58333" stroke-linecap="round" stroke-linejoin="round"/>
+                            <path d="M2.58875 5.50977L9.49999 9.50768L16.4112 5.50977" stroke="#5F5F5F" stroke-width="1.58333" stroke-linecap="round" stroke-linejoin="round"/>
+                            <path d="M9.5 17.48V9.5" stroke="#5F5F5F" stroke-width="1.58333" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                    <p>Item Inventory</p>
+                    </a>
+                </li>
+
+
+
+                <li class="sidebar-items">
+                    <a href="staff-salesReport.html" class="sidebar-link">
+                        <svg width="19" height="19" viewBox="0 0 19 19" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M14.25 15.8332V7.9165" stroke="#5F5F5F" stroke-width="1.58333" stroke-linecap="round" stroke-linejoin="round"/>
+                            <path d="M9.5 15.8332V3.1665" stroke="#5F5F5F" stroke-width="1.58333" stroke-linecap="round" stroke-linejoin="round"/>
+                            <path d="M4.75 15.8335V11.0835" stroke="#5F5F5F" stroke-width="1.58333" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                            
+                    <p>Sales Report</p>
+                    </a>
+                </li>
+
+
+                <li class="sidebar-items">
+                    <a href="" class="sidebar-link">
+                        <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M7.33428 17.1132H4.07464C3.64239 17.1132 3.22784 16.9415 2.92219 16.6358C2.61654 16.3302 2.44482 15.9156 2.44482 15.4834V4.07464C2.44482 3.64239 2.61654 3.22784 2.92219 2.92219C3.22784 2.61654 3.64239 2.44482 4.07464 2.44482H7.33428" stroke="#5F5F5F" stroke-width="1.62982" stroke-linecap="round" stroke-linejoin="round"/>
+                            <path d="M13.0386 13.8537L17.1131 9.77914L13.0386 5.70459" stroke="#5F5F5F" stroke-width="1.62982" stroke-linecap="round" stroke-linejoin="round"/>
+                            <path d="M17.1129 9.77881H7.33398" stroke="#5F5F5F" stroke-width="1.62982" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>                                                        
+                    <p>Signout</p>
+                    </a>
+                </li>
+
+                <div class="usep-footercard">
+                    <img src="/Icons/useplogo.png" alt="" width="50px">
+                    <p style="font-size: 11px; margin-bottom: -5px; font-weight: bold; margin-top: 5px;">University of Southeastern</p>
+                    <p style="font-size: 11px; font-weight: bold;">Philippines (TU)</p>
+    
+                    <p style="font-size: 12px; margin-bottom: -5px; color: #0F947E;">University Property</p>
+                    <p  style="font-size: 12px; color: #0F947E;">E-Canteen</p>
+    
+                    <p style="font-size: 12px; margin-bottom: -20px; color: #0F947E; font-weight: 900;">Learn More</p>
+                    <p style="margin-bottom: 0px; color: #0F947E;">___________</p>
+                </div>
+            </ul>
+        </div>
+
+        <div class="right-container">
+            <div class="head-content">
+                <div class="Menu-name">
+                    <button class="open-btn"><i class="fa-solid fa-bars" style="font-size: 20px;"></i></button>
+                    <p style="margin-bottom: 0;">Sales Report</p>
+                </div>
+                <div class="head-searchbar">
+                    <img src="/Icons/searchgreen.svg" alt="" width="20px" style="margin-top: 12px;">
+                    <input type="text" name="fname" placeholder="Search here...">
+                </div>
+                <div class="usep-texthead">
+                    <img src="/Icons/useplogo.png" alt="" width="30px" height="30px">
+                    <p style="margin-bottom: 0px; margin-top: 3px; margin-left: 10px; font-weight: 600;">UseP (Tagum Unit)</p>
+                </div>
+                <div class="user-profile">
+                    <div class="admin-profile">
+                        <img src="/Icons/cutemikey.svg" style="width: 100%;">
+                    </div>
+                    <div class="admin-detail">
+                        <p style="margin-bottom: 0px; font-weight: 700;">Michael</p>
+                        <p style="margin-bottom: 0px; font-size: 6px; background-color: #9C1421; color: white; padding: 3px; border-radius: 3px;">Administrator</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="container-fluid col-12 main-content justify-content-between">
+                <div class="row justify-content-between">
+                 <!--SEARCH BAR AND THE TABLE-->
+                 <div class="col-lg-8 px-1 mb-3 justify-content-between">
+                    <div class="row justify-content-between mb-2 p-0"> 
+                        <div class="input-group">
+                            <span class="input-group-text" style="background-color: white; box-shadow: 1px 2px 2px rgba(0, 0, 0, 0.1); " width="100%">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill="#9C1421" class="bi bi-search search-icon" viewBox="0 0 16 16">
+                                    <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
+                                </svg>
+                            </span>
+                            <input type="input" class="form-control" id="search" placeholder="Search an item here..." style="box-shadow: 1px 2px 2px rgba(0, 0, 0, 0.1);  ">
+                        </div>
+                        
+                    </div>
+
+                        <div class="container-fluid report-table" style="width: 100%; background-color: white; ">
+                            <div class="row justify-content-center">
+                                <div class="col-12 border" style="width: 100%; height: 550px; border-radius: 5px;  box-shadow: 1px 2px 2px rgba(0, 0, 0, 0.1); overflow: auto; ">
+                                    <table class="table" >
+                                       
+                                        <thead class="mb-2">
+                                            <tr class="header">
+                                              <th scope="col" style="color:#5f5f5f">Product Name</th>
+                                              <th scope="col">Product Price</th>
+                                              <th scope="col">Stock</th>
+                                              <th scope="col">Date</th>
+                                              <th scope="col">No.Sold</th>
+                                              <th scope="col">Total Sales</th>
+                                            </tr>
+                                          </thead>
+                                          <tbody>
+                                            <tr>
+                                                <td>XXXX</td>
+                                                <td>XXXX</td>
+                                                <td>XXXX</td>
+                                                <td>XXXX</td>
+                                                <td>XXXX</td>
+                                                <td>XXXX</td>
+                                            </tr>
+                                            <tr>
+                                                <td>XXXX</td>
+                                                <td>XXXX</td>
+                                                <td>XXXX</td>
+                                                <td>XXXX</td>
+                                                <td>XXXX</td>
+                                                <td>XXXX</td>
+                                            </tr>
+                                            <tr>
+                                                <td>XXXX</td>
+                                                <td>XXXX</td>
+                                                <td>XXXX</td>
+                                                <td>XXXX</td>
+                                                <td>XXXX</td>
+                                                <td>XXXX</td>
+                                            </tr>
+                                            <tr>
+                                                <td>XXXX</td>
+                                                <td>XXXX</td>
+                                                <td>XXXX</td>
+                                                <td>XXXX</td>
+                                                <td>XXXX</td>
+                                                <td>XXXX</td>
+                                            </tr>
+                                            <tr>
+                                                <td>XXXX</td>
+                                                <td>XXXX</td>
+                                                <td>XXXX</td>
+                                                <td>XXXX</td>
+                                                <td>XXXX</td>
+                                                <td>XXXX</td>
+                                            </tr>
+                                            <tr>
+                                                <td>XXXX</td>
+                                                <td>XXXX</td>
+                                                <td>XXXX</td>
+                                                <td>XXXX</td>
+                                                <td>XXXX</td>
+                                                <td>XXXX</td>
+                                            </tr>
+                                            <tr>
+                                                <td>XXXX</td>
+                                                <td>XXXX</td>
+                                                <td>XXXX</td>
+                                                <td>XXXX</td>
+                                                <td>XXXX</td>
+                                                <td>XXXX</td>
+                                            </tr>
+                                            <tr>
+                                                <td>XXXX</td>
+                                                <td>XXXX</td>
+                                                <td>XXXX</td>
+                                                <td>XXXX</td>
+                                                <td>XXXX</td>
+                                                <td>XXXX</td>
+                                            </tr>
+                                            <tr>
+                                                <td>XXXX</td>
+                                                <td>XXXX</td>
+                                                <td>XXXX</td>
+                                                <td>XXXX</td>
+                                                <td>XXXX</td>
+                                                <td>XXXX</td>
+                                            </tr>
+                                            <tr>
+                                                <td>XXXX</td>
+                                                <td>XXXX</td>
+                                                <td>XXXX</td>
+                                                <td>XXXX</td>
+                                                <td>XXXX</td>
+                                                <td>XXXX</td>
+                                            </tr>
+                                            <tr>
+                                                <td>XXXX</td>
+                                                <td>XXXX</td>
+                                                <td>XXXX</td>
+                                                <td>XXXX</td>
+                                                <td>XXXX</td>
+                                                <td>XXXX</td>
+                                            </tr>
+                                            <tr>
+                                                <td>XXXX</td>
+                                                <td>XXXX</td>
+                                                <td>XXXX</td>
+                                                <td>XXXX</td>
+                                                <td>XXXX</td>
+                                                <td>XXXX</td>
+                                            </tr>
+                                            <tr>
+                                                <td>XXXX</td>
+                                                <td>XXXX</td>
+                                                <td>XXXX</td>
+                                                <td>XXXX</td>
+                                                <td>XXXX</td>
+                                                <td>XXXX</td>
+                                            </tr>
+
+                                            <tr>
+                                                <td>XXXX</td>
+                                                <td>XXXX</td>
+                                                <td>XXXX</td>
+                                                <td>XXXX</td>
+                                                <td>XXXX</td>
+                                                <td>XXXX</td>
+                                            </tr>
+                                              <tr>
+                                                <td>XXXX</td>
+                                                <td>XXXX</td>
+                                                <td>XXXX</td>
+                                                <td>XXXX</td>
+                                                <td>XXXX</td>
+                                                <td>XXXX</td>
+                                              </tr>
+                                            
+                                          </tbody>
+                                        </table>
+                                </div>
+                            </div>
+                        </div>
+
+
+                    </div>
+                    <!--FILTERS, GRAPH, RECENT ORDERS-->
+                    <div class=" col-lg-4 px-0" >
+                        <div class="container-fluid g-4 ">
+                            <div class="row mb-2 report-filter">
+                                <div class="col-4 px-1">
+                                    <div class="dropdown daily" style="text-align: left;">
+                                           <button class="btn dropdown-toggle border" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="currentColor" class="bi bi-calendar daily-icon" viewBox="0 0 16 16">
+                                                    <path d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5zM1 4v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V4H1z"/>
+                                                </svg>
+                                                Daily
+                                            </button>
+                                        
+                                        <ul class="dropdown-menu" id="custom-menu" aria-labelledby="dropdownMenuButton1">
+                                          <li><a class="dropdown-item" href="#">Daily</a></li>
+                                          <li><a class="dropdown-item" href="#">Weekly</a></li>
+                                          <li><a class="dropdown-item" href="#">Monthly</a></li>
+                                          <li><a class="dropdown-item" href="#">Yearly</a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div class="col-4 px-1">
+                                    <div class="dropdown filter" style="text-align: left;">
+                                        <button class="btn dropdown-toggle border" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="currentColor" class="bi bi-cart2 filter-icon" viewBox="0 0 16 16">
+                                                <path d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .49.598l-1 5a.5.5 0 0 1-.465.401l-9.397.472L4.415 11H13a.5.5 0 0 1 0 1H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5zM3.102 4l.84 4.479 9.144-.459L13.89 4H3.102zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2zm7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"/>
+                                              </svg>
+                                            All Items
+                                        </button>
+                                    
+                                        <ul class="dropdown-menu" id="custom-menu" aria-labelledby="dropdownMenuButton1">
+                                        <li><a class="dropdown-item" href="#">Snacks</a></li>
+                                        <li><a class="dropdown-item" href="#">Beverages</a></li>
+                                        <li><a class="dropdown-item" href="#">Dishes</a></li>
+                                        <li><a class="dropdown-item" href="#">xxxxxx</a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div class="col-4 px-1">
+                                        <button class="btn print-records" type="button">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="currentColor" class="bi bi-printer printRecords-icon" viewBox="0 0 16 16">
+                                                <path d="M2.5 8a.5.5 0 1 0 0-1 .5.5 0 0 0 0 1z"/>
+                                                <path d="M5 1a2 2 0 0 0-2 2v2H2a2 2 0 0 0-2 2v3a2 2 0 0 0 2 2h1v1a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2v-1h1a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2h-1V3a2 2 0 0 0-2-2H5zM4 3a1 1 0 0 1 1-1h6a1 1 0 0 1 1 1v2H4V3zm1 5a2 2 0 0 0-2 2v1H2a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h12a1 1 0 0 1 1 1v3a1 1 0 0 1-1 1h-1v-1a2 2 0 0 0-2-2H5zm7 2v3a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1v-3a1 1 0 0 1 1-1h6a1 1 0 0 1 1 1z"/>
+                                            </svg> 
+                                           Print Records
+                                        </button>
+                                </div>
+                            </div>
+
+                            <div class="row px-1 py-1 mb-2 report-graph" >
+                                <div class="col-12 p-3 border" style="background-color: white; border-radius: 5px; box-shadow: 1px 2px 2px rgba(0, 0, 0, 0.1); ">
+                                    <h5 class="mb-3">Total Sales Chart</h5>
+                                    <canvas class="mb-1" id="myPieChart"  height="180" style="width: 100%;"></canvas>
+                                </div> 
+                            </div>
+
+                            <div class="row px-1">
+                                <div class="col-12 px-0 py-2 border"  style="background-color: white; border-radius: 5px; height:280px; box-shadow: 1px 2px 2px rgba(0, 0, 0, 0.1); overflow: auto; ">
+                                    <div class="col-12 p-3" style="height: 60px; font-weight: bold; border-bottom: 1.5px solid #898989 ;">
+                                        <h5>Recent Orders</h5>
+                                    </div>
+                                    
+                                    <div class="container col-12 px-3 justify-content-between recent-orders" style="height: 50px;  border-bottom: 1px solid #898989;">                                
+                                        <div class="row px-3" style="height: 40px">
+                                         <div class="col-2 d-flex align-items-center justify-content-center">
+                                            <div class="d-flex align-items-center justify-content-center cartIcon-container">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" fill="black" class="bi  bi-cart2 cart-icon" viewBox="0 0 16 16">
+                                                <path d="M0 2.5A.5.5 0 0 1 .5 2H2a.5.5 0 0 1 .485.379L2.89 4H14.5a.5.5 0 0 1 .485.621l-1.5 6A.5.5 0 0 1 13 11H4a.5.5 0 0 1-.485-.379L1.61 3H.5a.5.5 0 0 1-.5-.5zM3.14 5l1.25 5h8.22l1.25-5H3.14zM5 13a1 1 0 1 0 0 2 1 1 0 0 0 0-2zm-2 1a2 2 0 1 1 4 0 2 2 0 0 1-4 0zm9-1a1 1 0 1 0 0 2 1 1 0 0 0 0-2zm-2 1a2 2 0 1 1 4 0 2 2 0 0 1-4 0z"  stroke-width="2"/>
+                                            </svg>
+                                            </div>
+                                         </div>
+                                         <div class="col-8 py-1 px-0    ">
+                                            <div class="col-12" style="font-size: 15px; font-weight: bold"> Adobong Manok</div>
+                                            <div class="col-12" style="font-size: 11px; color:#5f5f5f;"> Jan 10, 2024</div>
+                                         </div>
+                                         <div class="col-2 py-1">
+                                            <div class="col-12"  style="font-size: 15px; font-weight: bold"> ₱50</div>
+                                            <div class="col-12" style="font-size: 11px; color:#5f5f5f;"> x3</div>
+                                         </div>
+                                        </div>  
+                                    </div> 
+
+                                    <div class="container col-12 px-3 justify-content-between recent-orders" style="height: 50px;  border-bottom: 1px solid #898989;">                                
+                                        <div class="row px-3" style="height: 40px">
+                                         <div class="col-2 d-flex align-items-center justify-content-center">
+                                            <div class="d-flex align-items-center justify-content-center cartIcon-container">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" fill="black" class="bi  bi-cart2 cart-icon" viewBox="0 0 16 16">
+                                                <path d="M0 2.5A.5.5 0 0 1 .5 2H2a.5.5 0 0 1 .485.379L2.89 4H14.5a.5.5 0 0 1 .485.621l-1.5 6A.5.5 0 0 1 13 11H4a.5.5 0 0 1-.485-.379L1.61 3H.5a.5.5 0 0 1-.5-.5zM3.14 5l1.25 5h8.22l1.25-5H3.14zM5 13a1 1 0 1 0 0 2 1 1 0 0 0 0-2zm-2 1a2 2 0 1 1 4 0 2 2 0 0 1-4 0zm9-1a1 1 0 1 0 0 2 1 1 0 0 0 0-2zm-2 1a2 2 0 1 1 4 0 2 2 0 0 1-4 0z"  stroke-width="2"/>
+                                            </svg>
+                                            </div>
+                                         </div>
+                                         <div class="col-8 py-1 px-0    ">
+                                            <div class="col-12" style="font-size: 15px; font-weight: bold"> Adobong Manok</div>
+                                            <div class="col-12" style="font-size: 11px; color:#5f5f5f;"> Jan 10, 2024</div>
+                                         </div>
+                                         <div class="col-2 py-1">
+                                            <div class="col-12"  style="font-size: 15px; font-weight: bold"> ₱50</div>
+                                            <div class="col-12" style="font-size: 11px; color:#5f5f5f;"> x3</div>
+                                         </div>
+                                        </div>  
+                                    </div> 
+
+                                    <div class="container col-12 px-3 justify-content-between recent-orders" style="height: 50px;  border-bottom: 1px solid #898989;">                                
+                                        <div class="row px-3" style="height: 40px">
+                                         <div class="col-2 d-flex align-items-center justify-content-center">
+                                            <div class="d-flex align-items-center justify-content-center cartIcon-container">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" fill="black" class="bi  bi-cart2 cart-icon" viewBox="0 0 16 16">
+                                                <path d="M0 2.5A.5.5 0 0 1 .5 2H2a.5.5 0 0 1 .485.379L2.89 4H14.5a.5.5 0 0 1 .485.621l-1.5 6A.5.5 0 0 1 13 11H4a.5.5 0 0 1-.485-.379L1.61 3H.5a.5.5 0 0 1-.5-.5zM3.14 5l1.25 5h8.22l1.25-5H3.14zM5 13a1 1 0 1 0 0 2 1 1 0 0 0 0-2zm-2 1a2 2 0 1 1 4 0 2 2 0 0 1-4 0zm9-1a1 1 0 1 0 0 2 1 1 0 0 0 0-2zm-2 1a2 2 0 1 1 4 0 2 2 0 0 1-4 0z"  stroke-width="2"/>
+                                            </svg>
+                                            </div>
+                                         </div>
+                                         <div class="col-8 py-1 px-0    ">
+                                            <div class="col-12" style="font-size: 15px; font-weight: bold"> Adobong Manok</div>
+                                            <div class="col-12" style="font-size: 11px; color:#5f5f5f;"> Jan 10, 2024</div>
+                                         </div>
+                                         <div class="col-2 py-1">
+                                            <div class="col-12"  style="font-size: 15px; font-weight: bold"> ₱50</div>
+                                            <div class="col-12" style="font-size: 11px; color:#5f5f5f;"> x3</div>
+                                         </div>
+                                        </div>  
+                                    </div> 
+
+                                    <div class="container col-12 px-3 justify-content-between recent-orders" style="height: 50px;  border-bottom: 1px solid #898989;">                                
+                                        <div class="row px-3" style="height: 40px">
+                                         <div class="col-2 d-flex align-items-center justify-content-center">
+                                            <div class="d-flex align-items-center justify-content-center cartIcon-container">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" fill="black" class="bi  bi-cart2 cart-icon" viewBox="0 0 16 16">
+                                                <path d="M0 2.5A.5.5 0 0 1 .5 2H2a.5.5 0 0 1 .485.379L2.89 4H14.5a.5.5 0 0 1 .485.621l-1.5 6A.5.5 0 0 1 13 11H4a.5.5 0 0 1-.485-.379L1.61 3H.5a.5.5 0 0 1-.5-.5zM3.14 5l1.25 5h8.22l1.25-5H3.14zM5 13a1 1 0 1 0 0 2 1 1 0 0 0 0-2zm-2 1a2 2 0 1 1 4 0 2 2 0 0 1-4 0zm9-1a1 1 0 1 0 0 2 1 1 0 0 0 0-2zm-2 1a2 2 0 1 1 4 0 2 2 0 0 1-4 0z"  stroke-width="2"/>
+                                            </svg>
+                                            </div>
+                                         </div>
+                                         <div class="col-8 py-1 px-0">
+                                            <div class="col-12" style="font-size: 15px; font-weight: bold"> Adobong Manok</div>
+                                            <div class="col-12" style="font-size: 11px; color:#5f5f5f;"> Jan 10, 2024</div>
+                                         </div>
+                                         <div class="col-2 py-1">
+                                            <div class="col-12"  style="font-size: 15px; font-weight: bold"> ₱50</div>
+                                            <div class="col-12" style="font-size: 11px; color:#5f5f5f;"> x3</div>
+                                         </div>
+                                        </div>  
+                                    </div> 
+                                    <div class="container col-12 px-3 justify-content-between recent-orders" style="height: 50px;  border-bottom: 1px solid #898989;">                                
+                                        <div class="row px-3" style="height: 40px">
+                                         <div class="col-2 d-flex align-items-center justify-content-center">
+                                            <div class="d-flex align-items-center justify-content-center cartIcon-container">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" fill="black" class="bi  bi-cart2 cart-icon" viewBox="0 0 16 16">
+                                                <path d="M0 2.5A.5.5 0 0 1 .5 2H2a.5.5 0 0 1 .485.379L2.89 4H14.5a.5.5 0 0 1 .485.621l-1.5 6A.5.5 0 0 1 13 11H4a.5.5 0 0 1-.485-.379L1.61 3H.5a.5.5 0 0 1-.5-.5zM3.14 5l1.25 5h8.22l1.25-5H3.14zM5 13a1 1 0 1 0 0 2 1 1 0 0 0 0-2zm-2 1a2 2 0 1 1 4 0 2 2 0 0 1-4 0zm9-1a1 1 0 1 0 0 2 1 1 0 0 0 0-2zm-2 1a2 2 0 1 1 4 0 2 2 0 0 1-4 0z"  stroke-width="2"/>
+                                            </svg>
+                                            </div>
+                                         </div>
+                                         <div class="col-8 py-1 px-0    ">
+                                            <div class="col-12" style="font-size: 15px; font-weight: bold"> Adobong Manok</div>
+                                            <div class="col-12" style="font-size: 11px; color:#5f5f5f;"> Jan 10, 2024</div>
+                                         </div>
+                                         <div class="col-2 py-1">
+                                            <div class="col-12"  style="font-size: 15px; font-weight: bold"> ₱50</div>
+                                            <div class="col-12" style="font-size: 11px; color:#5f5f5f;"> x3</div>
+                                         </div>
+                                        </div>  
+                                    </div> 
+                                    <div class="container col-12 px-3 justify-content-between recent-orders" style="height: 50px;  border-bottom: 1px solid #898989;">                                
+                                        <div class="row px-3" style="height: 40px">
+                                         <div class="col-2 d-flex align-items-center justify-content-center">
+                                            <div class="d-flex align-items-center justify-content-center cartIcon-container">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" fill="black" class="bi  bi-cart2 cart-icon" viewBox="0 0 16 16">
+                                                <path d="M0 2.5A.5.5 0 0 1 .5 2H2a.5.5 0 0 1 .485.379L2.89 4H14.5a.5.5 0 0 1 .485.621l-1.5 6A.5.5 0 0 1 13 11H4a.5.5 0 0 1-.485-.379L1.61 3H.5a.5.5 0 0 1-.5-.5zM3.14 5l1.25 5h8.22l1.25-5H3.14zM5 13a1 1 0 1 0 0 2 1 1 0 0 0 0-2zm-2 1a2 2 0 1 1 4 0 2 2 0 0 1-4 0zm9-1a1 1 0 1 0 0 2 1 1 0 0 0 0-2zm-2 1a2 2 0 1 1 4 0 2 2 0 0 1-4 0z"  stroke-width="2"/>
+                                            </svg>
+                                            </div>
+                                         </div>
+                                         <div class="col-8 py-1 px-0    ">
+                                            <div class="col-12" style="font-size: 15px; font-weight: bold"> Adobong Manok</div>
+                                            <div class="col-12" style="font-size: 11px; color:#5f5f5f;"> Jan 10, 2024</div>
+                                         </div>
+                                         <div class="col-2 py-1">
+                                            <div class="col-12"  style="font-size: 15px; font-weight: bold"> ₱50</div>
+                                            <div class="col-12" style="font-size: 11px; color:#5f5f5f;"> x3</div>
+                                         </div>
+                                        </div>  
+                                    </div> 
+
+
+                                    
+                                    
+
+                                </div>
+                                 
+                               
+                            </div>
+                            
+                            
+                            
+                        </div>
+                    </div>
+                </div>
+             </div>     
+        </div>
+              
+           
+    </div>
+
+    <!-- Javascript -->
+    <script>
+        // Get the canvas element
+        var ctx = document.getElementById('myPieChart').getContext('2d');
+
+        // Define the data for the pie chart
+        var data = {
+            labels: ['Category A', 'Category B', 'Category C', 'Category D', 'Category E'],
+            datasets: [{
+                data: [30, 20, 20, 15, 15],
+                backgroundColor: ['#9C1421', '#403D55', '#A2C53A', '#F0C419', '#0F947E']
+            }],
+            hoverOffset: 4
+        };
+           
+        var options = {
+            maintainAspectRatio: false,
+            responsive: false,
+            legend: {
+                display: true,
+                position: 'right',
+                labels: {
+                    fontSize: 12,
+                   
+                    fontColor: 'black',
+                    boxWidth: 10, // Set the width of the legend box (square or circle)
+                    usePointStyle: true, // Use a point (circle) for the legend marker
+                    padding: 0, // Add some padding around the legend items
+                },
+            },
+        };
+
+
+        // Create the pie chart
+        var myPieChart = new Chart(ctx, {
+            type: 'doughnut',
+            data: data,
+            options: options // Apply the options object
+        });
+    
+    </script>
+   
+
+    
+     <script src="/Staff/staff_js/staff.js"></script>
+</body>
+</html>
+
+

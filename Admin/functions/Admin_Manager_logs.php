@@ -71,6 +71,23 @@ class Admin_Manager_logs {
             die("Error: " . $this->conn->error);
         }
     }
+    public function getAllLogs()
+    {
+        $query = "SELECT * FROM canteen_staff_logs ORDER BY date DESC";
+        $result = $this->conn->query($query);
+
+        if (!$result) {
+            die("Error: " . $this->conn->error);
+        }
+
+        $logs = [];
+
+        while ($row = $result->fetch_assoc()) {
+            $logs[] = $row;
+        }
+
+        return $logs;
+    }
 
     public function setDatabase($database)
     {

@@ -432,6 +432,24 @@ tbody{
     font-weight: normal;
 }
 
+.printDTR{
+    background-color: #099F6A; /* Green */
+    border: none;
+    color: white;
+    padding: 6px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 14px;
+    margin: 4px 2px;
+    cursor: pointer;
+    border-radius: 4px;
+    position: absolute;
+    top: 105px;
+    right: 570px;
+}
+
+
 @media (max-width: 768px) {
     .table {
         font-size: 12px;

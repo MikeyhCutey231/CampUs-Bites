@@ -195,17 +195,7 @@ $basicSalary = $userData->getBasicSalaryByRole($roleName); ?>
                                         ?>
                                         </tbody>
                                     </table>
-                                    <button type="submit" style="background-color: #4CAF50; /* Green */
-                                        border: none;
-                                        color: white;
-                                        padding: 2px 32px;
-                                        text-align: center;
-                                        text-decoration: none;
-                                        display: inline-block;
-                                        font-size: 16px;
-                                        margin: 4px 2px;
-                                        cursor: pointer;
-                                        border-radius: 4px;">PRINT DTR</button>
+                                    <button type="submit" class="printDTR">PRINT DTR</button>
                                 </form>
                             </div>
 

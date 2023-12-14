@@ -162,7 +162,8 @@
                                 <option value="1">Pending Order</option>
                                 <option value="6">Preparing Order</option>
                                 <option value="7">Ready for Pick-Up Order</option>
-                                <option value="8">To Rate</option>
+                                <option value="8">To Rate Order</option>4
+                                <option value="4">Completed Order</option>
                                 <option value="5">Cancelled Order</option>
                             </select>                       
                         </div>

@@ -9,7 +9,7 @@
     if(isset($_POST['olCartId'])){
         $olcartID = $_POST['olCartId'];
 
-        $sendNotifQuery = "INSERT INTO notifications (OL_ORDER_ID, NOTIF_MESSAGE) VALUES ('$olcartID', 'Your order has been confirmed!')";
+        $sendNotifQuery = "INSERT INTO notifications (OL_ORDER_ID, NOTIF_MESSAGE) VALUES ('$olcartID', 'Your order, #$olcartID, has been confirmed!')";
         mysqli_query($conn, $sendNotifQuery);
 
         $updateQuery = "UPDATE online_order SET EMPLOYEE_ID = ?, ORDER_STATUS_ID = 6 WHERE OL_CART_ID = ?";

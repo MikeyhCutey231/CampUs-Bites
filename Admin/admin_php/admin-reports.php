@@ -108,7 +108,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['search'])) {
                                     <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
                                 </svg>
                             </span>
-                            <input type="input" class="form-control" id="search" placeholder="Search an item here..." style="box-shadow: 1px 2px 2px rgba(0, 0, 0, 0.1);  ">
+                            <input type="text" class="form-control" id="search" placeholder="Search an item here..." oninput="searchTable()" style="box-shadow: 1px 2px 2px rgba(0, 0, 0, 0.1);">
+
                         </div>
                         
                     </div>
@@ -140,7 +141,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['search'])) {
                                                 if (!empty($productData)) {
                                                     foreach ($productData as $product) {
                                                         $formattedDate = date('d-m-Y', strtotime($product['transaction_date']));
-                                                        echo '<tr>
+                                                        echo '<tr class="searchable">
                                                         <td>' . $formattedDate . '</td>
                                                         <td>' . $product['prod_name'] . '</td>
                                                         <td>₱' . number_format($product['prod_capital_price'], 2) . '</td>
@@ -150,6 +151,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['search'])) {
                                                         <td>' . $product['subtotal'] . '</td>
                                                     </tr>';
                                                     }
+
+
                                                 }
                                                 ?>
                                           </tbody>
@@ -178,7 +181,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['search'])) {
                                             <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="currentColor" class="bi bi-printer printRecords-icon" viewBox="0 0 16 16">
                                                 <path d="M2.5 8a.5.5 0 1 0 0-1 .5.5 0 0 0 0 1z"/>
                                                 <path d="M5 1a2 2 0 0 0-2 2v2H2a2 2 0 0 0-2 2v3a2 2 0 0 0 2 2h1v1a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2v-1h1a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2h-1V3a2 2 0 0 0-2-2H5zM4 3a1 1 0 0 1 1-1h6a1 1 0 0 1 1 1v2H4V3zm1 5a2 2 0 0 0-2 2v1H2a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h12a1 1 0 0 1 1 1v3a1 1 0 0 1-1 1h-1v-1a2 2 0 0 0-2-2H5zm7 2v3a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1v-3a1 1 0 0 1 1-1h6a1 1 0 0 1 1 1z"/>
-                                            </svg> 
+                                            </svg>
                                            Print Records
                                         </button>
                                 </div>
@@ -234,13 +237,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['search'])) {
                 <div class="modal-body">
                     <div class="topModal">
                         <i id="closeModalBtn" class="fa-solid fa-xmark"></i>
-                        <button type="button" class="modalPrintRec">
+
+                        <button type="button" class="modalPrintRec" id="printRecord">
                             <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="currentColor" class="bi bi-printer printRecords-icon" viewBox="0 0 16 16">
                                 <path d="M2.5 8a.5.5 0 1 0 0-1 .5.5 0 0 0 0 1z"/>
-                                 <path d="M5 1a2 2 0 0 0-2 2v2H2a2 2 0 0 0-2 2v3a2 2 0 0 0 2 2h1v1a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2v-1h1a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2h-1V3a2 2 0 0 0-2-2H5zM4 3a1 1 0 0 1 1-1h6a1 1 0 0 1 1 1v2H4V3zm1 5a2 2 0 0 0-2 2v1H2a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h12a1 1 0 0 1 1 1v3a1 1 0 0 1-1 1h-1v-1a2 2 0 0 0-2-2H5zm7 2v3a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1v-3a1 1 0 0 1 1-1h6a1 1 0 0 1 1 1z"/>
-                            </svg> 
+                                <path d="M5 1a2 2 0 0 0-2 2v2H2a2 2 0 0 0-2 2v3a2 2 0 0 0 2 2h1v1a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2v-1h1a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2h-1V3a2 2 0 0 0-2-2H5zM4 3a1 1 0 0 1 1-1h6a1 1 0 0 1 1 1v2H4V3zm1 5a2 2 0 0 0-2 2v1H2a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h12a1 1 0 0 1 1 1v3a1 1 0 0 1-1 1h-1v-1a2 2 0 0 0-2-2H5zm7 2v3a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1v-3a1 1 0 0 1 1-1h6a1 1 0 0 1 1 1z"/>
+                            </svg>
                             Print Records
-                         </button>
+                        </button>
+
                     </div>
                     <div class="midModal">
                         <div class="left-Modal">
@@ -248,17 +253,17 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['search'])) {
                             <div class="DateFilter">
                                 <div>
                                     <label for="fromDate">From</label>
-                                    <input type="date" id="fromDate" class="form-select">
+                                    <input type="date" id="fromDate">
                                 </div>
 
                                 <div style="margin-left: 10px;">
                                     <label for="toDate">To</label>
-                                    <input type="date" id="toDate" class="form-select">
+                                    <input type="date" id="toDate">
                                 </div>
                             </div>
 
 
-                            <div class="TypeOfFilter">
+                            <!--<div class="TypeOfFilter">
                                 <h6 style="margin-bottom: 0px;">Type of Filter</h6>
                                 <div style="padding-left: 20px; margin-top: 5px;">
                                     <input type="checkbox" value="Daily" name="filterType" id="daily">
@@ -274,7 +279,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['search'])) {
                                     <input type="checkbox" value="Yearly" name="filterType" id="yearly" style="margin-left: 32px;">
                                     <label for="yearly">Yearly</label>
                                 </div>
-                            </div>
+                            </div>-->
 
                             <div class="CategoryContainer">
                                 <label for="categoryFilter">Category to Filter</label>
@@ -288,7 +293,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['search'])) {
                                 <label for="productFilter">Types of Product</label>
                                 <select class="form-select" id="productFilter">
                                     <option value="">Select Product</option>
-                                    <!-- Add options dynamically using JavaScript -->
                                 </select>
                             </div>
 
@@ -338,6 +342,30 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['search'])) {
         </div>
     </div>
     <!-- Javascript -->
+            <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+
+            <script>
+                function searchTable() {
+                    var input, filter, table, tr, td, i, txtValue;
+                    input = document.getElementById("search");
+                    filter = input.value.toUpperCase();
+                    table = document.querySelector(".table");
+                    tr = table.getElementsByTagName("tr");
+
+                    for (i = 0; i < tr.length; i++) {
+                        td = tr[i].getElementsByTagName("td")[1];
+                        if (td) {
+                            txtValue = td.textContent || td.innerText;
+                            if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                                tr[i].style.display = "";
+                            } else {
+                                tr[i].style.display = "none";
+                            }
+                        }
+                    }
+                }
+            </script>
+
             <script>
                 document.addEventListener("DOMContentLoaded", function () {
                     const categoryFilter = document.getElementById("categoryFilter");
@@ -397,6 +425,26 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['search'])) {
                         fetchFilteredData(fromDate, toDate, categoryValue, productValue);
                     }
 
+                    /*function sendSaleData() {
+                        $.ajax({
+                            type: "POST",
+                            url: "pdf_gen.php",
+                            data: {
+                                fromDate: fromDateInput.value,
+                                toDate: toDateInput.value,
+                                categoryValue: categoryFilter.value,
+                                productValue: productFilter.value
+                            },
+                            success: function (response) {
+                                // Handle the response if needed
+                                console.log('AJAX Success:', response);
+                            },
+                            error: function (error) {
+                                console.error('Error sending sale data:', error);
+                            }
+                        });
+                    }*/
+
                     function fetchFilteredData(fromDate, toDate, categoryValue, productValue) {
                         if (!tableBody) {
                             console.error('Table body element not found.');
@@ -427,15 +475,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['search'])) {
                                         console.log('Formatted date:', formattedDate);
 
                                         const rowHTML = `
-                                                <tr>
-                                                    <td>${formattedDate}</td>
-                                                    <td>${sale.PROD_NAME}</td>
-                                                    <td>₱${Number(sale.PROD_CAPITAL_PRICE).toFixed(2)}</td>
-                                                    <td>₱${Number(sale.PROD_SELLING_PRICE).toFixed(2)}</td>
-                                                    <td>₱${Number(sale.GROSS_MARGIN).toFixed(2)}</td>
-                                                    <td>${sale.POS_PROD_QUANTITY}</td>
-                                                    <td>₱${Number(sale.SUBTOTAL).toFixed(2)}</td>
-                                                </tr>`;
+                        <tr>
+                            <td>${formattedDate}</td>
+                            <td>${sale.PROD_NAME}</td>
+                            <td>₱${Number(sale.PROD_CAPITAL_PRICE).toFixed(2)}</td>
+                            <td>₱${Number(sale.PROD_SELLING_PRICE).toFixed(2)}</td>
+                            <td>₱${Number(sale.GROSS_MARGIN).toFixed(2)}</td>
+                            <td>${sale.POS_PROD_QUANTITY}</td>
+                            <td>₱${Number(sale.SUBTOTAL).toFixed(2)}</td>
+                        </tr>`;
                                         tableBody.innerHTML += rowHTML;
                                     });
                                 } else {
@@ -453,66 +501,47 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['search'])) {
 
                 });
             </script>
-
             <script>
-                document.addEventListener("DOMContentLoaded", function () {
-                    var searchFilterBtn = document.getElementById("searchFilterBtn");
+                document.getElementById("printRecord").addEventListener("click", function() {
+                    var form = document.createElement("form");
+                    form.method = "POST";
+                    form.action = "pdf_gen.php";
 
-                    searchFilterBtn.addEventListener("click", function (event) {
-                        event.preventDefault();
+                    // Add input fields for your data
+                    var fromDateInput = document.createElement("input");
+                    fromDateInput.type = "hidden";
+                    fromDateInput.name = "fromDate";
+                    fromDateInput.value = fromDate.value; // Set the actual value here
+console.log(fromDate.value);
+                    var toDateInput = document.createElement("input");
+                    toDateInput.type = "hidden";
+                    toDateInput.name = "toDate";
+                    toDateInput.value = toDate.value; // Set the actual value here
+console.log(toDate.value);
+                    var categoryValueInput = document.createElement("input");
+                    categoryValueInput.type = "hidden";
+                    categoryValueInput.name = "categoryValue";
+                    categoryValueInput.value = categoryFilter.value; // Set the actual value here
 
-                        applyFilters();
-                    });
-                    // Function to handle checkbox click
-                    function handleCheckboxClick(checkboxId) {
-                        const checkboxes = document.getElementsByName("filterType");
+                    var productValueInput = document.createElement("input");
+                    productValueInput.type = "hidden";
+                    productValueInput.name = "productValue";
+                    productValueInput.value = productFilter.value; // Set the actual value here
 
-                        checkboxes.forEach(checkbox => {
-                            if (checkbox.id !== checkboxId) {
-                                checkbox.checked = false;
-                            }
-                        });
-                    }
+                    // Append input fields to the form
+                    form.appendChild(fromDateInput);
+                    form.appendChild(toDateInput);
+                    form.appendChild(categoryValueInput);
+                    form.appendChild(productValueInput);
 
-                    document.getElementById("daily").addEventListener("click", function() {
-                        handleCheckboxClick("daily");
-                    });
+                    // Append the form to the document and submit it
+                    document.body.appendChild(form);
+                    form.submit();
 
-                    document.getElementById("monthly").addEventListener("click", function() {
-                        handleCheckboxClick("monthly");
-                    });
-
-                    document.getElementById("weekly").addEventListener("click", function() {
-                        handleCheckboxClick("weekly");
-                    });
-
-                    document.getElementById("yearly").addEventListener("click", function() {
-                        handleCheckboxClick("yearly");
-                    });
-
-
-                    function applyFilters() {
-                        const fromDate = document.getElementById("fromDate").value;
-                        const toDate = document.getElementById("toDate").value;
-                        const dailyCheckbox = document.querySelector('input[name="daily"]:checked');
-                        const monthlyCheckbox = document.querySelector('input[name="monthly"]:checked');
-                        const weeklyCheckbox = document.querySelector('input[name="weekly"]:checked');
-                        const yearlyCheckbox = document.querySelector('input[name="yearly"]:checked');
-                        const categoryFilter = document.querySelector('.CategoryContainer select').value;
-                        const productFilter = document.querySelector('.ProductContainer select').value;
-
-                        console.log("From Date:", fromDate);
-                        console.log("To Date:", toDate);
-                        console.log("Daily Checkbox:", dailyCheckbox ? dailyCheckbox.value : null);
-                        console.log("Monthly Checkbox:", monthlyCheckbox ? monthlyCheckbox.value : null);
-                        console.log("Weekly Checkbox:", weeklyCheckbox ? weeklyCheckbox.value : null);
-                        console.log("Yearly Checkbox:", yearlyCheckbox ? yearlyCheckbox.value : null);
-                        console.log("Category Filter:", categoryFilter);
-                        console.log("Product Filter:", productFilter);
-                    }
+                    // Remove the form from the document
+                    document.body.removeChild(form);
                 });
             </script>
-
             <script>
                 $(document).ready(function () {
                     $("#closeModalBtn").click(function () {

@@ -9,7 +9,7 @@
     if(isset($_POST['olCartId'])){
         $olcartID = $_POST['olCartId'];
 
-        $sendNotifQuery = "INSERT INTO notifications (OL_ORDER_ID, NOTIF_MESSAGE) VALUES ('$olcartID', 'Your order has been cancelled!, might be because product is out of stock')";
+        $sendNotifQuery = "INSERT INTO notifications (OL_ORDER_ID, NOTIF_MESSAGE) VALUES ('$olcartID', 'Your order, #$olcartID, has been cancelled!, might be because product is out of stock')";
         mysqli_query($conn, $sendNotifQuery);
 
         $updateQuery = "UPDATE online_order SET EMPLOYEE_ID = ?, ORDER_STATUS_ID = 5 WHERE OL_CART_ID = ?";

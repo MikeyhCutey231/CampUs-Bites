@@ -469,7 +469,7 @@ public function getEmployeeData($employee_id) {
         foreach ($employeeData as $row) {
             ?> <div class="card-1">
                 <div class="user-face">
-                    <img src="../admin_php/upload/<?php echo $row['EMP_PROF_PIC']?>" alt="" style="width: 90px; height: 90px; object-fit: cover;">
+                    <img src="../../Icons/<?php echo $row['EMP_PROF_PIC']?>" alt="" style="width: 90px; height: 90px; object-fit: cover;">
                 </div>
                 <div class="user-info">
                     <p style="margin-bottom: -5px; font-weight: 900; font-size: 18px; margin-top: 8px;">

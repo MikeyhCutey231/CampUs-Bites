@@ -415,14 +415,33 @@ public function getEmployeeData($employee_id) {
     public function getEmployeeDatas() {
         $employeeData = array();
 
-        $query = "SELECT USER_ID, U_FIRST_NAME, U_MIDDLE_NAME, U_LAST_NAME, U_PICTURE, role_name   
-              FROM vwpayroll_list
-              ORDER BY U_LAST_NAME ASC";
+        $query = "SELECT
+            users.USER_ID,
+            users.U_FIRST_NAME,
+            users.U_MIDDLE_NAME,
+            users.U_LAST_NAME,
+            users.U_PICTURE,
+            vwpayroll_list.role_name,
+            emp_payroll.EMP_PAYROLL_ID AS most_recent_payroll_id
+        FROM
+            vwpayroll_list
+        JOIN
+            users ON vwpayroll_list.USER_ID = users.USER_ID
+        JOIN
+            emp_payroll ON vwpayroll_list.USER_ID = emp_payroll.EMPLOYEE_ID
+                    AND emp_payroll.EMP_PAYROLL_ID = (
+                        SELECT MAX(EMP_PAYROLL_ID)
+                        FROM emp_payroll
+                        WHERE emp_payroll.EMPLOYEE_ID = vwpayroll_list.USER_ID
+                    )
+        ORDER BY
+            users.U_LAST_NAME ASC;
+        ";
 
         $stmt = $this->conn->prepare($query);
         if ($stmt) {
             $stmt->execute();
-            $stmt->bind_result($employeeId, $firstName, $middleName, $lastName, $profPic, $rolename);
+            $stmt->bind_result($employeeId, $firstName, $middleName, $lastName, $profPic, $rolename, $mostRecentPayrollId);
 
             while ($stmt->fetch()) {
                 $employeeData[] = [
@@ -432,15 +451,17 @@ public function getEmployeeData($employee_id) {
                     'EMP_LAST_NAME' => $lastName,
                     'EMP_PROF_PIC' => $profPic,
                     'EMP_ROLE_NAME' => $rolename,
-
+                    'EMP_PAYROLL_ID' => $mostRecentPayrollId,
                 ];
             }
 
             $stmt->close();
+
         }
 
         return $employeeData;
     }
+
 
 
 

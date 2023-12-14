@@ -165,7 +165,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['search'])) {
             <div class="main-contentwraper" id="searchResult">
                 <?php
                 $employeeData = new UserData();
-                $data = $employeeData->getEmployeeData();
+                $data = $employeeData->getEmployeeDatas();
                 $employeeData->renderEmployeeTable($data);
                 ?>
             </div>

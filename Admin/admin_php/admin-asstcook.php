@@ -213,7 +213,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['search'])) {
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-body">
-                <form class="needs-validation was-validated" action="../../Admin/functions/add-Employee.php" id="employee-form" method="POST" enctype="multipart/form-data" novalidate>
+                <form class="needs-validation was-validated" action="../../Admin/functions/add-Employee.php" id="employee-form" method="POST" enctype="multipart/form-data" validate>
                     <input type="text" name="userid" value="<?php echo $userid=$usersData[0]['user_id']; ?>" hidden="hidden">
                     <div class="editLeft-container">
                         <div class="editLeft-container">

@@ -1,123 +1,305 @@
 <?php 
-    include("../functions/dbConfig.php");
-
+    require_once("../../Admin/functions/dbConfig.php");
     class LoginUser extends Connection{
         const REGISTRATION_SUCCESS = 'success';
         const REGISTRATION_NOTSAME = 'not same';
-        const REGISTRATION_EMPTY_FIELDS = 'empty_fields';
-        const EMAIL_EMPTY_FIELDS = 'Input proper email';
-        const REGISTRATION_PASSWORD_LENGTH = 'Not enough length';
-        const REGISTRATION_PASSWORD_CASE = 'Not same cases';
-        const REGISTRATION_PASSWORD_SPECIAL_CHAR = 'No special character';
+        const REGISTRATION_NOTSTAFF = 'not staff';
+        const REGISTRATION_DEACTIVATED = 'deactivated';
+        const REGISTRATION_LIMIT = 'limit';
 
-        
-        private $adminID;
-        public function userLogin($username, $adminPassword){
-        
-           $result =  mysqli_query($this->conn,"SELECT * FROM emp_personal_info WHERE EMP_USERNAME = '$username' OR EMP_PASSWORD = '$adminPassword';");
-           $row = mysqli_fetch_assoc($result);
-            
-            if (empty(trim($username)) && empty(trim($adminPassword))) {
-                return self::REGISTRATION_EMPTY_FIELDS;
-            } else {
-                    if($username == $row["EMP_USERNAME"] && $adminPassword == $row["EMP_PASSWORD"]){
-                        $adminID = $row['EMPLOYEE_ID'];
-                        
-                       $_SESSION['EMPLOYEE_ID'] = $adminID ;
-                       return self::REGISTRATION_SUCCESS;
-                       
-                    }else{
-                      return self::REGISTRATION_NOTSAME;
-                  }
-            }
+        const REGISTRATION_EMPTY_FIELDS = 'empty_fields';
+        private $userID;
+        public function setConnection($conn) {
+            $this->conn = $conn;
         }
 
+        public function userLogin($username, $password) {
+            $result = mysqli_query($this->conn, "SELECT * FROM users u 
+              JOIN user_roles r ON u.USER_ID = r.USER_ID
+              WHERE u.U_USER_NAME = '$username' AND (r.ROLE_CODE = 'emp_cshr' OR r.ROLE_CODE = 'emp_srvr' OR r.ROLE_CODE = 'adm_manager' OR r.ROLE_CODE = 'emp_cook' OR r.ROLE_CODE = 'emp_asst_cook');");
+            $row = mysqli_fetch_assoc($result);
 
-        public function changeLoginForgot($newPassword, $confirmPassword){
-            if (empty(trim($newPassword)) || empty(trim($confirmPassword))) {
+            if (empty(trim($username)) || empty(trim($password))) {
                 return self::REGISTRATION_EMPTY_FIELDS;
             } else {
-                // Check if the password is longer than 8 characters
-                if (strlen($newPassword) < 8) {
-                    return self::REGISTRATION_PASSWORD_LENGTH;
-                }
-        
-                // Check if the password contains both uppercase and lowercase letters
-                if (!preg_match('/[A-Z]/', $newPassword) || !preg_match('/[a-z]/', $newPassword)) {
-                    return self::REGISTRATION_PASSWORD_CASE;
-                }
-        
-                // Check if the password contains at least one special character
-                if (!preg_match('/[\W_]/', $newPassword)) {
-                    return self::REGISTRATION_PASSWORD_SPECIAL_CHAR;
-                }
-        
-                if ($newPassword == $confirmPassword) {
-                    $result =  mysqli_query($this->conn, "UPDATE admin_info SET Password = '$confirmPassword'");
-                    return self::REGISTRATION_SUCCESS;
+                if ($row) {
+                    $hashedPassword = $row["U_PASSWORD"];
+                    $userID = $row['USER_ID'];
+
+
+                    $loginStatus = $this->getLoginStatus($userID);
+
+                    if ($loginStatus === 'Logged Out') {
+                        return self::REGISTRATION_LIMIT;
+                    }
+
+                    if (password_verify($password, $hashedPassword)) {
+                        $this->userID = $userID;
+
+                        if ($loginStatus == 'Logged In') {
+                            $this->performTimeout($userID);
+                        } else {
+                            $this->performLogin($userID);
+                        }
+
+
+                        return self::REGISTRATION_SUCCESS;
+                    } else {
+                        return self::REGISTRATION_NOTSAME;
+                    }
                 } else {
                     return self::REGISTRATION_NOTSAME;
                 }
             }
-         }
+        }
+        public function generatePayroll($userID,$payrollStartDate,$payrollEndDate) {
+            require '../../Admin/functions/UserData.php';
+            require_once '../../Admin/functions/payroll.php';
+
+            $userDataInstance = new UserData();
+
+            $dtr = new EmployeeData($this->conn);
+            $value1 = $dtr->getDeductionAmount("SSS");
+            $value3 = $dtr->getDeductionAmount("PhilHealth");
+            $value2 = $dtr->getDeductionAmount("PagIBIG");
+            $payrollDate = date('Y-m-d');
+
+
+            $viewUserData = "SELECT * FROM vwpayroll_list WHERE USER_ID = '$userID'";
+            $viewUserDataRun = mysqli_query($this->conn, $viewUserData);
+ while ($row = mysqli_fetch_array($viewUserDataRun)) {
+     $basicSalary = $userDataInstance->getBasicSalaryByRole($row['ROLE_NAME']);
+     $daysWorked = $userDataInstance->getDaysWorkedforDTR($userID);
+     $userOvertimeHours = $userDataInstance->getTotalOvertimeHours($userID);
+
+     $subtotal = $basicSalary * $daysWorked;
+     $overtimeRate = $basicSalary / 8;
+
+      if (!empty($userOvertimeHours)) {
+          list($hours, $minutes, $seconds) = explode(':', $userOvertimeHours);
+          $totalOvertimeHours = $hours + ($minutes / 60) + ($seconds / 3600);
+          $overtimeSubtotal = $overtimeRate * $totalOvertimeHours;
+          $grossSalary = $subtotal + $overtimeSubtotal;
+          $netSalary = $grossSalary - $totalDeduction;
+          $totalDeduction = $value1 + $value2 + $value3;
+
+          if ($netSalary < 500) {
+              $netSalary = $grossSalary;
+$totalDeduction = 0;
+          } else {
+              $netSalary = $grossSalary - $totalDeduction;
+          }
+      }
+      /*else{
+
+      }*/
+ }
+            $insertQuery = "INSERT INTO emp_payroll (EMPLOYEE_ID,PAYROLL_START_DATE,PAYROLL_END_DATE,TOTAL_DAYS_WORKED,EMP_GROSS_SALARY,EMP_TOTAL_OVERTIME_HOURS,DEDUCTIONS,EMP_NET_SALARY,PAYROLL_DATE) VALUES ('$userID','$payrollStartDate','$payrollEndDate','$daysWorked','$grossSalary','$totalOvertimeHours','$totalDeduction','$netSalary', '$payrollDate')";
+
+            mysqli_query($this->conn, $insertQuery);
+
+        }
+
+        public function getPayrollRecords($userID)//para ni sa payroll history
+        {
+            $query = "SELECT * FROM emp_payroll WHERE EMPLOYEE_ID = ?";
+
+            $stmt = $this->conn->prepare($query);
+            $stmt->bind_param("i", $userID);
+            $stmt->execute();
+            $result = $stmt->get_result();
+            $payrollRecords = $result->fetch_all(MYSQLI_ASSOC);
+            $stmt->close();
+
+            return $payrollRecords;
+        }
+        // Inside your LoginUser class
+        public function getMostRecentPayrollId($employeeId) {
+            $sql = "SELECT MAX(PAYROLL_ID) AS mostRecentPayrollId FROM payroll WHERE EMPLOYEE_ID = ?";
+            $stmt = $this->conn->prepare($sql);
+            $stmt->bind_param("i", $employeeId);
+            $stmt->execute();
+            $result = $stmt->get_result();
+
+            if ($row = $result->fetch_assoc()) {
+                return $row['mostRecentPayrollId'];
+            } else {
+                // No payroll record found for the employee
+                return null;
+            }
+        }
+
+
+
+        public function getPayrollIdRecords($payrollId)//para ni sa view sa individual payroll record
+        {
+            $query = "SELECT * FROM emp_payroll WHERE EMP_PAYROLL_ID = ?";
+
+            $stmt = $this->conn->prepare($query);
+            $stmt->bind_param("i", $payrollId);
+            $stmt->execute();
+            $result = $stmt->get_result();
+            $payrollRecords = $result->fetch_all(MYSQLI_ASSOC);
+            $stmt->close();
+
+            return $payrollRecords;
+        }
+
+        private function getLoginStatus($userID) {
+            $stmt = $this->conn->prepare("SELECT EMP_LOGIN_STATUS FROM emp_dtr WHERE EMPLOYEE_ID = ? AND DATE(EMP_DTR_DATE) = CURDATE() ORDER BY EMP_DTR_DATE DESC LIMIT 1");
+            $stmt->bind_param("i", $userID);
+            $stmt->execute();
+            $result = $stmt->get_result();
+            $row = $result->fetch_assoc();
+            $stmt->close();
+
+            if ($row) {
+                return $row['EMP_LOGIN_STATUS'];
+            } else {
+                return 'Not Logged In';
+            }
+        }
+
+        private function performTimeout($userID) {
+            $loginDetails = $this->getLoginDetails($userID);
+
+            if ($loginDetails && $loginDetails['EMP_LOGIN_STATUS'] === 'Logged In') {
+
+                // Set login status and time
+                $logoutStatus = 'Logged Out';
+
+                // Update query with the custom timestamp
+                $updateEmpDtrQuery = "UPDATE emp_dtr SET EMP_DTR_TIME_OUT = TIME_FORMAT(NOW(), '%h:%i:%s %p'), EMP_LOGIN_STATUS = ? WHERE EMPLOYEE_ID = ? AND EMP_LOGIN_STATUS = 'Logged In'";
+
+                // Prepare and execute the query
+                $stmtUpdate = $this->conn->prepare($updateEmpDtrQuery);
+                $stmtUpdate->bind_param("si", $logoutStatus, $userID);
+                $stmtUpdate->execute();
+                $stmtUpdate->close();
+            }
+        }
+
+
+
+        private function getLoginDetails($userID) {
+            // Get the details of the last login for the user
+            $stmt = $this->conn->prepare("SELECT EMP_DTR_DATE, EMP_LOGIN_STATUS FROM emp_dtr WHERE EMPLOYEE_ID = ? ORDER BY EMP_DTR_DATE DESC LIMIT 1");
+            $stmt->bind_param("i", $userID);
+            $stmt->execute();
+            $result = $stmt->get_result();
+            $row = $result->fetch_assoc();
+            $stmt->close();
+
+            return $row;
+        }
+
+        private function performLogin($userID) {
+            date_default_timezone_set('Asia/Manila');
+            $currentDate = date("Y-m-d");
+            $lastRecordedDate = $this->getLastRecordedDate($userID);
+
+            // Generate absent records for dates between the last recorded date and the current date
+            $this->generateAbsentRecords($userID, $lastRecordedDate, $currentDate);
+
+            $loginStatus = 'Logged In';
+            $insertEmpDtrQuery = "INSERT INTO emp_dtr (EMPLOYEE_ID, EMP_DTR_DATE, EMP_DTR_TIME_IN, EMP_DTR_STATUS, EMP_LOGIN_STATUS) VALUES (?, ?, TIME_FORMAT(NOW(), '%r'), 'Present', ?)";
+            $stmtEmpDtr = $this->conn->prepare($insertEmpDtrQuery);
+            $stmtEmpDtr->bind_param("iss", $userID, $currentDate, $loginStatus);
+            $stmtEmpDtr->execute();
+            $stmtEmpDtr->close();
+
+            $currentDate = date('j');
+            $lastDayOfMonth = date('t');
+
+            if ($currentDate == 14) {
+                $payrollStartDate = date('Y-m-01');
+                $payrollEndDate = date('Y-m-14');
+                $this->generatePayroll($userID,$payrollStartDate,$payrollEndDate);
+            } elseif ($currentDate === $lastDayOfMonth) {
+                $payrollStartDate = date('Y-m-15');
+                $payrollEndDate = date('Y-m-t');
+                $this->generatePayroll($userID,$payrollStartDate,$payrollEndDate);
+            }
+        }
+
+        private function getLastRecordedDate($userID) {
+            // Get the last recorded date for the user
+            $stmt = $this->conn->prepare("SELECT MAX(EMP_DTR_DATE) AS lastRecordedDate FROM emp_dtr WHERE EMPLOYEE_ID = ?");
+            $stmt->bind_param("i", $userID);
+            $stmt->execute();
+            $result = $stmt->get_result();
+            $row = $result->fetch_assoc();
+            $stmt->close();
+
+            return isset($row['lastRecordedDate']) ? $row['lastRecordedDate'] : null;
+        }
+
+        private function generateAbsentRecords($userID, $startDate, $endDate) {
+            $currentDate = $startDate;
+
+            // Loop through dates between the last recorded date and the current date
+            while (strtotime($currentDate) < strtotime($endDate)) {
+                // Check if a record already exists for the current date
+                if (!$this->recordExistsForDate($userID, $currentDate)) {
+                    // If not, insert an 'Absent' record
+                    $this->insertAbsentRecord($userID, $currentDate);
+                }
+
+                // Move to the next date
+                $currentDate = date("Y-m-d", strtotime($currentDate . "+1 day"));
+            }
+        }
+
+        private function recordExistsForDate($userID, $date) {
+            // Check if a record already exists for the specified date
+            $stmt = $this->conn->prepare("SELECT 1 FROM emp_dtr WHERE EMPLOYEE_ID = ? AND DATE(EMP_DTR_DATE) = ? LIMIT 1");
+            $stmt->bind_param("is", $userID, $date);
+            $stmt->execute();
+            $stmt->store_result();
+            $rowCount = $stmt->num_rows;
+            $stmt->close();
+
+            return $rowCount > 0;
+        }
+
+        private function insertAbsentRecord($userID, $date) {
+            // Insert an 'Absent' record for the specified date
+            $insertEmpDtrQuery = "INSERT INTO emp_dtr (EMPLOYEE_ID, EMP_DTR_DATE, EMP_DTR_STATUS) VALUES (?, ?, 'Absent')";
+            $stmtEmpDtr = $this->conn->prepare($insertEmpDtrQuery);
+            $stmtEmpDtr->bind_param("is", $userID, $date);
+            $stmtEmpDtr->execute();
+            $stmtEmpDtr->close();
+        }
+
+
+        public function getEmpDtrData($userID) {
+            $empDtrData = array();
+
+            $sql = "SELECT *,
+            DATE_FORMAT(EMP_DTR_TIME_IN, '%h:%i %p') AS EMP_DTR_TIME_IN_FORMATTED,
+            DATE_FORMAT(EMP_DTR_TIME_OUT, '%h:%i %p') AS EMP_DTR_TIME_OUT_FORMATTED FROM emp_dtr WHERE EMPLOYEE_ID = ?";
+            $stmt = $this->conn->prepare($sql);
+
+            if ($stmt) {
+                $stmt->bind_param("i", $userID);
+                $stmt->execute();
+                $result = $stmt->get_result();
+
+                while ($row = $result->fetch_assoc()) {
+                    $empDtrData[] = $row;
+                }
+
+                $stmt->close();
+            }
+
+            return $empDtrData;
+        }
+
+        public function getUserID() {
+            return $this->userID;
+        }
     }
 ?>
-
-
-
-If mo click Yes
-ma input sa database ang time and date = 1 (Time-in) login
-
-if(user => 1) og login count sa database
-
-if duha na ka same user ID nag login within that day
-
-if(user == has already login in ? false){
-    store database date then time-in
-}else if(user == has 1 login ? true){
-    store database date then time-out
-}else if(user == 2 login ? true){
-    prompt error
-}
-
-
-Upate?
-
-Date and Time 
-login count = 2 - 1 (first login)
-login count = 1
-
-if(currentDate == databaseDate){
-    if(user == already exist){
-        checks the log count
-            if(loginCount == 1){
-                if(user == first login) store database time in and date then login count = 1
-                else if 
-                (user = second login) update database time out, time thne logout count = 0
-
-            }else if(loginCount == 0){
-                print you have reached the maximum login
-            }
-    }else{
-        if(loginCount == 1){
-                if(user == first login) store database time in and date then login count = 1
-                else if 
-                (user = second login) update database time out, time thne logout count = 0
-
-            }else if(loginCount == 0){
-                print you have reached the maximum login
-        }
-    }
-}else if(currentDate != databaseDate){
-    if(loginCount == 1){
-                if(user == first login) store database time in and date then login count = 1
-                else if 
-                (user = second login) update database time out, time thne logout count = 0
-
-            }else if(loginCount == 0){
-                print you have reached the maximum login
-        }
-}
 
 
 

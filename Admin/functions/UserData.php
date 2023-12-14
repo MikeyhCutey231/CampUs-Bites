@@ -105,11 +105,16 @@ class UserData {
 
         return $basicSalary;
     }
-    public function getDaysWorked($userId) {
-        $sql = "SELECT DISTINCT DATE(EMP_DTR_DATE) AS work_date FROM emp_dtr WHERE EMPLOYEE_ID = ?";
+
+    public function getDaysWorked($userId, $startDate, $endDate) {
+        $sql = "SELECT DISTINCT DATE(EMP_DTR_DATE) AS work_date 
+            FROM emp_dtr 
+            WHERE EMPLOYEE_ID = ? 
+            AND EMP_DTR_STATUS = 'Present' 
+            AND EMP_DTR_DATE BETWEEN ? AND ?";
 
         $stmt = $this->conn->prepare($sql);
-        $stmt->bind_param("i", $userId);
+        $stmt->bind_param("iss", $userId, $startDate, $endDate);
         $stmt->execute();
         $result = $stmt->get_result();
 
@@ -117,6 +122,8 @@ class UserData {
 
         return $numDaysWorked;
     }
+
+
     public function getTotalOvertimeHours($userId) {
         $sql = "SELECT SEC_TO_TIME(SUM(TIME_TO_SEC(EMP_DTR_OVERTIME_HOURS))) AS total_overtime_hours FROM emp_dtr WHERE EMPLOYEE_ID = ?";
 
@@ -133,6 +140,7 @@ class UserData {
 
 
 
+
     public function getPositionByRoleCode($roleCode) {
     $sql = "SELECT ROLE_NAME FROM roles WHERE ROLE_CODE = ?";
 
@@ -146,40 +154,52 @@ class UserData {
 
     return $position;
 }
-    public function getEmployeeData($employee_id) {
-        $sql = "SELECT users.*, user_roles.* 
-            FROM users 
-            JOIN user_roles ON users.USER_ID = user_roles.USER_ID 
-            WHERE users.USER_ID = ?";
-
+    public function getEmployeeData() {
         $employeeData = array();
 
-        $stmt = $this->conn->prepare($sql);
-        $stmt->bind_param("i", $employee_id);
-        $stmt->execute();
+        $query = "SELECT
+    users.USER_ID,
+    users.U_FIRST_NAME,
+    users.U_MIDDLE_NAME,
+    users.U_LAST_NAME,
+    users.U_PICTURE,
+    vwpayroll_list.role_name,
+    emp_payroll.EMP_PAYROLL_ID AS most_recent_payroll_id
+    FROM
+    vwpayroll_list
+    JOIN
+    users ON vwpayroll_list.USER_ID = users.USER_ID
+    JOIN
+    emp_payroll ON vwpayroll_list.USER_ID = emp_payroll.EMPLOYEE_ID
+            AND emp_payroll.EMP_PAYROLL_ID = (
+                SELECT MAX(EMP_PAYROLL_ID)
+                FROM emp_payroll
+                WHERE emp_payroll.EMPLOYEE_ID = vwpayroll_list.USER_ID
+            )
+    ORDER BY
+    users.U_LAST_NAME ASC;
+    ";
 
-        $result = $stmt->get_result();
+        $stmt = $this->conn->prepare($query);
+        if ($stmt) {
+            $stmt->execute();
+            $stmt->bind_result($employeeId, $firstName, $middleName, $lastName, $profPic, $rolename, $mostRecentPayrollId);
 
-        while ($row = $result->fetch_assoc()) {
-            $employee = array(
-                'username' => $row["U_USER_NAME"],
-                'employee_id' => $row["USER_ID"],
-                'employee_fname' => $row["U_FIRST_NAME"],
-                'employee_lname' => $row["U_LAST_NAME"],
-                'employee_mname' => $row["U_MIDDLE_NAME"],
-                'employee_suffix' => $row["U_SUFFIX"],
-                'employee_gender' => $row["U_GENDER"],
-                'employee_phoneNum' => $row["U_PHONE_NUMBER"],
-                'employee_email' => $row["U_EMAIL"],
-                'employee_acc_status' => $row["U_STATUS"],
-                'employee_profPic' => $row["U_PICTURE"],
-                'role_code' => $row["ROLE_CODE"],
-            );
+            while ($stmt->fetch()) {
+                $employeeData[] = [
+                    'EMPLOYEE_ID' => $employeeId,
+                    'EMP_FIRST_NAME' => $firstName,
+                    'EMP_MIDDLE_NAME' => $middleName,
+                    'EMP_LAST_NAME' => $lastName,
+                    'EMP_PROF_PIC' => $profPic,
+                    'EMP_ROLE_NAME' => $rolename,
+                    'EMP_PAYROLL_ID' => $mostRecentPayrollId,
+                ];
+            }
 
-            $employeeData[] = $employee;
+            $stmt->close();
+
         }
-
-        $stmt->close();
 
         return $employeeData;
     }
@@ -440,7 +460,7 @@ class UserData {
         foreach ($employeeData as $row) {
             ?> <div class="card-1">
                 <div class="user-face">
-                    <img src="../../Icons/<?php echo $row['EMP_PROF_PIC']?>" alt="" style="width: 90px; height: 90px; object-fit: cover;">
+                    <img src="../admin_php/upload/<?php echo $row['EMP_PROF_PIC']?>" alt="" style="width: 90px; height: 90px; object-fit: cover;">
                 </div>
                 <div class="user-info">
                     <p style="margin-bottom: -5px; font-weight: 900; font-size: 18px; margin-top: 8px;">
@@ -457,13 +477,19 @@ class UserData {
                     if(isset($_POST['payrollRecord'])) {
                         echo "clicked";
                         $_SESSION['EMP_FIRST_NAME'] = $row['EMP_FIRST_NAME'];
-
                     }
                     ?>
-                    <form action="../admin_php/viewpayroll.php" method="POST">
-                        <button type="button" class="payrollRecord">Payroll Record</button>
-                    </form>
+                    <button class="payrollRecord" data-payroll-id="<?php echo $row['EMP_PAYROLL_ID']; ?>">Payroll Record</button>
                 </div>
+                <script>
+                    $(document).ready(function() {
+                        $(".payrollRecord").on("click", function() {
+                            const payrollId = $(this).data("payroll-id");
+
+                            window.location.href = "../../Admin/admin_php/viewpayroll.php?payrollId=" + payrollId;
+                        });
+                    });
+                </script>
             </div>
             <?php
         }
@@ -473,21 +499,49 @@ class UserData {
 
 
     public function searchPayrollEmployees($searchName) {
-        $query = "SELECT USER_ID, U_FIRST_NAME, U_MIDDLE_NAME, U_LAST_NAME, U_PICTURE, role_name   
-              FROM vwpayroll_list WHERE U_FIRST_NAME LIKE ? OR U_MIDDLE_NAME LIKE ? OR U_LAST_NAME LIKE ?";
+        $query = "SELECT
+        users.USER_ID,
+        users.U_FIRST_NAME,
+        users.U_MIDDLE_NAME,
+        users.U_LAST_NAME,
+        users.U_PICTURE,
+        vwpayroll_list.role_name,
+        emp_payroll.EMP_PAYROLL_ID AS most_recent_payroll_id
+    FROM
+        vwpayroll_list
+    JOIN
+        users ON vwpayroll_list.USER_ID = users.USER_ID
+    JOIN
+        emp_payroll ON vwpayroll_list.USER_ID = emp_payroll.EMPLOYEE_ID
+            AND emp_payroll.EMP_PAYROLL_ID = (
+                SELECT MAX(EMP_PAYROLL_ID)
+                FROM emp_payroll
+                WHERE emp_payroll.EMPLOYEE_ID = vwpayroll_list.USER_ID
+            )
+    WHERE
+        users.U_FIRST_NAME LIKE ? OR users.U_MIDDLE_NAME LIKE ? OR users.U_LAST_NAME LIKE ?
+    ORDER BY
+        users.U_LAST_NAME ASC";
 
         $stmt = $this->conn->prepare($query);
 
-        $searchNameParam = "%" . $searchName . "%"; // Add % to create a LIKE query
+        $searchNameParam = "%" . $searchName . "%";
 
         $stmt->bind_param("sss", $searchNameParam, $searchNameParam, $searchNameParam);
 
         if ($stmt->execute()) {
-            $result = $stmt->get_result();
-            $employeeData = array();
+            $stmt->bind_result($employeeId, $firstName, $middleName, $lastName, $profPic, $rolename, $mostRecentPayrollId);            $employeeData = array();
 
-            while ($row = $result->fetch_assoc()) {
-                $employeeData[] = $row;
+            while ($stmt->fetch()) {
+                $employeeData[] = [
+                    'EMPLOYEE_ID' => $employeeId,
+                    'EMP_FIRST_NAME' => $firstName,
+                    'EMP_MIDDLE_NAME' => $middleName,
+                    'EMP_LAST_NAME' => $lastName,
+                    'EMP_PROF_PIC' => $profPic,
+                    'EMP_ROLE_NAME' => $rolename,
+                    'EMP_PAYROLL_ID' => $mostRecentPayrollId,
+                ];
             }
 
             return $employeeData;
@@ -496,34 +550,64 @@ class UserData {
             return null;
         }
     }
+
 
 
     public function filterEmployeesPosition($position) {
-        $query = "SELECT USER_ID, U_FIRST_NAME, U_MIDDLE_NAME, U_LAST_NAME, U_PICTURE, role_name   
-              FROM vwpayroll_list WHERE role_name LIKE ?";
+        $employeeData = array();
+
+        $query = "SELECT
+        users.USER_ID,
+        users.U_FIRST_NAME,
+        users.U_MIDDLE_NAME,
+        users.U_LAST_NAME,
+        users.U_PICTURE,
+        vwpayroll_list.role_name,
+        emp_payroll.EMP_PAYROLL_ID AS most_recent_payroll_id
+    FROM
+        vwpayroll_list
+    JOIN
+        users ON vwpayroll_list.USER_ID = users.USER_ID
+    JOIN
+        emp_payroll ON vwpayroll_list.USER_ID = emp_payroll.EMPLOYEE_ID
+            AND emp_payroll.EMP_PAYROLL_ID = (
+                SELECT MAX(EMP_PAYROLL_ID)
+                FROM emp_payroll
+                WHERE emp_payroll.EMPLOYEE_ID = vwpayroll_list.USER_ID
+            )
+    WHERE
+        vwpayroll_list.role_name LIKE ?
+    ORDER BY
+        users.U_LAST_NAME ASC";
 
         $stmt = $this->conn->prepare($query);
 
-        $positionParam = "%" . $position . "%"; // Add % to create a LIKE query
+        if ($stmt) {
+            $positionParam = "%" . $position . "%";
+            $stmt->bind_param("s", $positionParam);
 
-        $stmt->bind_param("s", $positionParam);
+            $stmt->execute();
+            $stmt->bind_result($employeeId, $firstName, $middleName, $lastName, $profPic, $rolename, $mostRecentPayrollId);
 
-        if ($stmt->execute()) {
-            $result = $stmt->get_result();
-            $employeeData = array();
-
-            while ($row = $result->fetch_assoc()) {
-                $employeeData[] = $row;
+            while ($stmt->fetch()) {
+                $employeeData[] = [
+                    'EMPLOYEE_ID' => $employeeId,
+                    'EMP_FIRST_NAME' => $firstName,
+                    'EMP_MIDDLE_NAME' => $middleName,
+                    'EMP_LAST_NAME' => $lastName,
+                    'EMP_PROF_PIC' => $profPic,
+                    'EMP_ROLE_NAME' => $rolename,
+                    'EMP_PAYROLL_ID' => $mostRecentPayrollId,
+                ];
             }
 
-            return $employeeData;
-        } else {
-            // Handle the error
-            return null;
+            $stmt->close();
         }
+
+        return $employeeData;
     }
 
-    public function viewDTR($id){
+    public function viewDTR($id, $dateFrom, $dateTo) {
         $query = "SELECT *,
         CASE
             WHEN EMP_DTR_TIME_IN = '00:00:00' AND EMP_DTR_TIME_OUT = '00:00:00' THEN 'ABSENT'
@@ -533,11 +617,12 @@ class UserData {
             WHEN EMP_DTR_TIME_IN = '00:00:00' AND EMP_DTR_TIME_OUT = '00:00:00' THEN 'ABSENT'
             ELSE DATE_FORMAT(EMP_DTR_TIME_OUT, '%h:%i %p')
         END AS EMP_DTR_TIME_OUT_FORMATTED
-        FROM emp_dtr WHERE EMPLOYEE_ID = ?";
+        FROM emp_dtr
+        WHERE EMPLOYEE_ID = ? AND EMP_DTR_DATE BETWEEN ? AND ?";
 
 
         $stmt = $this->conn->prepare($query);
-        $stmt->bind_param("s", $id);
+        $stmt->bind_param("iss", $id, $dateFrom, $dateTo);
 
         if ($stmt->execute()) {
             $result = $stmt->get_result();
@@ -1007,6 +1092,25 @@ class UserData {
             <?php
         }
     }
+
+
+
+    public function getDaysWorkedforDTR($userId) {
+        $sql = "SELECT DISTINCT DATE(EMP_DTR_DATE) AS work_date 
+            FROM emp_dtr 
+            WHERE EMPLOYEE_ID = ? 
+            AND EMP_DTR_STATUS = 'Present'";
+
+        $stmt = $this->conn->prepare($sql);
+        $stmt->bind_param("iss", $userId);
+        $stmt->execute();
+        $result = $stmt->get_result();
+
+        $numDaysWorked = $result->num_rows;
+
+        return $numDaysWorked;
+    }
+
 
 
 }

@@ -1,17 +1,17 @@
 <?php
-    include("../functions/logModalHandler.php");
 
-   $userid = $_SESSION['date'];
-    
+include '../../Admin/functions/UserData.php';
+include '../functions/loginUser.php';
+$userID = $_SESSION['USER_ID'];
+$userData = new UserData();
+$usersData = $userData->getUserData($userID);
 
-   if(isset($_POST['signout'])){
-        echo "click";
-        unset($_SESSION['date']);
-        header("location: dtr-login.php");
-   }
-
+$userDTRData = new LoginUser();
+if (!isset($_SESSION['USER_ID'])) {
+    header("Location: dtr-login.php");
+    exit();
+}
 ?>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -30,14 +30,13 @@
     <title>CampUs Bites DTR</title>
 </head>
 <body>
-
 <div class="wrapper">
     <div class="left-container" id="sidebar">
         <div class="sidebar-logo">
             <div class="main-logo"></div>
             <div class="sidelogo-text">
                 <div style="position: relative;">
-                    <a href="" style="color: #099F6A"><?php echo $_SESSION['ovetime']?></a>
+                    <a href="" style="color: #099F6A"></a>
                     <p class="" style="color: #099F6A">Bites</p>
                 </div>
                 <div style="position: absolute; right: 20px; cursor: pointer;" class="close-btn d-md-none d-md-block"><img src="/Icons/x-circle.svg" alt=""></div>
@@ -56,10 +55,9 @@
                 </a>
             </li>
 
-            <form action="" method="post">
                 <li class="sidebar-items">
                     <button type="submit" name="signout" style="width: 100%; margin-top:10px; border: none;">
-                        <a href="" class="sidebar-link">
+                        <a href="dtr-logout.php" class="sidebar-link">
                             <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <path d="M7.33428 17.1132H4.07464C3.64239 17.1132 3.22784 16.9415 2.92219 16.6358C2.61654 16.3302 2.44482 15.9156 2.44482 15.4834V4.07464C2.44482 3.64239 2.61654 3.22784 2.92219 2.92219C3.22784 2.61654 3.64239 2.44482 4.07464 2.44482H7.33428" stroke="#5F5F5F" stroke-width="1.62982" stroke-linecap="round" stroke-linejoin="round"/>
                                 <path d="M13.0386 13.8537L17.1131 9.77914L13.0386 5.70459" stroke="#5F5F5F" stroke-width="1.62982" stroke-linecap="round" stroke-linejoin="round"/>
@@ -69,8 +67,6 @@
                         </a>
                     </button>
                 </li>
-            </form>
-
             <div class="usep-footercard">
                 <img src="../../Icons/useplogo.png" alt="" width="50px">
                 <p style="font-size: 11px; margin-bottom: -5px; font-weight: bold; margin-top: 5px;">University of Southeastern</p>
@@ -84,7 +80,18 @@
             </div>
         </ul>
     </div>
-
+<?php
+if (!empty($usersData)) {
+    $profilePic = $usersData[0]['profilePic'];
+    $fname = $usersData[0]['fname'];
+    $lname = $usersData[0]['lname'];
+    $phoneNum = $usersData[0]['phoneNum'];
+    $email = $usersData[0]['email'];
+    $user_id = $usersData[0]['user_id'];
+    $gender = $usersData[0]['gender'];
+    $roleName = $usersData[0]['role_code'];
+}
+$basicSalary = $userData->getBasicSalaryByRole($roleName); ?>
     <div class="right-container">
         <div class="head-content">
             <div class="Menu-name">
@@ -92,7 +99,7 @@
                 <p style="margin-bottom: 0; color: #099F6A">Daily Time Record</p>
             </div>
             <div class="usep-texthead">
-                <img src="/Icons/useplogo.png" alt="" width="30px" height="30px">
+                <img src="../../Icons/useplogo.png" alt="" width="30px" height="30px">
                 <p style="margin-bottom: 0px; margin-top: 3px; margin-left: 10px; font-weight: 600;">UseP (Tagum Unit)</p>
             </div>
         </div>
@@ -109,29 +116,19 @@
                         </div>
                     </div>
                     <div class="col-12 col-md-4 mt-3">
-                        <?php 
-                            $printEmpData = "SELECT emp_personal_info.EMPLOYEE_ID, emp_personal_info.EMP_FIRST_NAME, emp_personal_info.EMP_MIDDLE_NAME,
-                            emp_personal_info.EMP_LAST_NAME, emp_personal_info.EMP_GENDER, emp_personal_info.EMP_PHONE_NUM, emp_personal_info.EMP_EMAIL,
-                            emp_personal_info.EMP_EMERGENCY_NUM, emp_job_info.EMP_POSITION, emp_job_info.EMP_BASIC_SALARY FROM emp_personal_info INNER JOIN
-                            emp_job_info ON emp_personal_info.EMP_JOB_ID = emp_job_info.EMP_JOB_ID WHERE emp_personal_info.EMPLOYEE_ID = '$userid'";
 
-                            $printEmpDatarun = mysqli_query($conn, $printEmpData);
-
-                            while($row = mysqli_fetch_array($printEmpDatarun)){
-                                ?>
                                     <div class="content-2 p-1 data">
                                     <div class="upperleft mt-4">
-                                        <img src="../../Icons/cutemikey.svg" alt="Profile Image" class="rounded-circle">
-                                        <p class="name mt-4"><?php echo $row['EMP_FIRST_NAME'] . " ". $row['EMP_MIDDLE_NAME'] . " ". $row['EMP_LAST_NAME'] ?></p>
-                                        <p class="position mt-4"><?php echo $row['EMP_POSITION'] ?></p>
+                                        <img src="../../Admin/admin_php/upload/<?php echo $profilePic ?>" alt="Profile Image" class="rounded-circle">
+                                        <p class="name mt-4"></p>
+                                        <p class="position mt-4"></p>
                                     </div>
                                     
                                     <div class="contactInfo mt-4">
                                         <p class="contactHead">Contact Information</p>
                                         <div class="contactValues">
-                                            <p class="contactBody">Phone Number <span class="contactValue"><?php echo $row['EMP_PHONE_NUM'] ?></span></p>
-                                            <p class="contactBody">Emergency Number <span class="contactValue1"><?php echo $row['EMP_EMERGENCY_NUM'] ?></span></p>
-                                            <p class="contactBody">Email <span class="contactValue2"><?php echo $row['EMP_EMAIL'] ?></span></p>
+                                            <p class="contactBody">Phone Number <span class="contactValue"><?php echo $phoneNum?></span></p>
+                                            <p class="contactBody">Email <span class="contactValue2"><?php echo $email ?></span></p>
                                         </div>
                                     </div>
                                     <div>
@@ -140,9 +137,9 @@
                                     <div class="contactInfo">
                                         <p class="contactHead">Work Information</p>
                                         <div class="contactValues">
-                                            <p class="contactBody">Employee ID <span class="contactValueId"><?php echo $row['EMPLOYEE_ID'] ?></span></p>
-                                            <p class="contactBody">Position <span class="contactValueStaff"><?php echo $row['EMP_POSITION'] ?></span></p>
-                                            <p class="contactBody">Basic Salary <span class="contactValueSalary"><?php echo $row['EMP_BASIC_SALARY'] ?></span></p>
+                                            <p class="contactBody">Employee ID <span class="contactValueId"><?php echo $userID ?></span></p>
+                                            <p class="contactBody">Position <span class="contactValueStaff"></span></p>
+                                            <p class="contactBody">Basic Salary <span class="contactValueSalary"></span></p>
                                         </div>
                                     </div>
                                     <div>
@@ -151,59 +148,67 @@
                                     <div class="contactInfo">
                                         <p class="contactHead">Personal Information</p>
                                         <div class="contactValues">
-                                            <p class="contactBody">First Name <span class="contactValueFname"><?php echo $row['EMP_FIRST_NAME'] ?></span></p>
-                                            <p class="contactBody">Last Name <span class="contactValueLname"><?php echo $row['EMP_LAST_NAME'] ?></span></p>
-                                            <p class="contactBody">Gender <span class="contactValueGender"><?php echo $row['EMP_GENDER'] ?></span></p>
+                                            <p class="contactBody">First Name <span class="contactValueFname"><?php echo $fname ?></span></p>
+                                            <p class="contactBody">Last Name <span class="contactValueLname"><?php echo $lname?></span></p>
+                                            <p class="contactBody">Gender <span class="contactValueGender"><?php echo $gender ?></span></p>
                                         </div>
                                     </div>
                                     <br>
 
 
                                 </div>
-
-                                <?PHP
-                            }
-
-                        ?>
                     </div>
                 </div>
                 <div class="row custom-height">
                     <div class="col-12 col-md-7 mt-3">
                         <div class="content-3 p-1 dtrdata">
-                        <div class="col-12 table-container">
-                            <table class="table">
-                                <thead>
-                                <tr>
-                                    <th scope="col" style="font-weight: bold;">Date</th>
-                                    <th scope="col" style="font-weight: bold;">Status</th>
-                                    <th scope="col" style=" font-weight: bold;">Time in</th>
-                                    <th scope="col" style="font-weight: bold;">Time out</th>
-                                    <th scope="col" style="font-weight: bold;">Overtime</th>
+                            <div class="col-12 table-container" style="overflow-y: auto; max-height: 500px;"> <!-- Adjust max-height as needed -->
+                                <form id="pdfForm" method="post" action="pdf_dtr.php">
+                                    <input type="text" hidden="hidden" value="<?php echo $userID?>" name="userID">
+                                    <table class="table">
+                                        <thead>
+                                        <tr>
+                                            <th scope="col" style="font-weight: bold;">Date</th>
+                                            <th scope="col" style="font-weight: bold;">Status</th>
+                                            <th scope="col" style="font-weight: bold;">Time in</th>
+                                            <th scope="col" style="font-weight: bold;">Time out</th>
+                                            <th scope="col" style="font-weight: bold;">Hours Worked</th>
+                                            <th scope="col" style="font-weight: bold;">Overtime</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
 
-                                </tr>
-                                </thead>
-                                <tbody>
-                                    <?php
-                                        $printData = "SELECT * FROM emp_dtr WHERE EMPLOYEE_ID  = '$userid'";
-                                        $printDatarun = mysqli_query($conn, $printData);
-                                        while ($row = mysqli_fetch_array($printDatarun)){
-                                            ?>
-                                                <tr>
-                                                    <th scope="row" class="date">
-                                                        <?php echo $row['EMP_DTR_DATE'] ?>
-                                                    </th>
-                                                    <td class="stat"><?php echo $row['EMP_DTR_STATUS'] ?></td>
-                                                    <td><?php echo $row['EMP_DTR_TIME_IN'] ?></td>
-                                                    <td><?php echo $row['EMP_DTR_TIME_OUT'] ?></td>
-                                                    <td><?php echo $row['EMP_DTR_OVERTIME'] ?></td>
-                                
-                                                </tr>
-                                            <?php
+                                        <?php
+
+                                        $userdatadtr = $userDTRData->getEmpDtrData($userID);
+                                        foreach ($userdatadtr as $row) {
+                                            echo '<tr>';
+                                            echo '<td>' . $row['EMP_DTR_DATE'] . '</td>';
+                                            echo '<td>' . $row['EMP_DTR_STATUS'] . '</td>';
+                                            date_default_timezone_set('Asia/Manila');
+                                            echo '<td>' . $row['EMP_DTR_TIME_IN_FORMATTED'] . '</td>';
+                                            echo '<td>' . $row['EMP_DTR_TIME_OUT_FORMATTED'] . '</td>';
+                                            echo '<td>' . $row['EMP_TOTAL_HOURS_WORKED'] . '</td>';
+                                            echo '<td>' . $row['EMP_DTR_OVERTIME_HOURS'] . '</td>';
+                                            echo '</tr>';
                                         }
-                                    ?>
-                                </tbody>
-                            </table>
-                        </div>
+                                        ?>
+                                        </tbody>
+                                    </table>
+                                    <button type="submit" style="background-color: #4CAF50; /* Green */
+                                        border: none;
+                                        color: white;
+                                        padding: 2px 32px;
+                                        text-align: center;
+                                        text-decoration: none;
+                                        display: inline-block;
+                                        font-size: 16px;
+                                        margin: 4px 2px;
+                                        cursor: pointer;
+                                        border-radius: 4px;">PRINT DTR</button>
+                                </form>
+                            </div>
+
                     </div>
                     </div>
                 </div>

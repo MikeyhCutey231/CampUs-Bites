@@ -136,7 +136,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['search'])) {
                       foreach ($productData as $product) {
                           // Check if the keys exist before accessing them
                           $status = isset($product['prodStatus']) ? $product['prodStatus'] : 'Unknown';
-                          $textColor = ($status === 'Disabled') ? '#FF0000' : '#3DC53A';
+                          $textColor = ($status === 'Disabled') ? '#FF0000' : '#29AD27';
 
                           $notificationCircle = (isset($product['prodQuantity']) && $product['prodQuantity'] <= 5) ? '<div class="notification-circle"><p>' . $product['prodQuantity'] . '</p></div>' : '';
 
@@ -145,27 +145,27 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['search'])) {
 
                           // Check if the keys exist before accessing them
                           echo '<div class="card-main">
-        <button class="card-1 ' . $cardClass . '">
-            <div class="Cardtop-content">
-                <img src="../../Icons/' . (isset($product['prod_pic']) ? $product['prod_pic'] : '') . '" alt="" style="width: 80px; height: 60px; object-fit: cover; border-radius: 5px;" class="foodImage">
-                <p class="foodName">' . (isset($product['prodName']) ? $product['prodName'] : '') . '</p>
-                <p class="status" style="color: ' . $textColor . ';">' . $status . '</p>
-            </div>
-            <div class="Cardbottom-content">
-                <div class="topBottomcard-content">
-                    <img src="../../Icons/clipboard.svg" alt="" width="18px">
-                    <p>Code: ' . (isset($product['prod_id']) ? $product['prod_id'] : '') . '</p>
-                </div>
-                <div class="bottomBottomcard-content">
-                    <img src="../../Icons/package.svg" alt="">
-                    <p>' . (isset($product['prod_remaining']) ? $product['prod_remaining'] : '') . ' stock available</p>
-                    ' . $notificationCircle . '
-                </div>
-            </div>
-        </button>
+                            <button class="card-1 ' . $cardClass . '">
+                                <div class="Cardtop-content">
+                                    <img src="../../Icons/' . (isset($product['prod_pic']) ? $product['prod_pic'] : '') . '" alt="" style="width: 80px; height: 60px; object-fit: cover; border-radius: 5px;" class="foodImage">
+                                    <p class="foodName">' . (isset($product['prodName']) ? $product['prodName'] : '') . '</p>
+                                    <p class="status" style="color: ' . $textColor . ';">' . $status . '</p>
+                                </div>
+                                <div class="Cardbottom-content">
+                                    <div class="topBottomcard-content">
+                                        <img src="../../Icons/clipboard.svg" alt="" width="18px">
+                                        <p>Code: ' . (isset($product['prod_id']) ? $product['prod_id'] : '') . '</p>
+                                    </div>
+                                    <div class="bottomBottomcard-content">
+                                        <img src="../../Icons/package.svg" alt="">
+                                        <p>' . (isset($product['prod_remaining']) ? $product['prod_remaining'] : '') . ' stock available</p>
+                                        ' . $notificationCircle . '
+                                    </div>
+                                </div>
+                            </button>
 
-        <a href="admin-viewItem.php?itemID=' . (isset($product['prod_id']) ? $product['prod_id'] : '') . '" style="color: white;"><button class="restock">View Item</button></a>
-    </div>';
+                            <a href="admin-viewItem.php?itemID=' . (isset($product['prod_id']) ? $product['prod_id'] : '') . '" style="color: white;"><button class="restock">View Item</button></a>
+                        </div>';
                       }
                   }
 

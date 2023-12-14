@@ -12,16 +12,25 @@ if (isset($_POST['name'])) {
         foreach ($employeeData as $row) {
             ?> <div class="card-1">
                     <div class="user-face">
-                        <?php echo '<img src="../../Icons/' . $row['U_PICTURE'] . '" alt="" style="width: 90px; height: 90px; object-fit: cover; border-radius:200px;">'; ?>
+                        <?php echo '<img src="../../Icons/' . $row['EMP_PROF_PIC'] . '" alt="" style="width: 90px; height: 90px; object-fit: cover; border-radius:200px;">'; ?>
                     </div>
                     <div class="user-info">
-                        <p style="margin-bottom: -5px; font-weight: 900; font-size: 18px; margin-top: 8px;"><?php echo $row['U_FIRST_NAME'] . ' ' . $row['U_MIDDLE_NAME'] . ' ' . $row['U_LAST_NAME'] ?></p>
-                        <p style="margin-bottom: 0px; color: #737373;"><?php echo $row['ROLE_NAME'] ?></p>
-                        <p class="positionEmpID" style="display: none;"><?php echo $row['USER_ID'] ?></p>
+                        <p style="margin-bottom: -5px; font-weight: 900; font-size: 18px; margin-top: 8px;"><?php echo $row['EMP_FIRST_NAME'] . ' ' . $row['EMP_MIDDLE_NAME'] . ' ' . $row['EMP_LAST_NAME'] ?></p>
+                        <p style="margin-bottom: 0px; color: #737373;"><?php echo $row['EMP_ROLE_NAME'] ?></p>
+                        <p class="positionEmpID" style="display: none;"><?php echo $row['EMPLOYEE_ID'] ?></p>
                     </div>
                     <div class="card-button">
-                        <button type="button" class="payrollRecord">Payroll Record</button>
+                        <button class="payrollRecord" data-payroll-id="<?php echo $row['EMP_PAYROLL_ID']; ?>">Payroll Record</button>
                     </div>
+                <script>
+                    $(document).ready(function() {
+                        $(".payrollRecord").on("click", function() {
+                            const payrollId = $(this).data("payroll-id");
+
+                            window.location.href = "../../Admin/admin_php/viewpayroll.php?payrollId=" + payrollId;
+                        });
+                    });
+                </script>
                 </div>
         <?php
         }

@@ -1,8 +1,10 @@
 <?php
-include '../../Admin/functions/UserData.php';
+require '../../Admin/functions/UserData.php';
+include '../../DTR/functions/loginUser.php';
 
 $database = new Connection();
 $conn = $database->conn;
+
 
 if (isset($_SESSION["positionEmpID"])) {
     $positionEmpID = $_SESSION["positionEmpID"];
@@ -28,6 +30,9 @@ $dtr = new UserData();
 $value1 = $dtr->getDeductionAmount("SSS");
 $value3 = $dtr->getDeductionAmount("PhilHealth");
 $value2 = $dtr->getDeductionAmount("PagIBIG");
+
+$loginuser = new LoginUser();
+
 ?>
 
 <?php
@@ -56,13 +61,26 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['search'])) {
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap" rel="stylesheet">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script>
+        window.onload = function() {
+            // Check if there is no hash in the URL
+            if (!window.location.hash) {
+                // Add "#loaded" to the URL
+                window.location = window.location + '#loaded';
+
+                // Reload the page
+                window.location.reload();
+            }
+        }
+
+    </script>
 
     <title>CampUs Bites</title>
     <link rel="apple-touch-icon" sizes="180x180" href="../../favicon/apple-touch-icon.png">
     <link rel="icon" type="image/png" sizes="32x32" href="../../favicon/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="../../favicon/favicon-16x16.png">
     <link rel="manifest" href="../../favicon/site.webmanifest">
-    <link rel="stylesheet" href="../admin_css/viewpayroll.css">
+    <link rel="stylesheet" href="../../Admin/admin_css/viewpayroll.css">
 </head>
 <body>
 <div class="wrapper">
@@ -92,7 +110,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['search'])) {
                         <?php
                         if (!empty($usersData)) {
                             $profilePic = $usersData[0]['profilePic'];
-                            echo '<img src="../../' . $profilePic . '" style="height: 38px; width: 40px; border-radius: 5px; object-fit: cover;">';
+                            echo '<img src="../../Icons/' . $profilePic . '" style="height: 38px; width: 40px; border-radius: 5px; object-fit: cover;">';
                         }
                         ?>
                     </div>
@@ -122,18 +140,25 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['search'])) {
             $viewUserDataRun = mysqli_query($conn, $viewUserData);
 
             while ($row = mysqli_fetch_array($viewUserDataRun)) {
+                $empPic = $row['U_PICTURE'];
+                $empFname = $row['U_FIRST_NAME'];
+                $empLname = $row['U_LAST_NAME'];
+                $empMname = $row['U_MIDDLE_NAME'];
+                $empRoleName = $row['ROLE_NAME'];
+
+                $fullName = $empFname . ' ' . $empMname . ' ' . $empLname;
                 ?>
                 <div class="leftcontainer">
                     <div class="top-content">
                         <div class="left-user-side">
                             <div class="user-image">
-                                <?php echo '<img src="../../Icons/' . $row['U_PICTURE'] . '" alt="" style="border-radius: 200px; object-fit: cover; width: 150px; height: 150px;">'; ?>
+                                <?php echo '<img src="../../Icons/' . $empPic . '" alt="" style="border-radius: 200px; object-fit: cover; width: 150px; height: 150px;">'; ?>
 
                             </div>
                             <div class="user-name">
 
-                                <p style="font-size: 15px; font-weight: 900; margin-bottom: -3px; margin-top: 10px;"><?php echo $row['U_FIRST_NAME'] . " ". $row['U_MIDDLE_NAME'] . " " . $row['U_LAST_NAME'] ?></p>
-                                <p style="color: #737373; margin-bottom: 20px; font-size: 14px;"><?php echo $row['ROLE_NAME']?></p>
+                                <p style="font-size: 15px; font-weight: 900; margin-bottom: -3px; margin-top: 10px;"><?php echo $empFname . " ". $empMname . " " . $empLname ?></p>
+                                <p style="color: #737373; margin-bottom: 20px; font-size: 14px;"><?php echo $empRoleName?></p>
                             </div>
                             <div class="viewprofile" style="">
                                 <button type="button" class="positionEmpID" data-employee-id="<?php echo $positionEmpID; ?>">View Profile</button>
@@ -146,27 +171,41 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['search'])) {
                             <div class="line"></div>
                             <div class="top-right-user">
                                 <?php
+                                // Ensure that the payrollId parameter is set in the URL
+                                if (isset($_GET['payrollId'])) {
+                                    // Retrieve the payroll ID from the URL
+                                    $payrollId = $_GET['payrollId'];
+
+/*                                    echo "Payroll ID: " . $payrollId;*/
+                                } else {
+
+                                }
+                                ?>
+
+                                <?php
+                                //pagkuha sa payroll records na gi generate
+                                $employeePayroll=$loginuser->getPayrollIdRecords($payrollId);
+
+                                foreach ($employeePayroll as $empPayroll) {
+                                    $startDate = $empPayroll['PAYROLL_START_DATE'];
+                                    $endDate = $empPayroll['PAYROLL_END_DATE'];
+                                }
+
                                 $basicSalary = $userDataInstance->getBasicSalaryByRole($row['ROLE_NAME']);
-                                $daysWorked = $userDataInstance->getDaysWorked($positionEmpID);
+                                $daysWorked = $userDataInstance->getDaysWorked($positionEmpID, $startDate,$endDate);
 
-                                $currentDate = date('Y-m-d');
-
-                                $endDate = $currentDate;
-
-                                $startDate = date('Y-m-d', strtotime('-15 days', strtotime($endDate)));
-                                $startDateFormatted = date('F j, Y', strtotime($startDate));
-                                $endDateFormatted = date('F j, Y', strtotime($endDate));
+                                $payrollPeriod = date('M j, Y', strtotime($startDate)) . ' - ' . date('M j, Y', strtotime($endDate));
 
                                 echo '<div class="payroll-period">';
                                 echo '<p style="font-weight: 900; margin-bottom: 0px; font-size: 18px;">PAYROLL PERIOD</p>';
-                                echo "<p style='font-size: 12px; color: #9C1421; font-weight: 600;'>$startDateFormatted - $endDateFormatted</p>";
+                                echo "<p style='font-size: 12px; color: #9C1421; font-weight: 600;'>$payrollPeriod</p>";
                                 echo '</div>';
 
 
 
                                 ?>
                                 <div class="print-payroll">
-                                    <button type="button" data-bs-toggle="modal" data-bs-target="#recieptModal">PRINT PAYROLL SLIP</button>
+                                    <button type="button" id="printPayroll" data-bs-toggle="modal" data-bs-target="#recieptModal">PRINT PAYROLL SLIP</button>
                                 </div>
                             </div>
                             <div class="middle-right-user">
@@ -232,7 +271,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['search'])) {
                                         $netSalary = $grossSalary - $totalDeduction;
                                         if ($netSalary < 500) {
                                             $netSalary = $grossSalary;
-                                            $deductionInfo = 'No deductions applied because you will receive less than the minimum wage';
+                                            $totalDeduction = 'No deductions applied';
                                         } else {
                                             $netSalary = $grossSalary - $totalDeduction;
                                         }
@@ -269,8 +308,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['search'])) {
 
                                     <div class="totaldeduction">
                                         <p>Deduction:</p>
-                                        <p>₱<?php echo number_format($totalDeduction,2) ?></p>
-                                    </div>
+                                        <p>
+                                            <?php if (is_numeric($totalDeduction)): ?>
+                                                ₱<?php echo number_format($totalDeduction, 2) ?>
+                                            <?php else: ?>
+                                                <?php echo $totalDeduction ?>
+                                            <?php endif; ?>
+                                        </p>                                    </div>
                                     <div class="netsalary1">
                                         <p>Net Salary:</p>
                                         <input type="text" value="₱<?php echo ($netSalary !== 'N/A') ? '' . number_format($netSalary, 2) : 'N/A'; ?>" readonly style="font-size: 15px; font-weight: bold; text-align: right; padding: 5px;">
@@ -303,7 +347,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['search'])) {
                         </thead>
                         <tbody>
                         <?php
-                        $rowDtr = $dtr->viewDTR($positionEmpID);
+                        $rowDtr = $dtr->viewDTR($positionEmpID, $startDate, $endDate);
 
                         if (!empty($rowDtr)) {
                             $dtr->renderEmployeeDTR($rowDtr);
@@ -311,7 +355,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['search'])) {
                             echo "<p style='color: red;text-align: center'>No DTR data available for this employee.</p>";
                         }
                         ?>
-
 
                         </tbody>
                     </table>
@@ -325,12 +368,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['search'])) {
 
 
 
-
-
-
-
-
-
 <?php
 $viewUserData = "SELECT * FROM vwpayroll_list WHERE USER_ID = '$positionEmpID'";
 $viewUserDataRun = mysqli_query($conn, $viewUserData);
@@ -338,157 +375,128 @@ $viewUserDataRun = mysqli_query($conn, $viewUserData);
 while ($row = mysqli_fetch_array($viewUserDataRun)) {
 ?>
 <!-- Modal -->
-<div class="modal fade" id="recieptModal" tabindex="-1" aria-hidden="true">
-    <div class="modal-dialog modal-xl">
-        <div class="modal-content">
-            <div class="modal-body">
-                <div class="payslip-container">
-                    <div class="left-payinfo">
-                        <div class="top-info">
-                            <div class="logo">
-                                <div class="logo-name">
-                                    <p style="margin-bottom: 0px;">CampUs Bites</p>
-                                </div>
-                                <div class="logo-subinfo">
-                                    <p style="font-weight: 900;">PAYSLIP - SEMI-MONTHLY PAYROLL</p>
-                                    <p style="margin-right: 30px;">PERIOD: 11/2022 to 11/15/22</p>
-                                </div>
-                            </div>
-                            <div class="employee">
-                                <div class="employee-name">
-                                    <p style="margin-bottom: 0px;">EMPLOYEE: <?php echo $row['U_FIRST_NAME'] . ' ' . (!empty($row['U_MIDDLE_NAME']) ? $row['U_MIDDLE_NAME'][0] . '. ' : '') . $row['U_LAST_NAME']; ?></p>
-                                </div>
-                                <div class="employee-status">
-                                    <p  style="margin-bottom: 0px;">STATUS: </p>
-                                    <p  style="margin-bottom: 0px;">REGULAR</p>
-                                </div>
-                            </div>
-                            <div class="position">
-                                <p >POSITION:  <?php echo $row['ROLE_NAME'] ?></p>
-                            </div>
-                        </div>
-                        <div class="bottom-info">
-                            <div class="overtime">
-                                <div class="overtime-top-container" style="border-right: 1px dashed black;">
-                                    <p style="padding-left: 20px; margin-bottom: 0px;">OVERTIME</p>
-                                    <p style="margin-bottom: 0px;">MIN</p>
-                                    <p style="padding-right: 20px; margin-bottom: 0px;">PAY</p>
-                                </div>
-                                <div class="overtime-low-container">
-                                    <div class="overtime-text">
-                                        <p>REGULAR</p>
-                                    </div>
-                                    <div class="min-text">
-                                        <p>0</p>
-                                    </div>
-                                    <div class="pay-text">
-                                        <p style="padding-right: 20px;">0.00</p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="adjustment">
-                                <div class="adjustment-top">
-                                    <p style="margin-bottom: 0px; padding-left: 10px;">ADJUSTMENTS</p>
-                                    <p style="margin-bottom: 0px; padding-right: 10px;">AMOUNT</p>
-                                </div>
-                                <div class="adjustment-bottom">
-                                    <div class="adjustment-text">
-                                        <p>13 MONTH</p>
-                                        <p>INCENTIVES</p>
-                                        <p>PAID LEAVES</p>
-                                        <p>HOLIDAY PAY</p>
-                                        <p>OTHERS</p>
-                                    </div>
-                                    <div class="amount-text">
-                                        <p>0.00</p>
-                                        <p>0.00</p>
-                                        <p>0.00</p>
-                                        <p>0.00</p>
-                                        <p>0.00</p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="tax-deduction">
-                                <div class="tax-deduction-top">
-                                    <p style="margin-bottom: 0px; padding-left: 10px;">DEDUCTION</p>
-                                    <p style="margin-bottom: 0px; padding-right: 10px;">AMOUNT</p>
-                                </div>
-                                <div class="tax-deduction-bottom">
-                                    <div class="deduction-info">
-                                        <p>W/H TAX</p>
-                                        <p>SSS</p>
-                                        <p>PHILHEALTH</p>
-                                        <p>PAG-IBIG</p>
-                                        <p>TARDINESS</p>
-                                        <p>LOAN</p>
-                                        <p>OTHERS</p>
-                                    </div>
-                                    <div class="deductamount-info">
-                                        <p>0.00</p>
-                                        <p>0.00</p>
-                                        <p>0.00</p>
-                                        <p>0.00</p>
-                                        <p>0.00</p>
-                                        <p>0.00</p>
-                                        <p>0.00</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="right-payinfo">
-                        <div class="basic-pay">
-                            <p style="margin-bottom: 0px; margin-left: 10px;">BASIC PAY</p>
-                            <p style="margin-bottom: 0px; margin-left: 130px;">0.00</p>
-                        </div>
-                        <div class="overall-payment">
-                            <div class="top-payment">
-                                <div class="payments">
-                                    <p>OVERTIME:</p>
-                                    <p>13 MONTH:</p>
-                                    <p>ALLOWANNCE:</p>
-                                </div>
-                                <div class="payment-cost">
-                                    <p>0.00</p>
-                                    <p>0.00</p>
-                                    <p>0.00</p>
-                                </div>
-                            </div>
-
-                            <div class="mid-payment">
-                                <div class="payments">
-                                    <p>GROSS PAY:</p>
-                                    <p>DEDUCTION:</p>
-                                </div>
-                                <div class="payment-cost">
-                                    <p>0.00</p>
-                                    <p>0.00</p>
-                                </div>
-                            </div>
-
-                            <div class="low-payment">
-                                <div class="netpay">
-                                    <p>NET PAY:</p>
-                                </div>
-                                <div class="netpay-cost">
-                                    <p>0.00</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="modal-footer border-0">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary">Print Payroll Slip</button>
-            </div>
-        </div>
-    </div>
-</div>
 <?php
 }
 ?>
-<script src="/Admin/admin_js/admin.js"></script>
+<script src="../../Admin/admin_js/admin.js"></script>
+<script>
+    document.getElementById("printPayroll").addEventListener("click", function() {
+        const form = document.createElement("form");
+        form.method = "POST";
+        form.action = "payroll_pdf.php";
+
+        const employeeIdInput = document.createElement("input");
+        employeeIdInput.type = "hidden";
+        employeeIdInput.name = "employeeId";
+        employeeIdInput.value = "<?php echo htmlspecialchars($positionEmpID, ENT_QUOTES, 'UTF-8'); ?>";
+
+        const payrollPeriod = document.createElement("input");
+        payrollPeriod.type = "hidden";
+        payrollPeriod.name = "payrollPeriod";
+        payrollPeriod.value = "<?php echo htmlspecialchars($payrollPeriod, ENT_QUOTES, 'UTF-8'); ?>";
+
+        const fullName = document.createElement("input");
+        fullName.type = "hidden";
+        fullName.name = "fullName";
+        fullName.value = "<?php echo htmlspecialchars($fullName, ENT_QUOTES, 'UTF-8'); ?>";
+
+        const RPH = document.createElement("input");
+        RPH.type = "hidden";
+        RPH.name = "RPH";
+        RPH.value = "<?php echo htmlspecialchars($basicSalary, ENT_QUOTES, 'UTF-8'); ?>";
+
+        const NDW = document.createElement("input");
+        NDW.type = "hidden";
+        NDW.name = "NDW";
+        NDW.value = "<?php echo htmlspecialchars($daysWorked, ENT_QUOTES, 'UTF-8'); ?>";
+
+        const subtotal = document.createElement("input");
+        subtotal.type = "hidden";
+        subtotal.name = "subtotal";
+        subtotal.value = "<?php echo htmlspecialchars($subtotal, ENT_QUOTES, 'UTF-8'); ?>";
+
+        const overtimeRate = document.createElement("input");
+        overtimeRate.type = "hidden";
+        overtimeRate.name = "overtimeRate";
+        overtimeRate.value = "<?php echo htmlspecialchars($overtimeRate, ENT_QUOTES, 'UTF-8'); ?>";
+
+        const totalOT = document.createElement("input");
+        totalOT.type = "hidden";
+        totalOT.name = "totalOT";
+        totalOT.value = "<?php echo htmlspecialchars($totalOvertimeHours, ENT_QUOTES, 'UTF-8'); ?>";
+
+        const subtotalOT = document.createElement("input");
+        subtotalOT.type = "hidden";
+        subtotalOT.name = "subtotalOT";
+        subtotalOT.value = "<?php echo htmlspecialchars($overtimeSubtotal, ENT_QUOTES, 'UTF-8'); ?>";
+
+        const grossSalary = document.createElement("input");
+        grossSalary.type = "hidden";
+        grossSalary.name = "grossSalary";
+        grossSalary.value = "<?php echo htmlspecialchars($grossSalary, ENT_QUOTES, 'UTF-8'); ?>";
+
+        const SSS = document.createElement("input");
+        SSS.type = "hidden";
+        SSS.name = "SSS";
+        SSS.value = "<?php echo htmlspecialchars($value1, ENT_QUOTES, 'UTF-8'); ?>";
+
+        const PagIbig = document.createElement("input");
+        PagIbig.type = "hidden";
+        PagIbig.name = "PagIbig";
+        PagIbig.value = "<?php echo htmlspecialchars($value3, ENT_QUOTES, 'UTF-8'); ?>";
+
+        const Philhealth = document.createElement("input");
+        Philhealth.type = "hidden";
+        Philhealth.name = "Philhealth";
+        Philhealth.value = "<?php echo htmlspecialchars($value2, ENT_QUOTES, 'UTF-8'); ?>";
+
+        const totalDeduc = document.createElement("input");
+        totalDeduc.type = "hidden";
+        totalDeduc.name = "totalDeduc";
+        totalDeduc.value = "<?php echo htmlspecialchars($totalDeduction, ENT_QUOTES, 'UTF-8'); ?>";
+
+        const netSalary = document.createElement("input");
+        netSalary.type = "hidden";
+        netSalary.name = "netSalary";
+        netSalary.value = "<?php echo htmlspecialchars($netSalary, ENT_QUOTES, 'UTF-8'); ?>";
+
+        const adminUsername = document.createElement("input");
+        adminUsername.type = "hidden";
+        adminUsername.name = "adminUsername";
+        adminUsername.value = "<?php echo htmlspecialchars($adminUsername, ENT_QUOTES, 'UTF-8'); ?>";
+
+        const position = document.createElement("input");
+        position.type = "hidden";
+        position.name = "position";
+        position.value = "<?php echo htmlspecialchars($empRoleName, ENT_QUOTES, 'UTF-8'); ?>";
+
+        // Append input fields to the form
+        form.appendChild(employeeIdInput);
+        form.appendChild(payrollPeriod);
+        form.appendChild(position);
+        form.appendChild(fullName);
+        form.appendChild(RPH);
+        form.appendChild(NDW);
+        form.appendChild(subtotal);
+        form.appendChild(overtimeRate);
+        form.appendChild(totalOT);
+        form.appendChild(subtotalOT);
+        form.appendChild(grossSalary);
+        form.appendChild(SSS);
+        form.appendChild(PagIbig);
+        form.appendChild(Philhealth);
+        form.appendChild(totalDeduc);
+        form.appendChild(netSalary);
+        form.appendChild(adminUsername);
+
+        // Append the form to the document and submit it
+        document.body.appendChild(form);
+        form.submit();
+
+        // Remove the form from the document
+        document.body.removeChild(form);
+    });
+</script>
 <script>
     document.addEventListener('DOMContentLoaded', function () {
         var positionEmpIDButtons = document.querySelectorAll('.positionEmpID');

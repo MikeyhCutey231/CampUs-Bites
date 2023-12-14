@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title></title>
+
+    <style>
+
+        h3, h2, p {
+            padding-left: 10px;
+        }
+
+        .Container {
+            display: block;
+            border: 1px solid black;
+            width: 1030px;
+        }
+
+        .FormName {
+            display: block;
+            border: 1px solid black;
+            height: 120px;
+        }
+
+        .FormName-1 {
+            float: left;
+            width: 60%;
+        }
+
+        .FormName-2 {
+            float: left;
+            width: 40%;
+            text-align: right;
+        }
+
+        .Emp {
+            display: block;
+            height: 50px;
+            border: 1px solid black;
+        }
+
+        .Emp-1 {
+            float: left;
+            width: 50%;
+        }
+
+        .Emp-2 {
+            float: left;
+            width: 50%;
+        }
+
+        .Label{
+            display: block;
+            height: 60px;
+            border: 1px solid black;
+            text-align: center;
+            border-bottom: none;
+        }
+
+        .Label1{
+            float: left;
+            width: 50.1%;
+            border-right: 2px solid black;
+        }
+
+        .EmpTables-1 {
+            display: block;
+            border: 1px solid black;
+            height: 140px;
+            border-bottom: none;
+        }
+
+        .SalaryInfo {
+            float: left;
+            width: 25%;
+            height: 140px;
+            border-right: 1px solid black;
+            border-bottom: none;
+        }
+
+        .OverT {
+            float: left;
+            width: 25%;
+            height: 140px;
+            border-right: 1px solid black;
+            border-bottom: none;
+        }
+
+        .Deduc {
+            float: left;
+            width: 49.4%;
+            height: 140px;
+            border-left: 1px solid black;
+            border-bottom: none;
+        }
+
+        .SubTot{
+            display: block;
+            width: 99.8%;
+            height: 50px;
+            border: 1px solid black;
+        }
+
+        .GS{
+            float: left;
+            width: 50.1%;
+            height: 50px;
+            border-right: 1px solid black;    
+        }
+
+        .TDeduc{
+            float: left;
+            width: 48%;
+            height: 50px;
+            border-left: 1px solid black;
+        }
+        
+        .Totes {
+            display: block;
+            border: 1px solid black;
+            height: 60px;
+        }
+        .People {
+            display: block;
+            border: 1px solid black;
+            height: 100px;
+        }
+
+        .People-1 {
+            float: left;
+            width: 49%;
+            padding: 25px 0;
+        }
+
+        .People-2 {
+            float: left;
+            width: 49%;
+            padding: 25px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="Container">
+        <div class="FormName">
+            <div class="FormName-1">
+                <h2>UNIVERSITY OF SOUTHEASTERN PHILIPPINES</h2>
+                <h3>Campus Bites</h3>
+            </div>
+
+            <div class="FormName-2">
+                <p>Period: {{ PayrollPeriod }}</p>
+            </div>
+        </div>
+
+        <div class="Emp">
+            <div class="Emp-1">
+                <p>Employee Name: {{ EName }}</p>
+            </div>
+
+            <div class="Emp-2">
+                <p>Position: {{ EPosition }}</p>
+            </div>    
+        </div>
+
+        <div class="Label">
+            <div class="Label1">
+                <h3>Gross Salary</h3>
+            </div>
+        
+            <div class="Label2">
+                <h3>Deductions</h3>
+            </div>
+        </div>
+
+        <div class="EmpTables-1">
+            <div class="SalaryInfo">
+                <div>
+                    <p>Rate per day: PHP {{ Rate }}</p>
+                    <p>Number of Days Work: {{ NDW }}</p>
+                </div>
+
+                <div>
+                	<p>SUBTOTAL: PHP {{ STotal1 }}</p>
+                </div>
+            </div>
+
+            <div class="OverT"> 
+        		<div>
+                    <p>Overtime Rate per Hour: PHP {{ ORH }}</p>
+                    <p>Total Hours of Overtime: {{ THO }}</p>
+                </div>
+
+                <div>
+                	<p>SUBTOTAL: PHP {{ STotal2 }}</p>
+                </div>
+        	</div>
+            
+            <div class="Deduc">
+                <div>
+                    <p>SSS: PHP {{ sss }}</p>
+                    <p>PhilHealth: PHP {{ PHILHEALTH }}</p>
+                    <p>Pag-IBIG: PHP {{ PI }}</p>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="SubTot">
+
+        <div class="GS">
+        	<p style="color: red;">TOTAL GROSS SALARY: PHP {{ GrossPay }}</p>
+        </div>
+
+        <div class="TDeduc">
+        	<p style="color: red;">TOTAL DEDUCTIONS: PHP {{ TotalDeductions }}</p>
+        </div>
+
+        </div>
+
+        <div class="Totes">
+            <div class="Totes-1">
+                <p>(GROSS SALARY - TOTAL DEDUCTIONS) = <strong style="color: red; font-size: 21px;">NET SALARY: PHP {{ NetPay }} </strong> </p>
+            </div>
+        </div>
+
+        <div class="People">
+            <div class="People-1">
+                <p>Prepared by: {{ Name1 }}</p>
+            </div>
+
+            <div class="People-2">
+                <p>Approved by: Admin</p>
+            </div>
+        </div>
+
+    </div>
+</body>
+</html>

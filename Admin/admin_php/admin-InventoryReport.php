@@ -98,7 +98,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['search'])) {
             </div>
             <div class="main-content">
                 <div class="content">
-                        
                     <div class="button-top">
                         <div class="filter-recent">
                             <select name="" id="" class="form-select filterDropdown">
@@ -109,9 +108,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['search'])) {
                      
                     </div>
 
-                    <div class="print">
-                        <i class="fa-solid fa-print" style="padding-right:10px"></i> Print Report
-                    </div>
+                        <a href="pdf_inventoryReport.php">
+                            <div class="print">
+                                <i class="fa-solid fa-print" style="padding-right:10px"></i> Print Report
+                            </div>
+                        </a>
+
 
                 </div>
 
@@ -136,13 +138,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['search'])) {
                             if (!empty($productData)) {
                                 foreach ($productData as $product) {
                                     echo '<tr>
-                                            <td>' . $product['prod_id'] . '</td>
-                                            <td>' . $product['prodName'] . '</td>
-                                            <td>₱' . number_format($product['prod_price'], 2) . '</td>
-                                            <td>' . $product['prodQuantity'] . '</td>
-                                            <td>' . $product['prod_sold'] . '</td>
-                                            <td>₱' . number_format($product['prod_sold'] * $product['prod_price'], 2) . '</td>
-                                        </tr>';
+                                        <td>' . $product['prod_id'] . '</td>
+                                        <td>' . $product['prodName'] . '</td>
+                                        <td>₱' . number_format($product['prod_price'], 2) . '</td>
+                                        <td>' . $product['prodQuantity'] . '</td>
+                                        <td>' . $product['prod_sold'] . '</td>
+                                        <td>₱' . number_format($product['prod_sold'] * $product['prod_price'], 2) . '</td>
+                                    </tr>';
                                 }
                             }
                             ?>
@@ -155,6 +157,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['search'])) {
     </div>
 
     <!-- Javascript -->
-    <script src="../../Admin/admin_js/admin.js"></script>
+    <script src="/Admin/admin_js/admin.js"></script>
 </body>
 </html>

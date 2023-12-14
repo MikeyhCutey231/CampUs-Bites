@@ -1,5 +1,8 @@
 <?php
 require '../../Admin/functions/UserData.php';
+$database = new Connection();
+$conn = $database->conn;
+
 
 $deductionUpdater = new UserData();
 
@@ -20,7 +23,7 @@ if(isset($_POST["updateDeducbtn"])){
         $deductionUpdater->updateDeductionAmount("PhilHealth", $phil);
     }
 
-    header("location: ../admin_php/admin-payroll.php");
+    header("location: ../../Admin/admin_php/admin-payroll.php");
 
 }
 
@@ -79,7 +82,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['search'])) {
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 
     <title>CampUs Bites</title>
-    <link rel="stylesheet" href="../../Admin/admin_css/admin-payroll.css">
+    <link rel="stylesheet" href="../../Admin//admin_css/admin-payroll.css">
 </head>
 <body>
 <div class="wrapper">
@@ -162,7 +165,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['search'])) {
             <div class="main-contentwraper" id="searchResult">
                 <?php
                 $employeeData = new UserData();
-                $data = $employeeData->getEmployeeDatas();
+                $data = $employeeData->getEmployeeData();
                 $employeeData->renderEmployeeTable($data);
                 ?>
             </div>
@@ -252,11 +255,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['search'])) {
 
 
 <!-- Javascript -->
-<script src="/Admin/admin_js/admin.js"></script>
+<script src="../../Admin/admin_js/admin.js"></script>
 <script>
-    const sssInput = document.querySelector('.sss-container input[name="SSS"]');
-    const pagIbigInput = document.querySelector('.pagIbig-container input[name="PagIBIG"]');
-    const philHealthInput = document.querySelector('.philHealth-container input[name="PhilHealth"]');
+    const sssInput = document.querySelector('.sss-container input[name="SssInput"]');
+    const pagIbigInput = document.querySelector('.pagIbig-container input[name="pagIbigInput"]');
+    const philHealthInput = document.querySelector('.philHealth-container input[name="philHealthInput"]');
 
     // Function to allow only numeric input
     function allowOnlyNumbers(input) {

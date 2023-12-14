@@ -1,10 +1,11 @@
 <?php
-include("../admin_functions/payroll.php");
+require '../../Admin/functions/UserData.php';
+require '../../DTR/functions/loginUser.php';
 
-$database = new Database();
+$database = new Connection();
 $conn = $database->conn;
 
-session_start();
+
 if (isset($_SESSION["positionEmpID"])) {
     $positionEmpID = $_SESSION["positionEmpID"];
 } else {
@@ -12,7 +13,7 @@ if (isset($_SESSION["positionEmpID"])) {
 }
 ?>
 <?php
-require '../admin_functions/UserData.php';
+
 $loggedUser = $_SESSION['USER_ID'];
 $userDataInstance = new UserData();
 $usersData = $userDataInstance->getUserData($loggedUser);
@@ -24,10 +25,12 @@ if (!isset($_SESSION['USER_ID'])) {
 
 $employeeData = $userDataInstance->getEmployeeDataCashier();
 
+$loginuser = new LoginUser();
+
 ?>
 
 <?php
-require '../admin_functions/LiveSearchFunction.php';
+require '../../Admin/functions/LiveSearchFunction.php';
 $customerTableSorter = new TableSorter('#searchresult', '.filterDropdown');
 $customerTableSorter->addSortingScript();
 $searchHandler = new SearchHandler();
@@ -54,7 +57,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['search'])) {
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 
     <title>CampUs Bites</title>
-    <link rel="stylesheet" href="/Admin/admin_css/viewpayrollhistory.css">
+    <link rel="stylesheet" href="../../Admin/admin_css/viewpayrollhistory.css">
 </head>
 <body>
     <div class="wrapper">
@@ -69,13 +72,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['search'])) {
                 </div>
                 <!-- Main Search Bar -->
                 <div class="head-searchbar">
-                    <img src="/Icons/search.svg" alt="" width="20px" style="margin-top: 12px;">
+                    <img src="../../Icons/search.svg" alt="" width="20px" style="margin-top: 12px;">
                     <form method="post">
                         <input type="text" name="search" placeholder="Search here...">
                     </form>
                 </div>
                 <div class="usep-texthead">
-                    <img src="/Icons/useplogo.png" alt="" width="30px" height="30px">
+                    <img src="../../Icons/useplogo.png" alt="" width="30px" height="30px">
                     <p style="margin-bottom: 0px; margin-top: 3px; margin-left: 10px; font-weight: 600;">UseP (Tagum Unit)</p>
                 </div>
                 <a href="admin-profile.php" style="color: black;">
@@ -84,7 +87,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['search'])) {
                             <?php
                             if (!empty($usersData)) {
                                 $profilePic = $usersData[0]['profilePic'];
-                                echo '<img src="upload/' . $profilePic . '" style="height: 38px; width: 40px; border-radius: 5px; object-fit: cover;">';
+                                echo '<img src="../../Icons/' . $profilePic . '" style="height: 38px; width: 40px; border-radius: 5px; object-fit: cover;">';
                             }
                             ?>
                         </div>
@@ -94,7 +97,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['search'])) {
                                 $adminUsername = $usersData[0]['username'];
                                 echo '<p style="margin-bottom: 0px; font-weight: 700;">' . $adminUsername . '</p>';
 
-                                require_once '../admin_functions/user.php';
+                                require_once '../../Admin/functions/user.php';
                                 $userDataManager = new User();
                                 if ($userDataManager->isManager()) {
                                     echo '<p style="margin-bottom: 0px; font-size: 6px; background-color: #9C1421; color: white; padding: 3px; border-radius: 3px;">Manager</p>';
@@ -116,7 +119,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['search'])) {
                   while ($row = mysqli_fetch_array($viewUserDataRun)) {
                   ?>
                 <div class="user-image">
-                    <?php echo '<img src="../admin_php/upload/' . $row['U_PICTURE'] . '" alt="" style="border-radius: 200px; object-fit: cover; width: 150px; height: 150px;">'; ?>
+                    <?php echo '<img src="../../Icons/' . $row['U_PICTURE'] . '" alt="" style="border-radius: 200px; object-fit: cover; width: 150px; height: 150px;">'; ?>
                     </div>
 
                 <div class="user-info">
@@ -126,7 +129,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['search'])) {
                     <p style="color: #737373; font-size: 12px;"><?php echo $row['ROLE_NAME']?></p>
                 </div>
                 <div class="user-buttons">
-                    <button type="button" class="view"><a href="admin-viewEmployee.html">View Profile</a></button>
+                    <button type="button" class="positionEmpID view" data-employee-id="<?php echo $positionEmpID; ?>">View Profile</button>
                     <button type="button" class="back" onclick="goBack()">Back</button>
                 </div>
               </div>
@@ -143,11 +146,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['search'])) {
 
                     </div>
                     <div class="payroll-searchbar">
-                        <img src="/Icons/search.svg" alt="" width="20px" style="margin-top: 12px;">
+                        <img src="../../Icons/search.svg" alt="" width="20px" style="margin-top: 12px;">
                         <input type="text" name="fname" placeholder="Search here...">
                     </div>
                 </div>
                 <div class="main-table">
+                    <?php
+                        $employeePayroll=$loginuser->getPayrollRecords($positionEmpID);
+                    ?>
                     <table class="table table-hover">
                         <thead>
                           <tr>
@@ -159,13 +165,21 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['search'])) {
                           </tr>
                         </thead>
                         <tbody>
+                        <?php
+                        foreach ($employeePayroll as $row) {
+                            $payrollPeriod = date('M j, Y', strtotime($row['PAYROLL_START_DATE'])) . ' - ' . date('M j, Y', strtotime($row['PAYROLL_END_DATE']));
+                            ?>
                           <tr>
-                            <th scope="row">1</th>
-                            <td>Mark</td>
-                            <td>Otto</td>
-                            <td>@mdo</td>
-                            <td><button class="viewBtn">VIEW</button></td>
+                            <th scope="row" style="font-size: 12px;"><?php echo $payrollPeriod ?></th>
+                            <td style="font-size: 12px;"><?php echo $row['EMP_GROSS_SALARY']?></td>
+                            <td style="font-size: 12px;"><?php echo $row['DEDUCTIONS']?></td>
+                            <td style="font-size: 12px;"><?php echo $row['EMP_NET_SALARY']?></td>
+                              <td><button class="viewBtn" data-payroll-id="<?php echo $row['EMP_PAYROLL_ID']; ?>">VIEW</button></td>
                           </tr>
+                          <?php
+                        }
+                        ?>
+
                         </tbody>
                       </table>
                 </div>
@@ -175,11 +189,33 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['search'])) {
     </div>
 
     <!-- Javascript -->
-    <script src="/Admin/admin_js/admin.js"></script>
+    <script src="../../Admin/admin_js/admin.js"></script>
 
     <script>
+        $(document).ready(function() {
+            $(".viewBtn").on("click", function() {
+                const payrollId = $(this).data("payroll-id");
+
+                window.location.href = "viewpayroll.php?payrollId=" + payrollId;
+            });
+        });
+
+        document.addEventListener('DOMContentLoaded', function () {
+            var positionEmpIDButtons = document.querySelectorAll('.positionEmpID');
+
+            positionEmpIDButtons.forEach(function (button) {
+                button.addEventListener('click', function () {
+                    var employeeID = this.getAttribute('data-employee-id');
+
+                    window.location.href = 'admin-viewEmployee.php?employee_id=' + employeeID;
+                });
+            });
+        });
+
         function goBack() {
           window.history.back();
+
+
       }
   </script>
 </body>

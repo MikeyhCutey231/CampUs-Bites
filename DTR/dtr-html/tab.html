@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DTR Tables</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 20px;
+        }
+
+        .outer-table {
+            width: 80%;
+            margin: 0 auto;
+            background-color: #fff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        table {
+            border-collapse: collapse;
+            width: 100%;
+            margin-top: 20px;
+        }
+
+        th, td {
+            border: 1px solid #dddddd;
+            text-align: center;
+            padding: 12px;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+
+        .inner-table {
+            border: 1px solid #333;
+            width: 100%;
+            margin-bottom: 20px;
+        }
+
+        .inner-table th, .inner-table td {
+            padding: 12px;
+        }
+    </style>
+</head>
+<body>
+
+<!-- First Table -->
+<div class="outer-table">
+    <h3>EMPLOYEE DTR</h3>
+    <table>
+        <thead>
+        <tr>
+            <th colspan="2">Name: {employee_name}</th>
+            <th colspan="2">Date: {day} </th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td colspan="4">
+                <table class="inner-table">
+                    <thead>
+                    <tr>
+                        <th rowspan="2">DAY</th>
+                        <th colspan="2">A.M</th>
+                        <th colspan="2">P.M</th>
+                        <th colspan="2">OVERTIME</th>
+                    </tr>
+                    <tr>
+                        <th colspan="2">Arrival</th>
+                        <th colspan="2">Departure</th>
+                        <th colspan="2">Hours</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <!-- Add more rows dynamically -->
+                    {attendance_data}
+                    </tbody>
+                </table>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+
+</body>
+</html>

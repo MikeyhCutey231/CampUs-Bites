@@ -1,7 +1,7 @@
 <?php
-require '../functions/dbConfig.php';
+require '../../config.php';
 
-$dbConnection = new Connection();
+$dbConnection = new Database();
 $conn = $dbConnection->conn;
 
 if (isset($_POST["username"], $_POST["password"])) {

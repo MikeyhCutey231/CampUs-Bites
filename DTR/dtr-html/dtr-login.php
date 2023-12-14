@@ -1,149 +1,35 @@
 <?php
-    include("../functions/logModalHandler.php");
 
-    if (isset($_SESSION['username'])) {
-        $username = $_SESSION['username'];
+require '../functions/loginUser.php';
 
-        $currentDate = date("Y-m-d");
-        $current_time = date('Y-m-d H:i:s');
-        
-        if (isset($_POST["yesBtn"])) {
-            $checkUserlogsql = "SELECT * FROM emp_dtr WHERE EMP_DTR_DATE = '$currentDate' AND EMPLOYEE_ID  = '$username'";
-            $checkUserRun = mysqli_query($conn, $checkUserlogsql);
-        
-            if (mysqli_num_rows($checkUserRun) > 0) {
-                // User has logged in at least once on the same day
-                $checkTimeOut = "SELECT * FROM emp_dtr WHERE EMPLOYEE_ID = '$username' AND EMP_DTR_TIME_OUT IS NULL";
-                $timeOutrun = mysqli_query($conn, $checkTimeOut);
-        
-                if ($timeOutrun) {
-                    $row = mysqli_fetch_assoc($timeOutrun);
-                    if ($row["EMP_DTR_TIME_OUT"] == NULL && $row['EMPLOYEE_ID'] == $username) {
-                        // Update the time out for the first login
-                        
-                        // Calculate overtime
-                        $logoutTime = $current_time; // Replace with the actual column that stores log out time
-                        $logoutHour = date('H:i', strtotime($logoutTime));
-                        $logoutTimeThreshold = '19:00'; // 7:00 PM
-        
-                        if ($logoutHour <= $logoutTimeThreshold) {
-                            $basicSalary = 1000; // Replace with the user's basic salary
-                            $overtimeHours = (strtotime($logoutTime) - strtotime('17:00:00')) / 3600;
-                            $overtimeHours = min($overtimeHours, 2);
-                            $overtimePay = ($basicSalary / 8) * $overtimeHours;
+$loginuser = new LoginUser();
+$error_message = '';
 
+if(isset($_POST["submit"])){
+    $username = $_POST["username"];
+    $password = $_POST["password"];
 
-                            $_SESSION['ovetime'] = $overtimeHours;
-                            $updateUser = "UPDATE emp_dtr SET EMP_DTR_TIME_OUT = '$current_time', EMP_DTR_STATUS = 'Present', EMP_DTR_OVERTIME = '$overtimeHours' WHERE EMP_DTR_DATE = '$currentDate' AND EMP_DTR_TIME_OUT IS NULL";
-                            $updateUserRun = mysqli_query($conn, $updateUser);
-                            $_SESSION['date'] = $username;
-                        }
-                    } else {
-                        // User has already used 2 logins
-                        $_SESSION['date'] = $username;
-                    }
-                }
-            } else {
-                // User has not logged in today
-                $_SESSION['date'] = $username;
-                $insertUserdate = "INSERT INTO emp_dtr (EMPLOYEE_ID, EMP_DTR_DATE, EMP_DTR_TIME_IN) VALUES ('$username', '$currentDate', '$current_time');";
-                $insertRunuser = mysqli_query($conn, $insertUserdate);
-            }
-        
-            header('location: dtr-staff-attendance.php');
-        }
-        
-        
-        
+    $result = $loginuser->userLogin($username, $password);
 
+    if ($result === LoginUser::REGISTRATION_EMPTY_FIELDS) {
+        $error_message = "Kindly, fill in all the inputs";
+    } else if ($result === LoginUser::REGISTRATION_NOTSAME) {
+        $error_message = "Kindly input your proper credentials";
+    } else if ($result === LoginUser::REGISTRATION_DEACTIVATED) {
+        $error_message = "User account is deactivated.";
+    }else if ($result === LoginUser::REGISTRATION_NOTSTAFF) {
+        $error_message = "User account is not staff.";
+    }else if ($result === LoginUser::REGISTRATION_LIMIT) {
+        $error_message = "You have timed out already for today.";
+    } else if ($result === LoginUser::REGISTRATION_SUCCESS) {
 
-        if (isset($_POST["noBtn"])) {
-            $checkUserlogsql = "SELECT * FROM emp_dtr WHERE EMP_DTR_DATE = '$currentDate' AND EMPLOYEE_ID  = '$username'";
-            $checkUserRun = mysqli_query($conn, $checkUserlogsql);
-        
-            if (mysqli_num_rows($checkUserRun) > 0) {
-                // User has logged in at least once on the same day
-                $checkTimeOut = "SELECT * FROM emp_dtr WHERE EMPLOYEE_ID = '$username' AND EMP_DTR_TIME_OUT IS NULL";
-                $timeOutrun = mysqli_query($conn, $checkTimeOut);
-        
-                if ($timeOutrun) {
-                    $row = mysqli_fetch_assoc($timeOutrun);
-                    if ($row["EMP_DTR_TIME_OUT"] == NULL && $row['EMPLOYEE_ID'] == $username) {
-                        // Update the time out for the first login
-                        $updateUser = "UPDATE emp_dtr SET EMP_DTR_TIME_OUT = '$current_time', EMP_DTR_STATUS = 'Present' WHERE EMPLOYEE_ID = '$username' AND EMP_DTR_TIME_OUT IS NULL";
-                        $updateUserRun = mysqli_query($conn, $updateUser);
-                        $_SESSION['date'] = $username;
-                    } else {
-                        // User has already used 2 logins
-                        $_SESSION['date'] = $username;
-                    }
-                }
-            } else {
-                // User has not logged in today
-                $_SESSION['date'] = $username;
-                $insertUserdate = "INSERT INTO emp_dtr (EMPLOYEE_ID, EMP_DTR_DATE, EMP_DTR_TIME_IN) VALUES ('$username', '$currentDate', '$current_time');";
-                $insertRunuser = mysqli_query($conn, $insertUserdate);
-            }
-        
-            header('location: dtr-login.php');
-        }
-        
-         
-           
-        
-
-        // $dateSql = "SELECT * FROM emp_dtr WHERE EMP_DTR_DATE = '$currentDate'";
-        // $dateSqlrun = mysqli_query($conn, $dateSql);
-
-        // $row = mysqli_fetch_array($dateSqlrun);
-    
-        // if($currentDate == $row["EMP_DTR_DATE"]){
-        //     $username = "date exist";
-        // }else{
-        //     $username = "date not exist";
-        // }
-
-
-
-
-        // Date and Time 
-        // login count = 2 - 1 (first login)
-        // login count = 1
-
-        // if(currentDate == databaseDate){
-        //     if(user == already exist){
-        //         checks the log count
-        //             if(loginCount == 1){
-        //                 if(user == first login) store database time in and date then login count = 1
-        //                 else if 
-        //                 (user = second login) update database time out, time thne logout count = 0
-
-        //             }else if(loginCount == 0){
-        //                 print you have reached the maximum login
-        //             }
-        //     }else{
-        //         if(loginCount == 1){
-        //                 if(user == first login) store database time in and date then login count = 1
-        //                 else if 
-        //                 (user = second login) update database time out, time thne logout count = 0
-
-        //             }else if(loginCount == 0){
-        //                 print you have reached the maximum login
-        //         }
-        //     }
-        // }else if(currentDate != databaseDate){
-        //     if(loginCount == 1){
-        //                 if(user == first login) store database time in and date then login count = 1
-        //                 else if 
-        //                 (user = second login) update database time out, time thne logout count = 0
-
-        //             }else if(loginCount == 0){
-        //                 print you have reached the maximum login
-        //         }
-        // }
+        $_SESSION['USER_ID'] = $loginuser->getUserID();
+        header("location: dtr-staff-attendance.php");
+        exit();
     }
-?>
 
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -167,6 +53,20 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
 
+    <style>
+        .error-message {
+            display: <?php echo isset($error_message) && !empty($error_message) ? 'block' : 'none'; ?>;
+            font-size: 12px;
+            background-color: #edb4bc;
+            color: rgb(73, 73, 73);
+            padding: 8px;
+            padding-left: 10px;
+            border-radius: 2px;
+            width: 88%;
+            opacity: 1;
+            transition: opacity 0.5s ease-in-out;
+        }
+    </style>
 
 
     <link rel="stylesheet" href="../../DTR/dtr-css/dtr-login.css">
@@ -184,37 +84,30 @@
             <div class="col-md-6 right d-flex justify-content-center align-items-center">
                     <div class="input-box text-center p-5">
                         <img src="../../Icons/Layer_1%20(1).png" class="person">
-                        <header class="titleLogin">Yawa BITES</header>
+                        <header class="titleLogin">CAMPUS BITES</header>
                         <h5 class="mb-5">Daily Time Records</h5>
-                        
-                        <div class="input-field">
-                            <input type="text" id="emailField" class="input" name="username">
-                            <label>Username</label>
-                            <img src="../../Icons/userGreen.png" class="input-icon">
-                            <i class="fa-solid fa-check" id="emailImage" width="16px" style="display: none;"></i>
-                        </div>
-
-                        <div class="input-field password">
-                            <input type="password" id="passwordField" class="input" name="password">
-                            <label>Password</label>
-                            <img src="../../Icons/lock.png" class="input-icon">
-                            <div class="password-toggle">
-                                <i class="fa-solid fa-eye-slash" id="passwordIcon" style="display: none;"></i>
+                        <form method="post" action="">
+                            <div class="input-field">
+                                <input type="text" id="emailField" class="input" name="username">
+                                <label>Username</label>
+                                <img src="../../Icons/userGreen.png" class="input-icon">
+                                <i class="fa-solid fa-check" id="emailImage" width="16px" style="display: none;"></i>
                             </div>
-                        </div>
 
-                        <div class="signin">
-                            <span><a href="#" class="forgotpass">Forgot Password?</a></span>
-                        </div>
+                            <div class="input-field password">
+                                <input type="password" id="passwordField" class="input" name="password">
+                                <label>Password</label>
+                                <img src="../../Icons/lock.png" class="input-icon">
+                                <div class="password-toggle">
+                                    <i class="fa-solid fa-eye-slash" id="passwordIcon" style="display: none;"></i>
+                                </div>
+                            </div>
+                            <div class="login">
+                                <p class="error-message"><?php echo $error_message ?></p>
+                                <button type="submit" class="submit" name="submit" id="loginButton" data-bs-target="#myModal">LOGIN</button>
+                            </div>
+                        </form>
 
-                        <div class="error error-message animate__animated animate__pulse" style="text-align: left;">
-                            <?php echo $error_message ?>
-                        </div>
-
-
-                        <div class="login">
-                            <button type="button" class="submit" name="submit" id="loginButton">LOGIN</button>
-                        </div>
                  </div>
             </div>
         </div>
@@ -222,26 +115,24 @@
 </div>
 
     <!-- Bootstrap Modal -->
-    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <!--<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered" role="document">
             <form action="" method="post">
                 <div class="modal-content text-center p-4">
                     <div class="modal-body">
 
                         <div class="d-flex justify-content-center align-items-center">
-                            <p class="msg">Do you want to view Daily Time Records? <?php echo $username ?></p>
+                            <p class="msg">Do you want to view Daily Time Records?</p>
                         </div>
                     </div>
-                    <form action="" method="POST">
                         <div class="modal-footer justify-content-center">
                             <button type="submit" name="yesBtn" class="btnY">Yes</button>
                             <button type="submit" name="noBtn" class="btnN">No</button>
                         </div>
-                    </form>
                 </div>
             </form>
         </div>
-    </div>
+    </div>-->
 
 
     <script>
@@ -279,65 +170,19 @@
                 emailImage.style.display = 'none';
             }
         });
+        function hideErrorMessage() {
+            const errorElement = document.querySelector('.error-message');
+            errorElement.style.opacity = '0';
+            setTimeout(() => {
+                errorElement.style.display = 'none';
+            }, 500);
+        }
 
-
-   
-
-         $(document).ready(function() {
-            $("#loginButton").click(function() {
-                var username = $("#emailField").val();
-                var password = $("#passwordField").val();
-                var errorElement = $(".error");
-
-                errorElement.css({
-                    fontSize: "14px",
-                    marginTop: "8px",
-                    marginBottom: "14px !important",
-                    opacity: 1 
-                });
-
-                $.ajax({
-                    type: "POST",
-                    url: "../functions/logModalHandler.php", 
-                    data: {
-                        username: username,
-                        password: password
-                    },
-                    
-                    success: function(response) {
-                       if(response === "Kindly, fill in all the inputs"){
-                            errorElement.text(response);
-                            errorElement.show();
-
-                  
-                            setTimeout(function() {
-                                errorElement.css("opacity", 0);
-                            }, 2000);
-                            setTimeout(function() {
-                                errorElement.hide();
-                            }, 2500); 
-
-                        } else if(response === "Kindly input your proper credentials"){
-                            errorElement.text(response);
-                            errorElement.show();
-
-                  
-                            setTimeout(function() {
-                                errorElement.css("opacity", 0);
-                            }, 2000);
-                            setTimeout(function() {
-                                errorElement.hide();
-                            }, 2500); 
-
-                        } else if (response === "success") {
-                            $("#myModal").modal("show");
-
-                        } 
-                    }
-                });
-            });
-        });
+        const errorElement = document.querySelector('.error-message');
+        if (errorElement.style.opacity === '1' || errorElement.innerText.trim() !== '') {
+            setTimeout(hideErrorMessage, 2000);
+        }
     </script>
-        
+
 </body>
 </html>

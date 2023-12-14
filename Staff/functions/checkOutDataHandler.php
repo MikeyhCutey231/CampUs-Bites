@@ -34,7 +34,7 @@
                     $selectDataRun = mysqli_query($conn, $selectData);
         
                     if ($row = mysqli_fetch_array($selectDataRun)) {
-                        $currentQuantity = $row['PROD_TOTAL_QUANTITY'];
+                        $currentQuantity = $row['PROD_REMAINING_QUANTITY'];
                         $currentQuantitySold = $row['PROD_SOLD'];
         
                         if ($currentQuantity >= $quantity) {
@@ -46,7 +46,7 @@
                                 $updateQuantitySold = $currentQuantitySold + $quantity;
         
                                 // Use a prepared statement to update the product quantity
-                                $updateProduct = "UPDATE product SET PROD_TOTAL_QUANTITY = ?, PROD_SOLD = ? WHERE PROD_ID = ?";
+                                $updateProduct = "UPDATE product SET PROD_REMAINING_QUANTITY = ?, PROD_SOLD = ? WHERE PROD_ID = ?";
                                 $stmt = $conn->prepare($updateProduct);
                                 $stmt->bind_param("iii", $updateQuantity, $updateQuantitySold, $itemId);
         
@@ -66,7 +66,7 @@
                     }
                 }
         
-                $posOrder = "INSERT INTO pos_order(USER_ID, POS_CART_ID, RECEIVED_AMOUNT, CHANGE_AMOUNT) VALUES ('$staffId', '$cartID', '$cashReceived', '$cashReturn')";
+                $posOrder = "INSERT INTO pos_order(EMPLOYEE_ID, POS_CART_ID, RECEIVED_AMOUNT, CHANGE_AMOUNT) VALUES ('$staffId', '$cartID', '$cashReceived', '$cashReturn')";
                 mysqli_query($conn, $posOrder);
         
                 $responseData = [

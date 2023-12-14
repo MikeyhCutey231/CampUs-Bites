@@ -1,11 +1,11 @@
 <?php
-include_once('../../config.php');
+require("../../Admin/functions/dbConfig.php");
 
 class CategoryData {
     private $conn;
 
     public function __construct() {
-        $database = new Database();
+        $database = new Connection();
         $this->conn = $database->conn;
     }
 

@@ -1,8 +1,6 @@
 <?php  
-    require '../functions/loginStaff.php';
+    require '../../Staff/functions/loginStaff.php';
     error_reporting(0);
-
-    $id = $_SESSION['Staff_ID'];
 
     $changePass = new LoginStaff();
     
@@ -10,7 +8,7 @@
         $newPassword = $_POST['newPassword'];
         $confirmPassword = $_POST['confirmPassword'];
 
-        $result = $changePass->changeLoginForgot($newPassword, $confirmPassword, $id);
+        $result = $changePass->changeLoginForgot($newPassword, $confirmPassword);
 
         $error_message = null;  
         if($result == LoginStaff::REGISTRATION_EMPTY_FIELDS){
@@ -25,6 +23,7 @@
             $error_message = "Include atleast 1 special character";
         }else if($result == LoginStaff::REGISTRATION_SUCCESS){         
             header("location: staff-login.php");
+            unset($_SESSION['email']);
         }
     }
 

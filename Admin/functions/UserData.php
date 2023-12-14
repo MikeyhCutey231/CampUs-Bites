@@ -595,5 +595,419 @@ class UserData {
     }
 
 
+
+    public function overAllUsers() {
+        $userData = array();
+
+        $query = "SELECT COUNT(*) AS totalUser FROM users;";
+
+        $stmt = $this->conn->prepare($query);
+        if ($stmt) {
+            $stmt->execute();
+            $stmt->bind_result($totalUser);
+
+            while ($stmt->fetch()) {
+                $userData[] = [
+                    'totalUser' => $totalUser,
+                ];
+            }
+
+            $stmt->close();
+        }
+
+        return $userData;
+    }
+
+
+    public function renderTotalUsers($userData) {
+        foreach ($userData as $row) {
+            ?> 
+               <div class="circle-container">
+                  <img src="../../Icons/userswhite.svg" alt="Icon">
+                </div>
+                      <h4 class="text-start mt-2" style="font-weight: bold; color: #5f5f5f "><?php echo $row['totalUser'] ?></h4>
+                      <h6 class="text-start" style="font-size: 14px;">Total Users</h6>
+
+                      <h6 class="text-start mt-2" style="font-size: 9.5px; color: #82A2F3">+3 from yesterday</h6>
+            <?php
+        }
+    }
+
+
+    public function overAllProduct() {
+        $userData = array();
+
+        $query = "SELECT COUNT(*) AS totalProduct FROM product;";
+
+        $stmt = $this->conn->prepare($query);
+        if ($stmt) {
+            $stmt->execute();
+            $stmt->bind_result($totalUser);
+
+            while ($stmt->fetch()) {
+                $userData[] = [
+                    'totalProduct' => $totalUser,
+                ];
+            }
+
+            $stmt->close();
+        }
+
+        return $userData;
+    }
+
+
+    public function renderTotalProduct($userData) {
+        foreach ($userData as $row) {
+            ?> 
+                      <h4 class="text-start mt-2" style="font-weight: bold; color: #5f5f5f "><?php echo $row['totalProduct'] ?></h4>
+                      <h6 class="text-start" style="font-size: 14px;">Total Product</h6>
+
+                      <h6 class="text-start mt-2" style="font-size: 9.5px; color: #82A2F3">+3 from yesterday</h6>
+            <?php
+        }
+    }
+
+
+    public function overAllIncome() {
+        $userData = array();
+    
+        $query = "SELECT
+            (SELECT SUM(pos_cart_item.POS_SUBTOTAL) FROM pos_cart_item) +
+            (SELECT SUM(online_cart_item.OL_SUBTOTAL) FROM online_cart_item) AS Overall;";
+    
+        $stmt = $this->conn->prepare($query);
+        if ($stmt) {
+            $stmt->execute();
+            $stmt->bind_result($Overall);
+    
+            while ($stmt->fetch()) {
+                // Format the Overall amount
+                $formattedOverall = $this->formatAmount($Overall);
+    
+                $userData[] = [
+                    'Overall' => $formattedOverall,
+                ];
+            }
+    
+            $stmt->close();
+        }
+    
+        return $userData;
+    }
+    
+    public function renderoverAllIncome($userData) {
+        foreach ($userData as $row) {
+            ?> 
+            <h4 class="text-start mt-2" style="font-weight: bold; color: #5f5f5f "><?php echo $row['Overall'] ?></h4>
+            <h6 class="text-start" style="font-size: 14px;">Total Users</h6>
+    
+            <h6 class="text-start mt-2" style="font-size: 9.5px; color: #82A2F3">+3 from yesterday</h6>
+            <?php
+        }
+    }
+    
+
+    private function formatAmount($amount) {
+        if ($amount >= 1000000) {
+            return number_format($amount / 1000000, 1) . 'M';
+        } elseif ($amount >= 1000) {
+            return number_format($amount / 1000, 1) . 'K';
+        } else {
+            return number_format($amount);
+        }
+    }
+
+
+    public function productRating() {
+        $userData = array();
+
+        $query = "SELECT
+        product.PROD_NAME,
+        ROUND(AVG(online_order.ORDER_RATING), 1) AS ORDER_RATING,
+        ROW_NUMBER() OVER (ORDER BY ROUND(AVG(online_order.ORDER_RATING), 1) DESC) AS ranking
+        FROM
+            online_order
+        INNER JOIN ol_cart ON online_order.OL_CART_ID = ol_cart.OL_CART_ID
+        INNER JOIN online_cart_item ON ol_cart.OL_CART_ID = online_cart_item.OL_CART_ID
+        INNER JOIN product ON online_cart_item.PROD_ID = product.PROD_ID
+        WHERE online_order.ORDER_RATING IS NOT NULL
+        GROUP BY product.PROD_ID
+        ORDER BY ORDER_RATING DESC
+        LIMIT 4;
+        ";
+
+        $stmt = $this->conn->prepare($query);
+        if ($stmt) {
+            $stmt->execute();
+            $stmt->bind_result($prodName, $orderRating, $ranking);
+
+            while ($stmt->fetch()) {
+                $userData[] = [
+                    'PROD_NAME' => $prodName,
+                    'ORDER_RATING' => $orderRating,
+                    'ranking' => $ranking,
+                ];
+            }
+
+            $stmt->close();
+        }
+
+        return $userData;
+    }
+
+    
+    public function renderProductRating($userData) {
+        foreach ($userData as $row) {
+            $progressColor = '';
+    
+            switch ($row['ranking']) {
+                case 1:
+                    $progressColor = '#9C1421'; // Red for the highest rating
+                    break;
+                case 2:
+                    $progressColor = '#F0C419'; // Yellow for the second-highest rating
+                    break;
+                case 3:
+                    $progressColor = '#A2C53A'; // Blue for the third-highest rating
+                    break;
+                case 4:
+                    $progressColor = '#403D55'; // Green for the fourth-highest rating
+                    break;
+                // Add more cases as needed
+            }
+
+
+            $progressBackground = '';
+    
+            switch ($row['ranking']) {
+                case 1:
+                    $progressBackground = '#FFE2E6'; // Red for the highest rating
+                    break;
+                case 2:
+                    $progressBackground = '#FFF4DE'; // Yellow for the second-highest rating
+                    break;
+                case 3:
+                    $progressBackground = '#DCFCE7'; // Blue for the third-highest rating
+                    break;
+                case 4:
+                    $progressBackground = '#CEC8FC'; // Green for the fourth-highest rating
+                    break;
+                // Add more cases as needed
+            }
+    
+            ?>
+            <tr>
+                <th scope="row"><?php echo $row['ranking'] ?></th>
+                <td><?php echo $row['PROD_NAME'] ?></td>
+                <td>
+                    <div class="progress mt-2" role="progressbar" aria-label="Example 5px high" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100" style="height: 5px; background-color: <?php echo $progressBackground ?>">
+                        <div class="progress-bar" style="width: <?php echo $row['ORDER_RATING'] . "%" ?>; background-color: <?php echo $progressColor ?>"></div>
+                    </div>
+                </td>
+                <td><div class="percent1" style="border: 2px <?php echo $progressColor ?> solid"><?php echo $row['ORDER_RATING'] ?>%</div></td>
+            </tr>
+            <?php
+        }
+    }
+    
+    
+    public function usersList() {
+        $userData = array();
+
+        $query = "SELECT
+        users.U_FIRST_NAME,
+        users.U_MIDDLE_NAME,
+        users.U_LAST_NAME,
+        users.U_PICTURE,
+        users.U_STATUS,
+        roles.ROLE_NAME
+    FROM
+        users
+    INNER JOIN
+        user_roles ON users.USER_ID = user_roles.USER_ID
+    INNER JOIN
+        roles ON user_roles.ROLE_CODE = roles.ROLE_CODE
+    WHERE
+        (user_roles.ROLE_CODE IN ('emp_cshr', 'emp_asst_cook', 'emp_srvr', 'emp_cook') OR users.U_STATUS = 'Active') AND
+        users.U_STATUS != 'Deactivated'";
+
+        $stmt = $this->conn->prepare($query);
+        if ($stmt) {
+            $stmt->execute();
+            $stmt->bind_result($fname, $mname, $lname, $Upicture, $Ustatus, $roleName);
+
+            while ($stmt->fetch()) {
+                $userData[] = [
+                    'U_FIRST_NAME' => $fname,
+                    'U_MIDDLE_NAME' => $mname,
+                    'U_LAST_NAME' => $lname,
+                    'U_PICTURE' => $Upicture,
+                    'U_STATUS' => $Ustatus,
+                    'ROLE_NAME' => $roleName,
+                ];
+            }
+
+            $stmt->close();
+        }
+
+        return $userData;
+    }
+
+
+
+    public function renderStaffList($userData) {
+        foreach ($userData as $row) {
+            ?> 
+             <tr style="background-color: red;">
+                <th scope="row">
+                    <img src="../../Icons/<?php echo $row['U_PICTURE'] ?>" class="staffPic">
+                </th>
+                    <td><?php echo $row['U_FIRST_NAME'] . " ". $row['U_MIDDLE_NAME']. " " . $row["U_LAST_NAME"] ?><h6 class="position"><?php echo $row['ROLE_NAME'] ?></h6></td>
+                        <td>
+                            <button class="active-button"><?php echo $row['U_STATUS'] ?></button>
+                        </td>
+             </tr>
+            <?php
+        }
+    }
+
+
+    public function deliveryList() {
+        $userData = array();
+
+        $query = "SELECT
+            users.U_FIRST_NAME,
+            users.U_MIDDLE_NAME,
+            users.U_LAST_NAME,
+            users.U_PICTURE,
+            users.U_STATUS,
+            roles.ROLE_NAME
+        FROM
+            users
+        INNER JOIN
+            user_roles ON users.USER_ID = user_roles.USER_ID
+        INNER JOIN
+            roles ON user_roles.ROLE_CODE = roles.ROLE_CODE
+        WHERE
+            user_roles.ROLE_CODE LIKE 'cour' AND
+            users.U_STATUS = 'Active'";
+
+        $stmt = $this->conn->prepare($query);
+        if ($stmt) {
+            $stmt->execute();
+            $stmt->bind_result($fname, $mname, $lname, $Upicture, $Ustatus, $roleName);
+
+            while ($stmt->fetch()) {
+                $userData[] = [
+                    'U_FIRST_NAME' => $fname,
+                    'U_MIDDLE_NAME' => $mname,
+                    'U_LAST_NAME' => $lname,
+                    'U_PICTURE' => $Upicture,
+                    'U_STATUS' => $Ustatus,
+                    'ROLE_NAME' => $roleName,
+                ];
+            }
+
+            $stmt->close();
+        }
+
+        return $userData;
+    }
+
+
+    public function renderDeliveryList($userData) {
+        foreach ($userData as $row) {
+            ?> 
+             <tr style="background-color: red;">
+                <th scope="row">
+                    <img src="../../Icons/<?php echo $row['U_PICTURE'] ?>" class="staffPic">
+                </th>
+                    <td><?php echo $row['U_FIRST_NAME'] . " ". $row['U_MIDDLE_NAME']. " " . $row["U_LAST_NAME"] ?><h6 class="position"><?php echo $row['ROLE_NAME'] ?></h6></td>
+                        <td>
+                            <button class="active-button"><?php echo $row['U_STATUS'] ?></button>
+                        </td>
+             </tr>
+            <?php
+        }
+    }
+
+
+    public function highestOrder() {
+        $userData = array();
+
+        $query = "SELECT
+            users.U_FIRST_NAME,
+            users.U_MIDDLE_NAME,
+            users.U_LAST_NAME,
+            users.U_PICTURE,
+            roles.ROLE_NAME,
+            COUNT(online_cart_item.PROD_ID) AS CountOfItems,
+            ROW_NUMBER() OVER (ORDER BY COUNT(online_cart_item.PROD_ID) DESC) AS Ranking
+        FROM
+            users
+        INNER JOIN 
+            ol_cart ON users.USER_ID = ol_cart.CUSTOMER_ID
+        INNER JOIN
+            online_cart_item ON ol_cart.OL_CART_ID = online_cart_item.OL_CART_ID
+        INNER JOIN
+            user_roles ON users.USER_ID = user_roles.USER_ID
+        INNER JOIN
+            roles ON user_roles.ROLE_CODE = roles.ROLE_CODE
+        WHERE
+            roles.ROLE_NAME = 'Customer'
+        GROUP BY
+            users.U_FIRST_NAME,
+            users.U_MIDDLE_NAME,
+            users.U_LAST_NAME,
+            users.U_PICTURE,
+            roles.ROLE_NAME
+        ORDER BY Ranking";
+
+
+        $stmt = $this->conn->prepare($query);
+        if ($stmt) {
+            $stmt->execute();
+            $stmt->bind_result($fname, $mname, $lname, $Upicture, $roleName, $countItems, $ranking);
+
+            while ($stmt->fetch()) {
+                $userData[] = [
+                    'U_FIRST_NAME' => $fname,
+                    'U_MIDDLE_NAME' => $mname,
+                    'U_LAST_NAME' => $lname,
+                    'U_PICTURE' => $Upicture,
+                    'ROLE_NAME' => $roleName,
+                    'CountOfItems' => $countItems,
+                    'ranking' => $ranking,
+                ];
+            }
+
+            $stmt->close();
+        }
+
+        return $userData;
+    }
+
+
+    public function renderHighestOrder($userData) {
+        foreach ($userData as $row) {
+            ?> 
+             <tr>
+                 <th scope="row"><?php echo $row['ranking'] ?>
+                    </th>
+                        <td><img src="../../Icons/<?php echo $row['U_PICTURE'] ?>" class="staffPic"></td>
+                         <td>Marvin<h6 class="position"><?php echo $row['ROLE_NAME'] ?></h6></td>
+                            <td>
+                                <div>
+                                    <img src="../../Icons/package.svg" class="icon">
+                                    <h6 class="number mt-2"><?php echo $row['CountOfItems'] ?></h6>
+                                </div>
+                        </td>
+             </tr>
+            <?php
+        }
+    }
+
+
 }
 ?>

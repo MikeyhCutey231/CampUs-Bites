@@ -40,7 +40,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['search'])) {
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 
     <title>CampUs Bites</title>
-    <link rel="stylesheet" href="../../Admin/admin_css/admin-courier.css">
+    <link rel="stylesheet" href="../../Admin/admin_css/admin-cashier.css">
 </head>
 <body>
 <div class="wrapper">
@@ -217,7 +217,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['search'])) {
                     <div class="editLeft-container">
                         <div class="editLeft-container">
                             <div class="image-container">
-                                <img id="image-preview" src="../../Icons/drop.png" alt="" style="width:100%;height:100%;overflow:hidden" >
+                                <img id="image-preview" src="../../Icons/drop.svg" alt="" style="width:100%;height:100%;overflow:hidden" >
 
                             </div>
                             <input type="file" value="" id="uploadBtn" class="uploadBtn" name="image[]" accept="image/*" onchange="previewImage(event)">

@@ -212,12 +212,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['search'])) {
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-body">
-                <form class="needs-validation was-validated" action="../../Admin/functions/add-Employee.php" id="employee-form" method="POST" enctype="multipart/form-data" novalidate>
+                <form class="needs-validation was-validated" action="../../Admin/functions/add-Employee.php" id="employee-form" method="POST" enctype="multipart/form-data" validate>
                     <input type="text" name="userid" value="<?php echo $userid=$usersData[0]['user_id']; ?>" hidden="hidden">
                     <div class="editLeft-container">
                         <div class="editLeft-container">
                             <div class="image-container">
-                                <img id="image-preview" src="upload/drop.png" alt="" style="width:100%;height:100%;overflow:hidden" >
+                                <img id="image-preview" src="../../Icons/drop.svg" alt="" style="width:100%;height:100%;overflow:hidden" >
 
                             </div>
                             <input type="file" value="" id="uploadBtn" class="uploadBtn" name="image[]" accept="image/*" onchange="previewImage(event)">
@@ -247,7 +247,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['search'])) {
 
                             <div class="modalMname">
                                 <p>Middle Name</p>
-                                <input class="form-control"  type="text" name="middleName" required>
+                                <input class=""  type="text" name="middleName" required>
                                 <div class="valid-feedback">Looks good!</div>
                             </div>
 
@@ -291,9 +291,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['search'])) {
                             </div>
                             <div class="modalUsername">
                                 <p><span style="color: red;">*</span> Username</p>
-                                <input type="username" name="username" required>
-                                <div class="valid-feedback">Looks good!</div>
-                                <div class="invalid-feedback">Please provide a valid username.</div>
+                                <input type="username" name="username" class="form-control" required>
+                                <div class="valid-feedback" style="margin-left: 20px;">Looks good!</div>
+                                <div class="invalid-feedback">Provide a valid username.</div>
                             </div>
                         </div>
 

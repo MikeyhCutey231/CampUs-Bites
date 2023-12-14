@@ -50,7 +50,7 @@
         public function productList() {
             $category = array();
         
-            $query = "SELECT product.PROD_ID, product.PROD_NAME, product.PROD_SELLING_PRICE, product.PROD_TOTAL_QUANTITY, prod_category.CATEGORY_NAME, product.PROD_PIC FROM product
+            $query = "SELECT product.PROD_ID, product.PROD_NAME, product.PROD_SELLING_PRICE, product.PROD_REMAINING_QUANTITY, prod_category.CATEGORY_NAME, product.PROD_PIC FROM product
              INNER JOIN prod_category ON product.CATEGORY_ID = prod_category.CATEGORY_ID";
         
             $stmt = $this->conn->prepare($query);
@@ -63,7 +63,7 @@
                         'PROD_ID' => $prodID,
                         'PROD_NAME' => $prodName,
                         'PROD_SELLING_PRICE' => $prodSellingprice,
-                        'PROD_TOTAL_QUANTITY' => $prodStock,
+                        'PROD_REMAINING_QUANTITY' => $prodStock,
                         'CATEGORY_NAME' => $prodCategory,
                         'PROD_PIC' => $prodPic,
                     ];
@@ -86,7 +86,7 @@
                                     <img src="../../Icons/packagegreen.svg" alt="">
                                     <p>Stock</p>
                                 </div>
-                                <h3 class="<?php echo ($row['PROD_TOTAL_QUANTITY'] <= 0) ? 'out-of-stock' : ''; ?>"><?php echo $row['PROD_TOTAL_QUANTITY'] ?></h3>
+                                <h3 class="<?php echo ($row['PROD_REMAINING_QUANTITY'] <= 0) ? 'out-of-stock' : ''; ?>"><?php echo $row['PROD_REMAINING_QUANTITY'] ?></h3>
                             </div>
                         </div>
                         <div class="below-content">
@@ -97,7 +97,7 @@
                                      <p>Filipino Cuisine</p>
                                 </div>
                              <p class="item-price">Standard Price: <span style="font-weight: bold;"><?php echo "₱"."".$row['PROD_SELLING_PRICE'] ?></span></p>
-                             <button type="submit" class="Cart" value="<?php echo $row['PROD_ID'] ?>"  data-stock="<?php echo $row['PROD_TOTAL_QUANTITY'] ?>">Add to cart</button>
+                             <button type="submit" class="Cart" value="<?php echo $row['PROD_ID'] ?>"  data-stock="<?php echo $row['PROD_REMAINING_QUANTITY'] ?>">Add to cart</button>
                         </div>
                     </div>
              <?php
@@ -107,7 +107,7 @@
 
 
         public function searchMenuList($searchName) {
-            $query = "SELECT product.PROD_ID, product.PROD_NAME, product.PROD_SELLING_PRICE, product.PROD_TOTAL_QUANTITY, prod_category.CATEGORY_NAME, product.PROD_PIC FROM product
+            $query = "SELECT product.PROD_ID, product.PROD_NAME, product.PROD_SELLING_PRICE, product.PROD_REMAINING_QUANTITY, prod_category.CATEGORY_NAME, product.PROD_PIC FROM product
             INNER JOIN prod_category ON product.CATEGORY_ID = prod_category.CATEGORY_ID
             WHERE product.PROD_NAME LIKE ?";
     
@@ -134,7 +134,7 @@
 
 
         public function getAllProducts() {
-            $query = "SELECT product.PROD_ID, product.PROD_NAME, product.PROD_SELLING_PRICE, product.PROD_TOTAL_QUANTITY, prod_category.CATEGORY_NAME, product.PROD_PIC FROM product
+            $query = "SELECT product.PROD_ID, product.PROD_NAME, product.PROD_SELLING_PRICE, product.PROD_REMAINING_QUANTITY, prod_category.CATEGORY_NAME, product.PROD_PIC FROM product
                 INNER JOIN prod_category ON product.CATEGORY_ID = prod_category.CATEGORY_ID";
         
             $result = $this->conn->query($query);
@@ -151,7 +151,7 @@
                     echo '<img src="../../Icons/packagegreen.svg" alt="">';
                     echo '<p>Stock</p>';
                     echo '</div>';
-                    echo '<h3>' . $row['PROD_TOTAL_QUANTITY'] . '</h3>';
+                    echo '<h3>' . $row['PROD_REMAINING_QUANTITY'] . '</h3>';
                     echo '</div>';
                     echo '</div>';
                     echo '<div class="below-content">';
@@ -162,7 +162,7 @@
                     echo '<p>Filipino Cuisine</p>';
                     echo '</div>';
                     echo '<p class="item-price">Standard Price: <span style="font-weight: bold;">' . "₱" . $row['PROD_SELLING_PRICE'] . '</span></p>';
-                    echo '<button type="submit" class="Cart" value="' . $row['PROD_ID'] . '"  data-stock="' . $row['PROD_TOTAL_QUANTITY'] . '">Add to cart</button>';
+                    echo '<button type="submit" class="Cart" value="' . $row['PROD_ID'] . '"  data-stock="' . $row['PROD_REMAINING_QUANTITY'] . '">Add to cart</button>';
                     echo '</div>';
                     echo '</div>';
                 }

@@ -912,8 +912,9 @@ input[type="file"]{
     font-size: 14px;
 }
 
-.modalSixRowInfo .modalPosition input{
+.modalSixRowInfo .modalPosition select{
     width: 130px;
+    height: 30px;
 }
 
 .modalSixRowInfo .modalBasicSalary{
@@ -986,6 +987,7 @@ input[type="file"]{
     display: flex;
     justify-content: flex-end;
     align-items: flex-end;
+    height: 0px;
 }
 
 .modalEigth .modalUpdate{
@@ -1375,7 +1377,6 @@ input[type="file"]{
 
 
 
-
     .modalFourthRowInfo input{
         border-radius: 3px;
         border: 1px solid gray;
@@ -1517,6 +1518,4 @@ input[type="file"]{
         font-size: 10px;
         width: 80px;
     }
-
-
 }

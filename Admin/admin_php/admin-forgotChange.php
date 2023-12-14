@@ -67,7 +67,7 @@
 <body>
    <div class="wrapper">
         <div class="left">
-            <h1 class="head-title">CampUs <?php echo  $userEmail  ?></h1>
+            <h1 class="head-title">CampUs Bites  ?></h1>
             <h4 class="sub-head">Feeding minds, one bite at a time.</h4>
         </div>
         <form action="" method="post">

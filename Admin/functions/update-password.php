@@ -1,7 +1,7 @@
 <?php
-require '../../config.php';
+require("../../Admin/functions/dbConfig.php");
 
-$dbConnection = new Database();
+$dbConnection = new Connection();
 $conn = $dbConnection->conn;
 
 if(isset($_POST["currentPassword"], $_POST["newPassword"], $_POST["confirmPassword"] )) {

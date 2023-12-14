@@ -14,7 +14,7 @@ if (isset($_POST["categoryID"])) {
                 <p class="cartItem-title">' . $itemDetails['PROD_NAME'] . '</p>
                 <p class="cartItem-price">Standard Price: ₱' . $itemDetails['PROD_SELLING_PRICE'] . '</p>
                 <p class="cartItem-ID" style="display: none;"">' . $itemId . '</p>
-                <p class="cartQuantity" style="display: none;"">' . $itemDetails['PROD_TOTAL_QUANTITY'] . '</p>
+                <p class="cartQuantity" style="display: none;"">' . $itemDetails['PROD_REMAINING_QUANTITY'] . '</p>
 
             </div>
             <button class="remove-item" style="right: 0px; top: 0px; font-size: 8px; position: absolute; border: none;"><i class="fa-solid fa-trash"></i></button>
@@ -38,7 +38,7 @@ function getItemDetails($itemId) {
     $database = new Connection();
     $conn = $database->conn;
 
-    $query = "SELECT PROD_NAME, PROD_SELLING_PRICE, PROD_TOTAL_QUANTITY, PROD_PIC FROM product WHERE PROD_ID = ?";
+    $query = "SELECT PROD_NAME, PROD_SELLING_PRICE, PROD_REMAINING_QUANTITY	, PROD_PIC FROM product WHERE PROD_ID = ?";
     $stmt = $conn->prepare($query);
     $stmt->bind_param("i", $itemId);
     $stmt->execute();

@@ -109,28 +109,29 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['search'])) {
                             <h6 class="text-start" style="font-size: 14px; color: #626262">Status records of CampUs Bites</h6>
                             <div class="wrapper d-flex flex-wrap justify-content-between mt-4">
                                 <div class="totalU p-4  red mb-2">
-                                    <div class="circle-container">
-                                        <img src="../../Icons/userswhite.svg" alt="Icon">
-                                    </div>
-                                    <h4 class="text-start mt-2" style="font-weight: bold; color: #5f5f5f ">521</h4>
-                                    <h6 class="text-start" style="font-size: 14px;">Total Users</h6>
+                                    <?php 
+                                        $employeeData = new UserData();
+                                        $data = $employeeData->overAllUsers();
+                                        $employeeData->renderTotalUsers($data);
+                                       ?>
                                 </div>
                                 <div class="totalP p-4  yellow mb-2">
                                     <div class="circle-container1">
                                         <img src="../../Icons/packagewhite.svg" alt="Icon">
                                     </div>
                                     <div class="text-container">
-                                        <h4 class="text-start mt-2" style="font-weight: bold; color: #5f5f5f ">50</h4>
-                                        <h6 class="text-start" style="font-size: 14px;">Total Products</h6>
-
-                                        <h6 class="text-start mt-2" style="font-size: 9.5px; color: #82A2F3">+3 from yesterday</h6>
+                                        <?php 
+                                            $employeeData = new UserData();
+                                            $data = $employeeData->overAllProduct();
+                                            $employeeData->renderTotalProduct($data);
+                                        ?>
                                     </div>
                                 </div>
                                 <div class="totalR p-4  green mb-2">
                                     <div class="circle-container2">
                                         <img src="../../Icons/bar-chartwhite.svg" alt="Icon">
                                     </div>
-                                    <h4 class="text-start mt-2" style="font-weight: bold; color: #5f5f5f ">521</h4>
+                                    <h4 class="text-start mt-2" style="font-weight: bold; color: #5f5f5f ">5.0</h4>
                                     <h6 class="text-start" style="font-size: 14px;">Total Ratings</h6>
                                     <h6 class="text-start mt-2" style="font-size: 9.5px; color: #82A2F3">+10 from yesterday</h6>
                                 </div>
@@ -139,9 +140,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['search'])) {
                                         <img src="../../Icons/dollar-sign.svg" alt="Icon" width="15px">
                                     </div>
                                     <div class="text-container">
-                                    <h4 class="text-start mt-2" style="font-weight: bold; color: #5f5f5f ">521</h4>
-                                    <h6 class="text-start" style="font-size: 14px;">Total Income</h6>
-                                    <h6 class="text-start mt-2" style="font-size: 9.5px; color: #82A2F3">+50% from yesterday</h6>
+                                        <?php 
+                                            $employeeData = new UserData();
+                                            $data = $employeeData->overAllIncome();
+                                            $employeeData->renderoverAllIncome($data);
+                                        ?>
                                     </div>
                                 </div>
                             </div>
@@ -182,50 +185,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['search'])) {
                                     </tr>
                                     </thead>
                                     <tbody>
-                                    <tr>
-                                        <th scope="row">01</th>
-                                        <td>Adobong Manok</td>
-                                        <td>
-                                            <div class="progress mt-2" role="progressbar" aria-label="Example 5px high" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100" style="height: 5px; background-color: #FFE2E6">
-                                                <div class="progress-bar" style="width: 75%; background-color: #9C1421"></div>
-                                            </div>
-                                        </td>
-                                        <td><div class="percent1">75%</div></td>
-                                    </tr>
-                                    <tr>
-                                        <th scope="row">02</th>
-                                        <td>Fresh Salad</td>
-
-                                        <td>
-                                            <div class="progress mt-2" role="progressbar" aria-label="Example 5px high" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100" style="height: 5px; background-color: #FFF4DE">
-                                                <div class="progress-bar" style="width: 25%; background-color: #F0C419"></div>
-                                            </div>
-                                        </td>
-                                        <td><div class="percent2">25%</div></td>
-                                    </tr>
-                                    <tr>
-                                        <th scope="row">03</th>
-                                        <td>Rice</td>
-                                        <td>
-                                            <div class="progress mt-2" role="progressbar" aria-label="Example 5px high" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100" style="height: 5px; background-color: #DCFCE7">
-                                                <div class="progress-bar" style="width: 42%; background-color: #A2C53A"></div>
-                                            </div>
-                                        </td>
-                                        <td><div class="percent3">42%</div></td>
-                                    </tr>
-                                    <tr>
-                                        <th scope="row">04</th>
-                                        <td>Bihon</td>
-                                        <td>
-                                            <div class="progress mt-2" role="progressbar" aria-label="Example 5px high" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100" style="height: 5px;background-color: #CEC8FC;">
-                                                <div class="progress-bar" style="width: 50%; background-color: #403D55"></div>
-                                            </div>
-                                        </td>
-                                        <td>
-                                            <div class="percent4">50%</div>
-                                        </td>
-
-                                    </tr>
+                                        <?php
+                                             $employeeData = new UserData();
+                                             $data = $employeeData->productRating();
+                                             $employeeData->renderProductRating($data);
+                                        ?>
                                     </tbody>
                                 </table>
                             </div>
@@ -236,7 +200,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['search'])) {
                         <div class="content-4 p-4 userRating staffList">
                             <h4 class="text-start" style="font-weight: bold">Staff List</h4>
                             <div>
-                                <table class="table" style="overflow: auto;">
+                                <table class="table table-light" style="overflow: auto;">
                                     <thead>
                                     <tr>
                                         <th scope="col">Picture</th>
@@ -246,77 +210,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['search'])) {
                                     </tr>
                                     </thead>
                                     <tbody>
-                                    <tr>
-                                        <th scope="row">
-                                            <img src="/Icons/cutemikey.svg" class="staffPic">
-                                        </th>
-                                        <td>Lowell Jay C. Orcullo<h6 class="position">Cashier</h6></td>
-                                        <td>
-                                            <button class="active-button">Active</button>
-                                        </td>
-
-                                    </tr>
-                                    <tr>
-                                        <th scope="row">
-                                            <img src="/Icons/cutemikey.svg" class="staffPic">
-                                        </th>
-                                        <td>Lowell Jay C. Orcullo<h6 class="position">Cashier</h6></td>
-                                        <td>
-                                            <button class="active-button">Active</button>
-                                        </td>
-
-                                    </tr>
-                                    <tr>
-                                        <th scope="row">
-                                            <img src="/Icons/cutemikey.svg" class="staffPic">
-                                        </th>
-                                        <td>Lowell Jay C. Orcullo<h6 class="position">Cashier</h6></td>
-                                        <td>
-                                            <button class="active-button">Active</button>
-                                        </td>
-
-                                    </tr>
-                                    <tr>
-                                        <th scope="row">
-                                            <img src="/Icons/cutemikey.svg"class="staffPic">
-                                        </th>
-                                        <td>Lowell Jay C. Orcullo<h6 class="position">Cashier</h6></td>
-                                        <td>
-                                            <button class="active-button">Active</button>
-                                        </td>
-
-                                    </tr>
-
-                                    <tr>
-                                        <th scope="row">
-                                            <img src="/Icons/cutemikey.svg" class="staffPic">
-                                        </th>
-                                        <td>Lowell Jay C. Orcullo<h6 class="position">Cashier</h6></td>
-                                        <td>
-                                            <button class="active-button">Active</button>
-                                        </td>
-
-                                    </tr>
-                                    
-                                    <tr>
-                                        <th scope="row">
-                                            <img src="/Icons/cutemikey.svg" class="staffPic">
-                                        </th>
-                                        <td>Michael C. Labastida<h6 class="position">Server</h6></td>
-                                        <td>
-                                            <button class="active-button">Active</button>
-                                        </td>
-
-                                    </tr>
-                                    <tr>
-                                        <th scope="row">
-                                            <img src="/Icons/cutemikey.svg" class="staffPic">
-                                        </th>
-                                        <td>Kisaiah Grace I. Torrenueva<h6 class="position">Cook</h6></td>
-                                        <td>
-                                            <button class="active-button">Active</button>
-                                        </td>
-                                    </tr>
+                                         <?php
+                                             $employeeData = new UserData();
+                                             $data = $employeeData->usersList();
+                                             $employeeData->renderStaffList($data);
+                                        ?>
                                     </tbody>
                                 </table>
                             </div>
@@ -327,7 +225,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['search'])) {
                         <div class="content-4 p-4 userRating deliveryPerson">
                             <h4 class="text-start" style="font-weight: bold">Delivery Person List</h4>
                             <div>
-                                <table class="table">
+                                <table class="table table-light">
                                     <thead>
                                     <tr>
                                         <th scope="col">Picture</th>
@@ -337,55 +235,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['search'])) {
                                     </tr>
                                     </thead>
                                     <tbody>
-                                    <tr>
-                                        <th scope="row">
-                                            <img src="/Icons/cutemikey.svg" class="staffPic">
-                                        </th>
-                                        <td>Lowell Jay C. Orcullo<h6 class="position">Cashier</h6></td>
-                                        <td>
-                                            <button class="active-button">Active</button>
-                                        </td>
-
-                                    </tr>
-                                    <tr>
-                                        <th scope="row">
-                                            <img src="/Icons/cutemikey.svg" class="staffPic">
-                                        </th>
-                                        <td>Lowell Jay C. Orcullo<h6 class="position">Cashier</h6></td>
-                                        <td>
-                                            <button class="active-button">Active</button>
-                                        </td>
-
-                                    </tr>
-                                    <tr>
-                                        <th scope="row">
-                                            <img src="/Icons/cutemikey.svg" class="staffPic">
-                                        </th>
-                                        <td>Lowell Jay C. Orcullo<h6 class="position">Cashier</h6></td>
-                                        <td>
-                                            <button class="active-button">Active</button>
-                                        </td>
-
-                                    </tr>
-                                    <tr>
-                                        <th scope="row">
-                                            <img src="/Icons/cutemikey.svg" class="staffPic">
-                                        </th>
-                                        <td>Kisaiah Grace I. Torrenueva<h6 class="position">Cashier</h6></td>
-                                        <td>
-                                            <button class="inactive-button">Inactive</button>
-                                        </td>
-
-                                    </tr>
-                                    <tr>
-                                        <th scope="row">
-                                            <img src="/Icons/cutemikey.svg" class="staffPic">
-                                        </th>
-                                        <td>Kenne Wayne Peñas<h6 class="position">Cashier</h6></td>
-                                        <td>
-                                            <button class="active-button">Active</button>
-                                        </td>
-                                    </tr>
+                                        <?php
+                                             $employeeData = new UserData();
+                                             $data = $employeeData->deliveryList();
+                                             $employeeData->renderDeliveryList($data);
+                                        ?>
                                     </tbody>
                                 </table>
                             </div>
@@ -396,7 +250,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['search'])) {
                         <div class="content-4 p-4 userRating highestOrder">
                             <h4 class="text-start" style="font-weight: bold">User Highest Order</h4>
                             <div class="table-container">
-                                <table class="table">
+                                <table class="table table-light">
                                     <thead>
                                     <tr>
                                         <th scope="col">#</th>
@@ -407,59 +261,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['search'])) {
                                     </tr>
                                     </thead>
                                     <tbody>
-                                    <tr>
-                                        <th scope="row">1
-                                        </th>
-                                        <td><img src="/Icons/jaysus.jpg" class="staffPic"></td>
-                                        <td>Marvin<h6 class="position">Cashier</h6></td>
-                                        <td>
-                                            <div>
-                                                <img src="/Icons/package.svg" class="icon">
-                                                <h6 class="number mt-2">50</h6>
-                                            </div>
-                                        </td>
-
-
-                                    </tr>
-                                    <tr>
-                                        <th scope="row">2
-                                        </th>
-                                        <td><img src="/Icons/jaysus.jpg" class="staffPic"></td>
-                                        <td>Michael<h6 class="position">Cashier</h6></td>
-                                        <td>
-                                            <div>
-                                                <img src="/Icons/package.svg" class="icon">
-                                                <h6 class="number mt-2">43</h6>
-                                            </div>
-                                        </td>
-
-
-                                    </tr>
-                                    <tr>
-                                        <th scope="row">3
-                                        </th>
-                                        <td><img src="/Icons/jaysus.jpg" class="staffPic"></td>
-                                        <td>Nelmarjim <h6 class="position">Cashier</h6></td>
-                                        <td>
-                                            <div>
-                                                <img src="/Icons/package.svg" class="icon">
-                                                <h6 class="number mt-2">20</h6>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <th scope="row">4
-                                        </th>
-                                        <td><img src="/Icons/jaysus.jpg" class="staffPic"></td>
-                                        <td>Kisaiah<h6 class="position">Cashier</h6></td>
-                                        <td>
-                                            <div>
-                                                <img src="/Icons/package.svg" class="icon">
-                                                <h6 class="number mt-2">8</h6>
-                                            </div>
-                                        </td>
-
-                                    </tr>
+                                        <?php
+                                             $employeeData = new UserData();
+                                             $data = $employeeData->highestOrder();
+                                             $employeeData->renderHighestOrder($data);
+                                        ?>
                                     </tbody>
                                 </table>
                             </div>

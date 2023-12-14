@@ -121,7 +121,7 @@
                     <input type="text" name="fname" placeholder="Search here...">
                 </div> -->
                 <div class="usep-texthead">
-                    <img src="/Icons/useplogo.png" alt="" width="30px" height="30px">
+                    <img src="../../Icons/useplogo.png" alt="" width="30px" height="30px">
                     <p style="margin-bottom: 0px; margin-top: 3px; margin-left: 10px; font-weight: 600;">UseP (Tagum Unit)</p>
                 </div>
                 <a href="staff-Profile.php" style="color: black;">
@@ -284,6 +284,39 @@
         }
     });
     </script>
+
+    <script>
+        $(document).ready(function () {
+        $(".cancelBtn").click(function () {
+            var statusID = $(this).data("status-id");
+            var olCartId = $(this).data("ol-cart-id");
+            var statusName = $(this).data("status-name");
+
+            // Display the retrieved values
+            console.log("Status ID: " + statusID + "\nOL_CART_ID: " + olCartId + "\nStatus Name: " + statusName);
+
+            if(statusID == 1){
+                    $.ajax({
+                        url: '../functions/cancelOrderHandler.php', // Replace with the actual URL of the destination page
+                        type: 'POST', // Use POST method
+                        data: { olCartId: olCartId }, // Send the button value as data
+                        success: function(response) {
+                            // Handle the success response if needed
+                            console.log('Data sent successfully:', response);
+                            window.location.href = "staff-orderList.php";
+                        },
+                        error: function(error) {
+                            // Handle the error if there is one
+                            console.error('Error sending data:', error);
+                        }
+                    });
+                }
+             });
+        });
+    </script>
+
+
+
     <script>
     $(document).ready(function () {
         $(".claimBtn").click(function () {
@@ -349,21 +382,6 @@
                 });
             }
         });
-
-
-            // $.ajax({
-            //     url: 'orderConfirmationModal.php', // Replace with the actual URL of the destination page
-            //     type: 'POST', // Use POST method
-            //     data: { buttonValue: buttonValue }, // Send the button value as data
-            //     success: function(response) {
-            //         // Handle the success response if needed
-            //         console.log('Data sent successfully:', response);
-            //     },
-            //     error: function(error) {
-            //         // Handle the error if there is one
-            //         console.error('Error sending data:', error);
-            //     }
-            // });
         });
 </script>
 

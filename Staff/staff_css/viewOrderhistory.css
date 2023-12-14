@@ -504,7 +504,9 @@ tr{
 
 .foodImage{
     width: 90px;
-    margin-top: -30px;
+    height: 90px;
+    object-fit: cover;
+    margin-top: 0px;
     border-radius: 20px;
 }
 

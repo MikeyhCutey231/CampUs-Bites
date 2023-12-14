@@ -2,8 +2,9 @@
     include("../../Admin/functions/dbConfig.php");
     error_reporting(0);
     
+    
     $code = $_SESSION['code'];
-
+    $email = $_SESSION['email'];
 
     if(isset($_POST['continue'])){
         $codeInput = $_POST['codeInput'];
@@ -21,6 +22,7 @@
         header("location: admin-forgotpass.php"); 
         setcookie(session_name(), '', 1);
         unset($_SESSION['code']);
+        unset($_SESSION['email']);
     }
 
 ?>
@@ -61,7 +63,7 @@
     <div class="wrapper">
         <div class="left">
             <div class="info-logo">
-                <p class="campus">CampUs Bites</p>
+                <p class="campus">CampUs <?php echo $email ?></p>
                 <p class="usep">University of Southeastern Philippines Tagum Unit</p>
                 <p class="ecanteen">E-Canteen Service System</p>
             </div>
@@ -88,7 +90,7 @@
                     </div>
 
                     <button type="submit" class="search" name="continue">Continue</button>
-                    <button type="button" class="back">Back</button>
+                    <button type="submit" class="back" name="cancel">Back</button>
                 </form>
             </div>
         </div>

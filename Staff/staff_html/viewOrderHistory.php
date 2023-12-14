@@ -40,7 +40,7 @@
                 <div class="main-logo"></div>
                 <div class="sidelogo-text">
                     <div style="position: relative;">
-                        <a href="">CampUS</a>
+                        <a href="">CampUs</a>
                         <p class="">Bites</p>
                     </div>
                     <div class="close-btn"><img src="../../Icons/x-circle.svg" alt=""></div>
@@ -128,7 +128,7 @@
                     <input type="text" name="fname" placeholder="Search here...">
                 </div> -->
                 <div class="usep-texthead">
-                    <img src="/Icons/useplogo.png" alt="" width="30px" height="30px">
+                    <img src="../../Icons/useplogo.png" alt="" width="30px" height="30px">
                     <p style="margin-bottom: 0px; margin-top: 3px; margin-left: 10px; font-weight: 600;">UseP (Tagum Unit)</p>
                 </div>
                 <a href="staff-Profile.php" style="color: black;">
@@ -191,7 +191,7 @@
                           }else{
 
                             $viewOrder = "SELECT pos_order.ONSITE_ORDER_ID, users.U_FIRST_NAME, users.U_MIDDLE_NAME, users.U_LAST_NAME, pos_cart.POS_CART_ID, pos_cart.POS_CART_DATE_CREATED, pos_cart.POS_CART_TOTAL, pos_order.RECEIVED_AMOUNT, pos_order.CHANGE_AMOUNT FROM pos_order
-                            INNER JOIN users ON pos_order.USER_ID = users.USER_ID
+                            INNER JOIN users ON pos_order.EMPLOYEE_ID = users.USER_ID
                             INNER JOIN pos_cart ON pos_order.POS_CART_ID = pos_cart.POS_CART_ID WHERE pos_order.ONSITE_ORDER_ID = '$onsiteOrderID'";
                             $viewOrderrun = mysqli_query($conn, $viewOrder);
 
@@ -246,8 +246,26 @@
                                             <?php
                                         }
                                     }else{
-                                        $viewItem = "SELECT product.PROD_NAME, product.PROD_DESC, product.PROD_SELLING_PRICE, product.PROD_PIC, pos_cart_item.POS_PROD_QUANTITY, pos_cart_item.POS_SUBTOTAL FROM pos_cart_item
-                                        INNER JOIN product ON pos_cart_item.PROD_ID = product.PROD_ID WHERE pos_cart_item.POS_CART_ID = '$onsiteOrderID'";
+                                        $viewItem = "SELECT
+                                                product.PROD_NAME,
+                                                product.PROD_DESC,
+                                                product.PROD_SELLING_PRICE,
+                                                product.PROD_PIC,
+                                                pos_cart_item.POS_PROD_QUANTITY,
+                                                pos_cart_item.POS_SUBTOTAL
+                                            FROM
+                                                pos_cart_item
+                                            INNER JOIN
+                                                pos_cart ON pos_cart_item.POS_CART_ID = pos_cart.POS_CART_ID
+                                            INNER JOIN
+                                                pos_order ON pos_cart.POS_CART_ID = pos_order.POS_CART_ID
+                                            INNER JOIN
+                                                users ON pos_order.EMPLOYEE_ID = users.USER_ID
+                                            INNER JOIN
+                                                product ON pos_cart_item.PROD_ID = product.PROD_ID
+                                            WHERE
+                                                pos_order.ONSITE_ORDER_ID = '$onsiteOrderID';
+                                            ";
                                         $viewItemrun = mysqli_query($conn, $viewItem);
                                         while($row1 = mysqli_fetch_assoc($viewItemrun)){
                                             ?>
@@ -325,8 +343,23 @@
                                        <?php
                                      }
                                 }else{
-                                    $paymentSql = "SELECT pos_order.RECEIVED_AMOUNT, pos_order.CHANGE_AMOUNT, pos_cart.POS_CART_TOTAL FROM
-                                    pos_order INNER JOIN pos_cart ON pos_order.POS_CART_ID = pos_cart.POS_CART_ID WHERE pos_cart.POS_CART_ID = '$onsiteOrderID'";
+                                    $paymentSql = "SELECT
+                                            pos_order.RECEIVED_AMOUNT,
+                                            pos_order.CHANGE_AMOUNT,
+                                            pos_cart.POS_CART_TOTAL
+                                        FROM
+                                            pos_order
+                                        INNER JOIN
+                                            pos_cart ON pos_order.POS_CART_ID = pos_cart.POS_CART_ID
+                                        INNER JOIN
+                                            users ON pos_order.EMPLOYEE_ID = users.USER_ID
+                                        INNER JOIN
+                                            pos_cart_item ON pos_cart.POS_CART_ID = pos_cart_item.POS_CART_ID
+                                        INNER JOIN
+                                            product ON pos_cart_item.PROD_ID = product.PROD_ID
+                                        WHERE
+                                            pos_order.ONSITE_ORDER_ID = '$onsiteOrderID';
+                                        ";
                                     $paymentRUN = mysqli_query($conn, $paymentSql);
 
                                     while($row = mysqli_fetch_assoc($paymentRUN)){

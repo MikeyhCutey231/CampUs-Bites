@@ -57,7 +57,7 @@ if(isset($_POST["submit"])){
 <body>
 <div class="wrapper">
     <div class="left">
-        <h1 class="head-title">Campus Bites</h1>
+        <h1 class="head-title">CampUs Bites</h1>
         <h4 class="sub-head">Feeding minds, one bite at a time.</h4>
     </div>
     <div class="right">

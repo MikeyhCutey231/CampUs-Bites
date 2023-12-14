@@ -319,6 +319,13 @@ public function renderOrdersDetails($orderData) {
                 data-ol-cart-id="' . $row['ONLINE_ORDER_ID'] . '" 
                 data-status-name="' . $row['STATUS_NAME'] . '" 
                 value="₱ ' . $row['Total'] .'">Confirm Order</button>';
+
+                echo '<button type="submit" name="cancelBtn" class="cancelBtn" 
+                data-status-id="' . 1 . '" 
+                data-ol-cart-id="' . $row['ONLINE_ORDER_ID'] . '" 
+                data-status-name="' . $row['STATUS_NAME'] . '" 
+                value="₱ ' . $row['Total'] .'">Cancel Order</button>';
+                
             }else if($row['ORDER_STATUS_ID'] == 6){
                 echo '<button type="submit" name="claimBtn" class="claimBtn" 
                 data-status-id="' . 6 . '" 

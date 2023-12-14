@@ -58,7 +58,7 @@
                 if($row =  mysqli_fetch_array($orderIDrun)){
                     $orderIDCart = $row['ONLINE_ORDER_ID'];
 
-                    $sendNotifQuery = "INSERT INTO notifications (OL_ORDER_ID, NOTIF_MESSAGE) VALUES ('$orderIDCart', 'Your order has been confirmed!')";
+                    $sendNotifQuery = "INSERT INTO notifications (OL_ORDER_ID, NOTIF_MESSAGE) VALUES ('$orderIDCart', 'Thank you for the purchase!')";
                     mysqli_query($conn, $sendNotifQuery);
                 }
         

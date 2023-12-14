@@ -360,6 +360,10 @@ input:focus {
 }
 
 
+.invalid-feedback{
+    margin-top: -1px;
+    font-size: 12px;
+}
 
 .form-select:focus {
     border-color: none;
@@ -520,6 +524,7 @@ th{
     display: flex;
     flex-direction: row;
     padding: 25px;
+    padding-bottom: 10px;
 }
 
 .modal-body form{
@@ -613,7 +618,6 @@ input[type="file"]{
 .modalFirstRowInfo .modalSuffix select{
     width: 130px;
     height: 30px;
-    border:1px solid gray;
 }
 
 
@@ -621,14 +625,13 @@ input[type="file"]{
 .modalSecondRowInfo{
     display: flex;
     flex-direction: row;
-    margin-top: 10px;
+    margin-top: 20px;
     padding-left: 20px;
 }
 
 
 .modalSecondRowInfo input{
     border-radius: 3px;
-    border: 1px solid gray;
     height: 30px;
     width: 200px;
 }
@@ -640,7 +643,6 @@ input[type="file"]{
     width:  100px;
     padding: 2px;
     padding-left: 5px;
-    border: 1px solid gray;
     font-family: inherit;
     outline: none;
     border-radius: 2px;
@@ -669,12 +671,23 @@ input[type="file"]{
     font-size: 14px;
 }
 
+.modalEmail p{
+    font-size: 14px;
+}
+
 .modalEmail input{
     width: 230px;
+    margin-right: 20px;
 }
+
+.modalUsername p{
+    font-size: 14px;
+}
+
+
 .modalUsername input{
-    margin-left: 20px;
-    width: 170px;
+    margin-left: 0px;
+    width: 195px;
 }
 
 .modalSecondRowInfo .modalEmergencyNum{
@@ -682,6 +695,8 @@ input[type="file"]{
     font-size: 14px;
 
 }
+
+
 .modalEmergencyNum input{
     margin-bottom: 5px;
 
@@ -863,7 +878,6 @@ input[type="file"]{
 
 .modalAddress input{
     width: 775px;
-
     border: 1px solid gray;
 }
 
@@ -879,6 +893,7 @@ input[type="file"]{
     font-size: 20px;
     padding-left: 20px;
     padding-top: 10px;
+    margin-bottom: 0px;
 }
 
 .modalFifthRowInfo .modalJobStatus{
@@ -900,7 +915,6 @@ input[type="file"]{
 
 .modalSixRowInfo input{
     border-radius: 3px;
-    border: 1px solid gray;
     height: 30px;
     width: 200px;
 }
@@ -912,8 +926,9 @@ input[type="file"]{
     font-size: 14px;
 }
 
-.modalSixRowInfo .modalPosition input{
+.modalSixRowInfo .modalPosition select{
     width: 130px;
+    height: 30px;
 }
 
 .modalSixRowInfo .modalBasicSalary{
@@ -986,6 +1001,7 @@ input[type="file"]{
     display: flex;
     justify-content: flex-end;
     align-items: flex-end;
+    height: 10px;
 }
 
 .modalEigth .modalUpdate{
@@ -1018,18 +1034,6 @@ input[type="file"]{
 .closeModalProfile:hover{
     background-color: white;
 }
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -1271,7 +1275,7 @@ input[type="file"]{
 
     .modalGender select{
         display: block;
-        width:  80px;
+        width:  100px;
         padding: 2px;
         padding-left: 5px;
         border: 1px solid gray;
@@ -1298,21 +1302,25 @@ input[type="file"]{
         font-size: 12px;
     }
 
+
     .modalSecondRowInfo .modalEmail{
-        margin-right: 15px;
+        width: 300px;   
+        margin-right: 5px;
         font-size: 12px;
     }
+    
+   
 
-    .modalEmail input{
-        width: 150px;
-    }
-
-    .modalSecondRowInfo .modalDateborn{
-        margin-right: 15px;
-        font-size: 12px;
+    .modalSecondRowInfo .modalEmail input{
+        width: 100%;
     }
 
 
+    .modalSecondRowInfo .modalUsername input{
+        width: 180px;
+    }
+
+  
 
 
     .modalThirdRowInfo input{
@@ -1373,9 +1381,6 @@ input[type="file"]{
         width: 80px;
     }
 
-
-
-
     .modalFourthRowInfo input{
         border-radius: 3px;
         border: 1px solid gray;
@@ -1383,7 +1388,7 @@ input[type="file"]{
         width: 120px;
     }
 
-
+  
     .modalFourthRowInfo .modalCountry{
         margin-right: 15px;
         font-size: 12px;

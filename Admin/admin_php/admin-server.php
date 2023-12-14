@@ -41,7 +41,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['search'])) {
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 
     <title>CampUs Bites</title>
-    <link rel="stylesheet" href="../../Admin/admin_css/admin-server.css">
+    <link rel="stylesheet" href="../../Admin/admin_css/admin-cashier.css">
 </head>
 <body>
 <div class="wrapper">
@@ -211,12 +211,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['search'])) {
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-body">
-                <form class="needs-validation was-validated" action="../../Admin/functions/add-Employee.php" id="employee-form" method="POST" enctype="multipart/form-data" novalidate>
+                <form class="needs-validation was-validated" action="../../Admin/functions/add-Employee.php" id="employee-form" method="POST" enctype="multipart/form-data" validate>
                     <input type="text" name="userid" value="<?php echo $userid=$usersData[0]['user_id']; ?>" hidden="hidden">
                     <div class="editLeft-container">
                         <div class="editLeft-container">
                             <div class="image-container">
-                                <img id="image-preview" src="../../Icons/drop.png" alt="" style="width:100%;height:100%;overflow:hidden" >
+                                <img id="image-preview" src="../../Icons/drop.svg" alt="" style="width:100%;height:100%;overflow:hidden" >
 
                             </div>
                             <input type="file" value="" id="uploadBtn" class="uploadBtn" name="image[]" accept="image/*" onchange="previewImage(event)">
@@ -248,7 +248,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['search'])) {
                                 <p>Middle Name</p>
                                 <input type="text" name="middleName" class="form-control" required>
                                 <div class="valid-feedback">Looks good!</div>
-                                <div class="invalid-feedback">Please provide a valid first name.</div>
+                                    
                             </div>
 
                             <div class="modalSuffix">
@@ -287,13 +287,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['search'])) {
                                 <p><span style="color: red;">*</span> Email</p>
                                 <input class="form-control" type="email" name="email" required>
                                 <div class="valid-feedback">Looks good!</div>
-                                <div class="invalid-feedback">Please provide a valid email address.</div>
+                                <div class="invalid-feedback">Please provide a valid email add.</div>
                             </div>
                             <div class="modalUsername">
                                 <p><span style="color: red;">*</span> Username</p>
                                 <input class="form-control" type="username" name="username" required>
                                 <div class="valid-feedback">Looks good!</div>
-                                <div class="invalid-feedback">Please provide a valid username.</div>
+                                <div class="invalid-feedback"> provide a valid username.</div>
                             </div>
                         </div>
 
@@ -392,7 +392,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['search'])) {
     });
 
 </script>
-<!-- SORT JS -->
+
+
 <script>
     $(document).ready(function() {
         // Handle sorting when the select dropdown changes

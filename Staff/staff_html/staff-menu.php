@@ -121,7 +121,7 @@
                     <input type="text" name="fname" placeholder="Search here..." id="searchItem">
                 </div>
                 <div class="usep-texthead">
-                    <img src="/Icons/useplogo.png" alt="" width="30px" height="30px">
+                    <img src="../../Icons/useplogo.png" alt="" width="30px" height="30px">
                     <p style="margin-bottom: 0px; margin-top: 3px; margin-left: 10px; font-weight: 600;">UseP (Tagum Unit)</p>
                 </div>
                 <a href="staff-Profile.php" style="color: black;">

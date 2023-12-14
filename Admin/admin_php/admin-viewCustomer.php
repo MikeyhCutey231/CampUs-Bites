@@ -203,6 +203,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['search'])) {
                                     <p style="font-weight: bold;"><?php echo $targetCustomer['customer_lname']?></p>
                                 </div>
 
+                                <div class="userAddress">
+                                    <p class="addresses" style="margin-right: 84px;">Address</p>
+                                    <p class="realaddresstext" style="font-weight: bold;"><?php echo $targetCustomer['customer_schoolLandmark']?></p>
+                                </div>
                             </div>
 
 
@@ -212,10 +216,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['search'])) {
                                     <p style="font-weight: bold;"><?php echo $targetCustomer['customer_suffix']?></p>
                                 </div>
 
-                                <div class="userAddress">
-                                    <p class="addresses" style="margin-right: 84px;">Address</p>
-                                    <p class="realaddresstext" style="font-weight: bold;"><?php echo $targetCustomer['customer_schoolLandmark']?></p>
-                                </div>
                             </div>
 
                             <div class="cardDetails">
@@ -273,7 +273,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['search'])) {
             <div class="modal-content">
                 <div class="modal-body">
                     <h6>Are you sure you want to enable your account?</h6>
-                    <p>By enabling this account chuchu.</p>
+                    <p style="margin-top: 5px;">By enabling this account, this user can now access his or her account.</p>
 
                     <div class="modalEnablebtn">
                         <button
@@ -283,7 +283,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['search'])) {
                         >
                             Enable
                         </button>
-                        <button style="background-color: white; border: none; color: black;  box-shadow: 0px 0px 10px rgba(0, 0, 0, 25%);" data-bs-dismiss="modal">No</button>
+                        <button class="noButton" style="background-color: white; border: none; color: black;  box-shadow: 0px 0px 10px rgba(0, 0, 0, 25%);" data-bs-dismiss="modal">No</button>
                     </div>
                 </div>
             </div>

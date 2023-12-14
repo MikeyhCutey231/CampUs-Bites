@@ -40,7 +40,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['search'])) {
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 
     <title>CampUs Bites</title>
-    <link rel="stylesheet" href="../../Admin/admin_css/admin-courier.css">
+    <link rel="stylesheet" href="../../Admin/admin_css/admin-cashier.css">
 </head>
 <body>
 <div class="wrapper">

@@ -156,7 +156,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['search'])) {
                         $buttonLabel = 'Enable Account';
                         $buttonClass = 'enable-account';
                         $buttonDataTarget = '#enableAccount';
-                        $buttonColor = '';
+                        $buttonColor = 'red';
                     }
                     ?>
 
@@ -180,12 +180,23 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['search'])) {
                                     <p style="margin-right: 40px;">First Name</p>
                                     <p style="font-weight: bold;"><?php echo $targetEmployee['employee_fname']?></p>
                                 </div>
+
+                                <div class="userGender">
+                                    <p class="gender" style="margin-right: 68px;">Gender</p>
+                                    <p style="font-weight: bold;"><?php echo $targetEmployee['employee_gender']?></p>
+                                </div>
+
                             </div>
 
                             <div class="cardDetails">
                                 <div class="userMname">
                                     <p style="margin-right: 28px;">Middle Name</p>
                                     <p style="font-weight: bold;"><?php echo $targetEmployee['employee_mname']?></p>
+                                </div>
+
+                                <div class="userPhonenum">
+                                    <p style="margin-right: 23px;">Phone Number</p>
+                                    <p style="font-weight: bold;"><?php echo $targetEmployee['employee_phoneNum'] ?></p>
                                 </div>
                             </div>
 
@@ -194,6 +205,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['search'])) {
                                     <p class="lname" style="margin-right: 47px;">Last Name</p>
                                     <p style="font-weight: bold;"><?php echo $targetEmployee['employee_lname']?></p>
                                 </div>
+
+                                <div class="userEmail">
+                                    <p class="emails" style="margin-right: 83px;">Email</p>
+                                    <p class="realusermail" style="font-weight: bold;"><?php echo $targetEmployee['employee_email']?></p>
+                                </div>
                             </div>
 
 
@@ -201,29 +217,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['search'])) {
                                 <div class="userSuffix">
                                     <p class="suffix" style="margin-right: 78px;">Suffix</p>
                                     <p style="font-weight: bold;"><?php echo $targetEmployee['employee_suffix']?></p>
-                                </div>
-
-                            </div>
-
-                            <div class="cardDetails">
-                                <div class="userGender">
-                                    <p class="gender" style="margin-right: 68px;">Gender</p>
-                                    <p style="font-weight: bold;"><?php echo $targetEmployee['employee_gender']?></p>
-                                </div>
-
-                            </div>
-                          
-                            <div class="cardDetails">
-                                <div class="userPhonenum">
-                                    <p style="margin-right: 23px;">Phone Number</p>
-                                    <p style="font-weight: bold;"><?php echo $targetEmployee['employee_phoneNum'] ?></p>
-                                </div>
-                            </div>
-
-                            <div class="cardDetails">
-                                <div class="userEmail">
-                                    <p class="emails" style="margin-right: 83px;">Email</p>
-                                    <p class="realusermail" style="font-weight: bold;"><?php echo $targetEmployee['employee_email']?></p>
                                 </div>
 
                             </div>
@@ -251,7 +244,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['search'])) {
 
                             <div class="userBasicSalary">
                                 <p class="basicsalary" style="margin-right: 10px;">Basic Salary per day</p>
-                                <p  style="font-weight: bold;">₱<?php echo $basicSalary ?> </p>
+                                <p  style="font-weight: bold;">₱ <?php echo $basicSalary ?> </p>
                             </div>
                         </div>
                     </div>
@@ -405,17 +398,16 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['search'])) {
             <div class="modal-content">
                 <div class="modal-body">
                     <h6>Are you sure you want to enable your account?</h6>
-                    <p>By enabling this account chuchu.</p>
+                    <p style="margin-top: 3px;">By enabling this account, this user can now access his or her account.</p>
 
                     <div class="modalEnablebtn">
                         <button
                                 id="enableButton"
                                 data-status = "Active";
-                                style="background-color: #3DC53A; border: none; box-shadow: 0px 0px 10px rgba(0, 0, 0, 25%); color: white;"
                         >
                             Enable
                         </button>
-                        <button style="background-color: white; border: none; color: black;  box-shadow: 0px 0px 10px rgba(0, 0, 0, 25%);" data-bs-dismiss="modal">No</button>
+                        <button class="noButton" style="background-color: white; border: none; color: black;  box-shadow: 0px 0px 10px rgba(0, 0, 0, 25%);" data-bs-dismiss="modal">No</button>
                     </div>
                 </div>
             </div>

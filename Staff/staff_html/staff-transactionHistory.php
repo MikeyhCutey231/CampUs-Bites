@@ -35,7 +35,7 @@
                 <div class="main-logo"></div>
                 <div class="sidelogo-text">
                     <div style="position: relative;">
-                        <a href="">CampUS</a>
+                        <a href="">CampUs</a>
                         <p class="">Bites</p>
                     </div>
                     <div class="close-btn"><img src="../../Icons/x-circle.svg" alt=""></div>
@@ -123,7 +123,7 @@
                     <input type="text" name="fname" placeholder="Search here...">
                 </div> -->
                 <div class="usep-texthead">
-                    <img src="/Icons/useplogo.png" alt="" width="30px" height="30px">
+                    <img src="../../Icons/useplogo.png" alt="" width="30px" height="30px">
                     <p style="margin-bottom: 0px; margin-top: 3px; margin-left: 10px; font-weight: 600;">UseP (Tagum Unit)</p>
                 </div>
                 <a href="staff-Profile.php" style="color: black;">

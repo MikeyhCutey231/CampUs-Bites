@@ -1,5 +1,5 @@
 <?php
-session_start();
+
 require '../../Admin/functions/UserData.php';
 include_once('../../Admin/functions/ProductData.php');
 
@@ -17,7 +17,7 @@ if (!isset($_SESSION['USER_ID'])) {
 ?>
 
 <?php
-require '../admin_functions/LiveSearchFunction.php';
+require '../../Admin/functions/LiveSearchFunction.php';
 $customerTableSorter = new TableSorter('#searchresult', '.filterDropdown');
 $customerTableSorter->addSortingScript();
 $searchHandler = new SearchHandler();
@@ -60,11 +60,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['search'])) {
                     <p style="margin-bottom: 0;">Sales Report</p>
                 </div>
                 <div class="head-searchbar">
-                    <img src="/Icons/search.svg" alt="" width="20px" style="margin-top: 12px;">
+                    <img src="../../Icons/search.svg" alt="" width="20px" style="margin-top: 12px;">
                     <input type="text" name="fname" placeholder="Search here...">
                 </div>
                 <div class="usep-texthead">
-                    <img src="/Icons/useplogo.png" alt="" width="30px" height="30px">
+                    <img src="../../Icons/useplogo.png" alt="" width="30px" height="30px">
                     <p style="margin-bottom: 0px; margin-top: 3px; margin-left: 10px; font-weight: 600;">UseP (Tagum Unit)</p>
                 </div>
                 <a href="admin-profile.php" style="color: black;">
@@ -73,7 +73,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['search'])) {
                             <?php
                             if (!empty($usersData)) {
                                 $profilePic = $usersData[0]['profilePic'];
-                                echo '<img src="upload/' . $profilePic . '" style="height: 38px; width: 40px; border-radius: 5px; object-fit: cover;">';
+                                echo '<img src="../../Icons/' . $profilePic . '" style="height: 38px; width: 40px; border-radius: 5px; object-fit: cover;">';
                             }
                             ?>
                         </div>
@@ -83,7 +83,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['search'])) {
                                 $adminUsername = $usersData[0]['username'];
                                 echo '<p style="margin-bottom: 0px; font-weight: 700;">' . $adminUsername . '</p>';
 
-                                require_once '../admin_functions/user.php';
+                                require_once '../../Admin/functions/user.php';
                                 $userDataManager = new User();
                                 if ($userDataManager->isManager()) {
                                     echo '<p style="margin-bottom: 0px; font-size: 6px; background-color: #9C1421; color: white; padding: 3px; border-radius: 3px;">Manager</p>';
@@ -141,14 +141,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['search'])) {
                                                     foreach ($productData as $product) {
                                                         $formattedDate = date('d-m-Y', strtotime($product['transaction_date']));
                                                         echo '<tr>
-            <td>' . $formattedDate . '</td>
-            <td>' . $product['prod_name'] . '</td>
-            <td>₱' . number_format($product['prod_capital_price'], 2) . '</td>
-            <td>₱' . number_format($product['prod_selling_price'], 2) . '</td>
-            <td>₱' . number_format($product['gross_margin'], 2) . '</td>
-            <td>' . $product['pos_prod_quantity'] . '</td>
-            <td>' . $product['subtotal'] . '</td>
-        </tr>';
+                                                        <td>' . $formattedDate . '</td>
+                                                        <td>' . $product['prod_name'] . '</td>
+                                                        <td>₱' . number_format($product['prod_capital_price'], 2) . '</td>
+                                                        <td>₱' . number_format($product['prod_selling_price'], 2) . '</td>
+                                                        <td>₱' . number_format($product['gross_margin'], 2) . '</td>
+                                                        <td>' . $product['pos_prod_quantity'] . '</td>
+                                                        <td>' . $product['subtotal'] . '</td>
+                                                    </tr>';
                                                     }
                                                 }
                                                 ?>
@@ -202,7 +202,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['search'])) {
                                             <div class="row px-3" style="height: 40px">
                                                 <div class="col-2 d-flex align-items-center justify-content-center">
                                                     <div class="d-flex align-items-center justify-content-center cartIcon-container">
-                                                        <img src="upload/<?php echo $product['product_pic'] ?>" alt="" class="cartIcon" style="width: 38px; border-radius: 25px; object-fit: cover; height: 35px;">
+                                                        <img src="../../Icons/<?php echo $product['product_pic'] ?>" alt="" class="cartIcon" style="width: 38px; border-radius: 25px; object-fit: cover; height: 35px;">
                                                     </div>
                                                 </div>
                                                 <div class="col-8 py-1 px-0">
@@ -315,14 +315,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['search'])) {
                                     foreach ($productData as $product) {
                                         $formattedDate = date('d-m-Y', strtotime($product['transaction_date']));
                                         echo '<tr>
-            <td>' . $formattedDate . '</td>
-            <td>' . $product['prod_name'] . '</td>
-            <td>₱' . number_format($product['prod_capital_price'], 2) . '</td>
-            <td>₱' . number_format($product['prod_selling_price'], 2) . '</td>
-            <td>₱' . number_format($product['gross_margin'], 2) . '</td>
-            <td>' . $product['pos_prod_quantity'] . '</td>
-            <td>₱' . $product['subtotal'] . '</td>
-        </tr>';
+                                        <td>' . $formattedDate . '</td>
+                                        <td>' . $product['prod_name'] . '</td>
+                                        <td>₱' . number_format($product['prod_capital_price'], 2) . '</td>
+                                        <td>₱' . number_format($product['prod_selling_price'], 2) . '</td>
+                                        <td>₱' . number_format($product['gross_margin'], 2) . '</td>
+                                        <td>' . $product['pos_prod_quantity'] . '</td>
+                                        <td>₱' . $product['subtotal'] . '</td>
+                                    </tr>';
                                     }
                                 }
                                 ?>
@@ -358,7 +358,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['search'])) {
                     });
 
                     function fetchCategories() {
-                        fetch('../admin_functions/CategoryData.php')
+                        fetch('../../Admin/functions/CategoryData.php')
                             .then(response => response.json())
                             .then(data => {
                                 categoryFilter.innerHTML = '<option value="">Select Category</option>';
@@ -374,7 +374,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['search'])) {
                     }
 
                     function fetchProductsByCategory(categoryId) {
-                        fetch('../admin_functions/getProductsByCategory.php?categoryId=' + categoryId)
+                        fetch('../../Admin/functions/getProductsByCategory.php?categoryId=' + categoryId)
                             .then(response => response.json())
                             .then(data => {
                                 productFilter.innerHTML = '<option value="">Select Product</option>';
@@ -403,7 +403,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['search'])) {
                             return;
                         }
 
-                        fetch(`../admin_functions/getFilterData.php?fromDate=${fromDate}&toDate=${toDate}&selectedCategory=${categoryValue}&selectedProduct=${productValue}`)
+                        fetch(`../../Admin/functions/getFilterData.php?fromDate=${fromDate}&toDate=${toDate}&selectedCategory=${categoryValue}&selectedProduct=${productValue}`)
                             .then(response => {
                                 if (!response.ok) {
                                     throw new Error('Network response was not ok');
@@ -427,15 +427,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['search'])) {
                                         console.log('Formatted date:', formattedDate);
 
                                         const rowHTML = `
-                        <tr>
-                            <td>${formattedDate}</td>
-                            <td>${sale.PROD_NAME}</td>
-                            <td>₱${Number(sale.PROD_CAPITAL_PRICE).toFixed(2)}</td>
-                            <td>₱${Number(sale.PROD_SELLING_PRICE).toFixed(2)}</td>
-                            <td>₱${Number(sale.GROSS_MARGIN).toFixed(2)}</td>
-                            <td>${sale.POS_PROD_QUANTITY}</td>
-                            <td>₱${Number(sale.SUBTOTAL).toFixed(2)}</td>
-                        </tr>`;
+                                                <tr>
+                                                    <td>${formattedDate}</td>
+                                                    <td>${sale.PROD_NAME}</td>
+                                                    <td>₱${Number(sale.PROD_CAPITAL_PRICE).toFixed(2)}</td>
+                                                    <td>₱${Number(sale.PROD_SELLING_PRICE).toFixed(2)}</td>
+                                                    <td>₱${Number(sale.GROSS_MARGIN).toFixed(2)}</td>
+                                                    <td>${sale.POS_PROD_QUANTITY}</td>
+                                                    <td>₱${Number(sale.SUBTOTAL).toFixed(2)}</td>
+                                                </tr>`;
                                         tableBody.innerHTML += rowHTML;
                                     });
                                 } else {
@@ -558,6 +558,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['search'])) {
                 });
             </script>
 
-     <script src="/Admin/admin_js/admin.js"></script>
+     <script src="../../Admin/admin_js/admin.js"></script>
 </body>
 </html>

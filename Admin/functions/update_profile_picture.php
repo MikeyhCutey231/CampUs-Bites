@@ -1,8 +1,9 @@
 <?php
 header('Access-Control-Allow-Origin: *');
-session_start();
-include("../../config.php");
-$database = new Database();
+
+require("../../Admin/functions/dbConfig.php");
+
+$database = new Connection();
 $conn = $database->conn;
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
@@ -14,7 +15,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         for ($i = 0; $i < $fileCount; $i++) {
             $prodPic = $_FILES['profilePic']['name'][$i];
             $imageTmpName = $_FILES['profilePic']['tmp_name'][$i];
-            $targetPath = '../admin_php/upload/' . $prodPic;
+            $targetPath = '../../Icons/' . $prodPic;
 
             if (move_uploaded_file($imageTmpName, $targetPath)) {
                 $query = "UPDATE users SET U_PICTURE = ? WHERE USER_ID = ?";

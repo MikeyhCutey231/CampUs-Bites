@@ -1,8 +1,6 @@
 <?php
 require '../../Admin/functions/UserData.php';
 
-
-
 $deductionUpdater = new UserData();
 
 if(isset($_POST["updateDeducbtn"])){
@@ -256,9 +254,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['search'])) {
 <!-- Javascript -->
 <script src="/Admin/admin_js/admin.js"></script>
 <script>
-    const sssInput = document.querySelector('.sss-container input[name="SssInput"]');
-    const pagIbigInput = document.querySelector('.pagIbig-container input[name="pagIbigInput"]');
-    const philHealthInput = document.querySelector('.philHealth-container input[name="philHealthInput"]');
+    const sssInput = document.querySelector('.sss-container input[name="SSS"]');
+    const pagIbigInput = document.querySelector('.pagIbig-container input[name="PagIBIG"]');
+    const philHealthInput = document.querySelector('.philHealth-container input[name="PhilHealth"]');
 
     // Function to allow only numeric input
     function allowOnlyNumbers(input) {
@@ -268,9 +266,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['search'])) {
         });
     }
 
-    allowOnlyNumbers(SSSInsurance);
-    allowOnlyNumbers(PagIBIG);
-    allowOnlyNumbers(PhilHealth);
+    allowOnlyNumbers(sssInput);
+    allowOnlyNumbers(pagIbigInput);
+    allowOnlyNumbers(philHealthInput);
 </script>
 
 <!-- Live search ajax -->

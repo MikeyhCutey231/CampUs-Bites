@@ -32,20 +32,20 @@ if($filter == 0){
     $query = "SELECT pos_order.ONSITE_ORDER_ID, users.U_FIRST_NAME, users.U_MIDDLE_NAME, users.U_LAST_NAME, 
                 pos_cart.POS_CART_ID, pos_cart.POS_CART_DATE_CREATED, pos_cart.POS_CART_TOTAL, pos_order.RECEIVED_AMOUNT,  pos_order.CHANGE_AMOUNT  
                 FROM pos_order
-                INNER JOIN users ON pos_order.USER_ID = users.USER_ID 
+                INNER JOIN users ON pos_order.EMPLOYEE_ID = users.USER_ID 
                 INNER JOIN pos_cart ON pos_order.POS_CART_ID = pos_cart.POS_CART_ID $where_clause
                 LIMIT ?, ?";
 
-    $stmt = $conn->prepare($query);
+        $stmt = $conn->prepare($query);
 
-    if (!empty($search)) {
-        $search_param = "%$search%";
-        $stmt->bind_param("ssii", $search_param, $search_param, $start_from, $limit);
-    } else {
-        $stmt->bind_param("ii", $start_from, $limit);
-    }
+        if (!empty($search)) {
+            $search_param = "%$search%";
+            $stmt->bind_param("sii", $search_param, $start_from, $limit);
+        } else {
+            $stmt->bind_param("ii", $start_from, $limit);
+        }
 
-    $stmt->execute();
+        $stmt->execute();
     $result = $stmt->get_result();
 
     $output .=  '
@@ -74,7 +74,7 @@ if($filter == 0){
                     <td>₱' . $row['POS_CART_TOTAL'] . '</td>
                     <td>₱' . $row['RECEIVED_AMOUNT'] . '</td>
                     <td>₱' . $row['CHANGE_AMOUNT'] . '</td>
-                    <td><button type="button" class="viewOrderRec" data-filter="' . $filter . '" value="' . $row['ONSITE_ORDER_ID'] . '">View Order Record</button></td>
+                    <td><button type="button" class="viewOrderRec" data-filter="' . $filter . '" data-cartID="' . $row['POS_CART_ID'] . '"  value="' . $row['ONSITE_ORDER_ID'] . '">View Order Record</button></td>
                 </tr>
             </tbody>';
         }

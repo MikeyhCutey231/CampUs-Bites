@@ -329,7 +329,6 @@ input:focus {
     box-shadow: 0px 0px 4px rgba(0, 0, 0, 25%);
     background-color: #FFFFFF;
     border-radius: 10px;
-    height:69vh;
     width: 20%;
     display: flex;
     flex-direction: column;
@@ -342,9 +341,10 @@ h5, h4{
 
 .userSettings-container .userProfile{
     border-radius: 100px;
-    margin-top: 30px;
-    width: 150px;
-    height: 150px;
+    margin-top: 15px;
+    width: 120px;
+    height: 120px;
+    object-fit: cover;
 }
 
 .userSettings-container .settingUsername{
@@ -366,7 +366,7 @@ h5, h4{
     font-weight: bold;
     font-size: 12px;
     color: #9C1421;
-    margin-top: 25px;
+    margin-top: 10px;
     background-color: white;
 }
 
@@ -379,7 +379,7 @@ h5, h4{
     color: white;
     border: none;
     background-color: #F0C419;
-    margin-top: 105px;
+    margin-top: 40px;
 }
 
 
@@ -403,9 +403,27 @@ h5, h4{
     font-size: 12px;
     color: white;
     border: none;
-    background-color: #3DC53A !important;
+    background-color: #0F947E !important;
     margin-top: 5px;
 }
+
+.modal-body h6{
+    margin-bottom: 0px;
+}
+
+.modalEnablebtn{
+    margin-top: 15px;
+}
+
+#enableButton{
+    background-color: #0F947E !important;
+    padding: 5px;
+    width: 100px;
+    color: white;
+    border-radius: 4px;
+    border: none;
+}
+
 .userInformation-container{
     display: flex;
     flex-direction: column;
@@ -417,7 +435,7 @@ h5, h4{
     box-shadow: 0px 0px 4px rgba(0, 0, 0, 25%);
     background-color: #FFFFFF;
     border-radius: 10px;
-    height: 46vh;
+    padding-bottom: 20px;
 }
 
 .personalInformation-container .pInformation-head{
@@ -591,14 +609,13 @@ h5, h4{
 /* Modal Edit Profile */
 
 #editInfo .modal-dialog{
-    max-width: 70%;
+    max-width: 65%;
 }
 
 #editInfo .modal-body{
     display: flex;
     flex-direction: row;
     padding: 25px;
-    height: 565px;
 }
 
 .modal-body form{
@@ -646,7 +663,7 @@ input[type="file"]{
 .editRight-container{
     width: 79%;
     border-left: 2px solid #A0A0A0;
-    margin-left: 20px;
+    margin-left: 30px;
 }
 
 .modalPersonalInfo h4{
@@ -1015,6 +1032,7 @@ input[type="file"]{
     display: flex;
     justify-content: flex-end;
     align-items: flex-end;
+    height: 0px;
 }
 
 .modalEigth .modalUpdate{
@@ -1060,7 +1078,24 @@ input[type="file"]{
     flex-direction: column;
     padding: 25px;
     padding-left: 30px;
-    height: 170px;
+    height: 160px;
+}
+
+#enableAccount .modal-body{
+    display: flex;
+    flex-direction: column;
+    padding: 25px;
+    padding-left: 30px;
+}
+
+
+#enableAccount .noButton{
+    padding: 6px;
+    width: 65px;
+    color: white;
+    border-radius: 4px;
+    border: none;
+    margin-left: 5px;
 }
 
 .modal-body h6{

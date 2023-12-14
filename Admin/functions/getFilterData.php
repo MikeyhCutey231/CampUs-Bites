@@ -1,12 +1,12 @@
 <?php
-include_once('../../config.php');
+require("../../Admin/functions/dbConfig.php");
 
 class SalesReportData {
     private $conn;
 
     public function __construct() {
         // Assuming you have a Database class or similar for connecting to the database
-        $database = new Database();
+        $database = new Connection();
         $this->conn = $database->conn;
     }
 

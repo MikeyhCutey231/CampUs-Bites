@@ -1,7 +1,7 @@
 <?php
-session_start();
-require 'config.php';
-$database = new Database();
+
+require("../../Admin/functions/dbConfig.php");
+$database = new Connection();
 $conn = $database->conn;
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
@@ -70,7 +70,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     if ($stmt->execute()) {
         echo "Profile updated successfully.";
-        header("Location: ../admin_php/admin-profile.php");
+        header("Location: ../../Admin/admin_php/admin-profile.php");
     } else {
         echo "Error updating profile: " . $stmt->error;
     }

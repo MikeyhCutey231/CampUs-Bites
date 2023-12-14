@@ -352,7 +352,6 @@ input:focus {
 
 .topOrderInfo{
     display: flex;
-    justify-content: space-between;
     align-items: center;
 }
 
@@ -370,6 +369,16 @@ input:focus {
     font-weight: bold;
     font-size: 14px;
     padding: 8px;
+}
+
+
+.topOrderInfo .claimBtn{
+    margin-left: 400px;
+    margin-right: 10px;
+}
+
+.topOrderInfo .cancelBtn{
+    background-color: #f4bf4e !important;
 }
 
 .bottomOrderInfo{

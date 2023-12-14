@@ -7,7 +7,7 @@ $database = new Connection();
 $conn = $database->conn;
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $userId = $_POST['userid'];//admin/manager ni nga id
+    $userId = $_POST['userid']; // admin/manager ni nga id
     $username = $_POST['username'];
     $lastName = $_POST['lastName'];
     $firstName = $_POST['firstName'];
@@ -18,19 +18,23 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $email = $_POST['email'];
     $position = $_POST['position'];
 
-    $checkDuplicateQuery = "SELECT USER_ID FROM users 
-                            WHERE U_LAST_NAME = ? AND U_FIRST_NAME = ? AND U_MIDDLE_NAME = ? 
-                            AND U_SUFFIX = ? AND U_GENDER = ? AND U_PHONE_NUMBER = ? AND U_EMAIL = ? AND U_USER_NAME = ?";
+    $selectAllUser = "SELECT U_EMAIL FROM users WHERE U_EMAIL = '$email'";
+    $allUserRun = mysqli_query($conn, $selectAllUser);
 
-    $stmtCheckDuplicate = $conn->prepare($checkDuplicateQuery);
-    $stmtCheckDuplicate->bind_param("ssssssss", $lastName, $firstName, $middleName, $suffix, $gender, $phone_number, $email, $username);
-    $stmtCheckDuplicate->execute();
-    $stmtCheckDuplicate->store_result();
+    $duplicateFound = false;
 
-    if ($stmtCheckDuplicate->num_rows > 0) {
-        $rec_error = "An exact copy of the user already exists.";
-    } else {
-        // Insert into users table
+    while ($row = mysqli_fetch_array($allUserRun)) {
+        $dbEmail = $row['U_EMAIL'];
+
+        if ($email == $dbEmail) {
+            $duplicateFound = true;
+            break; // Exit the loop immediately if duplicate is found
+        }else{
+            $duplicateFound = false;
+        }
+    }
+
+    if ($duplicateFound == false) {
         $hashedPassword = password_hash($phone_number, PASSWORD_DEFAULT);
 
         $insertUserQuery = "INSERT INTO users (U_USER_NAME,U_PASSWORD,U_LAST_NAME, U_FIRST_NAME, U_MIDDLE_NAME, U_SUFFIX, U_GENDER, U_PHONE_NUMBER, U_EMAIL) VALUES (?,?, ?, ?, ?, ?, ?,?, ?)";
@@ -63,7 +67,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                             if ($stmtUpdateUser->execute()) {
                                 $logger->logAddEmployee($userId, $lastUserId, $username);
                                 $rec_success = "Updated";
-                                header("location:  ../../Admin/admin_php/admin-viewEmployee.php?employee_id=" . $lastUserId);
+                                echo '<script>window.history.back();</script>';
                             } else {
                                 $rec_error = "Something went wrong: " . $conn->error;
                             }
@@ -76,7 +80,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 }else{
                     $logger->logAddEmployee($userId, $lastUserId, $username);
                     $rec_success = "Added";
-                    header("location: ../../Admin/admin_php/admin-viewEmployee.php?employee_id=" . $lastUserId);
+                    echo '<script>window.history.back();</script>';
                 }
             }
             else {
@@ -89,8 +93,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         }
 
         $stmt->close();
-    }
+        echo '<script>window.history.back();</script>';
 
-    $stmtCheckDuplicate->close();
+    } else {
+        echo '<script> window.history.back();</script>';
+    }
 }
 ?>

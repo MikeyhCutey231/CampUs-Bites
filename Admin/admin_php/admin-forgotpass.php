@@ -3,18 +3,19 @@
 error_reporting(0);
 
  $error_message = null;
-if(isset($_POST["Search"])){
+ if(isset($_POST["Search"])){
     $email = $_POST["email"];
 
-
-   
    $forgotPass = new User();
-   $forgotPass->forgotPass($email);
 
    $result =  $forgotPass->forgotPass($email);
 
     if($result === User::EMAIL_EMPTY_FIELDS){
         $error_message = "Kindly, fill in all the inputs";
+    }else if($result === User::REGISTRATION_EMAIL_NOTSAME){
+        $error_message = "Kindly, fill in the inputs or your email does not exist";
+    }else if($result === User::REGISTRATION_SUCCESS){
+        header("location: ../../Admin/admin_php/admin-securitycode.php");
     }
  }
 ?>
@@ -45,7 +46,7 @@ if(isset($_POST["Search"])){
 
     <?php
         if($error_message != null){
-            ?><style>.error{display: block; margin-bottom: 20px;}</style> <?php
+            ?><style>.error{display: block; margin-top: 10px;}</style> <?php
         }else{
             ?><style>.error{display: hidden;}</style> <?php
         }
@@ -55,7 +56,7 @@ if(isset($_POST["Search"])){
 <body>
    <div class="wrapper">
         <div class="left">
-            <h1 class="head-title">CampUs <?php echo $_SESSION['USER_ID'] ?></h1>
+            <h1 class="head-title">CampUs Bites</h1>
             <h4 class="sub-head">Feeding minds, one bite at a time.</h4>
         </div>
         <div class="right">

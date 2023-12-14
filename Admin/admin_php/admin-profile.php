@@ -1,6 +1,6 @@
 <?php
-session_start();
-require '../admin_functions/UserData.php';
+
+require '../../Admin/functions/UserData.php';
 
 $loggedUser = $_SESSION['USER_ID'];
 $userDataInstance = new UserData();
@@ -14,7 +14,7 @@ if (!isset($_SESSION['USER_ID'])) {
 ?>
 
 <?php
-require '../admin_functions/LiveSearchFunction.php';
+require '../../Admin/functions/LiveSearchFunction.php';
 $customerTableSorter = new TableSorter('#searchresult', '.filterDropdown');
 $customerTableSorter->addSortingScript();
 $searchHandler = new SearchHandler();
@@ -41,7 +41,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['search'])) {
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 
     <title>CampUs Bites</title>
-    <link rel="stylesheet" href="/Admin/admin_css/admin-profile.css">
+    <link rel="stylesheet" href="../../Admin/admin_css/admin-profile.css">
 </head>
 <body>
     <div class="wrapper">
@@ -56,13 +56,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['search'])) {
                 </div>
                 <!-- Main Search Bar -->
                 <div class="head-searchbar">
-                    <img src="/Icons/search.svg" alt="" width="20px" style="margin-top: 12px;">
+                    <img src="../../Icons/search.svg" alt="" width="20px" style="margin-top: 12px;">
                     <form method="post">
                         <input type="text" name="search" placeholder="Search here...">
                     </form>
                 </div>
                 <div class="usep-texthead">
-                    <img src="/Icons/useplogo.png" alt="" width="30px" height="30px">
+                    <img src="../../Icons/useplogo.png" alt="" width="30px" height="30px">
                     <p style="margin-bottom: 0px; margin-top: 3px; margin-left: 10px; font-weight: 600;">UseP (Tagum Unit)</p>
                 </div>
                 <a href="admin-profile.php" style="color: black;">
@@ -76,7 +76,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['search'])) {
                                 $adminPhonenum = $usersData[0]['phoneNum'];
                                 $adminFullname = $usersData[0]['fullname'];
                                 $userrole = $usersData[0]['userRole'];
-                                echo '<img src="upload/' . $profilePic . '" style="height: 38px; width: 40px; border-radius: 5px; object-fit: cover;">';
+                                echo '<img src="../../Icons/' . $profilePic . '" style="height: 38px; width: 40px; border-radius: 5px; object-fit: cover;">';
                             }
                             ?>
                         </div>
@@ -86,7 +86,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['search'])) {
                                 $adminUsername = $usersData[0]['username'];
                                 echo '<p style="margin-bottom: 0px; font-weight: 700;">' . $adminUsername . '</p>';
 
-                                require_once '../admin_functions/user.php';
+                                require_once '../../Admin/functions/user.php';
                                 $userDataManager = new User();
                                 if ($userDataManager->isManager()) {
                                     echo '<p style="margin-bottom: 0px; font-size: 6px; background-color: #9C1421; color: white; padding: 3px; border-radius: 3px;">Manager</p>';
@@ -106,9 +106,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['search'])) {
                     <div class="col-lg-3">
                         <div class="px-4 py-5 border profile">
                             <div class="mb-2 text-center admin-picture" style="object-fit: contain">
-                                <form id="profileForm" action="../admin_functions/update_profile_picture.php" method="post" enctype="multipart/form-data">
+                                <form id="profileForm" action="../../Admin/functions/update_profile_picture.php" method="post" enctype="multipart/form-data">
                                     <div class="text-center admin-selectPic">
-                                        <img id="profileImg" src="upload/<?php echo $profilePic; ?>" style="height: 175px; width: 175px; border-radius: 4px; object-fit: cover;">
+                                        <img id="profileImg" src="../../Icons/<?php echo $profilePic; ?>" style="height: 175px; width: 175px; border-radius: 4px; object-fit: cover;">
                                     </div>
                                     <div class="text-center admin-name">
                                         <h5><b><?php echo "$adminFullname"; ?></b></h5>
@@ -257,7 +257,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['search'])) {
         </div>
         </div>
 <!----modals-->
-    <form method="post" action="../admin_functions/update-profile.php">
+    <form method="post" action="../../Admin/functions/update-profile.php">
         <div class="modal fade" id="editprofile" data-bs-backdrop="static" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered">
                 <div class="modal-content">
@@ -408,7 +408,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['search'])) {
                 // Your AJAX request goes here
                 $.ajax({
                     type: "POST",
-                    url: "../admin_functions/update-password.php",
+                    url: "../../Admin/functions/update-password.php",
                     data: { userID:adminID, currentPassword: currentPassword, newPassword: newPassword, confirmPassword: confirmPassword },
                     success: function (response) {
                         errorElement.css({

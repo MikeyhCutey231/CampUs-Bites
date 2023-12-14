@@ -465,6 +465,7 @@ height: 190px;
     border-radius: 5px;
     height: 40px;
     width: 50px;
+    object-fit: cover;
 }
 
 .position {

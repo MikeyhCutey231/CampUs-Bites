@@ -154,55 +154,43 @@ class UserData {
 
     return $position;
 }
-    public function getEmployeeData() {
-        $employeeData = array();
+public function getEmployeeData($employee_id) {
+    $sql = "SELECT users.*, user_roles.* 
+        FROM users 
+        JOIN user_roles ON users.USER_ID = user_roles.USER_ID 
+        WHERE users.USER_ID = ?";
 
-        $query = "SELECT
-    users.USER_ID,
-    users.U_FIRST_NAME,
-    users.U_MIDDLE_NAME,
-    users.U_LAST_NAME,
-    users.U_PICTURE,
-    vwpayroll_list.role_name,
-    emp_payroll.EMP_PAYROLL_ID AS most_recent_payroll_id
-    FROM
-    vwpayroll_list
-    JOIN
-    users ON vwpayroll_list.USER_ID = users.USER_ID
-    JOIN
-    emp_payroll ON vwpayroll_list.USER_ID = emp_payroll.EMPLOYEE_ID
-            AND emp_payroll.EMP_PAYROLL_ID = (
-                SELECT MAX(EMP_PAYROLL_ID)
-                FROM emp_payroll
-                WHERE emp_payroll.EMPLOYEE_ID = vwpayroll_list.USER_ID
-            )
-    ORDER BY
-    users.U_LAST_NAME ASC;
-    ";
+    $employeeData = array();
 
-        $stmt = $this->conn->prepare($query);
-        if ($stmt) {
-            $stmt->execute();
-            $stmt->bind_result($employeeId, $firstName, $middleName, $lastName, $profPic, $rolename, $mostRecentPayrollId);
+    $stmt = $this->conn->prepare($sql);
+    $stmt->bind_param("i", $employee_id);
+    $stmt->execute();
 
-            while ($stmt->fetch()) {
-                $employeeData[] = [
-                    'EMPLOYEE_ID' => $employeeId,
-                    'EMP_FIRST_NAME' => $firstName,
-                    'EMP_MIDDLE_NAME' => $middleName,
-                    'EMP_LAST_NAME' => $lastName,
-                    'EMP_PROF_PIC' => $profPic,
-                    'EMP_ROLE_NAME' => $rolename,
-                    'EMP_PAYROLL_ID' => $mostRecentPayrollId,
-                ];
-            }
+    $result = $stmt->get_result();
 
-            $stmt->close();
+    while ($row = $result->fetch_assoc()) {
+        $employee = array(
+            'username' => $row["U_USER_NAME"],
+            'employee_id' => $row["USER_ID"],
+            'employee_fname' => $row["U_FIRST_NAME"],
+            'employee_lname' => $row["U_LAST_NAME"],
+            'employee_mname' => $row["U_MIDDLE_NAME"],
+            'employee_suffix' => $row["U_SUFFIX"],
+            'employee_gender' => $row["U_GENDER"],
+            'employee_phoneNum' => $row["U_PHONE_NUMBER"],
+            'employee_email' => $row["U_EMAIL"],
+            'employee_acc_status' => $row["U_STATUS"],
+            'employee_profPic' => $row["U_PICTURE"],
+            'role_code' => $row["ROLE_CODE"],
+        );
 
-        }
-
-        return $employeeData;
+        $employeeData[] = $employee;
     }
+
+    $stmt->close();
+
+    return $employeeData;
+}
 
 
     public function getEmployeeDataCourier() {

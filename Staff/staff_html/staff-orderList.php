@@ -3,6 +3,12 @@
     $database = new Connection();
     $conn = $database->conn;
 
+
+    if (!isset($_SESSION['USER_ID'])) {
+        header("Location: staff-login.php");
+        exit();
+    }
+
     $currentDate = date('Y-m-d');
     $userID = $_SESSION['USER_ID'];
 
@@ -86,7 +92,7 @@
                 </li>
 
                 <li class="sidebar-items">
-                    <a href="" class="sidebar-link">
+                    <a href="../../Staff/staff_html/staff-logout.php" class="sidebar-link">
                         <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path d="M7.33428 17.1132H4.07464C3.64239 17.1132 3.22784 16.9415 2.92219 16.6358C2.61654 16.3302 2.44482 15.9156 2.44482 15.4834V4.07464C2.44482 3.64239 2.61654 3.22784 2.92219 2.92219C3.22784 2.61654 3.64239 2.44482 4.07464 2.44482H7.33428" stroke="#5F5F5F" stroke-width="1.62982" stroke-linecap="round" stroke-linejoin="round"/>
                             <path d="M13.0386 13.8537L17.1131 9.77914L13.0386 5.70459" stroke="#5F5F5F" stroke-width="1.62982" stroke-linecap="round" stroke-linejoin="round"/>

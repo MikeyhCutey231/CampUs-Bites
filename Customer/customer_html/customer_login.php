@@ -1,7 +1,9 @@
 <?php
-    require '../functions/loginStaff.php';
+    require '../../Customer/functions/loginStaff.php';
+    error_reporting(0);
+ 
     
-    $loginuser = new loginStaff();
+    $loginuser = new customerLogin();
 
     if(isset($_POST["submit"])){
         $username = $_POST["username"];
@@ -11,12 +13,12 @@
         
         $error_message = null;
 
-        if ($result === loginStaff::REGISTRATION_EMPTY_FIELDS) {
+        if ($result === customerLogin::REGISTRATION_EMPTY_FIELDS) {
             $error_message = "Kindly, fill in all the inputs";
-        } else if ($result === loginStaff::REGISTRATION_NOTSAME) {
+        } else if ($result === customerLogin::REGISTRATION_NOTSAME) {
             $error_message = "Kindly input your proper credentials";
-        } else if($result === loginStaff::REGISTRATION_SUCCESS){
-            header("location: staff-menu.php");
+        } else if($result === customerLogin::REGISTRATION_SUCCESS){
+            header("location: customer-dashboard.php");
         }
     }
 
@@ -24,7 +26,6 @@
         unset($_SESSION['code']);
     }
 ?>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -39,10 +40,10 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap" rel="stylesheet">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
 
-    <title>CBites Staff Login</title>
-    <link rel="stylesheet" href="../staff_css/stafflogin.css">
+    <title>CBites Customer Login</title>
+    <link rel="stylesheet" href="../../Customer/customer_css/customer_login.css">
+
 
     <style>
         .error{
@@ -58,6 +59,7 @@
         }
     
     ?>
+
 </head>
 <body>
     <div class="wrapper">
@@ -67,11 +69,11 @@
                 <p class="usep">University of Southeastern Philippines Tagum Unit</p>
                 <p class="ecanteen">E-Canteen Service System</p>
             </div>
-            <form action="" method="post">
-                <div class="login-container">
-                        <p style="font-size: 34px; font-weight: calc(1000); margin-bottom: 0px; padding-top: 20px;">Welcome Staff!</p>
+            <div class="login-container">
+                <form action=""  method="POST">
+                    <p style="font-size: 34px; font-weight: calc(1000); margin-bottom: 0px; padding-top: 35px;">Welcome Customer!</p>
 
-                        <div class="email">
+                    <div class="email">
                                 <p>Employee Username</p>
                                 <div class="email-input">
                                     <input type="text" id="emailField" name="username" style="font-size: 13px;">
@@ -88,24 +90,25 @@
                                 </div>
                         </div>
 
+                    <a href="../../Customer/customer_html/customer_verifyEmail.php"><p style="padding-left: 260px; margin-top: 15px;">Forgot password?</p></a>
 
-                        <a href="staff-findaccount.php"><p>Forgot password?</p></a>
+                    <div class="error error-message animate__animated animate__pulse">
+                        <?php echo $error_message ?>
+                    </div>
 
-                        <div class="error error-message animate__animated animate__pulse">
-                                <?php echo $error_message ?>
-                        </div>
+                    <button type="submit" name="submit">Login</button>
+                </form>
 
-                        <div class="loginBTN" style="margin-top: 8px;">
-                            <button type="submit" name="submit">Login</button>
-                        </div>
-                </div>
-            </form>
+                    <div class="registerHere">
+                        <p>Doesnt have account? <a href="../../Customer/customer_html/customer_register.php">Create Here</a></p>
+                    </div>
+            </div>
         </div>
         <div class="cwavey-logo">
-            <img src="../../Icons/stafflogo-login.svg" alt="" class="logo" width="625px">
+            <img src="../../Icons/clogin_logo.svg" alt="" class="logo" width="550px">
+            <img src="../../Icons/clogin_wavey.svg" alt="" width="702px">
         </div>
     </div>
-
 
 
     <script>

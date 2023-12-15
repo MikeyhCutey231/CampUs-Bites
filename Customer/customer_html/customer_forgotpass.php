@@ -14,7 +14,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 
     <title>CBites Customer Login</title>
-    <link rel="stylesheet" href="/Customer/customer_css/customer_forgotpass.css">
+    <link rel="stylesheet" href="../../Customer/customer_css/customer_forgotpass.css">
 </head>
 <body>
     <div class="wrapper">
@@ -46,8 +46,8 @@
             </div>
         </div>
         <div class="cwavey-logo">
-            <img src="/Icons/clogin_logo.svg" alt="" class="logo" width="550px">
-            <img src="/Icons/clogin_wavey.svg" alt="" width="702px">
+            <img src="../../Icons/clogin_logo.svg" alt="" class="logo" width="550px">
+            <img src="../../Icons/clogin_wavey.svg" alt="" width="702px">
         </div>
     </div>
 </body>

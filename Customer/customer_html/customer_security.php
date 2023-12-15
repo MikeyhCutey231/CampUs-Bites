@@ -1,8 +1,29 @@
 <?php 
-include("../../Admin/functions/dbConfig.php");
+    include("../../Admin/functions/dbConfig.php");
+    error_reporting(0);    
 
-$dbConnection = new Connection();
-$conn = $dbConnection->conn;
+    
+    $code = $_SESSION['code'];
+    $email = $_SESSION['email'];
+
+    if(isset($_POST['continue'])){
+        $codeInput = $_POST['codeInput'];
+        $error_message = null;
+
+        if($codeInput == $code){
+            header('location: customer-forgotPassChange.php');
+        }else{
+            $error_message = "Invalid Code";
+        }
+    }
+
+
+    if(isset($_POST['cancel'])){
+        header("location: customer-forgotpass.php"); 
+        setcookie(session_name(), '', 1);
+        unset($_SESSION['code']);
+        unset($_SESSION['email']);
+    }
 
 ?>
 <!DOCTYPE html>
@@ -22,20 +43,32 @@ $conn = $dbConnection->conn;
 
     <title>CBites Customer Login</title>
     <link rel="stylesheet" href="../../Customer/customer_css/customer_security.css">
+
+    <style>
+        .error{
+            display: none;
+        }
+    </style>
+
+    <?php
+        if($error_message != null){
+            ?><style>.error{display: block; margin-bottom: 20px;}</style> <?php
+        }else{
+            ?><style>.error{display: hidden;}</style> <?php
+        }
+    
+    ?>
 </head>
 <body>
     <div class="wrapper">
         <div class="left">
             <div class="info-logo">
-                 <?php 
-                    // Echo the user information without assigning to the session
-                    echo '<p class="campus">' . $_SESSION['user_info']['fname'] . ' ' . $_SESSION['user_info']['mname'] . ' ' . $_SESSION['user_info']['lname'] . ' ' . $_SESSION['user_info']['suffix'] . ' ' . $_SESSION['user_info']['phoneNumber'] . ' ' . $_SESSION['user_info']['gender'] . ' ' . $_SESSION['user_info']['usepEmail'] . ' ' . $_SESSION['user_info']['usepLandmark'] . '</p>';
-                ?>
+                
                 <p class="usep">University of Southeastern Philippines Tagum Unit</p>
-                <p class="ecanteen">E-Canteen Service System</p>
+                <p class="ecanteen">E-Canteen Service System <?php echo $_SESSION['email'] ?></p>
             </div>
             <div class="login-container">
-                <form action="" method="get">
+                <form action="" method="POST">
                     <p 
                         style="font-size: 25px;
                          font-weight: bold;
@@ -47,18 +80,48 @@ $conn = $dbConnection->conn;
                         Enter security code
                     </p>
 
-                    <p style="margin-bottom: 5px; color: #6C6C6C; margin-top: 20px; padding-left: 35px; line-height: 1.1;">Please check your email for a message with your <br> code. Your code is 6 characters long.</p>
-                    <input type="email" name="" id="" placeholder="Enter your email">
+                    <p style="margin-bottom: 3px; margin-left: 30px;">Please check your email for a message with your code. <br> Your code is 6 characters long.</p>
+                            <input type="text" placeholder="Enter email" style="border:1px solid #B4B4B4;" name="codeInput" id="codeInput">
 
-                    <button type="button" class="search">Continue</button>
-                    <button type="button" class="back">Back</button>
+                    <div class="error error-message animate__animated animate__pulse">
+                                <?php echo $error_message ?>
+                    </div>
+
+                    <button type="submit" class="search" name="continue">Continue</button>
+                    <button type="submit" class="back" name="cancel">Back</button>
                 </form>
             </div>
         </div>
         <div class="cwavey-logo">
-            <img src="/Icons/clogin_logo.svg" alt="" class="logo" width="550px">
-            <img src="/Icons/clogin_wavey.svg" alt="" width="702px">
+            <img src="../../Icons/clogin_logo.svg" alt="" class="logo" width="550px">
+            <img src="../../Icons/clogin_wavey.svg" alt="" width="702px">
         </div>
     </div>
+
+
+    <script>
+         function hideErrorMessage() {
+            const errorElement = document.querySelector('.error-message');
+            errorElement.style.opacity = '0';
+            setTimeout(() => {
+                errorElement.style.display = 'none';
+            }, 500);
+        }
+
+        const errorElement = document.querySelector('.error-message');
+        if (errorElement.style.opacity === '1' || errorElement.innerText.trim() !== '') {
+            setTimeout(hideErrorMessage, 1000);
+        }
+
+        const codeInput = document.getElementById('codeInput');
+
+        codeInput.addEventListener('input', function() {
+            this.value = this.value.replace(/[^0-9]/g, '');
+
+            if (this.value.length > 6) {
+                this.value = this.value.slice(0, 6);
+            }
+        });
+    </script>   
 </body>
 </html>

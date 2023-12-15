@@ -21,7 +21,7 @@ class loginStaff extends Connection{
             return self::REGISTRATION_EMPTY_FIELDS;
         }
     
-        $sql = "SELECT users.USER_ID, users.U_PASSWORD, users.U_FIRST_NAME FROM users JOIN user_roles ON users.USER_ID = user_roles.USER_ID WHERE users.U_USER_NAME = ? AND user_roles.ROLE_CODE = 'emp_cshr'";
+        $sql = "SELECT users.USER_ID, users.U_PASSWORD, users.U_FIRST_NAME, users.U_STATUS FROM users JOIN user_roles ON users.USER_ID = user_roles.USER_ID WHERE users.U_USER_NAME = ? AND user_roles.ROLE_CODE = 'emp_cshr' AND users.U_STATUS = 'Active'";
         $stmt = $this->conn->prepare($sql);
         $stmt->bind_param("s", $enteredUsername);
         $stmt->execute();

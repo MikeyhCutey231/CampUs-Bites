@@ -50,12 +50,12 @@ body{
 .login-container{
     background-color: white;
     width: 450px;
-    height: 255px;
     box-shadow: 0px 0px 6px rgba(0, 0, 0, 25%);
     margin-left: 150px;
     border-radius: 6px;
     display: flex;
     flex-direction: column;
+    padding-bottom: 20px;
 }
 
 .login-container input{
@@ -83,7 +83,7 @@ body{
     border-radius: 3px;
     margin-right: 3px;
     margin-left: 110px;
-    margin-top: 20px;
+    margin-top: 10px;
     font-size: 12px;
 }
 
@@ -113,6 +113,25 @@ body{
     right: 40px;
     top: 120px;
 }
+
+
+.error{
+    font-size: 12px; 
+    background-color: #edb4bc; 
+    color: rgb(73, 73, 73);
+    padding: 8px;
+    padding-left: 10px;
+    border-radius: 2px;
+    width: 82%;
+    opacity: 1;
+    transition: opacity 0.5s ease-in-out; 
+    display: block;
+    padding-left: 20px !important; 
+    margin-left: 30px !important; 
+    margin-top: 10px !important;
+    margin-bottom: 0px !important;
+}
+
 
 
 @media(max-width: 764px){

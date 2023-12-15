@@ -4,7 +4,7 @@
      $dbConnection = new Connection();
      $conn = $dbConnection->conn;
       
-     $changePass = new LoginStaff();
+     $changePass = new customerLogin();
      
      if(isset($_POST['create'])){
          $password = $_POST['password'];
@@ -21,18 +21,18 @@
          $result = $changePass->passwordErrorHandler($username, $password, $fname, $mname, $lname, $suffix, $phoneNum, $gender, $email, $landmark);
  
          $error_message = null;  
-         if($result == LoginStaff::REGISTRATION_EMPTY_FIELDS){
+         if($result == customerLogin::REGISTRATION_EMPTY_FIELDS){
              $error_message = "Input fields are empty";
-         }else if($result == LoginStaff::REGISTRATION_NOTSAME){
+         }else if($result == customerLogin::REGISTRATION_NOTSAME){
              $error_message = "Password you have input is not the same";
-         }else if($result == LoginStaff::REGISTRATION_PASSWORD_LENGTH){
+         }else if($result == customerLogin::REGISTRATION_PASSWORD_LENGTH){
              $error_message = "Password should be longer than 8 character";
-         }else if($result == LoginStaff::REGISTRATION_PASSWORD_CASE){
+         }else if($result == customerLogin::REGISTRATION_PASSWORD_CASE){
              $error_message = "Include atleast 1 uppercase letter";
-         }else if($result == LoginStaff::REGISTRATION_PASSWORD_SPECIAL_CHAR){
+         }else if($result == customerLogin::REGISTRATION_PASSWORD_SPECIAL_CHAR){
              $error_message = "Include atleast 1 special character";
-         }else if($result == LoginStaff::REGISTRATION_SUCCESS){         
-             header("location: customer_login.html");
+         }else if($result == customerLogin::REGISTRATION_SUCCESS){         
+             header("location: customer_login.php");
          }
      }
 

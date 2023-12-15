@@ -1,8 +1,8 @@
 <?php  
-    require '../../Staff/functions/loginStaff.php';
-    error_reporting(0);
+    require '../../Customer/functions/loginStaff.php';
+    error_reporting(0);    
 
-    $changePass = new LoginStaff();
+    $changePass = new customerLogin();
     
     if(isset($_POST['saveChangesButton'])){
         $newPassword = $_POST['newPassword'];
@@ -11,18 +11,18 @@
         $result = $changePass->changeLoginForgot($newPassword, $confirmPassword);
 
         $error_message = null;  
-        if($result == LoginStaff::REGISTRATION_EMPTY_FIELDS){
+        if($result == customerLogin::REGISTRATION_EMPTY_FIELDS){
             $error_message = "Input fields are empty";
-        }else if($result == LoginStaff::REGISTRATION_NOTSAME){
+        }else if($result == customerLogin::REGISTRATION_NOTSAME){
             $error_message = "Password you have input is not the same";
-        }else if($result == LoginStaff::REGISTRATION_PASSWORD_LENGTH){
+        }else if($result == customerLogin::REGISTRATION_PASSWORD_LENGTH){
             $error_message = "Password should be longer than 8 character";
-        }else if($result == LoginStaff::REGISTRATION_PASSWORD_CASE){
+        }else if($result == customerLogin::REGISTRATION_PASSWORD_CASE){
             $error_message = "Include atleast 1 uppercase letter";
-        }else if($result == LoginStaff::REGISTRATION_PASSWORD_SPECIAL_CHAR){
-            $error_message = "Include atleast 1 special character";
-        }else if($result == LoginStaff::REGISTRATION_SUCCESS){         
-            header("location: staff-login.php");
+        }else if($result == customerLogin::REGISTRATION_PASSWORD_SPECIAL_CHAR){
+            $error_message = "customerLogin atleast 1 special character";
+        }else if($result == customerLogin::REGISTRATION_SUCCESS){         
+            header("location: customer_login.php");
             unset($_SESSION['email']);
         }
     }
@@ -44,7 +44,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 
     <title>CBites Customer Login</title>
-    <link rel="stylesheet" href="../staff_css/staff-forgotPassChange.css">
+    <link rel="stylesheet" href="../customer_css/customer-forgotPassChange.css">
 
     <style>
         .error{
@@ -126,7 +126,8 @@
         </div>
         
         <div class="cwavey-logo">
-            <img src="../../Icons/stafflogo-login.svg" alt="" class="logo" width="625px">
+            <img src="../../Icons/clogin_logo.svg" alt="" class="logo" width="550px">
+            <img src="../../Icons/clogin_wavey.svg" alt="" width="702px">
         </div>
     </div>
 </body>

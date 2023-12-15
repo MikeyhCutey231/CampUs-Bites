@@ -22,10 +22,6 @@ body{
     flex-direction: column;
 }
 
-p{
-    margin-bottom: 0px;
-}
-
 .left .info-logo{   
     padding-right: 30px;
     padding-top: 60px;
@@ -51,45 +47,97 @@ p{
 }
 
 
-.login-container{
-    background-color: white;
-    width: 450px;
-    box-shadow: 0px 0px 6px rgba(0, 0, 0, 25%);
-    margin-left: 150px;
-    border-radius: 6px;
+.right{
+    width: 50%;
     display: flex;
     flex-direction: column;
-    padding-left: 30px;
-    padding-bottom: 20px;
+    justify-content: center;
+    align-items: center;
 }
 
-.login-container input{
-    border-radius: 6px;
-    border: 1px solid #E7E7E7;
-    height: 40px;
-    width: 370px;
-    padding-left: 10px;
+.container-login{
+    width: 450px;
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0px 0px 6px rgba(0, 0, 0, 40%);
+    display: flex;
+    flex-direction: column;
+    padding: 30px;
+    margin-left: 370px;
 }
 
-.login-container a{
-    text-decoration: none;
-    color: #F8B62E;
-    font-size: 14px;
+.login-head{
+    width: 100%;
+    padding: 20px;
+    margin-top: 5px;
+    border-bottom: 1px solid #B4B4B4;
 }
 
-.login-container button{
-    padding-left: 10px;
-    color: white;
-    width: 90%;
+.login-head p{
+    margin-bottom: 0px;
+}
+
+.find-account{
+    margin-top: 20px;
+    color: #5F5F5F;
+}
+
+.find-account input{
+    width: 80%;
     border: none;
-    background-color: #F8B62E;
+    outline: none;
+    background-color: #F4F4F4;
     height: 40px;
+    font-size: 12px;
+    padding-left: 10px;
     border-radius: 6px;
-    font-weight: bold;
-    margin-top: 4px;
+    margin-top: 10px;
 }
 
+.buttons {
+    margin-top: 20px;
+}
 
+.buttons .cancel{
+    border: none;
+    padding: 8px;
+    width: 90px;
+    font-weight: bold;
+    font-size: 12px;
+    color: black;
+    border-radius: 6px;
+    margin-right: 5px;
+}
+
+.modal-footer .btn-save{
+    border: none;
+    padding: 8px;
+    width: 130px;
+    font-size: 12px;
+    color: white;
+    background-color: #F8B62E;
+    border-radius: 4px;
+}
+
+.modal-header h4{
+    color: #F8B62E;
+    font-weight: calc(1000);
+}
+
+.error p{margin-bottom: 0;}
+
+.error{
+    font-size: 12px; 
+    background-color: #FFE2E6; 
+    color: rgb(73, 73, 73);
+    padding: 10px;
+    padding-left: 10px;
+    border-radius: 2px;
+    opacity: 1;
+    margin-bottom: 20px;
+    margin-top: -5px;
+    transition: opacity 0.5s ease-in-out; 
+}
 
 .cwavey-logo{
     width: 50%;
@@ -104,63 +152,6 @@ p{
     top: 120px;
 }
 
-
-.error{
-    font-size: 12px; 
-    background-color: #edb4bc; 
-    color: rgb(73, 73, 73);
-    padding: 8px;
-    padding-left: 10px;
-    border-radius: 2px;
-    width: 90%;
-    opacity: 1;
-    transition: opacity 0.5s ease-in-out; 
-    display: block;
-    padding-left: 20px;
-    margin-top: 4px;
-    margin-bottom: 3px;
-}
-
-.email{
-    margin-top: 20px;
-    position: relative;
-}
-
-.email i{
-    position: absolute;
-    top: 38px;
-    right: 65px;
-    color: #F8B62E;
-}
-
-
-.password{
-    margin-top: 20px;
-    position: relative;
-}
-
-.password i{
-    position: absolute;
-    top: 38px;
-    right: 65px;
-    color: #F8B62E;
-}
-
-.registerHere{
-    font-size: 12px;
-    width: 90%;
-    text-align: center;
-    margin-bottom: 0px;
-    margin-top: 30px;
-}
-
-.registerHere a:hover{
-    text-decoration: underline;
-}
-
-.registerHere p{
-    margin-bottom: 0px;
-}
 
 
 @media(max-width: 764px){

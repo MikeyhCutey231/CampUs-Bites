@@ -63,7 +63,7 @@
     <div class="wrapper">
         <div class="left">
             <div class="info-logo">
-                <p class="campus">CampUs <?php echo $email ?></p>
+                <p class="campus">CampUs Bites</p>
                 <p class="usep">University of Southeastern Philippines Tagum Unit</p>
                 <p class="ecanteen">E-Canteen Service System</p>
             </div>

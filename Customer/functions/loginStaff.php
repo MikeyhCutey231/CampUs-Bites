@@ -37,7 +37,7 @@
                     $staffName = $row['U_FIRST_NAME'];
         
                     session_start();
-                    $_SESSION['USER_ID'] = $this->adminID;
+                    $_SESSION['Customer_ID'] = $this->adminID;
                     $_SESSION['Staff_Name'] = $staffName;
                     return self::REGISTRATION_SUCCESS;
                 } else {

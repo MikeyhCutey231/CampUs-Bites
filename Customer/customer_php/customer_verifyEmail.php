@@ -13,7 +13,7 @@ if(isset($_POST["Search"])){
     }else if($result === customerLogin::REGISTRATION_EMAIL_NOTSAME){
         $error_message = "Kindly, fill in the inputs or your email does not exist";
     }else if($result === customerLogin::REGISTRATION_SUCCESS){
-        header("location: ../../Customer/customer_html/customer_security.php");
+        header("location: ../../Customer/customer_php/customer_security.php");
     }
  }
 

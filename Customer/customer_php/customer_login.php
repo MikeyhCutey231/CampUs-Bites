@@ -18,7 +18,7 @@
         } else if ($result === customerLogin::REGISTRATION_NOTSAME) {
             $error_message = "Kindly input your proper credentials";
         } else if($result === customerLogin::REGISTRATION_SUCCESS){
-            header("location: customer-dashboard.php");
+            header("location: customer-menu.php");
         }
     }
 
@@ -90,7 +90,7 @@
                                 </div>
                         </div>
 
-                    <a href="../../Customer/customer_html/customer_verifyEmail.php"><p style="padding-left: 260px; margin-top: 15px;">Forgot password?</p></a>
+                    <a href="../../Customer/customer_php/customer_verifyEmail.php"><p style="padding-left: 260px; margin-top: 15px;">Forgot password?</p></a>
 
                     <div class="error error-message animate__animated animate__pulse">
                         <?php echo $error_message ?>

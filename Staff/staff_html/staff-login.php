@@ -1,5 +1,6 @@
 <?php
     require '../functions/loginStaff.php';
+    error_reporting(0);
     
     $loginuser = new loginStaff();
 

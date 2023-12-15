@@ -100,7 +100,7 @@
                 </form>
 
                     <div class="registerHere">
-                        <p>Doesnt have account? <a href="../../Customer/customer_html/customer_register.php">Create Here</a></p>
+                        <p>Doesnt have account? <a href="../../Customer/customer_php/customer_register.php">Create Here</a></p>
                     </div>
             </div>
         </div>

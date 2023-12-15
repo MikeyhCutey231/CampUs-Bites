@@ -10,7 +10,7 @@
         $newPassword = $_POST['newPassword'];
         $confirmPassword = $_POST['confirmPassword'];
 
-        $result = $changePass->changeLoginForgot($newPassword, $confirmPassword, $id);
+        $result = $changePass->changeLoginForgot($newPassword, $confirmPassword);
 
         $error_message = null;  
         if($result == loginCourier::REGISTRATION_EMPTY_FIELDS){

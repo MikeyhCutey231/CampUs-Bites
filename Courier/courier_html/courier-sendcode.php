@@ -1,9 +1,10 @@
 <?php 
     include("../../Admin/functions/dbConfig.php");
     error_reporting(0);
+
     
     $code = $_SESSION['code'];
-
+    $email = $_SESSION['email'];
 
     if(isset($_POST['continue'])){
         $codeInput = $_POST['codeInput'];
@@ -21,6 +22,7 @@
         header("location: admin-forgotpass.php"); 
         setcookie(session_name(), '', 1);
         unset($_SESSION['code']);
+        unset($_SESSION['email']);
     }
 
 ?>

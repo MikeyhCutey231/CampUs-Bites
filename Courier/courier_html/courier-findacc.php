@@ -7,12 +7,15 @@ if(isset($_POST["Search"])){
     $email = $_POST["email"];
 
    $forgotPass = new  loginCourier();
-   $forgotPass->forgotPass($email);
 
    $result =  $forgotPass->forgotPass($email);
 
     if($result === loginCourier::EMAIL_EMPTY_FIELDS){
         $error_message = "Kindly, fill in all the inputs";
+    }else if($result === loginCourier::REGISTRATION_EMAIL_NOTSAME){
+        $error_message = "Kindly, fill in the inputs or your email does not exist";
+    }else if($result === loginCourier::REGISTRATION_SUCCESS){
+        header("location: ../../Courier/courier_html/courier-sendcode.php");
     }
  }
 

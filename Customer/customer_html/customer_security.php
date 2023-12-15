@@ -65,7 +65,7 @@
             <div class="info-logo">
                 
                 <p class="usep">University of Southeastern Philippines Tagum Unit</p>
-                <p class="ecanteen">E-Canteen Service System <?php echo $_SESSION['email'] ?></p>
+                <p class="ecanteen">E-Canteen Service System</p>
             </div>
             <div class="login-container">
                 <form action="" method="POST">

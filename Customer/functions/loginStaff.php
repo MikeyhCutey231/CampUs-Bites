@@ -125,7 +125,7 @@
                     $hashedPassword = password_hash($confirmPassword, PASSWORD_DEFAULT);
     
                     $stmt = $this->conn->prepare("UPDATE users SET U_PASSWORD = ? WHERE U_EMAIL = ?");
-                    $stmt->bind_param("si", $hashedPassword, $email);
+                    $stmt->bind_param("ss", $hashedPassword, $email);
     
                     if ($stmt->execute()) {
                         return self::REGISTRATION_SUCCESS;

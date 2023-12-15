@@ -1,6 +1,5 @@
 <?php
 require '../../Customer/functions/loginStaff.php';
-error_reporting(0);
 
 $forgotPass = new customerLogin();
 

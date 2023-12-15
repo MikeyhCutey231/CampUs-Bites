@@ -37,7 +37,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if ($duplicateFound == false) {
         $hashedPassword = password_hash($phone_number, PASSWORD_DEFAULT);
 
-        $insertUserQuery = "INSERT INTO users (U_USER_NAME,U_PASSWORD,U_LAST_NAME, U_FIRST_NAME, U_MIDDLE_NAME, U_SUFFIX, U_GENDER, U_PHONE_NUMBER, U_EMAIL) VALUES (?,?, ?, ?, ?, ?, ?,?, ?)";
+        $insertUserQuery = "INSERT INTO users (U_USER_NAME,U_PASSWORD,U_LAST_NAME, U_FIRST_NAME, U_MIDDLE_NAME, U_SUFFIX, U_GENDER, U_PHONE_NUMBER, U_EMAIL) VALUES (?,?, ?, ?, ?, ?, ?,?, ?) WHERE U_EMAIL = '$email'";
 
         $stmt = $conn->prepare($insertUserQuery);
         $stmt->bind_param("sssssssss", $username,$hashedPassword,$lastName, $firstName, $middleName, $suffix, $gender, $phone_number, $email);

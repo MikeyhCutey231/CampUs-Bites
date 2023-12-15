@@ -22,7 +22,7 @@ class loginCourier extends Connection{
         }
     
         $sql = "SELECT users.USER_ID, users.U_PASSWORD, users.U_FIRST_NAME FROM users JOIN user_roles ON users.USER_ID = user_roles.USER_ID WHERE users.U_USER_NAME = ? AND user_roles.ROLE_CODE = 'cour' AND
-        U_STATUS = 'Active'";
+        users.U_STATUS = 'Active'";
         $stmt = $this->conn->prepare($sql);
         $stmt->bind_param("s", $enteredUsername);
         $stmt->execute();

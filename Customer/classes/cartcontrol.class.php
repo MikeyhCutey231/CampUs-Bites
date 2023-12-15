@@ -30,6 +30,6 @@ class CartControl extends Cart
         error_reporting(E_ALL);
         echo getcwd();
 
-        header('location: ../customer_php/customer-cart.php');
+        header('location: ../../Customer/customer_php/customer-cart.php');
     }
 }

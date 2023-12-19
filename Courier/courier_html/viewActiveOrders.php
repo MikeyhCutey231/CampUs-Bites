@@ -299,7 +299,7 @@
             var buttonValue = $(this).val();
 
             $.ajax({
-                url: '../functions/activeclaimHandler.php',
+                url: '../functions/activeClaimHandler.php',
                 data: { orderID: buttonValue },
                 type: 'POST',
                 success: function(data) {
@@ -308,7 +308,7 @@
                     if (response.status === "assigned") {
                         $('#notAvailableModal').modal('show'); // Show the modal
                     } else if (response.status === "updated") {
-                        window.location.href = 'courier-OrderList.php';
+                        window.location.href = '../../Courier/courier_html/courier-OrderList.php';
                     }
                 },
                 error: function(error) {

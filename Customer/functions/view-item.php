@@ -2,6 +2,7 @@
 // Include the database connection file
 require_once '../../Admin/functions/dbConfig.php';
 
+
 class Product{
     private $conn;
 

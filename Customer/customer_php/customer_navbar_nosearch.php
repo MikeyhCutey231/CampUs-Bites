@@ -1,5 +1,4 @@
 <?php
-require_once '../../Admin/functions/UserData.php';
 require_once '../classes/cart.class.php';
 require_once '../functions/notifications.php';
 require_once  '../functions/getProfile.php';
@@ -18,26 +17,7 @@ $notifications = $notificationsFunctions->getNotificationsForCustomer($customer_
 
 $customer_details = new GetProfile();
 $customer_profile = $customer_details->getProfile($customer_id);
-
-
-$userDataInstance = new UserData();
-$usersData = $userDataInstance->getUserData($customer_id);
-if (!empty($usersData)) {
-    $customerID = $usersData[0]['user_id'];
-    $profilePic = $usersData[0]['profilePic'];
-    $email = $usersData[0]['email'];
-    $password = $usersData[0]['password'];
-    $phoneNum = $usersData[0]['phoneNum'];
-    $fullname = $usersData[0]['fullname'];
-    $fname = $usersData[0]['fname'];
-    $lname = $usersData[0]['lname'];
-    $mname = $usersData[0]['mname'];
-    $userRole = $usersData[0]['userRole'];
-    $campusArea = $usersData[0]['campusArea'];
-    $suffix = $usersData[0]['suffix'];
-    $gender = $usersData[0]['gender'];
-    $currentStatus = $usersData[0]['status'];
-}
+$u_picture = $customer_profile['U_PICTURE'];
 ?>
 
 
@@ -101,7 +81,7 @@ if (!empty($usersData)) {
 
             <a href="customer-profile.php" class="p-0 d-flex align-items-center ">
                 <div class=" d-flex align-items-center justify-content-center p-0 profile">
-                    <img class="profile-pic" src="../userPics/<?php echo $profilePic ?>" style="height: 100%; width: 100%;">
+                    <img class="profile-pic" src="../userPics/<?php echo $u_picture ?>" style="height: 100%; width: 100%;">
                 </div>
             </a>
 

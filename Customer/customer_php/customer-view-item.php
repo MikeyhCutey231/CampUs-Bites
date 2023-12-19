@@ -1,22 +1,19 @@
 <?php
-require_once '../functions/view-item.php';
+include_once '../../Customer/functions/view-item.php';
+require_once '../../Admin/functions/dbConfig.php';
+
+
 
 // Set session variables
-
-
-
 $database = new Connection();
 $conn = $database->conn;
 
-$productClass = new Product($database->conn);
+$productClass = new Product($conn);
 $defaultProductId = 0;
+
 if (isset($_GET["productId"]) && !empty($_GET["productId"])) {
-
-
     $defaultProductId = $_GET["productId"];
-    //   $select_products = mysqli_query($conn, "SELECT * FROM `products` WHERE `PROD_ID` = '$productId'");
     $prodDetails = $productClass->getProductDetails($defaultProductId);
-
     $_SESSION['product_id'] = $_GET["productId"];
 } else {
     // Handle the case where productId is not provided
@@ -24,7 +21,6 @@ if (isset($_GET["productId"]) && !empty($_GET["productId"])) {
     exit;
 }
 ?>
-
 
 
 <!DOCTYPE html>

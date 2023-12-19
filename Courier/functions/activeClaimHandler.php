@@ -23,6 +23,18 @@ if (isset($_POST["orderID"])) {
         );
     } else {
         
+        $orderIdquery = "SELECT * FROM online_order WHERE OL_CART_ID = '$orderID'";
+        $orderIdqueryrun = mysqli_query($conn, $orderIdquery);
+
+
+        while($row = mysqli_fetch_assoc($orderIdqueryrun)){
+            $newOlOrderID = $row['ONLINE_ORDER_ID'];
+            
+            $insertNotif = "INSERT INTO notifications (OL_ORDER_ID, NOTIF_MESSAGE) VALUES ('$newOlOrderID', 'Your order, #$orderID, has been claimed!')";
+            mysqli_query($conn, $insertNotif);
+
+        } 
+
         $claimedOrder = "UPDATE online_order SET ORDER_STATUS_ID = '2', COURIER_ID  = '$userID' WHERE OL_CART_ID = '$orderID'";
         mysqli_query($conn, $claimedOrder);
 

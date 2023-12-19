@@ -1,5 +1,4 @@
 <?php
-require_once '../../Admin/functions/dbConfig.php';
 require_once '../functions/view-item.php';
 
 // Set session variables

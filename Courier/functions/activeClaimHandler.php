@@ -5,6 +5,7 @@ $database = new Connection();
 $conn = $database->conn;
 
 $userID = $_SESSION['USER_ID'];
+header('Content-Type: application/json');
 
 if (isset($_POST["orderID"])) {
     $orderID = $_POST["orderID"];

@@ -1,8 +1,8 @@
 <?php
 header('Access-Control-Allow-Origin: *');
-session_start();
-include("../../Admin/admin_functions/config.php");
-$database = new Database();
+
+require_once '../../Admin/functions/dbConfig.php';
+$database = new Connection();
 $conn = $database->conn;
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
@@ -14,7 +14,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         for ($i = 0; $i < $fileCount; $i++) {
             $prodPic = $_FILES['profilePic']['name'][$i];
             $imageTmpName = $_FILES['profilePic']['tmp_name'][$i];
-            $targetPath = '../userPics/' . $prodPic;
+            $targetPath ='../userPics/' . $prodPic;
 
             if (move_uploaded_file($imageTmpName, $targetPath)) {
                 $query = "UPDATE users SET U_PICTURE = ? WHERE USER_ID = ?";
@@ -32,6 +32,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 $stmt->close();
             } else {
                 $rec_error = "Error moving the profile picture to the target directory.";
+                error_log($rec_error);
             }
         }
 

@@ -11,7 +11,7 @@ $database = new Connection();
 $conn = $database->conn;
 
 $countCart = new Cart();
-$cartItem = $countCart->getTotalItem($customerID);
+$cartItem = $countCart->getCartTotalItem($customerID);
 
 
 $countNotif = new Notification();

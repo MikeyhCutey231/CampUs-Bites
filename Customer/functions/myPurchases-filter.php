@@ -1,6 +1,7 @@
 <?php
 
 
+
 include("../../Admin/functions/dbConfig.php");
 
 
@@ -8,23 +9,26 @@ include("../../Admin/functions/dbConfig.php");
 // Function to fetch and display order details based on order status
 function displayOrderDetails($request)
 {
+    $customer_id = $_SESSION['Customer_ID'];
     // Create an instance of the Database class
     $database = new Connection();
     $conn = $database->conn;
-
+    var_dump($customer_id);
     $query = "SELECT online_order.ONLINE_ORDER_ID, ol_order_status.STATUS_NAME, online_order.OL_CART_ID, product.PROD_NAME, product.PROD_PIC, online_cart_item.OL_PROD_QUANTITY, product.PROD_SELLING_PRICE, online_cart_item.OL_SUBTOTAL
                 FROM online_order
                 INNER JOIN ol_order_status ON online_order.ORDER_STATUS_ID = ol_order_status.ORDER_STATUS_ID
                 INNER JOIN ol_cart ON online_order.OL_CART_ID = ol_cart.OL_CART_ID
                 INNER JOIN online_cart_item ON ol_cart.OL_CART_ID = online_cart_item.OL_CART_ID
-                INNER JOIN product ON online_cart_item.PROD_ID = product.PROD_ID";
+                INNER JOIN product ON online_cart_item.PROD_ID = product.PROD_ID
+                INNER JOIN users ON ol_cart.CUSTOMER_ID = users.USER_ID
+                WHERE users.USER_ID = '$customer_id'";
 
     // Check if a specific order status is requested
     if (!empty($request) && $request !== '0') {
-        $query .= " WHERE online_order.ORDER_STATUS_ID = '$request'";
+        $query .= " AND online_order.ORDER_STATUS_ID = '$request'";
     }
 
-    $query .= " GROUP BY online_order.ONLINE_ORDER_ID, online_cart_item.PROD_ID ORDER BY online_order.DATE_CREATED DESC";
+    $query .= " GROUP BY online_order.ONLINE_ORDER_ID, online_cart_item.PROD_ID ORDER BY online_order.ONLINE_ORDER_ID DESC";
 
     $result = mysqli_query($conn, $query);
 

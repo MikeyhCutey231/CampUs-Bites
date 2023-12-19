@@ -1,0 +1,1415 @@
+@import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap');
+
+*,::after,::before{
+    box-sizing: border-box;
+}
+
+body{
+    font-family: 'Lato', sans-serif;;
+    margin: 0;
+    padding: 0;
+    background-color: rgb(245, 245, 245);
+}
+
+
+.wrapper{
+    display: flex;
+    flex-direction: column;
+}
+
+.banner{
+    background-color: #F8B82E;
+    align-content: center;
+}
+
+
+.logo-con{
+    height: 45px;
+    width:45px;   
+    margin-right:10px ;
+}
+
+.logo-con img{
+    height: 100%;
+    width: 100%;
+    border-radius: 50%;
+}
+
+.arrow-con{
+    display: none;
+}
+
+.title{
+    color: white;
+    font-weight: bold;
+    text-shadow: 1px 2px 2px rgba(0, 0, 0, 0.1);
+    margin-top: 5px;
+
+}
+
+.search-con{
+    width: 500px;
+    margin-right: 25px;
+   
+}
+
+.searchbar{
+    font-size: 13px;
+    height: 45px;
+    padding: 0px 15px;
+    
+}
+
+.searchbar::placeholder{
+    color:rgb(167, 167, 167);
+}
+
+.search-con span{
+    box-shadow: 1px 2px 2px rgba(0, 0, 0, 0.1);
+    border: transparent;
+    width: 45px;
+}
+
+.cart-con{
+    width: 45px;
+    height: 45px;
+    background-color: white;
+    border-radius: 50%;
+
+   
+}
+
+.cart-num{
+    background-color: #9C1421;
+    color: white;
+    height: 20px;
+    width: 25px;
+    position: relative;
+    left: -50px;
+    top: -20px;
+    border-radius: 50%;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+    display: flex;
+
+}
+.notif-con{
+    width: 45px;
+    height: 45px;
+    background-color: white;
+    border-radius: 50%;   
+}
+
+.notif-num{
+    background-color: #9C1421;
+    color: white;
+    height: 20px;
+    width: 25px;
+    position: relative;
+    left: -50px;
+    top: -20px;
+    border-radius: 50%;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+    display: flex;
+
+}
+.profile{
+    height: 45px;
+    width: 45px;    
+    border-radius: 50%;  
+    overflow: hidden;
+}
+
+
+.links-con{
+
+    display: flex;
+    flex-direction: row;
+}
+
+.links-con a{
+    font-size: 13px;
+}
+
+a{
+    text-decoration: none; 
+}
+
+
+.main-content{
+    padding: 50px 100px;
+}
+
+
+.profile-menu{
+    height: 60px;
+    width: 100%;
+    background-color: white;
+    border-radius: 5px;
+    box-shadow: 1px 1px 1.5px rgba(0, 0, 0, 0.1); 
+    border: transparent;
+
+}
+
+.profile-menu a:hover{
+    text-decoration: none;
+    color: black;
+}
+
+.btn-profile{
+    background-color: #F8B82E;
+    border-radius: 5px;
+    box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.1); 
+    height: 60px;
+    width: 200px;
+    color: white;
+    font-size: 16px;
+    font-weight: 500;
+    
+}
+
+
+.btn-profile svg{
+    margin-right: 10px;
+}
+
+.btn-purchases{
+    border-radius: 5px;
+    height: 60px;
+    width: 200px;
+    color: black;
+    font-size: 16px;
+    font-weight: 500;
+    
+}
+
+
+.btn-purchases svg{
+    margin-right: 10px;
+}
+
+.btn-notification{
+    border-radius: 5px;
+    height: 60px;
+    width: 200px;
+    color: black;
+    font-size: 16px;
+    font-weight: 500;
+    
+}
+
+.btn-notification svg{
+    margin-right: 10px;
+}
+
+
+.profile-deets{
+    height: 320px;
+}
+
+.profile-con{
+    height: 100%;
+    border-radius: 10px;
+    box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.1); 
+}
+
+.myprofile{
+    border-radius: 10px;
+    box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.1); 
+    height: 100%;
+    width: 100%;
+    background-color: white;
+}
+
+.myprofile img{
+    height: 150px;
+    width: 150px;
+    text-align: center;
+    justify-content: center;
+    display: flex;
+    border-radius: 5px;
+}
+
+.btn-file{
+    width: 150px;
+    height: 30px;
+    background-color: #F0F0F0;
+    color: #6C6C6C;
+    font-size: 13px;
+    border-radius: 5px;
+    margin-top: 5px;
+}
+
+.btn-logout{
+    width: 120px;
+    height: 30px;
+    background-color: #F8B82E;
+    color: white;
+    font-size: 15px;
+    border-radius: 5px;
+    margin-top: 50px;
+}
+
+.btn-logout svg{
+    margin-right: 10px;
+}
+
+.switchContainer{
+    padding-left: 20px !important;
+    padding-right: 20px !important;
+}
+
+.profile-deets-con{
+    border-radius: 10px;
+    box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.1); 
+    height: 100%;
+    width: 99.1%;
+    margin-left: 10px;
+    background-color: white;
+}
+
+.profile-deets-header{
+    display: flex;
+    border-bottom: 1px solid #DDDDDD;
+}
+
+.personal-title{
+    font-size: 30px;
+    font-weight: 600;
+}
+
+.prof-button-con{
+    justify-content: end;
+}
+
+.btn-editprofile{
+    width: 160px;
+    height: 35px;
+    background-color: white;
+    color: #9C1421;
+    font-size: 15px;
+    border-radius: 5px;
+    border: 1px solid #9C1421;
+    margin-right: 20px;
+}
+
+.btn-editprofile:hover {
+    background-color: #9C1421;
+    color: white;
+    border: 1px solid #9C1421;
+}
+
+
+.btn-editprofile svg {
+    margin-right: 8px;
+}
+
+
+.btn-editpassword{
+    width: 160px;
+    height: 35px;
+    background-color: white;
+    color: #9C1421;
+    font-size: 15px;
+    border-radius: 5px;
+    border: 1px solid #9C1421;
+    margin-right: 20px;
+}
+
+.btn-editpassword:hover {
+    background-color: #9C1421;
+    color: white;
+    border: 1px solid #9C1421;
+}
+
+
+.btn-editpassword svg {
+    margin-right: 8px;
+}
+
+.btn-deactivate{
+    width: 160px;
+    height: 35px;
+    background-color:#9C1421;
+    color: white;
+    font-size: 15px;
+    border-radius: 5px;
+    
+}
+
+.btn-deactivate:hover {
+    background-color: white;
+    color: #9C1421;
+    border: 1px solid #9C1421;
+}
+
+
+.deets-title{
+    color: #6C6C6C;
+    font-size: 17px;
+    line-height: 1.2;
+    align-items: center;
+    display: flex;
+}
+
+.deets-details{
+    font-size: 17px;
+    line-height: 1.2;
+    align-items: center;
+    display: flex;
+    justify-content: end;
+}
+
+#editprofile .modal-dialog{
+    max-width: 30%;
+}
+
+.modal-title{
+    color:#9C1421;
+}
+
+#deactivate .modal-dialog{
+    max-width: 20%;
+}
+
+#deactivate .modal-title{
+    color: black;
+    font-weight: 500;
+}
+
+.btn-save{
+    background-color: #9C1421;
+    color: white;
+}
+.ACC-BTN{
+    background-color: #F8B82E;
+    border-radius: 5px;
+    border: #F8B82E;
+    color: white;
+    font-size: 12px;
+    height: 25px;
+}
+
+.prof-name{
+    font-size: 14px;
+    color: black;
+}
+.prof-role{
+    font-size: 10px;
+    color: #9C1421;
+    margin-top: -3px ;
+}
+
+.userDetails{
+    margin-left: 10px !important;
+}
+
+@media (max-width: 1200px) { /*laptop*/
+    
+    .main-content{
+        padding: 30px 10px;
+    }
+
+    
+    .profile-menu{
+        height: 50px;
+        width: 100%;
+        background-color: white;
+        border-radius: 5px;
+        box-shadow: 1px 1px 1.5px rgba(0, 0, 0, 0.1); 
+        border: transparent
+    }
+
+    .profile-menu a:hover{
+        text-decoration: none;
+        color: black;
+    }
+
+    .btn-profile{
+        height: 50px;
+        width: 180px;
+        font-size: 15px;
+        font-weight: 500;
+    }
+
+    .btn-profile svg{
+        margin-right: 10px;
+    }
+
+    .btn-purchases{
+        height: 50px;
+        width: 180px;
+        font-size: 15px;
+        font-weight: 500;
+    }
+
+    .btn-purchases svg{
+        margin-right: 10px;
+    }
+
+    .btn-notification{
+        height: 50px;
+        width: 180px;
+        font-size: 15px;
+        font-weight: 500;
+    }
+
+    .btn-notification svg{
+        margin-right: 10px;
+    }
+
+    .profile-deets-con{ 
+        margin-left: 10px;
+    }
+
+    .profile-deets-header{
+        display: flex;
+    }
+    
+    .personal-title{
+        font-size: 25px;
+        font-weight: 600;
+        justify-content: start;
+    }
+    
+    .btn-editprofile{
+        width: 140px;
+        height: 33px;
+        font-size: 14px;
+        border-radius: 5px;
+        border: 1px solid #9C1421;
+        margin-right: 15px;
+    }
+    
+    .btn-editprofile:hover {
+        background-color: #9C1421;
+        color: white;
+        border: 1px solid #9C1421;
+    }
+    
+    
+    .btn-editprofile svg {
+        margin-right: 8px;
+    }
+    
+    
+    .btn-editpassword{
+        width: 140px;
+        height: 33px;
+        font-size: 14px;
+        border-radius: 5px;
+        border: 1px solid #9C1421;
+        margin-right: 15px;
+    }
+
+    
+    .btn-editpassword svg {
+        margin-right: 8px;
+    }
+    
+    .btn-deactivate{
+        width: 140px;
+        height: 33px;
+        font-size: 14px;
+        border-radius: 5px;
+    }
+
+    .deets-title{
+        font-size: 17px;
+        line-height: 1.2;
+        align-items: center;
+        display: flex;
+    }
+
+    .deets-details{
+        font-size: 17px;
+        line-height: 1.2;
+        align-items: center;
+        display: flex;
+    }
+
+    #editprofile .modal-dialog{
+        max-width: 50%;
+    }
+    
+
+    #deactivate .modal-dialog{
+        max-width: 40%;
+    }
+    
+
+}
+
+
+@media (max-width: 992px) { /*TA BLETS*/
+    .logo-con{
+        height: 40px;
+        width:40px;   
+        margin-right:8px ;
+    }
+    
+    .logo-con img{
+        height: 100%;
+        width: 100%;
+        border-radius: 50%;
+    }
+
+    .arrow-con{
+        display: none;
+    }
+    
+    .title{
+        color: white;
+        font-weight: bold;
+        text-shadow: 1px 2px 2px rgba(0, 0, 0, 0.1);
+        margin-top: 5px;
+        font-size: 30px;
+    }
+    
+    .search-con{
+        width: 90%;
+        margin-right: 25px;
+       
+    }
+    
+    .searchbar{
+        font-size: 13px;
+        height: 40px;
+        padding: 0px 15px;
+      
+    }
+    
+    .search-con span{
+        box-shadow: 1px 2px 2px rgba(0, 0, 0, 0.1);
+        border: transparent;
+        width: 40px;
+    }
+
+    .search-con svg{
+        width: 14px;
+        height: 14px;
+    }
+
+   
+    .cart-con{
+        width: 40px;
+        height: 40px;
+        background-color: white;
+        border-radius: 50%;
+    }
+
+    .cart-con svg{
+        width: 18px;
+        height: 18px;
+    }
+    
+    
+    .cart-num{
+        background-color: #9C1421;
+        color: white;
+        height: 18px;
+        width: 23px;
+        position: relative;
+        left: -45px;
+        top: -18px;
+        border-radius: 50%;
+        align-items: center;
+        justify-content: center;
+        font-size: 11px;
+        display: flex;
+    
+    }
+    .notif-con{
+        width: 40px;
+        height: 40px;
+        background-color: white;
+        border-radius: 50%;   
+    }
+
+    .notif-con svg{
+        width: 18px;
+        height: 18px;
+    }
+    
+    
+    .notif-num{
+        background-color: #9C1421;
+        color: white;
+        height: 18px;
+        width: 23px;
+        position: relative;
+        left: -45px;
+        top: -18px;
+        border-radius: 50%;
+        align-items: center;
+        justify-content: center;
+        font-size: 11px;
+        display: flex;
+    
+    }
+    .profile{
+        height: 40px;
+        width: 40px;    
+        border-radius: 50%;  
+        overflow: hidden;
+    }
+    .main-content{
+        padding: 30px 50px;
+    }
+
+    
+    .profile-menu{
+        height: 45px;
+        width: 100%;
+        background-color: white;
+        border-radius: 5px;
+        box-shadow: 1px 1px 1.5px rgba(0, 0, 0, 0.1); 
+        border: transparent
+    }
+
+    .profile-menu a:hover{
+        text-decoration: none;
+        color: black;
+    }
+
+    .btn-profile{
+        height: 45px;
+        width: 160px;
+        font-size: 15px;
+        font-weight: 500;
+    }
+
+    .btn-profile svg{
+        margin-right: 8px;
+        width: 18px;
+        height: 18px;
+    }
+
+    .btn-purchases{
+        height: 45px;
+        width: 160px;
+        font-size: 15px;
+        font-weight: 500;
+    }
+
+    .btn-purchases svg{
+        margin-right: 8px;
+        width: 18px;
+        height: 18px;
+    }
+
+    .btn-notification{
+        height: 45px;
+        width: 160px;
+        font-size: 15px;
+        font-weight: 500;
+    }
+
+    .btn-notification svg{
+        margin-right: 8px;
+        width: 18px;
+        height: 18px;
+    }
+
+    .profile-deets-con{ 
+        margin-left: 10px;
+    }
+
+    .profile-deets-header{
+        display: flex;
+    }
+
+    
+    
+    .personal-title{
+        font-size: 18px;
+        font-weight: 600;
+        line-height: 1.2;
+        justify-content: start;
+    }
+    
+    .btn-editprofile{
+        width: 120px;
+        height: 30px;
+        font-size: 14px;
+        border-radius: 5px;
+        border: 1px solid #9C1421;
+        margin-right: 10px;
+    }
+    
+    .btn-editprofile svg {
+        margin-right: 5px;
+        width: 14px;
+        height: 14px;
+    }
+    
+    
+    .btn-editpassword{
+        width: 120px;
+        height: 30px;
+        font-size: 14px;
+        border-radius: 5px;
+        border: 1px solid #9C1421;
+        margin-right: 10px;
+    }
+
+    
+    .btn-editpassword svg {
+        margin-right: 5px;
+        width: 14px;
+        height: 14px;
+    }
+    
+    .btn-deactivate{
+        width: 120px;
+        height: 30px;
+        font-size: 14px;
+        border-radius: 5px;
+    }
+
+    .deets-title{
+        color: #6C6C6C;
+        font-size: 15px;
+        line-height: 1.2;
+        align-items: center;
+        display: flex;
+    }
+    
+    .deets-details{
+        font-size: 15px;
+        line-height: 1.2;
+        align-items: center;
+        display: flex;
+    }
+
+
+    #editprofile .modal-dialog{
+        max-width: 60%;
+    }
+    
+
+    #deactivate .modal-dialog{
+        max-width: 40%;
+    }
+    
+
+
+}   
+
+
+@media (max-width: 767px) { /*MOBILE-TABLET*/
+    .banner{
+        padding: 20px;
+     }
+     
+      
+     .logo-con{
+         height: 37px;
+         width:37px;   
+         margin-right:0px ;
+     }
+     
+     .logo-con img{
+         height: 100%;
+         width: 100%;
+         border-radius: 50%;
+     }
+
+     .arrow-con{
+        display: none;
+    }
+
+     .title{
+         display: none;
+     }
+     
+     .search-con{
+         width: 90%;
+         margin-right: 15px;
+        
+     }
+     
+     .searchbar{
+         font-size: 13px;
+         height: 37px;  
+         padding: 0px 15px;
+         color:gray;
+     }
+     
+     .search-con span{
+         box-shadow: 1px 2px 2px rgba(0, 0, 0, 0.1);
+         border: transparent;
+         width:37px;   
+     }
+ 
+     .search-con svg{
+         width: 13px;
+         height: 13px;
+     }
+ 
+    
+     .cart-con{
+         height: 37px;
+         width:37px;   
+         background-color: white;
+         border-radius: 50%;
+         margin-right: -10px;
+     }
+ 
+     .cart-con svg{
+         width: 17px;
+         height: 17px;
+     }
+     
+     
+     .cart-num{
+         background-color: #9C1421;
+         color: white;
+         height: 17px;
+         width: 21px;
+         position: relative;
+         left: -30px;
+         top: -17px;
+         border-radius: 50%;
+         align-items: center;
+         justify-content: center;
+         font-size: 9px;
+         display: flex;
+     
+     }
+     .notif-con{
+         height: 37px;
+         width:37px;   
+         background-color: white;
+         border-radius: 50%;   
+         margin-right: -10px;
+     }
+ 
+     .notif-con svg{
+         width: 17px;
+         height: 17px;
+     }
+     
+     
+     .notif-num{
+         background-color: #9C1421;
+         color: white;
+         height: 17px;
+         width: 21px;
+         position: relative;
+         left: -30px;
+         top: -17px;
+         border-radius: 50%;
+         align-items: center;
+         justify-content: center;
+         font-size: 9px;
+         display: flex;
+     
+     }
+     .profile{
+         height: 37px;
+         width:37px;       
+         border-radius: 50%;  
+         overflow: hidden;
+     }
+
+    .main-content{
+        padding: 20px 30px 20px;
+    }
+
+    
+    .myprofile{
+        border-radius: 10px;
+        box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.1); 
+        height: 100%;
+        width: 100%;
+        background-color: white;
+    }
+
+    .myprofile img{
+        height: 150px;
+        width: 150px;
+        text-align: center;
+        justify-content: center;
+        display: flex;
+        border-radius: 5px;
+    }
+
+    .btn-file{
+        width: 150px;
+        height: 25px;
+        background-color: #F0F0F0;
+        color: #6C6C6C;
+        font-size: 12px;
+        border-radius: 5px;
+        margin-top: 5px;
+    }
+
+    .btn-logout{
+        width: 100px;
+        height: 25px;
+        background-color: #F8B82E;
+        color: white;
+        font-size: 14px;
+        border-radius: 5px;
+        margin-top: 50px;
+    }
+
+    .btn-logout svg{
+        margin-right: 8px;
+    }
+    
+    .profile-menu{
+        height: 45px;
+        width: 100%;
+        background-color: white;
+        border-radius: 5px;
+        box-shadow: 1px 1px 1.5px rgba(0, 0, 0, 0.1); 
+        border: transparent
+    }
+
+    .profile-menu a:hover{
+        text-decoration: none;
+        color: black;
+    }
+
+    .btn-profile{
+        height: 45px;
+        width: 180px;
+        font-size: 13px;
+        font-weight: 500;
+    }
+
+    .btn-profile svg{
+        margin-right: 8px;
+        width: 18px;
+        height: 18px;
+    }
+
+    .btn-purchases{
+        height: 45px;
+        width: 180px;
+        font-size: 13px;
+        font-weight: 500;
+    }
+
+    .btn-purchases svg{
+        margin-right: 8px;
+        width: 18px;
+        height: 18px;
+    }
+
+    .btn-notification{
+        height: 45px;
+        width: 180px;
+        font-size: 13px;
+        font-weight: 500;
+    }
+
+    .btn-notification svg{
+        margin-right: 8px;
+        width: 18px;
+        height: 18px;
+    }
+
+    .profile-deets-con{ 
+        border-radius: 10px;
+        box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.1); 
+        height: 100%;
+        width: 100%;
+        margin-left: 0px;
+        background-color: white;
+    } 
+
+    .profile-deets-header{
+        display: flex;
+    }
+    
+    .personal-title{
+        font-size: 16px;
+        font-weight: 600;
+        line-height: 1.2;
+        justify-content: center;
+    }
+    
+    .btn-editprofile{
+        width: 110px;
+        height: 30px;
+        font-size: 13px;
+        border-radius: 5px;
+        border: 1px solid #9C1421;
+    }
+    
+    .btn-editprofile svg {
+        margin-right: 5px;
+        width: 13px;
+        height: 13px;
+    }
+    
+    
+    .btn-editpassword{
+        width: 110px;
+        height: 30px;
+        font-size: 12px;
+        border-radius: 5px;
+        border: 1px solid #9C1421;
+    }
+
+    
+    .btn-editpassword svg {
+        margin-right: 5px;
+        width: 13px;
+        height: 13px;
+    }
+    
+    .btn-deactivate{
+        width: 110px;
+        height: 30px;
+        font-size: 13px;
+        border-radius: 5px;
+    }
+
+    .deets-title{
+        color: #6C6C6C;
+        font-size: 15px;
+        line-height: 1.2;
+        align-items: center;
+        display: flex;
+    }
+    
+    .deets-details{
+        font-size: 15px;
+        line-height: 1.2;
+        align-items: center;
+        display: flex;
+    }
+
+    #editprofile .modal-dialog{
+        max-width: 70%;
+    }
+    
+
+    #deactivate .modal-dialog{
+        max-width: 45%;
+    }
+    
+
+}
+
+@media (max-width: 576px) { /*MOBILE*/
+     .banner{
+        padding: 15px 20px;
+     }
+     
+
+    .logo-con{
+        height: 35px;
+        width:35px;  
+        display: none; 
+
+    }
+
+    .title{
+        display: none;
+    }
+
+    .arrow-con{
+        display: flex;
+    }
+
+    
+    .search-con{
+        width: 100%;
+        margin-right: 10px;
+        display: none;  
+    }
+    
+    .searchbar{
+        font-size: 11px;
+        height: 35px; 
+        padding: 10px 5px;
+        color:gray;
+        
+    }
+    
+    .search-con span{
+        box-shadow: 1px 2px 2px rgba(0, 0, 0, 0.1);
+        border: transparent;
+        width:25px;   
+    }
+
+    .search-con svg{
+        width: 10px;
+        height: 10px;
+    }
+
+   
+    .cart-con{
+        height: 35px;
+        width:35px;   
+        background-color: white;
+        border-radius: 50%;
+        margin-right: -15px;
+    }
+
+    .cart-con svg{
+        width: 15px;
+        height: 15px;
+    }
+    
+    
+    .cart-num{
+        background-color: #9C1421;
+        color: white;
+        height: 17px;
+        width: 21px;
+        position: relative;
+        left: -25px;
+        top: -15px;
+        border-radius: 50%;
+        align-items: center;
+        justify-content: center;
+        font-size: 9px;
+        display: flex;
+    
+    }
+    .notif-con{
+        height: 35px;
+        width:35px;   
+        background-color: white;
+        border-radius: 50%;   
+        margin-right: -15px;
+    }
+
+    .notif-con svg{
+        width: 15px;
+        height: 15px;
+    }
+    
+    
+    .notif-num{
+        background-color: #9C1421;
+        color: white;
+        height: 17px;
+        width: 21px;
+        position: relative;
+        left: -25px;
+        top: -15px;
+        border-radius: 50%;
+        align-items: center;
+        justify-content: center;
+        font-size: 9px;
+        display: flex;
+    
+    }
+    .profile{
+        height: 35px;
+        width:35px;       
+        border-radius: 50%;  
+        overflow: hidden;
+    }
+
+    .main-content{
+        padding: 15px 10px 20px;
+    }
+    
+    .profile-menu{
+        height: 40px;
+        width: 100%;
+        background-color: white;
+        border-radius: 5px;
+        box-shadow: 1px 1px 1.5px rgba(0, 0, 0, 0.1); 
+        border: transparent;
+        justify-content:space-between;
+        
+    }
+
+    .profile-menu a:hover{
+        text-decoration: none;
+        color: black;
+    }
+
+    .btn-profile{
+        height: 40px;
+        width: 100px;
+        font-size: 11px;
+        font-weight: 500;
+    }
+
+    .btn-profile svg{
+        margin-right: 5px;
+        width: 15px;
+        height: 15px;
+    }
+
+    .btn-purchases{
+        height: 40px;
+        width: 100px;
+        font-size: 11px;
+        font-weight: 500;
+    }
+
+    .btn-purchases svg{
+        margin-right: 5px;
+        width: 15px;
+        height: 15px;
+    }
+
+    .btn-notification{
+        height: 40px;
+        width: 100px;
+        font-size: 11px;
+        font-weight: 500;
+    }
+
+    .btn-notification svg{
+        margin-right: 5px;
+        width: 15px;
+        height: 15px;
+    }
+
+    .myprofile{
+        border-radius: 10px;
+        box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.1); 
+        height: 100%;
+        width: 100%;
+        background-color: white;
+    }
+
+    .myprofile img{
+        height: 150px;
+        width: 150px;
+        text-align: center;
+        justify-content: center;
+        display: flex;
+        border-radius: 5px;
+    }
+
+    .btn-file{
+        width: 150px;
+        height: 25px;
+        background-color: #F0F0F0;
+        color: #6C6C6C;
+        font-size: 12px;
+        border-radius: 5px;
+        margin-top: 5px;
+    }
+
+    .btn-logout{
+        width: 100px;
+        height: 25px;
+        background-color: #F8B82E;
+        color: white;
+        font-size: 13px;
+        border-radius: 5px;
+        margin-top: 30px;
+    }
+
+    .btn-logout svg{
+        margin-right: 8px;
+        width: 15px;
+        height: 15px;
+    }
+    
+
+    .profile-deets-con{ 
+        border-radius: 10px;
+        box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.1); 
+        height: 280px;
+        width: 100%;
+        margin-left: 0px;
+        background-color: white;
+    } 
+
+    .profile-deets-header{
+        display: block;
+        justify-items: center;
+        align-items: center;
+    }
+    
+    .personal-title{
+        font-size: 16px;
+        font-weight: 600;
+        line-height: 1.2;
+        justify-content: center;
+    }
+
+    .prof-button-con{
+        justify-content: center;
+    }
+    
+    .btn-editprofile{
+        width: 90px;
+        height: 25px;
+        font-size: 12px;
+        border-radius: 5px;
+        border: 1px solid #9C1421;
+    }
+    
+    .btn-editprofile svg {
+        margin-right: 5px;
+        width: 13px;
+        height: 13px;
+        display: none;
+
+    }
+    
+    
+    .btn-editpassword{
+        width: 90px;
+        height: 25px;
+        font-size: 12px;
+        border-radius: 5px;
+        border: 1px solid #9C1421;
+    }
+
+    
+    .btn-editpassword svg {
+        margin-right: 5px;
+        width: 13px;
+        height: 13px;
+        display: none;
+    }
+    
+    .btn-deactivate{
+        width: 80px;
+        height: 25px;
+        font-size: 12px;
+        border-radius: 5px;
+        border: 1px solid #9C1421;
+    }
+
+    .deets-title{
+        color: #6C6C6C;
+        font-size: 13px;
+        line-height: 1.2;
+        align-items: center;
+        display: flex;
+    }
+    
+    .deets-details{
+        font-size: 13px;
+        line-height: 1.2;
+        align-items: center;
+        display: flex;
+    }
+
+    #editprofile .modal-dialog{
+        max-width: 100%;
+    }
+    
+
+    #deactivate .modal-dialog{
+        max-width: 100%;
+    }   
+
+    .Other_ACC{
+        position: relative;
+        height: 200px;  
+    }
+    
+}
+

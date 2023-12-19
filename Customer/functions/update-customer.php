@@ -1,5 +1,4 @@
 <?php
-session_start();
 require '../../Admin/functions/dbConfig.php';
 $database = new Connection();
 $conn = $database->conn;
@@ -69,7 +68,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $sql .= " WHERE USER_ID = ?";
 
     $bind_types .= "i";
-    $bind_params[] = &$_SESSION['USER_ID'];
+    $bind_params[] = &$_SESSION['Customer_ID'];
 
     $stmt = $conn->prepare($sql);
 
@@ -78,7 +77,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     if ($stmt->execute()) {
         echo "Profile updated successfully.";
-        header("Location: ../customer_html/customer-profile.php");
+        header("Location: ../customer_php/customer-profile.php");
     } else {
         echo "Error updating profile: " . $stmt->error;
     }

@@ -363,49 +363,56 @@ $customerID = $_SESSION['Customer_ID'];
         }
     </script>
 
+<script>
+    function completeOrder() {
+        // Assuming you have the order ID available, replace 123 with the actual order ID
+        var cartId = <?php echo json_encode($cartId); ?>;
+        var orderType = document.querySelector('.selectedOrderType');
+        var shippingfee = <?php echo json_encode($shippingTotal); ?>;
 
+        if (orderType.textContent.trim() === "DELIVERY") {
+            orderType = 1;
+        } else {
+            orderType = 2;
+        }
 
-    <script>
-        function completeOrder() {
-            // Assuming you have the order ID available, replace 123 with the actual order ID
-            var cartId = <?php echo json_encode($cartId); ?>;
-            var orderType = document.querySelector('.selectedOrderType');
-            var shippingfee = <?php echo json_encode($shippingTotal); ?>;
+        // Make an AJAX request to update ol_cart_status to "dead"
+        var xhr = new XMLHttpRequest();
+        xhr.open("POST", "../functions/complete_order.php", true);
+        xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
 
-            if (orderType == "DELIVERY") {
-                orderType = 1;
-            } else orderType = 2;
+        // Send the order ID as a parameter
+        var data = "ol_cart_id=" + cartId +
+            "&order_type=" + orderType +
+            "&shipping_fee=" + shippingfee;
 
-            // Make an AJAX request to update ol_cart_status to "dead"
-            var xhr = new XMLHttpRequest();
-            xhr.open("POST", "../functions/complete_order.php", true);
-            xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+        xhr.send(data);
 
-            // Send the order ID as a parameter
-            var data = "ol_cart_id=" + cartId +
-                "&order_type=" + orderType +
-                "&shipping_fee=" + shippingfee;
+        // Handle the response from the server
+        xhr.onreadystatechange = function() {
+            if (xhr.readyState == 4) {
+                if (xhr.status == 200) {
+                    // You can handle the response here if needed
+                    console.log(xhr.responseText);
 
-            xhr.send(data);
-
-            // Handle the response from the server
-            xhr.onreadystatechange = function() {
-                if (xhr.readyState == 4) {
-                    if (xhr.status == 200) {
-                        // You can handle the response here if needed
-                        console.log(xhr.responseText);
-
-                        // Redirect to customer-mypurchases.php after successfully adding to the database
+                    // Redirect based on order type
+                    if (orderType === 1) {
                         window.location.href = 'customer-mypurchases.php';
                     } else {
-                        // Handle the error if needed
-                        console.error('AJAX Error:', xhr.status, xhr.statusText);
-                        console.log(xhr.responseText); // Log the responseText for more details
+                        window.location.href = 'customer-mypurchases-pickup.php';
                     }
+                } else {
+                    // Handle the error if needed
+                    console.error('AJAX Error:', xhr.status, xhr.statusText);
+                    console.log(xhr.responseText); // Log the responseText for more details
                 }
-            };
-        }
-    </script>
+            }
+        };
+    }
+</script>
+
+
+    
 
 
 

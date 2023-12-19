@@ -9,7 +9,7 @@ class Cart extends Connection
         $cartitems = array();
         $sql = "SELECT ol_cart.OL_CART_ID,  online_cart_item.OL_CART_ITEM_ID, ol_cart.CUSTOMER_ID, product.PROD_ID, product.PROD_NAME, 
         product.PROD_PIC, product.PROD_DESC, product.PROD_SELLING_PRICE, online_cart_item.OL_PROD_QUANTITY, online_cart_item.OL_SUBTOTAL, 
-        ol_cart.OL_CART_STATUS
+        product.PROD_REMAINING_QUANTITY, ol_cart.OL_CART_STATUS
         from ol_cart 
         inner join online_cart_item on ol_cart.OL_CART_ID=online_cart_item.OL_CART_ID
         inner join users on ol_cart.CUSTOMER_ID = users.USER_ID
@@ -27,6 +27,7 @@ class Cart extends Connection
                     'UNIT_PRICE' => $row['PROD_SELLING_PRICE'],
                     'QUANTITY' => $row['OL_PROD_QUANTITY'],
                     'SUBTOTAL' => $row['OL_SUBTOTAL'],
+                    'PROD_REMAINING_QUANTITY' => $row['PROD_REMAINING_QUANTITY'],
                 ];
             }
         } else {
@@ -40,7 +41,7 @@ class Cart extends Connection
     protected function getCartTotal($customer_id)
     {
         $totals = array();
-        $sql = "SELECT ol_cart.OL_CART_ID, COUNT(online_cart_item.PROD_ID) as 'TOTAL_ITEMS',
+        $sql = "SELECT ol_cart.OL_CART_ID, SUM(online_cart_item.OL_PROD_QUANTITY) as 'TOTAL_ITEMS',
         SUM(online_cart_item.OL_SUBTOTAL) as 'OL_CART_TOTAL' from online_cart_item
        inner join ol_cart on online_cart_item.OL_CART_ID= ol_cart.OL_CART_ID
        where ol_cart.OL_CART_STATUS = 'alive' and ol_cart.CUSTOMER_ID = $customer_id";
@@ -108,7 +109,7 @@ class Cart extends Connection
     }
 
 
-    function getTotalItem($customer_id)
+    function getCartTotalItem($customer_id)
     {
         $totals = 0;
         $sql = "SELECT COUNT(online_cart_item.PROD_ID) as 'TOTAL_ITEMS'
@@ -128,4 +129,5 @@ class Cart extends Connection
 
         return $totals;
     }
+
 }

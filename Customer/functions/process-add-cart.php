@@ -36,7 +36,6 @@ function customerExists($conn, $customerId)
 function createOrder($conn, $customerId)
 {
     $insertOrderQuery = "INSERT INTO ol_cart (CUSTOMER_ID, OL_CART_STATUS) VALUES (?, 'alive')";
-
     $stmt = $conn->prepare($insertOrderQuery);
     $stmt->bind_param("i", $customerId);
 
@@ -66,61 +65,52 @@ function getProductDetails($conn, $productId)
 // Function to insert an order item into the online_cart_item table
 function insertOrderItem($conn, $olCartId, $productId, $quantity, $subtotal)
 {
-    // Check if the remaining quantity is greater than zero
-    $checkRemainingQuantityQuery = "SELECT PROD_REMAINING_QUANTITY FROM product WHERE PROD_ID = ?";
-    $checkRemainingQuantityStmt = $conn->prepare($checkRemainingQuantityQuery);
-    $checkRemainingQuantityStmt->bind_param("i", $productId);
-    $checkRemainingQuantityStmt->execute();
-    $checkRemainingQuantityResult = $checkRemainingQuantityStmt->get_result();
+    // Check if the product quantity is greater than 0
+    if ($quantity > 0) {
+        // Check if the remaining quantity is greater than 0
+        $checkRemainingQuantityQuery = "SELECT PROD_REMAINING_QUANTITY FROM product WHERE PROD_ID = ?";
+        $checkRemainingQuantityStmt = $conn->prepare($checkRemainingQuantityQuery);
+        $checkRemainingQuantityStmt->bind_param("i", $productId);
+        $checkRemainingQuantityStmt->execute();
+        $checkRemainingQuantityResult = $checkRemainingQuantityStmt->get_result();
 
-    if ($checkRemainingQuantityResult->num_rows > 0) {
-        $remainingQuantityRow = $checkRemainingQuantityResult->fetch_assoc();
-        $remainingQuantity = $remainingQuantityRow['PROD_REMAINING_QUANTITY'];
+        if ($checkRemainingQuantityResult->num_rows > 0) {
+            $remainingQuantityRow = $checkRemainingQuantityResult->fetch_assoc();
+            $remainingQuantity = $remainingQuantityRow['PROD_REMAINING_QUANTITY'];
 
-        if ($remainingQuantity > 0) {
-            // Insert the order item
-            $insertOrderItemQuery = "INSERT INTO online_cart_item (OL_CART_ID, PROD_ID, OL_PROD_QUANTITY, OL_SUBTOTAL) VALUES (?, ?, ?, ?)";
-            $stmt = $conn->prepare($insertOrderItemQuery);
+            if ($remainingQuantity > 0) {
+                // Insert the order item
+                $insertOrderItemQuery = "INSERT INTO online_cart_item (OL_CART_ID, PROD_ID, OL_PROD_QUANTITY, OL_SUBTOTAL) VALUES (?, ?, ?, ?)";
+                $stmt = $conn->prepare($insertOrderItemQuery);
 
-            if (!$stmt) {
-                die("Error preparing statement: " . $conn->error);
-            }
+                if (!$stmt) {
+                    die("Error preparing statement: " . $conn->error);
+                }
 
-            $bindResult = $stmt->bind_param("iiid", $olCartId, $productId, $quantity, $subtotal);
+                $bindResult = $stmt->bind_param("iiid", $olCartId, $productId, $quantity, $subtotal);
 
-            if (!$bindResult) {
-                die("Error binding parameters: " . $stmt->error . " Query: " . $insertOrderItemQuery);
-            }
+                if (!$bindResult) {
+                    die("Error binding parameters: " . $stmt->error . " Query: " . $insertOrderItemQuery);
+                }
 
-            $executeResult = $stmt->execute();
+                $executeResult = $stmt->execute();
 
-            if ($executeResult) {
-                // Update product quantity in the products table
-                updateProductQuantity($conn, $productId, $quantity);
-
-                return $olCartId;
+                if ($executeResult) {
+                    return $olCartId;
+                } else {
+                    die("Error executing statement: " . $stmt->error . " Query: " . $insertOrderItemQuery);
+                }
             } else {
-                die("Error executing statement: " . $stmt->error . " Query: " . $insertOrderItemQuery);
+                die("Cannot add to cart. Product with ID $productId has no remaining quantity.");
             }
         } else {
-            die("Cannot add to cart. Product with ID $productId has no remaining quantity.");
+            die("Error checking remaining quantity: " . $checkRemainingQuantityStmt->error);
         }
     } else {
-        die("Error checking remaining quantity: " . $checkRemainingQuantityStmt->error);
+        die("Invalid quantity. Quantity must be greater than 0.");
     }
 }
 
-// Function to update product quantity in the products table
-function updateProductQuantity($conn, $productId, $quantity)
-{
-    $updateProductQuantityQuery = "UPDATE product SET PROD_TOTAL_QUANTITY = PROD_TOTAL_QUANTITY - ? WHERE prod_id = ?";
-    $stmt = $conn->prepare($updateProductQuantityQuery);
-    $stmt->bind_param("ii", $quantity, $productId);
-
-    if (!$stmt->execute()) {
-        die("Error updating product quantity: " . $stmt->error);
-    }
-}
 
 // Function to get the OL_CART_ID of an alive order for a customer
 function getAliveOrder($conn, $customerId)
@@ -142,8 +132,6 @@ function getAliveOrder($conn, $customerId)
 if (!empty($data['productId']) && !empty($data['quantity'])) {
     $productId = $data['productId'];
     $quantity = $data['quantity'];
-
-
 
     if (customerExists($conn, $customerId)) {
         $existingOrderId = getAliveOrder($conn, $customerId);
@@ -180,9 +168,6 @@ if (!empty($data['productId']) && !empty($data['quantity'])) {
                 $subtotal = $quantity * $prodDetails['PROD_SELLING_PRICE'];
                 insertOrderItem($conn, $olCartId, $productId, $quantity, $subtotal);
             }
-
-            // Update product quantity in the products table
-            updateProductQuantity($conn, $productId, $quantity);
 
             $response = [
                 'status' => 'success',
@@ -226,3 +211,4 @@ if (!empty($data['productId']) && !empty($data['quantity'])) {
     echo json_encode($response);
     exit;
 }
+?>

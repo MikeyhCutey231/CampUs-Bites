@@ -1,11 +1,12 @@
 <?php
+require_once '../../Admin/functions/UserData.php';
 require_once '../classes/cart.class.php';
 require_once '../functions/notifications.php';
 require_once  '../functions/getProfile.php';
 
 $customer_id =  $_SESSION['Customer_ID'];
 $countCart = new Cart();
-$cartItem = $countCart->getTotalItem($customer_id);
+$cartItem = $countCart->getCartTotalItem($customer_id);
 
 
 $countNotif = new Notification();
@@ -18,7 +19,27 @@ $notifications = $notificationsFunctions->getNotificationsForCustomer($customer_
 $customer_details = new GetProfile();
 $customer_profile = $customer_details->getProfile($customer_id);
 
+
+$userDataInstance = new UserData();
+$usersData = $userDataInstance->getUserData($customer_id);
+if (!empty($usersData)) {
+    $customerID = $usersData[0]['user_id'];
+    $profilePic = $usersData[0]['profilePic'];
+    $email = $usersData[0]['email'];
+    $password = $usersData[0]['password'];
+    $phoneNum = $usersData[0]['phoneNum'];
+    $fullname = $usersData[0]['fullname'];
+    $fname = $usersData[0]['fname'];
+    $lname = $usersData[0]['lname'];
+    $mname = $usersData[0]['mname'];
+    $userRole = $usersData[0]['userRole'];
+    $campusArea = $usersData[0]['campusArea'];
+    $suffix = $usersData[0]['suffix'];
+    $gender = $usersData[0]['gender'];
+    $currentStatus = $usersData[0]['status'];
+}
 ?>
+
 
 
 
@@ -57,7 +78,7 @@ $customer_profile = $customer_details->getProfile($customer_id);
                         echo '99+';
                     } else {
                         echo $cartItem;
-                    } ?>
+                    }  ?>
                 </div>
             </a>
 
@@ -67,6 +88,7 @@ $customer_profile = $customer_details->getProfile($customer_id);
                         <path d="M8 16a2 2 0 0 0 2-2H6a2 2 0 0 0 2 2zM8 1.918l-.797.161A4.002 4.002 0 0 0 4 6c0 .628-.134 2.197-.459 3.742-.16.767-.376 1.566-.663 2.258h10.244c-.287-.692-.502-1.49-.663-2.258C12.134 8.197 12 6.628 12 6a4.002 4.002 0 0 0-3.203-3.92L8 1.917zM14.22 12c.223.447.481.801.78 1H1c.299-.199.557-.553.78-1C2.68 10.2 3 6.88 3 6c0-2.42 1.72-4.44 4.005-4.901a1 1 0 1 1 1.99 0A5.002 5.002 0 0 1 13 6c0 .88.32 4.2 1.22 6z" />
                     </svg>
                 </div>
+
                 <div class="notif-num align-items-center ">
                     <?php if ($notifTotal >= 99) {
                         echo '99+';
@@ -79,7 +101,7 @@ $customer_profile = $customer_details->getProfile($customer_id);
 
             <a href="customer-profile.php" class="p-0 d-flex align-items-center ">
                 <div class=" d-flex align-items-center justify-content-center p-0 profile">
-                    <img class="pofile-pic" src="<?php echo $customer_profile; ?>" style="height: 100%; width: 100%;">
+                    <img class="profile-pic" src="../userPics/<?php echo $profilePic ?>" style="height: 100%; width: 100%;">
                 </div>
             </a>
 

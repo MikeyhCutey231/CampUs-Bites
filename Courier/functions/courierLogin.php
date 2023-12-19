@@ -32,7 +32,8 @@ class loginCourier extends Connection{
             $row = $result->fetch_assoc();
             $storedPassword = $row['U_PASSWORD'];
     
-            if ($enteredPassword == $storedPassword) {
+            // Use password_verify to compare entered password with stored hashed password
+            if (password_verify($enteredPassword, $storedPassword)) {
                 $this->adminID = $row['USER_ID'];
                 $staffName = $row['U_FIRST_NAME'];
     
@@ -49,11 +50,12 @@ class loginCourier extends Connection{
         }
     }
     
+    
 
     public function forgotPass($email){
         $compare = "SELECT users.U_EMAIL FROM users 
                         INNER JOIN user_roles ON users.USER_ID = user_roles.USER_ID
-                        WHERE user_roles.ROLE_CODE = 'cstmr';";
+                        WHERE user_roles.ROLE_CODE = 'cour';";
         
             $compareRun = mysqli_query($this->conn, $compare);
         

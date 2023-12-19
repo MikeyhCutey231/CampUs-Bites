@@ -61,7 +61,7 @@ class CartView extends Cart{
 
             
             <?php
-        }
+        
         ?>
             
             <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
@@ -72,16 +72,19 @@ class CartView extends Cart{
                     var productId = $(this).data("productid");
                     var quantityInput = $(".quantity-input[data-productid='" + productId + "']");
                     var currentQuantity = parseInt(quantityInput.val());
+                    var availableStock = <?php echo $row['PROD_REMAINING_QUANTITY']?>;
 
                     if ($(this).hasClass("plus-btn")) {
-                        // Increment quantity
+                // Increment quantity if within available stock
+                    if (currentQuantity < availableStock) {
                         quantityInput.val(currentQuantity + 1);
+                    } else {
+                        alert("Sorry, there are not enough items in stock.");
+                    }
                     } else if ($(this).hasClass("minus-btn") && currentQuantity > 1) {
                         // Decrement quantity (if it's more than 1)
                         quantityInput.val(currentQuantity - 1);
                     }
-
-                    
 
                   var xmlhttp = new XMLHttpRequest();
                     var url = "?productId=" + encodeURIComponent(productId) + "&newQuantity=" + encodeURIComponent(quantityInput.val());
@@ -90,14 +93,13 @@ class CartView extends Cart{
 
                     location.reload();
 
-                });
-
-                
+                });          
             }
-                );
+            );
                 
             </script>
         <?php
+        }
     }
 
     public function showCartTotal($customer_id){
@@ -108,7 +110,20 @@ class CartView extends Cart{
         ?>
          <div class="row check-out-deets">
                     <div class="col-sm-10 col-8 p-1 d-flex align-items-center ">
-                        <div class="total-item">Total (<?php echo $row['TOTAL_ITEMS']?> item):</div>
+                        <div class="total-item">Total (
+                            <?php $totalItems = $row['TOTAL_ITEMS'];
+
+                                if ($totalItems === null || $totalItems == 0) {
+                                    echo "0 item";
+                                } 
+                                else if($totalItems == 1){
+                                    echo "1 item";
+                                }
+                                
+                                else {
+                                    echo $totalItems." items";
+                                }
+                            ?> ):</div>
                         <div class="total-price">₱<?php echo (!empty($row['CART_TOTAL']) && $row['CART_TOTAL'] != 0) ? $row['CART_TOTAL'] : '0.00'; ?></div>
 
                     </div>

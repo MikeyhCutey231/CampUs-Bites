@@ -64,7 +64,7 @@ if (
                     ];
 
                     // Redirect to a new PHP file
-                    echo json_encode(['status' => 'success', 'message' => 'Registration successful', 'redirect' => '../customer_html/customer_createAccount.php']);
+                    echo json_encode(['status' => 'success', 'message' => 'Registration successful', 'redirect' => '../customer_php/customer_createAccount.php']);
                 } else {
                     echo json_encode(['status' => 'error', 'message' => 'This email does not exist in UseP Information']);
                 }

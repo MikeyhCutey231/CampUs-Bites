@@ -13,6 +13,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $customer_id = isset($_POST['customer_id']) ? $_POST['customer_id'] : null;
     $orderType = isset($_POST['order_type']) ? $_POST['order_type'] : null;
     $shippingFee = isset($_POST['shipping_fee']) ? $_POST['shipping_fee'] : null;
+    $quantity = isset($_POST['quantity']) ? $_POST['quantity'] : null;
 
 
     $cartId = createcart($customer_id, $conn);
@@ -80,7 +81,7 @@ function createcart($customer_id, $conn){
 
 function insertItem($conn, $cartId, $prodID, $quantity)
 {
-    $query = "INSERT INTO online_cart_item (OL_CART_ID,PROD_ID,OL_PROD_QUANTITY) VALUES (?,?,?)";
+    $query = "INSERT INTO online_cart_item (OL_CART_ID, PROD_ID, OL_PROD_QUANTITY) VALUES (?,?,?)";
 
     $stmt = $conn->prepare($query);
     $stmt->bind_param("iii", $cartId, $prodID, $quantity);

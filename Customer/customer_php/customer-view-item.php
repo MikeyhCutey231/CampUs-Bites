@@ -98,7 +98,7 @@ if (isset($_GET["productId"]) && !empty($_GET["productId"])) {
                                 </p>
 
                                 <div class="p-0  d-flex px-1 item-num-sold">
-                                    - &nbsp; <?php echo isset($prodDetails['PROD_SOLD']) ? $prodDetails['PROD_SOLD'] : 'Number Sold Here'; ?> sold
+                                    - &nbsp; <?php echo isset($prodDetails['PROD_SOLD']) ? $prodDetails['PROD_SOLD'] : '0'; ?> sold
                                 </div>
                             </div>
                         </div>
@@ -179,8 +179,12 @@ if (isset($_GET["productId"]) && !empty($_GET["productId"])) {
         <script>
             $(document).ready(function() {
                 $("#btnAddCart").click(function() {
+
                     // Get quantity value
                     var quantity = $("#quantity").val();
+                    var availableStock = <?php echo $prodDetails['PROD_REMAINING_QUANTITY']; ?>;
+
+                    if (parseInt(quantity) <= availableStock) {
 
                     // Make an AJAX request to the PHP script
                     $.ajax({
@@ -208,6 +212,11 @@ if (isset($_GET["productId"]) && !empty($_GET["productId"])) {
                             // Handle the error (if needed)
                         }
                     });
+                    }
+                    else {
+                    alert("Sorry not enough stocks");
+                }
+
                 });
             });
         </script>
@@ -216,42 +225,46 @@ if (isset($_GET["productId"]) && !empty($_GET["productId"])) {
         <script>
             // Attach click event handler to the button
             $("#btn-buyNow").click(function() {
-                // Get data attributes from the product details container
-                var prodPic = $(".item-pic-container").data("prodpicUnique");
-                var prodName = $(".item-name").data("productnameUnique");
-                var prodPrice = $(".item-price").data("priceUnique");
-                var quantity = $("#quantity").val();
-                var prodID = $("#pID").text();
+                var quantityInput = document.getElementById('quantity');
+                var availableStock = <?php echo $prodDetails['PROD_REMAINING_QUANTITY']; ?>;
 
-                $.ajax({
-                    type: "POST",
-                    url: "../../Customer/functions/buyNowHandler.php", // Replace with the actual server script
-                    data: {
-                        prodPic: prodPic,
-                        prodName: prodName,
-                        prodPrice: prodPrice,
-                        quantity: quantity,
-                        prodID: prodID
-                    },
-                    success: function(response) {
-                        console.log(response); // Log the response for debugging
-                        if (response && response.status === 'success') {
-                            // Redirect to customer-checkout2.php with URL parameters
-                            window.location.href = "customer-checkout2.php" +
-                                "?prodPic=" + encodeURIComponent(prodPic) +
-                                "&prodName=" + encodeURIComponent(prodName) +
-                                "&prodPrice=" + encodeURIComponent(prodPrice) +
-                                "&quantity=" + encodeURIComponent(quantity) +
-                                "&prodID=" + encodeURIComponent(prodID);
-                        } else {
-                            console.error("Error:", response);
-                        }
-                    },
-                });
+                if (parseInt(quantityInput.value) <= availableStock) {
+                    var prodPic = $(".item-pic-container").data("prodpicUnique");
+                    var prodName = $(".item-name").data("productnameUnique");
+                    var prodPrice = $(".item-price").data("priceUnique");
+                    var quantity = $("#quantity").val();
+                    var prodID = $("#pID").text();
+
+                    $.ajax({
+                        type: "POST",
+                        url: "../../Customer/functions/buyNowHandler.php",
+                        data: {
+                            prodPic: prodPic,
+                            prodName: prodName,
+                            prodPrice: prodPrice,
+                            quantity: quantity,
+                            prodID: prodID
+                        },
+                        success: function(response) {
+                            console.log(response);
+                            if (response && response.status === 'success') {
+                                window.location.href = "customer-checkout2.php" +
+                                    "?prodPic=" + encodeURIComponent(prodPic) +
+                                    "&prodName=" + encodeURIComponent(prodName) +
+                                    "&prodPrice=" + encodeURIComponent(prodPrice) +
+                                    "&quantity=" + encodeURIComponent(quantity) +
+                                    "&prodID=" + encodeURIComponent(prodID);
+                            } else {
+                                console.error("Error:", response);
+                            }
+                        },
+                    });
+                } else {
+                    alert("Sorry not enough stocks");
+                }
             });
-
-            // Your other JavaScript code...
         </script>
+
 
 
 

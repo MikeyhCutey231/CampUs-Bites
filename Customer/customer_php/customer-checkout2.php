@@ -330,47 +330,54 @@ $details = new Checkout();
         }
     </script>
 
+<script>
+    function completeOrder() {
+        var orderType = document.querySelector('.selectedOrderType');
+        var shippingfee = <?php echo json_encode($shippingTotal); ?>;
+        var customer_id = <?php echo json_encode($customer_id); ?>;
+        var product_id = <?php echo json_encode($prodID); ?>;
+        var quantity = <?php echo json_encode($quantity); ?>;
 
-
-    <script>
-        function completeOrder() {
-
-            var orderType = document.querySelector('.selectedOrderType');
-            var shippingfee = <?php echo json_encode($shippingTotal); ?>;
-            var customer_id = <?php echo json_encode($customer_id); ?>;
-            var product_id = <?php echo json_encode($prodID); ?>;
-            var quantity = <?php echo json_encode($quantity); ?>;
-
-            // Assuming you have the order ID available, replace 123 with the actual order ID
-            if (orderType.textContent === "DELIVERY") {
-                orderType = 1;
-            } else orderType = 2
-
-            // Make an AJAX request to update ol_cart_status to "dead"
-            var xhr = new XMLHttpRequest();
-            xhr.open("POST", "../functions/complete_order2.php", true);
-            xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-
-            // Send the order ID as a parameter
-            var data = "customer_id=" + customer_id +
-                "&order_type=" + orderType +
-                "&product_id=" + product_id +
-                "&quantity=" + quantity +
-                "&shipping_fee=" + shippingfee;
-
-            xhr.send(data);
-            alert(data);
-
-
-            // Handle the response from the server if needed
-            xhr.onreadystatechange = function() {
-                if (xhr.readyState == 4 && xhr.status == 200) {
-                    // You can handle the response here if needed
-                    console.log(xhr.responseText);
-                }
-            };
+        // Assuming you have the order ID available, replace 123 with the actual order ID
+        if (orderType.textContent === "DELIVERY") {
+            orderType = 1;
+        } else {
+            orderType = 2;
         }
-    </script>
+
+        // Make an AJAX request to update ol_cart_status to "dead"
+        var xhr = new XMLHttpRequest();
+        xhr.open("POST", "../functions/complete_order2.php", true);
+        xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+
+        // Send the order ID as a parameter
+        var data = "customer_id=" + customer_id +
+            "&order_type=" + orderType +
+            "&product_id=" + product_id +
+            "&quantity=" + quantity +
+            "&shipping_fee=" + shippingfee;
+
+        xhr.send(data);
+
+        // Handle the response from the server
+        xhr.onreadystatechange = function() {
+            if (xhr.readyState == 4) {
+                if (xhr.status == 200) {
+                    // Successful response, redirect based on order type
+                    if (orderType === 1) {
+                        window.location.href = 'customer-mypurchases.php';
+                    } else {
+                        window.location.href = 'customer-mypurchases-pickup.php';
+                    }
+                } else {
+                    // Handle the error if needed
+                    console.error('AJAX Error:', xhr.status, xhr.statusText);
+                    console.log(xhr.responseText); // Log the responseText for more details
+                }
+            }
+        };
+    }
+</script>
 
 
 

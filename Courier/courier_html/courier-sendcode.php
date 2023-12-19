@@ -11,7 +11,7 @@
         $error_message = null;
 
         if($codeInput == $code){
-            header('location: staff-forgotPassChange.php');
+            header('location: changePassword.php');
         }else{
             $error_message = "Invalid Code";
         }

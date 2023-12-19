@@ -138,9 +138,9 @@ $search = isset($_POST['search']) ? $_POST['search'] : "";
 $conditions = array();
 
 if (!empty($search)) {
-    $conditions[] = "CONCAT_WS(' ', users.U_FIRST_NAME, users.U_MIDDLE_NAME, users.U_LAST_NAME) LIKE ? AND online_order.OL_ORDER_TYPE_ID = 2 AND ORDER_STATUS_ID  = 8";
-    $conditions[] = "DATE(online_order.DATE_CREATED) LIKE ? AND online_order.OL_ORDER_TYPE_ID = 2 AND ORDER_STATUS_ID  = 8";
-    $conditions[] = "online_order.OL_CART_ID LIKE ? AND online_order.OL_ORDER_TYPE_ID = 2 AND ORDER_STATUS_ID  = 8";
+    $conditions[] = "CONCAT_WS(' ', users.U_FIRST_NAME, users.U_MIDDLE_NAME, users.U_LAST_NAME) LIKE ? AND online_order.OL_ORDER_TYPE_ID = 2 AND (ORDER_STATUS_ID = 8 OR ORDER_STATUS_ID = 4)";
+    $conditions[] = "DATE(online_order.DATE_CREATED) LIKE ? AND online_order.OL_ORDER_TYPE_ID = 2 AND (ORDER_STATUS_ID = 8 OR ORDER_STATUS_ID = 4)";
+    $conditions[] = "online_order.OL_CART_ID LIKE ? AND online_order.OL_ORDER_TYPE_ID = 2 AND (ORDER_STATUS_ID = 8 OR ORDER_STATUS_ID = 4)";
 }
 
 $where_clause = !empty($conditions) ? "WHERE " . implode(" OR ", $conditions) : "";
@@ -176,7 +176,7 @@ $where_clause = !empty($conditions) ? "WHERE " . implode(" OR ", $conditions) : 
             INNER JOIN ol_cart ON online_order.OL_CART_ID = ol_cart.OL_CART_ID
             INNER JOIN users ON online_order.EMPLOYEE_ID = users.USER_ID
             INNER JOIN online_cart_item ON online_order.OL_CART_ID = online_cart_item.OL_CART_ID
-            $where_clause AND online_order.OL_ORDER_TYPE_ID = 2 AND ORDER_STATUS_ID  = 8
+            $where_clause AND online_order.OL_ORDER_TYPE_ID = 2 AND (ORDER_STATUS_ID = 8 OR ORDER_STATUS_ID = 4)
                         GROUP BY
             DATE(online_order.DATE_CREATED),
             online_order.OL_CART_ID,

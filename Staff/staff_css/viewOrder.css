@@ -353,6 +353,7 @@ input:focus {
 .topOrderInfo{
     display: flex;
     align-items: center;
+    justify-content: space-between;
 }
 
 .topOrderInfo p{
@@ -373,7 +374,6 @@ input:focus {
 
 
 .topOrderInfo .claimBtn{
-    margin-left: 400px;
     margin-right: 10px;
 }
 
@@ -462,9 +462,11 @@ td{
 
 
 .foodImage{
-    width: 90px;
-    margin-top: -30px !important;
-    border-radius: 20px;
+    width: 70px;
+    height: 70px;
+    margin-top: 0px !important;
+    border-radius: 10px;
+    object-fit: cover;
 }
 
 .below-content{

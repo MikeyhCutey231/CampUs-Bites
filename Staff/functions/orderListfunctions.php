@@ -313,20 +313,22 @@ public function renderOrdersDetails($orderData) {
     } else {
         foreach ($orderData as $row) {
             echo '<div class="topOrderInfo">';
-            echo '<p>Order#' . $row['OL_CART_ID'] . '</p>';
+            echo '<p>Order#' . $row['ONLINE_ORDER_ID'] . '</p>';
             
             if ($row['ORDER_STATUS_ID'] == 1) {
+                echo '<div>';
                 echo '<button type="submit" name="claimBtn" class="claimBtn" 
-                data-status-id="' . 1 . '" 
-                data-ol-cart-id="' . $row['ONLINE_ORDER_ID'] . '" 
-                data-status-name="' . $row['STATUS_NAME'] . '" 
-                value="₱ ' . $row['Total'] .'">Confirm Order</button>';
-
+                            data-status-id="' . 1 . '" 
+                            data-ol-cart-id="' . $row['ONLINE_ORDER_ID'] . '" 
+                            data-status-name="' . $row['STATUS_NAME'] . '" 
+                            value="₱ ' . $row['Total'] .'">Confirm Order</button>';
+                
                 echo '<button type="submit" name="cancelBtn" class="cancelBtn" 
-                data-status-id="' . 1 . '" 
-                data-ol-cart-id="' . $row['ONLINE_ORDER_ID'] . '" 
-                data-status-name="' . $row['STATUS_NAME'] . '" 
-                value="₱ ' . $row['Total'] .'">Cancel Order</button>';
+                            data-status-id="' . 1 . '" 
+                            data-ol-cart-id="' . $row['ONLINE_ORDER_ID'] . '" 
+                            data-status-name="' . $row['STATUS_NAME'] . '" 
+                            value="₱ ' . $row['Total'] .'">Cancel Order</button>';
+                echo '</div>';
                 
             }else if($row['ORDER_STATUS_ID'] == 6){
                 echo '<button type="submit" name="claimBtn" class="claimBtn" 

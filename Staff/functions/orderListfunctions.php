@@ -29,17 +29,18 @@ class EmployeeInfo{
     $userID = $_SESSION['USER_ID'];
     $listOders = array();
 
-    $OrderList = "SELECT online_order.OL_CART_ID, DATE_FORMAT(online_order.DATE_CREATED, '%M %e, %Y') AS FORMATTED_DATE, ol_order_status.STATUS_NAME FROM online_order INNER JOIN ol_order_status ON online_order.ORDER_STATUS_ID = ol_order_status.ORDER_STATUS_ID
+    $OrderList = "SELECT online_order.ONLINE_ORDER_ID, online_order.OL_CART_ID, DATE_FORMAT(online_order.DATE_CREATED, '%M %e, %Y') AS FORMATTED_DATE, ol_order_status.STATUS_NAME FROM online_order INNER JOIN ol_order_status ON online_order.ORDER_STATUS_ID = ol_order_status.ORDER_STATUS_ID
     INNER JOIN ol_order_type ON online_order.OL_ORDER_TYPE_ID = ol_order_type.OL_ORDER_TYPE_ID
     WHERE ol_order_type.OL_ORDER_TYPE_ID = 2 AND ol_order_status.STATUS_NAME = 'Pending'";
     
     $stmt = $this->conn->prepare($OrderList);
     if ($stmt) {
         $stmt->execute();
-        $stmt->bind_result($cartID, $formatDate, $statusName);  // Ayaw hilabti ni pula rana pero woking ni
+        $stmt->bind_result($onlineOrderID, $cartID, $formatDate, $statusName);  // Ayaw hilabti ni pula rana pero woking ni
         
         while ($stmt->fetch()) {
             $listOders[] = [
+                'ONLINE_ORDER_ID' => $onlineOrderID,
                 'OL_CART_ID' => $cartID,
                 'FORMATTED_DATE' => $formatDate,
                 'STATUS_NAME' => $statusName,
@@ -64,7 +65,7 @@ public function renderOrderList($orderData) {
             echo '<div class="order-card">';
             echo '<div class="top-order">';
             echo '<div class="order-numberCont">';
-            echo '<p class="orderNum">Order#' . $row['OL_CART_ID'] . '</p>';
+            echo '<p class="orderNum">Order#' . $row['ONLINE_ORDER_ID'] . '</p>';
             echo '<p class="date">' . $row['FORMATTED_DATE'] . '</p>';
             echo '</div>';
             echo '<div class="order-status">';

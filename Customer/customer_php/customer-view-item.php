@@ -425,7 +425,7 @@ if (isset($_GET["productId"]) && !empty($_GET["productId"])) {
                 INNER JOIN online_cart_item ON ol_cart.OL_CART_ID = online_cart_item.OL_CART_ID
                 RIGHT JOIN product ON online_cart_item.PROD_ID = product.PROD_ID
                 LEFT JOIN users ON ol_cart.CUSTOMER_ID = users.USER_ID 
-                WHERE producT.CATEGORY_ID = ? AND product.PROD_ID != ?
+                WHERE product.CATEGORY_ID = ? AND product.PROD_ID != ?
                 GROUP BY product.PROD_ID LIMIT 15 ";
             $stmt = $conn->prepare($relatedProductsQuery);
 

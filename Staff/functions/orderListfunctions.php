@@ -115,7 +115,7 @@ public function renderOrderList($orderData) {
 
 
 public function filterOrderList($orderStatus) {
-    $OrderList = "SELECT online_order.OL_CART_ID, 
+    $OrderList = "SELECT online_order.ONLINE_ORDER_ID, online_order.OL_CART_ID, 
                     DATE_FORMAT(online_order.DATE_CREATED, '%M %e, %Y') AS FORMATTED_DATE, 
                     ol_order_status.STATUS_NAME, ol_order_status.ORDER_STATUS_ID
                     FROM online_order
@@ -134,6 +134,7 @@ public function filterOrderList($orderStatus) {
 
         while ($row = $result->fetch_assoc()) {
             $orderData[] = [
+                'ONLINE_ORDER_ID' => $row['ONLINE_ORDER_ID'],
                 'OL_CART_ID' => $row['OL_CART_ID'],
                 'FORMATTED_DATE' => $row['FORMATTED_DATE'],
                 'STATUS_NAME' => $row['STATUS_NAME'],

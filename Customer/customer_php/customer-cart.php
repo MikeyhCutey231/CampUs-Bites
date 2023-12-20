@@ -1,5 +1,6 @@
 <?php
-include '../includes/autoloader.inc.php';
+include_once '../classes/cartview.class.php';
+include_once '../classes/cartcontrol.class.php';
 
 
 $remover = new CartControl();

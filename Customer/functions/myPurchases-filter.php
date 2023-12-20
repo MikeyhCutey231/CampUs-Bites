@@ -14,7 +14,8 @@ function displayOrderDetails($request)
     $database = new Connection();
     $conn = $database->conn;
     var_dump($customer_id);
-    $query = "SELECT online_order.ONLINE_ORDER_ID, ol_order_status.STATUS_NAME, online_order.OL_CART_ID, product.PROD_NAME, product.PROD_PIC, online_cart_item.OL_PROD_QUANTITY, product.PROD_SELLING_PRICE, online_cart_item.OL_SUBTOTAL
+    $query = "SELECT online_order.ONLINE_ORDER_ID, ol_order_status.STATUS_NAME,  online_order.OL_CART_ID, product.PROD_NAME, product.PROD_PIC, online_cart_item.OL_PROD_QUANTITY,
+             product.PROD_SELLING_PRICE, online_cart_item.OL_SUBTOTAL + online_order.SHIPPING_FEE as 'GRANDTOTAL'
                 FROM online_order
                 INNER JOIN ol_order_status ON online_order.ORDER_STATUS_ID = ol_order_status.ORDER_STATUS_ID
                 INNER JOIN ol_cart ON online_order.OL_CART_ID = ol_cart.OL_CART_ID
@@ -49,7 +50,7 @@ function displayOrderDetails($request)
                 $productPic = $row['PROD_PIC'];
                 $quantity = $row['OL_PROD_QUANTITY'];
                 $productPrice = $row['PROD_SELLING_PRICE'];
-                $subtotal = $row['OL_SUBTOTAL'];
+                $grandtotal = $row['GRANDTOTAL'];
 
                 // Calculate subtotal by multiplying price and quantity
                 $subtotal = $productPrice * $quantity;
@@ -131,7 +132,7 @@ function displayOrderDetails($request)
                 echo '<div class="col-12 item-deets">Quantity: ' . $quantity . '</div>';
                 echo '</div>';
                 echo '<div class="col-md-2 col-sm-3 col-3 p-2 d-flex align-items-center justify-content-center">';
-                echo '<div class="col-12 justify-content-center d-flex item-price">₱' . number_format($subtotal, 2) . '</div>';
+                echo '<div class="col-12 justify-content-center d-flex item-price">₱' . number_format($grandtotal, 2) . '</div>';
                 echo '</div>';
                 echo '</div>';
             }

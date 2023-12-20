@@ -64,7 +64,7 @@ class Notification extends Connection {
 
     public function getNotificationsForCustomer($customer_id){
         $notifications = array();
-
+    
         $sql = "SELECT
                 notifications.NOTIFICATION_ID,
                 notifications.NOTIF_MESSAGE,
@@ -72,13 +72,15 @@ class Notification extends Connection {
                 ol_order_status.STATUS_NAME,
                 online_order.ONLINE_ORDER_ID,
                 online_order.OL_ORDER_TYPE_ID
+                users.USER_ID
             FROM
                 notifications
             INNER JOIN online_order ON notifications.ol_order_id = online_order.online_order_id
             INNER JOIN ol_cart ON online_order.ol_cart_id = ol_cart.ol_cart_id
             INNER JOIN ol_order_status ON online_order.ORDER_STATUS_ID = ol_order_status.ORDER_STATUS_ID
+            INNER JOIN users on ol_cart.customer_id = users.USER_ID
             WHERE
-                ol_cart.customer_id = ?
+                users.USER_ID = ?
             GROUP BY
                 notifications.NOTIFICATION_ID,  -- Include the columns you want to group by
                 notifications.NOTIF_MESSAGE,
@@ -93,15 +95,16 @@ class Notification extends Connection {
         $stmt->bind_param('i', $customer_id);
         $stmt->execute();
         $result = $stmt->get_result();
-
+    
         while ($row = $result->fetch_assoc()) {
             $notifications[] = $row;
         }
-
+    
         $stmt->close();
-
+    
         return $notifications;
     }
+    
 }
 
 

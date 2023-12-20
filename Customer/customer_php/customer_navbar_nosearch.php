@@ -81,7 +81,7 @@ $u_picture = $customer_profile['U_PICTURE'];
 
             <a href="customer-profile.php" class="p-0 d-flex align-items-center ">
                 <div class=" d-flex align-items-center justify-content-center p-0 profile">
-                    <img class="profile-pic" src="../userPics/<?php echo $u_picture ?>" style="height: 100%; width: 100%;">
+                    <img class="profile-pic" src="../userPics/<?php echo $u_picture ?>" style="height: 100%; width: 100%; background-color: white;">
                 </div>
             </a>
 

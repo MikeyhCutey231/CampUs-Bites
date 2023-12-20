@@ -61,7 +61,7 @@ $customer_profile = $customer_details->getProfile($customerID);
                         </div>
                     
                     <a href="customer-menu.php">
-                        <h1 class="title">Campus Bites <?php echo $customerID ?></h1>
+                        <h1 class="title">Campus Bites <?php echo $_SESSION['Customer_ID'] ?></h1>
                     </a>
                 </div>
                 <div class="col-lg-7 col-md-8 col-sm-11 col-11 p-0 d-flex align-items-center justify-content-end">

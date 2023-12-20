@@ -79,7 +79,7 @@ function displayOrderDetails($request)
                         echo '<div class="total-title">Order Total:</div>';
                         echo '</div>';
                         echo '<div class="col-lg-1 col-md-2 col-3 d-flex align-items-center justify-content-center">';
-                        echo '<div class="total-con">₱' . number_format($orderTotals[$currentOrderId], 2) . '</div>';
+                        echo '<div class="total-con">₱' . number_format($grandtotal, 2) . '</div>';
                         echo '</div>';
                         echo '</div>';
                         echo '</div>';

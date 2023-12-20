@@ -119,7 +119,7 @@ ORDER BY online_cart_item.PROD_ID";
 
                     echo '<div class="row item-con px-1 px-sm-3 px-sm-3 py-sm-2 py-1">';
                     echo '<div class="col-sm-1 col-2 p-sm-2 p-1 d-flex  justify-content-center">';
-                    echo '<img class="item-image" src="' . $productPic . '" alt="' . $productName . '">';
+                    echo '<img class="item-image" src="../../Icons/' . $productPic . '" alt="' . $productName . '">';
                     echo '</div>';
                     echo '<div class="col-sm-5 col-4 col-2 p-sm-2 p-1 d-flex align-items-center justify-content-start text-truncate">';
                     echo '<div class="item-name">' . $productName . '</div>';

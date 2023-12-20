@@ -20,6 +20,7 @@ function displayOrderDetails($request)
     INNER JOIN ol_cart ON online_order.OL_CART_ID = ol_cart.OL_CART_ID
     INNER JOIN online_cart_item ON ol_cart.OL_CART_ID = online_cart_item.OL_CART_ID
     INNER JOIN product ON online_cart_item.PROD_ID = product.PROD_ID
+    INNER JOIN users ON ol_cart.CUSTOMER_ID = users.USER_ID
     WHERE online_order.OL_ORDER_TYPE_ID = 2 AND users.USER_ID = '$customer_id'";
 
     // Check if a specific order status is requested

@@ -67,7 +67,7 @@ if (isset($_GET["productId"]) && !empty($_GET["productId"])) {
         <div class="container-fluid  align-items-center justify-content-between mb-sm-3 mb-2 item-panel">
             <div class="row p-lg-3 p-md-2 justify-content-between d-flex align-items-center item-con">
                 <div class="col-12 col-sm-4  col-lg-3 p-lg-2 p-md-1 p-sm-2 p-0 item-pic-container" style="overflow: hidden;" data-prodPic-unique="<?php echo $prodDetails['PROD_PIC'] ?>">
-                <?php echo '<img src="../../Icons/' . ($prodDetails['PROD_PIC'] ? $prodDetails['PROD_PIC'] : '') . '" alt="item-pic" class="item-picture">'; ?>
+                    <img src="../../Icons/<?php echo $prodDetails['PROD_PIC']; ?>" alt="item-pic" class="item-picture">
                 </div>
 
                 <p id="pID" style="display: none;" value="<?php echo $defaultProductId ?>" data-prodID-unique="<?php echo $defaultProductId ?>"><?php echo $defaultProductId ?></p>

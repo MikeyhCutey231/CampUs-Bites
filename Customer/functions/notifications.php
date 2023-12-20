@@ -71,7 +71,7 @@ class Notification extends Connection {
                 notifications.STATUS,
                 ol_order_status.STATUS_NAME,
                 online_order.ONLINE_ORDER_ID,
-                online_order.OL_ORDER_TYPE_ID
+                online_order.OL_ORDER_TYPE_ID,
                 users.USER_ID
             FROM
                 notifications

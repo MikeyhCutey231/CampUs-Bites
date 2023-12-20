@@ -20,7 +20,7 @@
                 ?> <div class="order-card">
                 <div class="top-order">
                         <div class="order-numberCont">
-                            <p class="orderNum">Order#<?php echo $row['OL_CART_ID'] ?></p>
+                            <p class="orderNum">Order#<?php echo $row['ONLINE_ORDER_ID'] ?></p>
                             <p class="date"><?php echo $row['FORMATTED_DATE'] ?></p>
                         </div>
                         <div class="order-status">

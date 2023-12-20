@@ -166,6 +166,7 @@
                             $viewOrder = "SELECT
                             DATE(online_order.DATE_CREATED) AS orderDate,
                             online_order.OL_CART_ID,
+                            online_order.ONLINE_ORDER_ID,
                             users.U_FIRST_NAME,
                             users.U_MIDDLE_NAME,
                             users.U_LAST_NAME,
@@ -185,7 +186,7 @@
                                 $cartID = $row['OL_CART_ID'];
                                 ?>
                                     <div class="topOrderInfo">
-                                        <p>Viewing Order#<?php echo $row['OL_CART_ID'] ?></p>
+                                        <p>Viewing Order#<?php echo $row['ONLINE_ORDER_ID'] ?></p>
                                     </div>
                                     <div class="bottomOrderInfo">
                                         <p class="orderStatus">COMPLETE</p>

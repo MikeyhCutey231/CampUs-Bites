@@ -42,13 +42,12 @@
                             
                             if (mysqli_query($conn, $query)) {
                                 // Update the product quantity
-                                $updateQuantity = $currentQuantity - $quantity;
                                 $updateQuantitySold = $currentQuantitySold + $quantity;
         
                                 // Use a prepared statement to update the product quantity
-                                $updateProduct = "UPDATE product SET PROD_REMAINING_QUANTITY = ?, PROD_SOLD = ? WHERE PROD_ID = ?";
+                                $updateProduct = "UPDATE product SET PROD_SOLD = ? WHERE PROD_ID = ?";
                                 $stmt = $conn->prepare($updateProduct);
-                                $stmt->bind_param("iii", $updateQuantity, $updateQuantitySold, $itemId);
+                                $stmt->bind_param("ii", $updateQuantitySold, $itemId);
         
                                 if ($stmt->execute()) {
                                     $stmt->close();

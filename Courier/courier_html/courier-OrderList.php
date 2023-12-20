@@ -181,7 +181,7 @@
                                     <option value="0">Available Orders</option>
                                     <option value="2">Claimed</option>
                                     <option value="3">On The Way</option>
-                                    <option value="4">Delivered</option>
+                                    <option value="4">Completed</option>
                                     <option value="5">Returned</option>
                               </select>                       
                         </div>

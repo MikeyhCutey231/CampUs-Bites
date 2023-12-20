@@ -1,5 +1,5 @@
 <?php
-include ("../../Staff/functions/loginStaff.php");
+require("../../Admin/functions/dbConfig.php");
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\SMTP;
 use PHPMailer\PHPMailer\Exception;
@@ -417,7 +417,7 @@ class loginCourier extends Connection{
                     <div class="switchLeft">
                         <img src="../../Icons/cutemikey.svg" alt="">
                         <div class="switchProfile">
-                            <p class="switchUseProfile"><?php echo $row['U_FIRST_NAME']. ' ' . $row['U_MIDDLE_NAME'] . ' ' . $row['U_LAST_NAME']; ?></p>
+                            <p class="switchUseProfile" name="<?php echo $userNames ?>"><?php echo $row['U_FIRST_NAME']. ' ' . $row['U_MIDDLE_NAME'] . ' ' . $row['U_LAST_NAME']; ?></p>
                             <p>Customer Account</p>
                         </div>
                     </div> 
@@ -428,6 +428,34 @@ class loginCourier extends Connection{
                     </div>
                 </div>
             <?php 
+        }
+    }
+
+
+
+
+
+
+
+
+    public function courSwitch($enteredUsername) {
+        $sql = "SELECT users.USER_ID, users.U_PASSWORD, users.U_FIRST_NAME FROM users JOIN user_roles ON users.USER_ID = user_roles.USER_ID WHERE users.U_FIRST_NAME = ? AND user_roles.ROLE_CODE = 'cstmr'";
+        $stmt = $this->conn->prepare($sql);
+        $stmt->bind_param("s", $enteredUsername);
+        $stmt->execute();
+        $result = $stmt->get_result();
+
+        if ($result->num_rows === 1) {
+            $row = $result->fetch_assoc();
+
+                $this->adminID = $row['USER_ID'];
+                $staffName = $row['U_FIRST_NAME'];
+
+                $_SESSION['USER_ID'] = $this->adminID;
+                $_SESSION['Staff_Name'] = $staffName;
+                return self::REGISTRATION_SUCCESS;
+        } else {
+            
         }
     }
 }

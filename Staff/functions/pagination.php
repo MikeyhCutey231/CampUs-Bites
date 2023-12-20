@@ -140,7 +140,7 @@ $conditions = array();
 if (!empty($search)) {
     $conditions[] = "CONCAT_WS(' ', users.U_FIRST_NAME, users.U_MIDDLE_NAME, users.U_LAST_NAME) LIKE ? AND online_order.OL_ORDER_TYPE_ID = 2 AND (ORDER_STATUS_ID = 8 OR ORDER_STATUS_ID = 4)";
     $conditions[] = "DATE(online_order.DATE_CREATED) LIKE ? AND online_order.OL_ORDER_TYPE_ID = 2 AND (ORDER_STATUS_ID = 8 OR ORDER_STATUS_ID = 4)";
-    $conditions[] = "online_order.OL_CART_ID LIKE ? AND online_order.OL_ORDER_TYPE_ID = 2 AND (ORDER_STATUS_ID = 8 OR ORDER_STATUS_ID = 4)";
+    $conditions[] = "online_order.ONLINE_ORDER_ID LIKE ? AND online_order.OL_ORDER_TYPE_ID = 2 AND (ORDER_STATUS_ID = 8 OR ORDER_STATUS_ID = 4)";
 }
 
 $where_clause = !empty($conditions) ? "WHERE " . implode(" OR ", $conditions) : "";
@@ -163,6 +163,7 @@ $where_clause = !empty($conditions) ? "WHERE " . implode(" OR ", $conditions) : 
 
     $query = "SELECT
             DATE(online_order.DATE_CREATED),
+            online_order.ONLINE_ORDER_ID,
             online_order.OL_CART_ID,
             users.U_FIRST_NAME,
             users.U_MIDDLE_NAME,
@@ -179,6 +180,7 @@ $where_clause = !empty($conditions) ? "WHERE " . implode(" OR ", $conditions) : 
             $where_clause AND online_order.OL_ORDER_TYPE_ID = 2 AND (ORDER_STATUS_ID = 8 OR ORDER_STATUS_ID = 4)
                         GROUP BY
             DATE(online_order.DATE_CREATED),
+            online_order.ONLINE_ORDER_ID,
             online_order.OL_CART_ID,
             users.U_FIRST_NAME,
             users.U_MIDDLE_NAME,
@@ -192,9 +194,9 @@ $stmt = $conn->prepare($query);
 
 if (!empty($search)) {
     $search_param = "%$search%";
-    $cartID_param = "%$search%";
+    $onlineOrderId = "%$search%";
     $date_param = "%$search%";
-    $stmt->bind_param("sssii", $search_param, $cartID_param, $date_param, $start_from, $limit);
+    $stmt->bind_param("sssii", $search_param, $onlineOrderId, $date_param, $start_from, $limit);
 } else {
     $stmt->bind_param("ii", $start_from, $limit);
 }
@@ -203,6 +205,7 @@ $stmt->execute();
 
 $stmt->bind_result(
     $date_created,
+    $onlineOrderId,
     $ol_cart_id,
     $u_first_name,
     $u_middle_name,
@@ -234,7 +237,7 @@ while ($stmt->fetch()) {
             <tr>
                 <td>' . $date_created . '</td>
                 <td>' . ucfirst($u_first_name) . " " . ucfirst($u_middle_name) . " " . ucfirst($u_last_name) . '</td>
-                <td>Order#' . ucfirst($ol_cart_id) . '</td>
+                <td>Order#' . ucfirst($onlineOrderId) . '</td>
                 <td>₱' . $ol_subtotal . '</td>
                 <td>₱' . $receivedAmount . '</td>
                 <td>₱' . $changeAmount . '</td>

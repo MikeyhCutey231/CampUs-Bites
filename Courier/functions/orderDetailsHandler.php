@@ -12,7 +12,7 @@ include("../../Admin/functions/dbConfig.php");
         $userID = $_SESSION['USER_ID'];
         $listOders = array();
     
-        $OrderList = "SELECT online_order.OL_CART_ID, 
+        $OrderList = "SELECT online_order.ONLINE_ORDER_ID, online_order.OL_CART_ID, 
         DATE_FORMAT(online_order.DATE_CREATED, '%M %e, %Y') AS FORMATTED_DATE, 
         ol_order_status.STATUS_NAME, ol_order_status.ORDER_STATUS_ID
         FROM online_order
@@ -22,10 +22,11 @@ include("../../Admin/functions/dbConfig.php");
         $stmt = $this->conn->prepare($OrderList);
         if ($stmt) {
             $stmt->execute();
-            $stmt->bind_result($cartID, $formatDate, $statusName, $statusID);  // Ayaw hilabti ni pula rana pero woking ni
+            $stmt->bind_result($onlineOrderId, $cartID, $formatDate, $statusName, $statusID);  // Ayaw hilabti ni pula rana pero woking ni
             
             while ($stmt->fetch()) {
                 $listOders[] = [
+                    'ONLINE_ORDER_ID' => $onlineOrderId,
                     'OL_CART_ID' => $cartID,
                     'FORMATTED_DATE' => $formatDate,
                     'STATUS_NAME' => $statusName,
@@ -51,7 +52,7 @@ include("../../Admin/functions/dbConfig.php");
                 echo '<div class="order-card">';
                 echo '<div class="top-order">';
                 echo '<div class="order-numberCont">';
-                echo '<p class="orderNum">Order#' . $row['OL_CART_ID'] . '</p>';
+                echo '<p class="orderNum">Order#' . $row['ONLINE_ORDER_ID'] . '</p>';
                 echo '<p class="date">' . $row['FORMATTED_DATE'] . '</p>';
                 echo '</div>';
                 echo '<div class="order-status">';
@@ -103,7 +104,7 @@ include("../../Admin/functions/dbConfig.php");
             // Convert the array to a comma-separated string
             $statusString = implode(',', $orderStatus);
     
-            $OrderList = "SELECT online_order.OL_CART_ID, 
+            $OrderList = "SELECT online_order.ONLINE_ORDER_ID, online_order.OL_CART_ID, 
             DATE_FORMAT(online_order.DATE_CREATED, '%M %e, %Y') AS FORMATTED_DATE, 
             ol_order_status.STATUS_NAME, ol_order_status.ORDER_STATUS_ID
             FROM online_order
@@ -112,7 +113,7 @@ include("../../Admin/functions/dbConfig.php");
                 
         } else {
             // If $orderStatus is not an array, treat it as a single status value
-            $OrderList = "SELECT online_order.OL_CART_ID, 
+            $OrderList = "SELECT online_order.ONLINE_ORDER_ID, online_order.OL_CART_ID, 
             DATE_FORMAT(online_order.DATE_CREATED, '%M %e, %Y') AS FORMATTED_DATE, 
             ol_order_status.STATUS_NAME, ol_order_status.ORDER_STATUS_ID
             FROM online_order
@@ -125,11 +126,12 @@ include("../../Admin/functions/dbConfig.php");
         if (is_array($orderStatus)) {
             // If $orderStatus is an array, bind the parameters individually
             $stmt->execute();
-            $stmt->bind_result($olCartId, $formattedDate, $statusName, $orderStatusId);
+            $stmt->bind_result( $onlineOrderID,$olCartId, $formattedDate, $statusName, $orderStatusId);
             $orderData = array();
     
             while ($stmt->fetch()) {
                 $orderData[] = [
+                    'ONLINE_ORDER_ID' => $onlineOrderID,
                     'OL_CART_ID' => $olCartId,
                     'FORMATTED_DATE' => $formattedDate,
                     'STATUS_NAME' => $statusName,

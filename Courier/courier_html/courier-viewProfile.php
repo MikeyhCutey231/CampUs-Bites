@@ -7,15 +7,15 @@
     $userNames = $_SESSION['Courier_Name'];
 
     if(isset($_POST["switchAccountNow"])){
-        $loginuser = new loginStaff();
-        $result = $loginuser->staffSwitch($userNames);
+        $loginuser = new loginCourier();
+        $result = $loginuser->courSwitch($userNames);
 
-        if ($result === loginStaff::REGISTRATION_EMPTY_FIELDS) {
+        if ($result === loginCourier::REGISTRATION_EMPTY_FIELDS) {
             $error_message = "Kindly, fill in all the inputs";
-        } else if ($result === loginStaff::REGISTRATION_NOTSAME) {
+        } else if ($result === loginCourier::REGISTRATION_NOTSAME) {
             $error_message = "Kindly input your proper credentials";
-        } else if($result === loginStaff::REGISTRATION_SUCCESS){
-            header("location: ../../Staff/staff_html/staff-menu.php");
+        } else if($result === loginCourier::REGISTRATION_SUCCESS){
+            header("location: ../../Customer/customer_php/customer-menu.php");
         }
     }
 

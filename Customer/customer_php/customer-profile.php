@@ -1,6 +1,8 @@
 <?php
-require '../../Admin/functions/UserData.php';
+include '../../Admin/functions/UserData.php';
 
+$database = new Connection();
+$conn = $database->conn;
 
 $loggedUser = $_SESSION['Customer_ID'];
 $userDataInstance = new UserData();
@@ -35,7 +37,7 @@ if (!isset($_SESSION['Customer_ID'])) {
 
         <div class="main-content ">
                  <!-- sub navbar -->
-            <div class="container-fluid d-flex p-0 profile-menu mb-md-3 mb-2 ">
+            <div class="container-fluid d-flex p-0 profile-menu mb-md-3 mb-2">
                 <a href="customer-profile.php" class="p-0">
                     <button class="btn py-md-1 p-0 d-flex  align-items-center justify-content-center btn-profile" type="button">
                         <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="white" class="bi bi-person" viewBox="0 0 16 16">
@@ -259,35 +261,68 @@ if (!isset($_SESSION['Customer_ID'])) {
                 </div>
             </div>
 
-            <div class="p-0 Other_ACC">
-                <div class=" p-3 col-lg-12">
-                    Other accounts
-                </div>      
-                   <div class="container-fluid d-flex p-0 profile-menu mb-md-3 mb-2 switchContainer">
-                        <div class="d-flex align-items-center">
-                            <div class="ml-2">
-                                <img id="profileImg" src="../userPics/<?php echo $profilePic ?>" alt="Profile Picture" class="oth-pic" style="height: 40px; width: 40px; border: transparent; border-radius: 50%; object-fit: cover;">   
-                            </div>
+            <?php 
+                $checkAccount = "SELECT ROLE_CODE, USER_ID FROM user_roles WHERE USER_ID = '$loggedUser'";
+                $checkAccountRun = mysqli_query($conn, $checkAccount);
+                
+                $result = mysqli_fetch_array($checkAccountRun);
 
-                            <div class="ml-2 mr-3 userDetails">
-                                <div class="prof-name"><?php echo $fname ?></div>
-                                <div class="prof-role"><?php echo $userRole ?></div>
-                            </div>
-                        </div>
+                    if($result['ROLE_CODE'] != 'cour'){
+                        ?>
+                            <div class="p-0 Other_ACC">
+                                <div class=" p-3 col-lg-12">
+                                    Other accounts
+                                </div>      
+                                <div class="container-fluid d-flex p-0 profile-menu mb-md-3 mb-2 switchContainer">
+                                        <div class="d-flex align-items-center">
+                                            <div class="ml-2">
+                                                <img id="profileImg" src="../userPics/<?php echo $profilePic ?>" alt="Profile Picture" class="oth-pic" style="height: 40px; width: 40px; border: transparent; border-radius: 50%; object-fit: cover;">   
+                                            </div>
 
-                        <div class="ms-auto d-flex align-items-center">
-                            <button class="btn btn-primary ACC-BTN">
-                                Activate Courier Account
-                            </button>    
-                        </div>
-                    </div>
-                </div>
-        
-            </div> 
-        
-        
+                                            <div class="ml-2 mr-3 userDetails">
+                                                <div class="prof-name"><?php echo $fname ?></div>
+                                                <div class="prof-role"><?php echo $userRole ?></div>
+                                            </div>
+                                        </div>
 
+                                        <div class="ms-auto d-flex align-items-center">
+                                            <button class="btn btn-primary ACC-BTN activateBtn" id="activateBtns" style="padding-top: 8px !important; padding-bottom: 25px !important;">
+                                                Activate Courier Account
+                                            </button>    
+                                        </div>
+                                    </div>
+                                </div>
+                            </div> 
+                        <?php
+                    } else {
+                        ?>
+                            <div class="p-0 Other_ACC">
+                                    <div class=" p-3 col-lg-12">
+                                        Other accounts
+                                    </div>      
+                                    <div class="container-fluid d-flex p-0 profile-menu mb-md-3 mb-2 switchContainer">
+                                            <div class="d-flex align-items-center">
+                                                <div class="ml-2">
+                                                    <img id="profileImg" src="../userPics/<?php echo $profilePic ?>" alt="Profile Picture" class="oth-pic" style="height: 40px; width: 40px; border: transparent; border-radius: 50%; object-fit: cover;">   
+                                                </div>
 
+                                                <div class="ml-2 mr-3 userDetails">
+                                                    <div class="prof-name" value="<?php echo $fname ?>"><?php echo $fname ?></div>
+                                                    <div class="prof-role"><?php echo $userRole ?></div>
+                                                </div>
+                                            </div>
+
+                                            <div class="ms-auto d-flex align-items-center">
+                                                <button class="btn btn-primary ACC-BTN activateBtn"  id="logInAsCour" style="padding-top: 8px !important; padding-bottom: 25px !important;">
+                                                    Login as Courier
+                                                </button>    
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div> 
+                        <?php
+                 }
+            ?>
     </div> 
 
     <form method="post" action="../../Customer/functions/update-customer.php">
@@ -610,5 +645,55 @@ if (!isset($_SESSION['Customer_ID'])) {
 
 
 </script>
+
+
+
+
+<script>
+$(document).ready(function() {
+    $("#activateBtns").click(function() {
+        $.ajax({
+            url: '../../Customer/functions/activateCourier.php', // Adjust the path to your PHP script
+            type: 'POST',
+            data: { action: 'activateCourier' },
+            success: function(response) {
+                if (response.status === 'success') {
+                    location.reload();
+                }
+            },
+            error: function(error) {
+                console.error('Error:', error);
+            }
+        });
+    });
+});
+</script>
+
+<script>
+$(document).ready(function() {
+    $("#logInAsCour").click(function() {
+        var profNameValue = $(".prof-name").attr("value");
+    
+        $.ajax({
+                url: '../../Customer/functions/loginToCourier.php', // Adjust the path to your PHP script
+                type: 'POST',
+                data: { 
+                    action: 'activateCourier',
+                    profName: profNameValue
+                },
+                success: function(response) {
+                    if (response.status === 'success') {
+                        window.location.href = "../../Courier/courier_html/courier-dashboard.php";
+                    }
+                },
+                error: function(error) {
+                    console.error('Error:', error);
+                }
+            });
+    });
+});
+</script>
+
+
 </body>
 </html>

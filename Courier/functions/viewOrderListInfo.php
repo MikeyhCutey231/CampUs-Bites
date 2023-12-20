@@ -13,17 +13,18 @@ include("../../Admin/functions/dbConfig.php");
         $orderData = array();
         $oldcartID = $_SESSION["cartID"];
     
-        $viewOrder = "SELECT online_order.OL_CART_ID, online_order.ORDER_STATUS_ID, DATE_FORMAT(online_order.DATE_CREATED, '%M %e, %Y') AS FORMATTED_DATE, ol_order_status.STATUS_NAME FROM online_order
+        $viewOrder = "SELECT online_order.ONLINE_ORDER_ID, online_order.OL_CART_ID, online_order.ORDER_STATUS_ID, DATE_FORMAT(online_order.DATE_CREATED, '%M %e, %Y') AS FORMATTED_DATE, ol_order_status.STATUS_NAME FROM online_order
         INNER JOIN ol_order_status ON online_order.ORDER_STATUS_ID = ol_order_status.ORDER_STATUS_ID
         WHERE online_order.OL_CART_ID = '$oldcartID'";
     
         $stmt = $this->conn->prepare($viewOrder);
         if ($stmt) {
             $stmt->execute();
-            $stmt->bind_result($cartID, $statusID, $date, $statusName);  // Ayaw hilabti ni pula rana pero woking ni
+            $stmt->bind_result($onlineOrderId, $cartID, $statusID, $date, $statusName);  // Ayaw hilabti ni pula rana pero woking ni
             
             while ($stmt->fetch()) {
                 $orderData[] = [
+                    'ONLINE_ORDER_ID' => $onlineOrderId,
                     'OL_CART_ID' => $cartID,
                     'ORDER_STATUS_ID' => $statusID,
                     'FORMATTED_DATE' => $date,
@@ -44,7 +45,7 @@ include("../../Admin/functions/dbConfig.php");
         } else {
             foreach ($orderData as $row) {
                 echo '<div class="topOrderInfo">';
-                echo '<p>Order#' . $row['OL_CART_ID'] . '</p>';
+                echo '<p>Order#' . $row['ONLINE_ORDER_ID'] . '</p>';
                 
                 if ($row['ORDER_STATUS_ID'] != 3 && $row['ORDER_STATUS_ID'] != 4 && $row['ORDER_STATUS_ID'] != 5) {
                     echo '<button type="submit" name="claimBtn" id="claimBtn" value="' . $row['OL_CART_ID'] . '">Pick Up Order</button>';
@@ -68,17 +69,18 @@ include("../../Admin/functions/dbConfig.php");
         $orderData = array();
         $oldCartID = $_SESSION["olCartId"];
     
-        $viewOrder = "SELECT online_order.OL_CART_ID, online_order.ORDER_STATUS_ID, DATE_FORMAT(online_order.DATE_CREATED, '%M %e, %Y') AS FORMATTED_DATE, ol_order_status.STATUS_NAME FROM online_order
+        $viewOrder = "SELECT online_order.ONLINE_ORDER_ID, online_order.OL_CART_ID, online_order.ORDER_STATUS_ID, DATE_FORMAT(online_order.DATE_CREATED, '%M %e, %Y') AS FORMATTED_DATE, ol_order_status.STATUS_NAME FROM online_order
         INNER JOIN ol_order_status ON online_order.ORDER_STATUS_ID = ol_order_status.ORDER_STATUS_ID
         WHERE online_order.OL_CART_ID = '$oldCartID'";
     
         $stmt = $this->conn->prepare($viewOrder);
         if ($stmt) {
             $stmt->execute();
-            $stmt->bind_result($cartID, $statusID, $date, $statusName);  // Ayaw hilabti ni pula rana pero woking ni
+            $stmt->bind_result($onlineCartId, $cartID, $statusID, $date, $statusName);  // Ayaw hilabti ni pula rana pero woking ni
             
             while ($stmt->fetch()) {
                 $orderData[] = [
+                    'ONLINE_ORDER_ID' => $onlineCartId,
                     'OL_CART_ID' => $cartID,
                     'ORDER_STATUS_ID' => $statusID,
                     'FORMATTED_DATE' => $date,
@@ -100,7 +102,7 @@ include("../../Admin/functions/dbConfig.php");
             foreach ($orderData as $row) {
                 
                 echo '<div class="topOrderInfo">';
-                echo '<p>Order#' . $row['OL_CART_ID'] . '</p>';
+                echo '<p>Order#' . $row['ONLINE_ORDER_ID'] . '</p>';
                 echo '</div>';
                 
                 

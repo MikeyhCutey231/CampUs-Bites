@@ -81,6 +81,7 @@ class DateHandler{
                 mname,
                 lname,
                 cartID,
+                OnlinecartID,
                 dateCreate,
                 COURIER_ID
             FROM (
@@ -91,6 +92,7 @@ class DateHandler{
                     users.U_MIDDLE_NAME AS mname,
                     users.U_LAST_NAME AS lname,
                     online_order.OL_CART_ID AS cartID,
+                    online_order.ONLINE_ORDER_ID AS OnlinecartID,
                     DATE(online_order.DATE_CREATED) AS dateCreate,
                     online_order.COURIER_ID
                 FROM
@@ -111,7 +113,7 @@ class DateHandler{
         $stmt = $this->conn->prepare($query);
         if ($stmt) {
             $stmt->execute();
-            $stmt->bind_result($partialTotal, $shippingFee, $total, $fname, $mname, $lname, $cartID, $dateCreate, $courierID);  // Ayaw hilabti ni pula rana pero woking ni
+            $stmt->bind_result($partialTotal, $shippingFee, $total, $fname, $mname, $lname, $cartID, $OnlinecartID, $dateCreate, $courierID);  // Ayaw hilabti ni pula rana pero woking ni
             
             while ($stmt->fetch()) {
                 $employeeData[] = [
@@ -122,6 +124,7 @@ class DateHandler{
                     'mname' => $mname,
                     'lname' => $lname,
                     'cartID' => $cartID,
+                    'OnlinecartID' => $OnlinecartID,
                     'dateCreate' => $dateCreate,
                     'COURIER_ID' => $courierID,
                 ];
@@ -142,7 +145,7 @@ class DateHandler{
                 <tr>
                     <td><?php echo $row['dateCreate'] ?></td>
                     <td><?php echo $row['fname'] . ' ' . $row['mname'] . ' ' . $row['lname'] ?></td>
-                    <td>Order Number# <?php echo $row['cartID'] ?></td>
+                    <td>Order Number# <?php echo $row['OnlinecartID'] ?></td>
                     <td>₱ <?php echo $row['Total'] ?></td>
                     <td>
                         <button class="vwEmpProfile viewOrder" value="<?php echo $row['cartID'] ?>">

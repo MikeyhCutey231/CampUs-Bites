@@ -1,19 +1,26 @@
 <?php
 require_once '../functions/notifications.php';
 require_once  '../functions/getProfile.php';
+require_once("../../Admin/functions/dbConfig.php");
 
-$customer_id = 2;
+
+$database = new Connection();
+$conn = $database->conn;
+
+$customerID = $_SESSION['Customer_ID'];
+
+
 if (isset($_GET['mark_as_read'])) {
     $notification = new Notification();
-    $notification->markNotificationsAsRead($customer_id);
+    $notification->markNotificationsAsRead($customerID);
 }
 
 
 $notificationsFunctions = new Notification();
-$notifications = $notificationsFunctions->getNotificationsForCustomer($customer_id);
+$notifications = $notificationsFunctions->getNotificationsForCustomer($customerID);
 
 $customer_details = new GetProfile();
-$customer_profile = $customer_details->getProfile($customer_id);
+$customer_profile = $customer_details->getProfile($customerID);
 ?>
 
 
@@ -43,8 +50,8 @@ $customer_profile = $customer_details->getProfile($customer_id);
 
                 <div class="col-lg-5 col-md-4 col-sm-1 col-1 p-0 d-flex align-items-center justify-content-start title-logo">
                     
-                        <div class="logo-con">
-                            <img src="logoinspo.jpg" alt="">
+                        <div class="logo-con" style="height: 50px; width: 46px;">
+                            <img src="campus.png" alt="">
                         </div>
 
                         <div class="arrow-con"  onclick="window.history.back()" >
@@ -54,17 +61,26 @@ $customer_profile = $customer_details->getProfile($customer_id);
                         </div>
                     
                     <a href="customer-menu.php">
-                        <h1 class="title">Campus Bites</h1>
+                        <h1 class="title">Campus Bites <?php echo $customerID ?></h1>
                     </a>
                 </div>
                 <div class="col-lg-7 col-md-8 col-sm-11 col-11 p-0 d-flex align-items-center justify-content-end">
 
                        
-                        <a href="customer-profile.php"  class="p-0 d-flex align-items-center ">
-                            <div class=" d-flex align-items-center justify-content-center p-0 profile">
-                                <img class="pofile-pic" src="<?php echo $customer_profile;?>" style="height: 100%; width: 100%;">   
-                            </div>
-                        </a> 
+                <?php
+                        $profile = "SELECT U_PICTURE FROM users WHERE USER_ID = '$customerID'";
+                        $profRes = mysqli_query($conn, $profile);
+
+                        while($row = mysqli_fetch_assoc($profRes)){
+                            ?>  
+                                 <a href="customer-profile.php" class="p-0 d-flex align-items-center ">
+                                    <div class=" d-flex align-items-center justify-content-center p-0 profile">
+                                        <img class="pofile-pic" src="../userPics/<?php echo $row['U_PICTURE'] ?>" style="height: 100%; width: 100%; background-color: white;">
+                                    </div>
+                                </a>
+                            <?php
+                        }
+                    ?>
                    
                 </div>
                 <div class=" col-md-2 col-sm-3 col-5  d-flex justify-content-between align-items-center icon-con">
@@ -113,12 +129,6 @@ $customer_profile = $customer_details->getProfile($customer_id);
                             </div>
                         </div>
                     <?php endforeach; ?>
-
-                
-
-                    
-              
-
             </div>
 
     

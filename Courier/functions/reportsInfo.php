@@ -15,12 +15,14 @@ include("../../Admin/functions/dbConfig.php");
         $viewOrder = "SELECT
                 orderDate,
                 orderCartID,
+                onlineCartID,
                 SHIPPING_FEE,
                 (SHIPPING_FEE + partialTotal) AS Total
             FROM (
                 SELECT
                     DATE(online_order.DATE_CREATED) AS orderDate,
                     online_order.OL_CART_ID AS orderCartID,
+                    online_order.ONLINE_ORDER_ID AS onlineCartID,
                     SUM(online_cart_item.OL_SUBTOTAL) AS partialTotal,
                     online_order.SHIPPING_FEE
                 FROM
@@ -38,12 +40,13 @@ include("../../Admin/functions/dbConfig.php");
         $stmt = $this->conn->prepare($viewOrder);
         if ($stmt) {
             $stmt->execute();
-            $stmt->bind_result($dateCreate, $cartID, $shippingFee, $totalAmount);  // Ayaw hilabti ni pula rana pero woking ni
+            $stmt->bind_result($dateCreate, $cartID, $onlineCartID, $shippingFee, $totalAmount);  // Ayaw hilabti ni pula rana pero woking ni
             
             while ($stmt->fetch()) {
                 $orderData[] = [
                     'DATE_CREATED' => $dateCreate,
                     'OL_CART_ID' => $cartID,
+                    'ONLINE_ORDER_ID' => $onlineCartID,
                     'SHIPPING_FEE' => $shippingFee,
                     'TotalAmount' => $totalAmount,
                 ];
@@ -62,7 +65,7 @@ include("../../Admin/functions/dbConfig.php");
             foreach ($orderData as $row) {
                 echo '<tr>';
                 echo '<td>' . $row['DATE_CREATED'] . '</td>';
-                echo '<td># ' . $row['OL_CART_ID'] . '</td>';
+                echo '<td># ' . $row['ONLINE_ORDER_ID'] . '</td>';
                 echo '<td>₱ ' . $row['TotalAmount'] . '</td>';
                 echo '<td>₱ ' . $row['SHIPPING_FEE'] . '</td>';
                 echo '</tr>';

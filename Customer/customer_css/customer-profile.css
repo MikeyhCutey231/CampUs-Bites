@@ -171,6 +171,10 @@ a{
     
 }
 
+.profile-pic{
+    background-color: white !important;
+}
+
 
 .btn-profile svg{
     margin-right: 10px;
@@ -406,6 +410,16 @@ a{
 .userDetails{
     margin-left: 10px !important;
 }
+
+.activateBtn:hover{
+    background-color: #9C1421;
+}
+
+.activateBtn:not(:disabled):not(:disabled):active {
+    background-color: #9C1421;
+ } 
+
+
 
 @media (max-width: 1200px) { /*laptop*/
     

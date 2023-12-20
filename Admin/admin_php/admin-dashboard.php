@@ -46,6 +46,35 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['search'])) {
     <link rel="icon" type="image/png" sizes="16x16" href="../../favicon/favicon-16x16.png">
     <link rel="manifest" href="../../favicon/site.webmanifest">
     <link rel="stylesheet" href="../../Admin/admin_css/admin-dashboard.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script>
+        // Logout after 15 minutes of inactivity (for testing purposes)
+        var inactivityTime = 15 * 1000;
+        var logoutTimer;
+
+        function resetTimer() {
+            clearTimeout(logoutTimer);
+            logoutTimer = setTimeout(logout, inactivityTime);
+        }
+
+        function logout() {
+            // Clear session or perform other logout actions
+
+            // Use replaceState to replace the current URL with the logout.php URL
+            history.replaceState(null, null, 'logout.php');
+
+            // Redirect to the logout page
+            window.location.href = 'logout.php';
+        }
+
+        $(document).ready(function () {
+            // Attach events to reset the timer when there is user activity
+            $(document).on('mousemove keypress', resetTimer);
+
+            // Initial setup of the timer
+            resetTimer();
+        });
+    </script>
 </head>
 <body>
 <div class="wrapper">

@@ -69,7 +69,22 @@ function displayOrderDetails($request)
                 // Display order details with the provided HTML structure
                 if ($orderId != $currentOrderId) {
                     // Display order details only if it's a new order
-                    
+                    if ($currentOrderId !== null) {
+                        // Display order total after the loop for products
+                        echo '<div class="row">';
+                        echo '<div class="col-12">';
+                        echo '<hr style="border-top: 1px solid #ddd; margin-top: 15px; margin-bottom: 15px;">'; // Add a horizontal line
+                        echo '</div>';
+                        echo '<div class="col-lg-11 col-md-10 col-9 align-items-center d-flex justify-content-end">';
+                        echo '<div class="total-title">Order Total:</div>';
+                        echo '</div>';
+                        echo '<div class="col-lg-1 col-md-2 col-3 d-flex align-items-center justify-content-center">';
+                        echo '<div class="total-con">₱' . number_format($grandtotal, 2) . '</div>';
+                        echo '</div>';
+                        echo '</div>';
+                        echo '</div>';
+                        echo '</div>'; // Close the order details container
+                    }
 
                     echo '<div class="container-fluid p-0 mt-2 align-items-center justify-content-center order-details shadow">'; // Add the "shadow" class here
                     echo '<div class="container d-block py-lg-3 px-lg-4 p-sm-3 px-4 py-2 order ">';

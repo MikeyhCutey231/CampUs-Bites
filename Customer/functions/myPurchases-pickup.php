@@ -8,6 +8,7 @@ require_once '../../Admin/functions/dbConfig.php';
 // Function to fetch and display order details based on order status
 function displayOrderDetails($request)
 {
+    $customer_id = $_SESSION['Customer_ID'];
     // Create an instance of the Database class
     $database = new Connection();
     $conn = $database->conn;
@@ -18,14 +19,14 @@ function displayOrderDetails($request)
     INNER JOIN ol_cart ON online_order.OL_CART_ID = ol_cart.OL_CART_ID
     INNER JOIN online_cart_item ON ol_cart.OL_CART_ID = online_cart_item.OL_CART_ID
     INNER JOIN product ON online_cart_item.PROD_ID = product.PROD_ID
-    WHERE online_order.OL_ORDER_TYPE_ID = 2";
+    WHERE online_order.OL_ORDER_TYPE_ID = 2 AND users.USER_ID = '$customer_id'";
 
     // Check if a specific order status is requested
     if (!empty($request) && $request !== '0') {
         $query .= " AND online_order.ORDER_STATUS_ID = '$request'";
     }
 
-    $query .= " GROUP BY online_order.ONLINE_ORDER_ID, online_cart_item.PROD_ID ORDER BY online_order.DATE_CREATED DESC";
+    $query .= " GROUP BY online_order.ONLINE_ORDER_ID, online_cart_item.PROD_ID ORDER BY online_order.ONLINE_ORDER_ID DESC";
 
     $result = mysqli_query($conn, $query);
 

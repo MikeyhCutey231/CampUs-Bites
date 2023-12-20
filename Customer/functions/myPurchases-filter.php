@@ -127,7 +127,7 @@ function displayOrderDetails($request)
                 echo '<div class="row py-1 py-sm-2 px-1 border item-details">';
                 echo '<div class="col-md-1 col-sm-2 col-3 py-1 d-flex align-items-center justify-content-center">';
                 echo '<div class="d-flex align-items-center justify-content-center">';
-                echo '<img class="item-image" src="' . $productPic . '" alt="' . $productName . '">';
+                echo '<img class="item-image" src="../../Icons/' . $productPic . '" alt="' . $productName . '">';
                 echo '</div>';
                 echo '</div>';
                 echo '<div class="col-md-9 col-sm-7 col-6 py-3 p-1 d-block align-items-center justify-content-center">';

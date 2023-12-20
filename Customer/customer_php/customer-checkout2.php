@@ -134,7 +134,7 @@ $details = new Checkout();
 
             <div class="row item-con px-1 px-sm-3 px-sm-3 py-sm-2 py-1">
                 <div class="col-sm-1 col-2 p-sm-2 p-1 d-flex  justify-content-center">
-                    <img class="item-image" src="<?php echo $prodPic ?>" alt="">
+                    <img class="item-image" src="../../Icons/'<?php echo $prodPic ?>" alt="">
                 </div>
                 <div class="col-sm-5 col-4  col-2 p-sm-2 p-1 d-flex align-items-center justify-content-start ">
                     <div class="item-name"><?php echo $prodName ?></div>

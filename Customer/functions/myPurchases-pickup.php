@@ -13,7 +13,8 @@ function displayOrderDetails($request)
     $database = new Connection();
     $conn = $database->conn;
 
-    $query = "SELECT online_order.ONLINE_ORDER_ID, ol_order_status.STATUS_NAME, online_order.OL_CART_ID, product.PROD_NAME, product.PROD_PIC, online_cart_item.OL_PROD_QUANTITY, product.PROD_SELLING_PRICE, online_cart_item.OL_SUBTOTAL
+    $query = "SELECT online_order.ONLINE_ORDER_ID, ol_order_status.STATUS_NAME, online_order.OL_CART_ID, product.PROD_NAME, product.PROD_PIC, online_cart_item.OL_PROD_QUANTITY, 
+    product.PROD_SELLING_PRICE, online_cart_item.OL_SUBTOTAL
     FROM online_order
     INNER JOIN ol_order_status ON online_order.ORDER_STATUS_ID = ol_order_status.ORDER_STATUS_ID
     INNER JOIN ol_cart ON online_order.OL_CART_ID = ol_cart.OL_CART_ID
@@ -120,7 +121,7 @@ function displayOrderDetails($request)
                 echo '<div class="row py-1 py-sm-2 px-1 border item-details">';
                 echo '<div class="col-md-1 col-sm-2 col-3 py-1 d-flex align-items-center justify-content-center">';
                 echo '<div class="d-flex align-items-center justify-content-center">';
-                echo '<img class="item-image" src="' . $productPic . '" alt="' . $productName . '">';
+                echo '<img class="item-image" src="../../Icons/' . $productPic . '" alt="' . $productName . '">';
                 echo '</div>';
                 echo '</div>';
                 echo '<div class="col-md-9 col-sm-7 col-6 py-3 p-1 d-block align-items-center justify-content-center">';

@@ -13,7 +13,7 @@ function displayOrderDetails($request)
     // Create an instance of the Database class
     $database = new Connection();
     $conn = $database->conn;
-    var_dump($customer_id);
+  
     $query = "SELECT online_order.ONLINE_ORDER_ID, ol_order_status.STATUS_NAME,  online_order.OL_CART_ID, product.PROD_NAME, product.PROD_PIC, online_cart_item.OL_PROD_QUANTITY,
              product.PROD_SELLING_PRICE, online_cart_item.OL_SUBTOTAL,  online_cart_item.OL_SUBTOTAL + online_order.SHIPPING_FEE AS 'GRANDTOTAL'
                 FROM online_order

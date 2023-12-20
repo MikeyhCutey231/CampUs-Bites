@@ -10,7 +10,7 @@ function displayProduct($row)
         <a href="../customer_php/customer-view-item.php?productId=<?php echo $row->PROD_ID; ?>" class="view-item-link" data-product-id="<?php echo $row->PROD_ID; ?>">
             <div class="card justify-content-center d-flex border" style="overflow:hidden;">
                 <div class="row itemimage-con" style="overflow:hidden; border-radius: 10px 10px 0px 0px;">
-                    <img src="<?php echo $row->PROD_PIC; ?>" id="itemImage" alt="Food Item">
+                    <img src="../../Icons/<?php echo $row->PROD_PIC; ?>" id="itemImage" alt="Food Item">
                 </div>
                 <div class="card-body py-sm-2 py-1">
                     <div class="row px-0">

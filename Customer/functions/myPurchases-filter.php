@@ -50,7 +50,7 @@ function displayOrderDetails($request)
                 $productPic = $row['PROD_PIC'];
                 $quantity = $row['OL_PROD_QUANTITY'];
                 $productPrice = $row['PROD_SELLING_PRICE'];
-                $subtotal = $row['OLSUBTOTAL'];
+                $subtotal = $row['OL_SUBTOTAL'];
                 $shippingfee = $row['SHIPPING_FEE'];
 
                 // Calculate subtotal by multiplying price and quantity

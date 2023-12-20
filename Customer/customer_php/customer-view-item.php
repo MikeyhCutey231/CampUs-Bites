@@ -445,7 +445,7 @@ if (isset($_GET["productId"]) && !empty($_GET["productId"])) {
                 <a href="customer-view-item.php?productId=' . $row->PROD_ID . '" class="view-item-link" data-product-id="' . $row->PROD_ID . '">
                     <div class="card justify-content-center d-flex border" style="overflow:hidden;">
                         <div class="row itemimage-con" style="overflow:hidden; border-radius: 10px 10px 0px 0px;">
-                            <img src="' . $row->PROD_PIC . '" id="itemImage" alt="Food Item" >
+                            <img src="../../Icons/' . $row->PROD_PIC . '" id="itemImage" alt="Food Item" >
                         </div> 
                         <div class="card-body py-sm-2 py-1">
                             <div class="row px-0"> 

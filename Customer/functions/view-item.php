@@ -76,13 +76,16 @@ class Product{
         $ratingsData = array();
     
         foreach ($result as $row) {
+            // Calculate the length for str_repeat, ensuring it's not negative
+            $length = max(strlen($row['U_USER_NAME']) - 2, 0);
+        
             $ratingDetails = array(
                 'orderRating' => $row['ORDER_RATING'],
-                'userName' => substr($row['U_USER_NAME'], 0, 1) . str_repeat("*", strlen($row['U_USER_NAME']) - 2) . substr($row['U_USER_NAME'], -1),
+                'userName' => substr($row['U_USER_NAME'], 0, 1) . str_repeat("*", $length) . substr($row['U_USER_NAME'], -1),
                 'dateCreated' => $row['DATE_CREATED'],
                 'orderComment' => $row['ORDER_COMMENT']
             );
-    
+        
             $ratingsData[] = $ratingDetails;
         }
     

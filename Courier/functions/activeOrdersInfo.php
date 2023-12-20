@@ -10,7 +10,7 @@ include("../../Admin/functions/dbConfig.php");
 
     public function getOrders() {
         $employeeData = array();
-    
+        $userID = $_SESSION['USER_ID'];
         $query = "SELECT
         online_order.ONLINE_ORDER_ID,
         online_order.OL_CART_ID,
@@ -26,7 +26,7 @@ include("../../Admin/functions/dbConfig.php");
         INNER JOIN users ON ol_cart.CUSTOMER_ID = users.USER_ID
         INNER JOIN online_cart_item ON online_order.OL_CART_ID = online_cart_item.OL_CART_ID
         WHERE
-            online_order.ORDER_STATUS_ID = 1 AND online_order.OL_ORDER_TYPE_ID = 1
+            online_order.ORDER_STATUS_ID = 1 AND online_order.OL_ORDER_TYPE_ID = 1 AND ol_cart.CUSTOMER_ID != '$userID'
         GROUP BY
             online_order.OL_CART_ID,
             users.U_FIRST_NAME,

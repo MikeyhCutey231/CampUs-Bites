@@ -28,7 +28,7 @@ class CartView extends Cart{
             ?>
              <div class="row cart-item-con py-2">
                 <div class="col-1 p-sm-2 p-1 d-flex  justify-content-center">
-                    <img class="item-image" src="<?php echo $row['PROD_PIC']?>" alt="product picture">
+                    <img class="item-image" src="../../Icons/<?php echo $row['PROD_PIC']?>" alt="product picture">
                 </div>
                 <div class="col-md-5 col-3 p-sm-2 p-1 d-flex align-items-center justify-content-start ">
                     <div class="item-name"><?php echo $row['PROD_NAME']?></div>

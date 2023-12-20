@@ -356,7 +356,7 @@ if (isset($_GET["productId"]) && !empty($_GET["productId"])) {
         <script>
             $(document).ready(function() {
                 // Define the number of ratings to initially show and the step size for each "See more" click
-                var ratingsToShowInitially = 1;
+                var ratingsToShowInitially = 15;
                 var stepSize = 5;
 
                 // Hide ratings beyond the initial count
